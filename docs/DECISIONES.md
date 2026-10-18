@@ -35,6 +35,7 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | D-025 | Sistema de diseño Pauta v1 en `diseno/sistema/` (única fuente): 33 colores en oscuro y claro, 15 estilos de texto (escritorio y móvil), espacios, radios, sombras, medidas, 25 componentes `pa-*`, iconos Lucide 1.50.0 y logotipos. | Propuesta (pendiente de tu revisión) | Síntesis aprobada (`producto/06`); contraste de 112 pares comprobado; vistas previas en escritorio y a 412 px. Página: https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m | Al revisar las tres pantallas clave |
 | D-026 | Antes de programar: una app base por sector (Finanzas = Bolsa; propuesta: Calendario = Fantastical, Tareas y Hoy = Things 3), anatomía de su pantalla y calco con nuestro contenido en el lienzo de diseño de Claude; código solo de lo aprobado. | Aceptada (usuario, 18-10-2026) | `producto/07`; práctica 2026 según fuentes secundarias; Figma y Penpot como alternativas. | Al responder P-023 |
 | D-027 | Finanzas calcada de Bolsa: en el Mac, barra lateral + lista de fondos + detalle (inspector oculto); en Android, lista con título grande y detalle en hoja. Sin «1D»; aportaciones en la franja del volumen; regla de aviso en lugar de noticias. | Propuesta | Maquetas en `diseno/maquetas/finanzas/` y lienzo https://claude.ai/artifact/1Dmp1APhbBSL1Y1F3NuNAU | Al responder P-024 |
+| D-028 | Datos financieros en dos niveles: A) importar los ficheros que descargas (CaixaBank, MyInvestor, Trade Republic) como base; B) opcional, PSD2 de solo lectura con Enable Banking en modo restringido (gratis, cuentas propias). Descartadas: API no oficial de Trade Republic, rascado con credenciales, apps agregadoras. Datos financieros solo en Mac o NAS, cifrados. Valor liquidativo: EODHD gratis + web de la gestora. | Propuesta | `producto/08` | Tras las pruebas de P-025 |
 | D-017 | NAS: no necesario en la fase 1; decidir antes de la fase 2 (índice local, modelos pequeños, automatización de navegador). Código portable Cloudflare/Node. | Propuesta | Análisis en fase 0b, sección 2. | Antes de la fase 2 |
 
 ## Supuestos
@@ -66,7 +67,7 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 
 | P-010 | ~~Revisar la v2~~ Sustituido por P-022. | — |
 | P-012 | ~~«Financia»~~ Resuelto: es Bolsa (Stocks) de Apple. | — |
-| P-013 | Entidades financieras (bancos, gestoras, brókers, ISIN) y si interesan también gastos e ingresos. | Conectores de finanzas |
+| P-013 | ~~Entidades y gastos~~ Resuelto en parte: MyInvestor, Trade Republic y CaixaBank; sí a gastos y patrimonio. Faltan los ISIN de tus fondos. | Conectores de finanzas |
 | P-014 | ¿Mac personal? ¿Opción 2 o nativa? | D-022 |
 | P-015 | Orden de prioridad de los sectores. | Hoja de ruta |
 | P-016 | ¿Notas personales en alguna app? | Sector de búsqueda y conocimiento |
@@ -78,6 +79,7 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | P-022 | Revisar el sistema de diseño Pauta v1 (página de revisión) y señalar qué cambiar antes de construir las pantallas. | Tres pantallas clave (paso 4) |
 | P-023 | ~~Herramienta y apps base~~ Resuelto: lienzo de Claude; Fantastical, Things 3 y Bolsa. | — |
 | P-024 | Revisar las maquetas de Finanzas (lienzo) y, en concreto, las tres columnas en el Mac. | Maquetas de Hoy y código de Finanzas |
+| P-025 | Aprobar los niveles A/B de datos financieros y hacer las pruebas: un fichero por entidad (anonimizado), cuenta de Enable Banking (la creas tú) y clave gratuita de EODHD. | Conectores de finanzas |
 | P-011 | Alojamiento de la fase 1a (Cloudflare gratis con cuenta del usuario, o esperar al NAS). | Despliegue de la fase 1a |
 
 ## Registro de investigación
@@ -98,3 +100,4 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | 18-10-2026 | Sistema de diseño Pauta v1 | Revisadas de nuevo las capturas de referencia; Lucide 1.50.0 (ISC) y @fontsource-variable/inter 5.3.0 (OFL, ejes opsz 14–32 y wght 100–900, sin ⌘ en el subconjunto latino) comprobados en npm; icono adaptable de Android: lienzo 108 dp, zona segura 66 dp, capa monocroma (developer.android.com). Contraste de 112 pares OK. |
 | 18-10-2026 | Método de maquetas y herramientas | Kit de macOS 27 para Figma y Sketch en Apple Design Resources; Penpot Professional a 0 $ con servidor MCP; Figma Starter limitado y Professional 16 $/mes; Mobbin Pro 15 $/mes sin biblioteca de Mac comprobada; Stitch gratis (reseñas). Ver `producto/07`. |
 | 18-10-2026 | Maquetas de Finanzas | Anatomía de Bolsa con 26 capturas de la guía del Mac y 6 de la App Store; 8 tableros (Mac oscuro, claro y tramo; Android lista, detalle y claro; referencias). |
+| 18-10-2026 | Datos financieros (bancos, brókers, valores liquidativos) | Enable Banking: modo restringido gratis para cuentas propias, AISP supervisado por la FIN-FSA, JWT RS256, sin categorización (FAQ y referencia oficiales). Trade Republic: API PSD2 oficial solo para TPP con licencia (guía 2.1, julio de 2026) y CSV desde abril de 2026. MyInvestor: PSD2 vía Redsys. GoCardless sin altas desde julio de 2025. EODHD gratis: 20 llamadas/día, 1 año. CNMV: valores diarios en fichero mensual, solo fondos españoles. Ver `producto/08`. |

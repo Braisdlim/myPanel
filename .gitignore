@@ -1,1 +1,5 @@
 docs/referencias/*/img/
+
+# Datos financieros reales: nunca al repositorio
+research/finanzas-import/privado/
+*.ofx
