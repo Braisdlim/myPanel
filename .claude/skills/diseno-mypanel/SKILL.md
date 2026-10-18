@@ -6,7 +6,7 @@ description: Dirección visual y reglas de interfaz de myPanel. Usar antes de di
 ## Encargo (las palabras del usuario mandan)
 - Minimalista, amigable, mucho espacio, jerarquía clara; acabado de app Apple muy pulida **sin copiar** su identidad.
 - Oscuro como dirección principal; claro seleccionable; por defecto, la preferencia del sistema.
-- Móvil Android (Honor 600 Pro, ~412 px de ancho CSS) y escritorio diseñados a la vez.
+- Móvil (Android e iPhone; Honor 600 Pro ~412 px de ancho CSS, iPhone desde 390 px) y escritorio (Mac y Windows) diseñados a la vez. **Paridad**: toda pantalla de escritorio tiene su versión móvil y al revés; la matriz está en `docs/producto/09-paridad-de-pantallas.md`.
 - Poca información al principio; los detalles se amplían al tocar.
 
 ## Sistema actual: Pauta v1 (aprobado por el usuario el 18-10-2026)
@@ -14,7 +14,7 @@ description: Dirección visual y reglas de interfaz de myPanel. Usar antes de di
 - Nombre de la app: **Pauta** (el repositorio sigue llamándose myPanel). Icono: tres líneas del día, la de «ahora» en acento.
 - Estilo nativo de Mac, plano y tranquilo: superficies grafito separadas por bordes finos, **sin cristal, degradados ni resplandores** (la dirección v2 queda sustituida).
 - Tipografía **Inter Variable** con tamaño óptico, alojada con la app; pesos 300 (cifras), 400 (texto), 500 (controles), 600 (títulos), nunca más.
-- **Un solo acento, lavanda plana** (`accent`): «ahora», foco, selección y acción principal. Semánticos aparte (`gain`/`loss` siempre con flecha y signo, `attention`, `danger`). Cuentas: `cuenta-1` cielo y `cuenta-2` melocotón, solo como punto, barra o nombre.
+- **Un solo acento, lavanda plana** (`accent`): «ahora», foco, selección y acción principal. Semánticos aparte (`gain`/`loss` siempre con flecha y signo, `attention`, `danger`). Cuentas (varias de Google, Microsoft…): `cuenta-1` cielo, `cuenta-2` melocotón, `cuenta-3` rosa, `cuenta-4` turquesa, solo como punto, barra o nombre, y nunca sin el nombre de la cuenta.
 - Gráficos financieros como Bolsa: línea y degradado `gain` si el periodo sube y `loss` si baja, contra la línea punteada del valor de partida; `accent` solo al inspeccionar un punto; píldoras sólidas (`pa-delta--solid`) en las listas.
 - Una carcasa para todo: barra lateral, contenido e inspector en el Mac; contenido + pestañas con ＋ en Android (< 640 px). Mismo problema, misma pieza (`Fila`, `RejillaTiempo`, `MapaAnual`, `Aviso`, `Captura`).
 - Cada tarjeta: título (+ subtítulo) a la izquierda y como mucho un botón de icono a la derecha.

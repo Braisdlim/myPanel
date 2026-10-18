@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Widget en el móvil</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden; padding: 24px 16px; gap: 18px; background: var(--sidebar);">
+  <div style="display: flex; flex-direction: column; gap: 6px;">
+    <span class="pa-label" style="font-size: 13px;">fuera de la app · móvil</span>
+    <h1 style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 600;">Widget de la pantalla de inicio</h1>
+    <p style="margin: 0; font-size: 14px; line-height: 19px; color: var(--text-2);">La pareja de la mini agenda de la barra de menús: lo siguiente y el resto del día de todas tus cuentas.</p>
+  </div>
+  <div style="padding: 14px; border-radius: 22px; background: var(--surface); box-shadow: var(--shadow-menu); display: flex; flex-direction: column; gap: 8px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;"><span class="pa-label" style="font-size: 12px; color: var(--accent);">lo siguiente · en 20 min</span><span class="pa-num" style="font-size: 12px; color: var(--text-3);">vie 23</span></div>
+    <div style="display: flex; gap: 10px; align-items: stretch;"><span style="width: 4px; border-radius: 2px; background: var(--cuenta-1);"></span><span><span style="display: block; font-weight: 600;">Revisión del coche</span><span class="pa-num" style="display: block; font-size: 13px; color: var(--text-2);">10:00–11:00 · Gmail 1</span></span></div>
+    <div style="height: 1px; background: var(--line); margin: 2px 0;"></div>
+    <div style="display: grid; grid-template-columns: 4px 44px minmax(0, 1fr); gap: 4px 8px; align-items: center; font-size: 14px; line-height: 20px;">
+      <span style="height: 14px; border-radius: 2px; background: var(--cuenta-2);"></span><span class="pa-num" style="color: var(--text-2);">13:30</span><span>Comida familiar</span>
+      <span style="height: 14px; border-radius: 2px; background: var(--cuenta-1);"></span><span class="pa-num" style="color: var(--text-2);">17:30</span><span>Médico</span>
+      <span style="height: 14px; border-radius: 2px; box-shadow: inset 0 0 0 1.5px var(--cuenta-2);"></span><span class="pa-num" style="color: var(--text-2);">21:30</span><span>Ensayo (opcional)</span>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 4px;"><span style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-2);"><span class="pa-dot pa-dot--danger"></span>Mañana se solapan dos planes</span><button class="pa-btn pa-btn--icon" style="width: 40px; min-height: 40px; background: var(--accent); color: var(--on-accent);" aria-label="Apuntar"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /> <path d="M12 5v14" /></svg></button></div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px 12px; padding: 6px 8px;"><span style="aspect-ratio: 1; border-radius: 16px; background: var(--hover);"></span><span style="aspect-ratio: 1; border-radius: 16px; background: var(--hover);"></span><span style="aspect-ratio: 1; border-radius: 16px; background: var(--hover);"></span><span style="aspect-ratio: 1; border-radius: 16px; background: var(--hover);"></span><span style="aspect-ratio: 1; border-radius: 16px; background: var(--hover);"></span><span style="aspect-ratio: 1; border-radius: 16px; background: var(--hover);"></span><span style="aspect-ratio: 1; border-radius: 16px; background: var(--hover);"></span><span style="aspect-ratio: 1; border-radius: 16px; background: var(--hover);"></span></div>
+  <p style="margin: auto 0 0; font-size: 12.5px; line-height: 17px; color: var(--text-3);">Por comprobar: una web app no puede poner widgets ni en Android ni en iPhone; hace falta la app de Tauri para móvil o una nativa. Los iconos grises son el resto de la pantalla de inicio. Contenido de ejemplo.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

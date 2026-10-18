@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Pide atención en Android</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden;">
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 8px 16px 0; display: flex; flex-direction: column; gap: 12px;">
+    <div style="display: flex; align-items: center; margin: 0 -12px;"><button class="pa-btn pa-btn--icon" aria-label="Volver a Hoy"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 22px; height: 22px;"><path d="m15 18-6-6 6-6" /></svg></button><span style="font-size: 15px; color: var(--text-2);">Hoy</span></div>
+    <h1 style="margin: 0; font-size: 28px; line-height: 34px; font-weight: 600; letter-spacing: -0.015em;">Pide atención</h1>
+    <div style="display: flex; gap: 8px; overflow: hidden; margin-right: -16px;"><button class="pa-chip" aria-pressed="true" style="flex: none;">Todos · 3</button><button class="pa-chip" aria-pressed="false" style="flex: none;">Calendario</button><button class="pa-chip" aria-pressed="false" style="flex: none;">Tareas</button><button class="pa-chip" aria-pressed="false" style="flex: none;">Finanzas</button></div>
+    <div class="pa-alert"><span class="pa-dot pa-dot--danger"></span><span class="pa-alert__title"><span style="display: block; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text-3);">Calendario</span>Mañana se solapan dos planes</span><span class="pa-alert__text">Ruta en bici (Gmail 2) y reunión de la comunidad (Outlook), de 12:00 a 13:00. Outlook está en solo lectura.</span><div class="pa-alert__actions"><button class="pa-btn pa-btn--sm">Mover la ruta esta vez</button><button class="pa-btn pa-btn--sm pa-btn--plain">Abrir en Outlook</button></div></div><div class="pa-alert"><span class="pa-dot pa-dot--danger"></span><span class="pa-alert__title"><span style="display: block; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text-3);">Tareas</span>La factura de la luz vence hoy</span><span class="pa-alert__text">Está en tu plan a las 11:15 (20 min).</span><div class="pa-alert__actions"><button class="pa-btn pa-btn--sm">Ver en Hoy</button><button class="pa-btn pa-btn--sm pa-btn--plain">Pasar a mañana</button></div></div><div class="pa-alert"><span class="pa-dot pa-dot--attention"></span><span class="pa-alert__title"><span style="display: block; font-size: 12px; line-height: 16px; font-weight: 500; color: var(--text-3);">Finanzas</span>Emergentes cae un 5,2&nbsp;%</span><span class="pa-alert__text">Desde su máximo de 30 días (2 oct). Tu regla avisa a partir del 5&nbsp;%.</span><span class="pa-alert__src">Valor liquidativo del 22 oct · gestora</span><div class="pa-alert__actions"><button class="pa-btn pa-btn--sm">Crear tarea «Valorar aportación»</button><button class="pa-btn pa-btn--sm pa-btn--plain">Ajustar la regla</button></div></div>
+    <div style="font-size: 14px; line-height: 19px;"><div style="display: flex; flex-direction: column; gap: 2px;"><span class="pa-label">resueltos esta semana</span>
+        <div style="display: flex; flex-direction: column; gap: 0; padding: 8px 0; border-bottom: 1px solid var(--line); color: var(--text-2);"><span>Vence el seguro del coche</span><span>lun 19 · creaste la tarea «Llamar al seguro»</span></div>
+        <div style="display: flex; flex-direction: column; gap: 0; padding: 8px 0; color: var(--text-2);"><span>Aportación del día 5</span><span>lun 5 · marcada como hecha</span></div></div></div>
+  </main>
+  <nav class="pa-tabbar" aria-label="Sectores" style="flex: none;">
+    <button class="pa-tab" aria-current="page"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>Hoy</button>
+    <button class="pa-tab"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg>Calendario</button>
+    <button class="pa-tab--add" aria-label="Apuntar"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+    <button class="pa-tab"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m16 9-5.5 5.5L8 12"></path></svg>Tareas</button>
+    <button class="pa-tab"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg>Finanzas</button>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # Documento vivo: decisiones, supuestos, fuentes y pendientes
 
-Última actualización: 18-10-2026 (Finanzas y Hoy aprobadas; interruptor en el sistema; maquetas del Calendario pendientes de revisión).
+Última actualización: 18-10-2026 (Calendario con varias cuentas de Google y Microsoft y paridad escritorio/móvil en todos los sectores; pendiente de revisión).
 Detalle: [`fase-0/investigacion-y-propuesta.md`](fase-0/investigacion-y-propuesta.md) y [`fase-0/prototipo-y-herramientas.md`](fase-0/prototipo-y-herramientas.md) y [`fase-0/direccion-visual-v2.md`](fase-0/direccion-visual-v2.md).
 
 Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazada** · **Sustituida**.
@@ -9,7 +9,7 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 
 | ID | Decisión | Estado | Motivo y evidencia | Revisar cuando |
 |---|---|---|---|---|
-| D-001 | App para una sola persona; sin multi-tenant. | Propuesta | Alcance del encargo. | — |
+| D-001 | App para una sola persona; sin multi-tenant. | Propuesta (revisar: el usuario habla de «si es que quieren», ver P-029) | Alcance del encargo. | Al responder P-029 |
 | D-002 | Núcleo (Hoy, captura, backlog, calendario, búsqueda exacta) sin llamadas a IA. | Propuesta | Encargo + coste 0 €. Prueba chrono-es: el parser determinista necesita reglas propias y vista previa. | Fase 3 |
 | D-003 | Componentes de interfaz en Svelte 5. | Aceptada | Prototipo hecho con Svelte 5.57.2 en Astro: ~36 KB de JS comprimido. | — |
 | D-004 | **Astro 7** (con islas Svelte 5) como base de la app. | Aceptada (decisión del usuario, 18-10-2026) | Encaja tras el prototipo. Costes asumidos: *service worker* y refresco de datos a mano; `@vite-pwa/astro` no declara Astro ≥ 6. | Si el offline o el estado compartido se complican en la fase 1a |
@@ -41,6 +41,9 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | D-031 | «Hoy» calcado de Things 3: en el Mac, barra lateral + lista del día + inspector (lo siguiente, pide atención, tu dinero hoy); en Android, título grande, lista y pestañas. Se añaden la barra de capacidad (tiempo libre hasta el ensayo), duración en cada tarea y «Planificar el día»: eliges tareas y Pauta propone dónde caben (Sunsama en el Mac, línea del día de Structured en Android). Lo propuesto va en acento con borde discontinuo hasta que lo guardas. Escribir el plan en Google Calendar queda desactivado por defecto y sin cuenta elegida (P-020). | Aceptada (usuario: «Hoy listo», 18-10-2026) | Maquetas en `diseno/maquetas/hoy/` y lienzo https://claude.ai/artifact/8GLyXqURLfdiLKDDpgec8h | Al responder P-026 |
 | D-032 | Componente Interruptor (`pa-switch`, `pa-toggle`) en el sistema de diseño, con el color nuevo `switch-knob`: pista `border-control` apagado y `accent` encendido. Si al encenderlo se escribe en un servicio externo, empieza apagado y la escritura se confirma aparte con la cuenta de destino. | Aceptada (petición del usuario, 18-10-2026) | Contraste comprobado con `diseno/colores.py` (4,38:1 y 3,31:1); tokens versión 3 | — |
 | D-033 | Calendario calcado de Fantastical: en el Mac, barra lateral con sectores, mini mes y cuentas + semana en rejilla + inspector; en Android, mes con puntos y lista debajo. Escalas Día · Semana · Mes · Año (D S M A); ⌘K para buscar y apuntar; sin el tiempo. Se añaden la pregunta ante horas ambiguas, la cuenta de destino a la vista, los cambios por ocurrencia («Mover esta vez», «Saltar esta vez»; la serie aparte), los conflictos explicados y el año como mapa de horas. | Propuesta | Maquetas en `diseno/maquetas/calendario/` y lienzo https://claude.ai/artifact/6Ca6kZvoyEtp3K4d2xW6G7 | Al responder P-027 |
+| D-034 | Varias cuentas de calendario, sin límite: Google (Gmail y Workspace) y Microsoft (Outlook, Hotmail, Microsoft 365); iCloud y CalDAV más adelante. Al conectar, solo lectura; escribir se activa por cuenta y pide confirmación de cada cambio con la cuenta de destino. Al apuntar, «Preguntar cada vez» por defecto. Colores `cuenta-1…4` (cielo, melocotón, rosa, turquesa); desde la quinta se repiten y la cuenta se nombra siempre. | Propuesta (petición del usuario: «2 de Google y una de Microsoft») | Microsoft Graph admite `Calendars.Read`/`ReadWrite` en cuentas personales (learn.microsoft.com, 18-10-2026); `research/cuentas/notas.md`; contraste comprobado (tokens v4) | Al responder P-028 |
+| D-035 | Paridad: cada pantalla existe en escritorio y en móvil; lo que en escritorio va en el inspector, en móvil va en una hoja o pantalla propia. Matriz en `producto/09`. | Aceptada (orden del usuario, 18-10-2026) | Petición del usuario | — |
+| D-036 | Plataformas: escritorio Mac y Windows; móvil Android e iPhone. Mismo diseño; cambian barra de título, atajos (⌘/Ctrl), bandeja frente a barra de menús y ancho (390 px en iPhone). Propuesta técnica: Tauri para escritorio (compila Mac y Windows) y web app instalable en el móvil; widgets, por comprobar. | Propuesta (el usuario nombra Windows e iPhone) | Tauri 2 compila para Linux, macOS, Windows, Android e iOS (v2.tauri.app); push en web apps de iPhone desde iOS 16.4 (webkit.org) | Antes de la fase 1a |
 | D-017 | NAS: no necesario en la fase 1; decidir antes de la fase 2 (índice local, modelos pequeños, automatización de navegador). Código portable Cloudflare/Node. | Propuesta | Análisis en fase 0b, sección 2. | Antes de la fase 2 |
 
 ## Supuestos
@@ -49,6 +52,7 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 |---|---|---|
 | S-001 | Zona horaria Europe/Madrid. | Pregunta / ajustes del calendario. |
 | S-002 | El Honor 600 Pro (MagicOS 10, Android 16, con Google Play) instala la app como WebAPK desde Chrome; ancho CSS ~412–421 px. | Prueba en el dispositivo en la fase 1a. |
+| S-005 | En iPhone la app funciona como web app añadida a la pantalla de inicio (avisos desde iOS 16.4) y se diseña desde 390 px de ancho. | Prueba en un iPhone antes de la fase 1a. |
 | S-003 | Un token de app no verificada en producción no caduca a los 7 días. | Prueba 0c: token vivo el día 8. |
 | S-004 | Ninguna cuenta Workspace bloquea apps no verificadas. | Resuelto: son dos cuentas personales de Gmail. |
 
@@ -80,7 +84,7 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | P-017 | ~~Acceso de red para capturas~~ Resuelto: el usuario amplió el acceso de red. | — |
 | P-019 | ~~Ideas de Finanzas~~ Resuelto en la síntesis (P-021). Siguen abiertos: gastos sí o no; entidades y fondos; umbrales de aviso. | Esquemas de Finanzas (D3) |
 | P-018 | ~~Ideas del Calendario~~ Resuelto en la síntesis (P-021). | Esquemas del Calendario (D3) |
-| P-020 | ~~Ideas de Tareas~~ Resuelto en la síntesis (P-021). Sigue abierto: si las tareas planificadas se escriben en Google Calendar y en qué cuenta. | Esquemas de Tareas (D3) |
+| P-020 | ~~Ideas de Tareas~~ Resuelto en la síntesis (P-021). Sigue abierto: si las tareas planificadas se escriben en el calendario y en qué cuenta. Propuesta (D-034): «Preguntar cada vez» por defecto. | Esquemas de Tareas (D3) |
 | P-021 | ~~Síntesis, plan e identidad~~ Resuelto: todo lo recomendado aprobado (18-10-2026). | — |
 | P-022 | Revisar el sistema de diseño Pauta v1 (página de revisión) y señalar qué cambiar antes de construir las pantallas. | Tres pantallas clave (paso 4) |
 | P-023 | ~~Herramienta y apps base~~ Resuelto: lienzo de Claude; Fantastical, Things 3 y Bolsa. | — |
@@ -88,6 +92,9 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | P-025 | (Aplazado) Aprobar los niveles A/B de datos financieros y hacer las pruebas: un fichero por entidad (anonimizado), cuenta de Enable Banking (la creas tú) y clave gratuita de EODHD. | Conectores de finanzas |
 | P-026 | ~~Revisar las maquetas de «Hoy»~~ Resuelto: aprobadas («Hoy listo», 18-10-2026); el interruptor pasa al sistema (D-032) y el estado «propuesta» sigue en las maquetas. | — |
 | P-027 | Revisar las maquetas del Calendario (lienzo): barra lateral con mini mes, inspector con el evento elegido, año como mapa de horas y cómo se propone la cuenta al apuntar (relacionado con P-020). | Maquetas de Tareas y código del Calendario |
+| P-028 | Revisar varias cuentas y paridad: pantallas de Cuentas y Añadir cuenta, «Preguntar cada vez» como cuenta por defecto, colores 3 y 4, y las parejas móviles nuevas (día, semana, año, tramo, Pide atención, widget). | Código del Calendario |
+| P-029 | ¿Pauta es solo para ti o también para otras personas? («dar opción a más mails si es que quieren»). Si es para más gente, cambian el registro de las apps en Google y Microsoft, la verificación, la privacidad y D-001. | Arquitectura de cuentas y despliegue |
+| P-030 | Comprobar: registro de la app en Microsoft Entra para uso personal (coste, aviso de editor no verificado) y si los widgets móviles exigen app nativa o Tauri móvil. | Conector de Microsoft y widget |
 | P-011 | Alojamiento de la fase 1a (Cloudflare gratis con cuenta del usuario, o esperar al NAS). | Despliegue de la fase 1a |
 
 ## Registro de investigación
@@ -112,3 +119,4 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | 18-10-2026 | Color de los gráficos en Bolsa y aportaciones mensuales | Bolsa colorea línea y degradado según el resultado del periodo frente a la línea punteada de partida; pasa a un color neutro al inspeccionar y apaga lo que queda fuera de un tramo (capturas oficiales de la guía del Mac y la App Store). Sistema de diseño v2 y maquetas actualizadas; nuevas pantallas para añadir fondos o ETF con aportación mensual. |
 | 18-10-2026 | Maquetas de «Hoy» | Anatomía de Things 3 para Mac (captura oficial de la App Store) y referencias de Things en iPhone, Sunsama, Structured y Notion Calendar; 6 tableros (Mac oscuro, claro y planificar; Android hoy, planificar y claro). Cifras de ejemplo que cuadran: 1 h elegida y 6 h 50 min libres entre las 9:40 y el ensayo. |
 | 18-10-2026 | Maquetas del Calendario | Ficha de Fantastical en el Mac App Store de España consultada el 18-10-2026: versión 4.2.3, requiere macOS 12.4, gratis con suscripción Flexibits Premium; describe vistas de día, semana, mes y año, miniventana con atajo y «escriba los detalles de su evento o tarea y pulse volver». El tiempo viene de AccuWeather (3 días gratis, 10 con Premium). Anatomía sobre su captura oficial en oscuro; 8 tableros (Mac semana oscuro y claro, apuntar, año; Android mes oscuro y claro, apuntar, cambiar solo este viernes). Día de ejemplo corregido: el 24 de octubre de 2026 es sábado, se usa el viernes 23. El 25 de octubre de 2026 es el último domingo de octubre (cambio de hora). |
+| 18-10-2026 | Varias cuentas, paridad y plataformas | Microsoft Graph: listar y crear eventos admite permisos delegados en cuentas personales (`Calendars.Read`, `Calendars.ReadWrite`); Entra admite apps para cuentas personales. Tauri CLI 2.12.3 (14-10-2026) y web «Linux, macOS, Windows, Android e iOS». WebKit: push en web apps de la pantalla de inicio desde iOS 16.4. Colores `cuenta-3`/`cuenta-4` con contraste ≥ 4,5:1 en los dos temas. 16 tableros nuevos (12 Calendario, 2 Hoy, 1 Finanzas, 1 matriz) y año vertical para el móvil (`pa-year--vertical`). Corregido: el solape de ejemplo estaba en el jueves 22, ya pasado; ahora es el sábado 24. Ver `research/cuentas/notas.md` y `producto/09`. |

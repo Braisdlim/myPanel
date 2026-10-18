@@ -13,6 +13,7 @@ Copia de los tableros del lienzo. Las capturas de Bolsa y la fuente se cargan de
 | `RefIphone.dc.html` | Referencia de Bolsa en iPhone (lista y detalle en hoja) |
 | `AndroidLista.dc.html`, `AndroidClaro.dc.html` | Lista en Android con patrimonio, aviso y pestañas |
 | `AndroidDetalle.dc.html` | Detalle del fondo en una hoja |
+| `AndroidTramo.dc.html` | El mismo tramo en el móvil: con dos dedos se marca el tramo; fuera se apaga (añadido por la regla de paridad, 18-10-2026) |
 | `MacAnadir.dc.html`, `AndroidAnadir.dc.html` | Añadir un fondo o ETF y su aportación mensual (importe, día, desde dónde) |
 
 ## Decisiones que proponen estas maquetas

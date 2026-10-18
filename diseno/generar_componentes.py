@@ -56,6 +56,7 @@ C['Ficha'] = dict(group='Acciones', height=150, sub='Filtro, ficha activa y fich
     <button class="pa-chip" aria-pressed="true">Hoy</button>
     <button class="pa-chip" aria-pressed="false"><span class="pa-dot pa-dot--c1"></span>Gmail 1</button>
     <button class="pa-chip" aria-pressed="false"><span class="pa-dot pa-dot--c2"></span>Gmail 2</button>
+    <button class="pa-chip" aria-pressed="false"><span class="pa-dot pa-dot--c3"></span>Outlook</button>
   </div>
   <div style="display:flex;flex-wrap:wrap;gap:8px">
     <span class="pa-chip pa-chip--token">{i:calendar}Viernes 21:30<button class="pa-chip__x" aria-label="Quitar fecha">{i:x}</button></span>
@@ -423,7 +424,7 @@ C['MapaAnual'] = dict(group='Tiempo', height=560, width=760, sub='El año en una
 
 Una cuadrícula para ver el año de un vistazo; la misma pieza en Calendario y en Finanzas.
 
-**Calendario** — `pa-year`: una fila por mes (`pa-year__m`) y 31 celdas `pa-year__c`. `data-h="0…4"` colorea con `heat-0…heat-4` según las horas comprometidas (0 · ≤2 h · 2–4 h · 4–7 h · >7 h). `data-libre` marca días libres o vacaciones (contorno `border-control`); `data-hoy` rodea hoy. Debajo, `pa-heatlegend` y `pa-stats` con las cifras del año.
+**Calendario** — `pa-year`: una fila por mes (`pa-year__m`) y 31 celdas `pa-year__c`. En el móvil, `pa-year--vertical`: los mismos datos girados, una columna por mes y una fila por día (celdas de 14 px de alto), para que el año entero quepa sin desplazarse de lado. `data-h="0…4"` colorea con `heat-0…heat-4` según las horas comprometidas (0 · ≤2 h · 2–4 h · 4–7 h · >7 h). `data-libre` marca días libres o vacaciones (contorno `border-control`); `data-hoy` rodea hoy. Debajo, `pa-heatlegend` y `pa-stats` con las cifras del año.
 
 **Finanzas** — `pa-returns`: una fila por año y 12 columnas; cada celda dice la rentabilidad con signo: `.u` (`gain` sobre `gain-soft`), `.d` (`loss` sobre `loss-soft`), `.e` (mes sin datos).
 
@@ -498,16 +499,17 @@ C['BarraLateral'] = dict(group='Carcasa', height=330, sub='Sectores, vistas y cu
   <div class="pa-side__label">cuentas</div>
   <div class="pa-side__account"><span class="pa-dot pa-dot--c1"></span>Gmail 1</div>
   <div class="pa-side__account"><span class="pa-dot pa-dot--c2"></span>Gmail 2</div>
+  <div class="pa-side__account"><span class="pa-dot pa-dot--c3"></span>Outlook</div>
  </nav></div>''',
  readme='''# BarraLateral
 
 Navegación principal del Mac: sectores arriba, cuentas abajo.
 
-**Partes**: `pa-sidebar` (fondo `sidebar`, ancho `sidebar-width`) → `pa-side__item` (icono + nombre + `pa-side__count`; el actual con `aria-current="page"`: fondo `accent-soft`, icono `accent`), `pa-side__label` (grupo en minúscula inicial), `pa-side__account` (punto + nombre de la cuenta).
+**Partes**: `pa-sidebar` (fondo `sidebar`, ancho `sidebar-width`) → `pa-side__item` (icono + nombre + `pa-side__count`; el actual con `aria-current="page"`: fondo `accent-soft`, icono `accent`), `pa-side__label` (grupo en minúscula inicial), `pa-side__account` (punto + nombre de la cuenta; tantas como tengas conectadas, de Google o de Microsoft).
 
 **Qué pones tú**: los sectores (Hoy, Calendario, Tareas, Finanzas, Pide atención), los recuentos y las cuentas conectadas.
 
-**Reglas**: los sectores son siempre los mismos y en el mismo orden (⌘1–4); dentro de un sector, sus vistas aparecen debajo con sangría. Sale de Things y Notion Calendar (cuentas agrupadas con su color).
+**Reglas**: los sectores son siempre los mismos y en el mismo orden (⌘1–4); dentro de un sector, sus vistas aparecen debajo con sangría. Sale de Things y Notion Calendar (cuentas agrupadas con su color). En el móvil, las cuentas se ven y se gestionan en Ajustes › Cuentas.
 ''')
 
 C['BarraPestanas'] = dict(group='Carcasa', height=150, sub='Navegación de Android con el botón de apuntar en el centro',

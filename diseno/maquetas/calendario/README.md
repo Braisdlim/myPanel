@@ -1,25 +1,29 @@
 # Maquetas del Calendario (calco de Fantastical)
 
-Fecha: 18-10-2026. Estado: **propuesta, pendiente de tu revisión** (P-027).
+Fecha: 18-10-2026. Estado: **propuesta, pendiente de tu revisión** (P-027). Segunda versión: varias cuentas (2 de Google y 1 de Microsoft) y cada pantalla en escritorio y en móvil (P-028).
 Lienzo (privado, con comentarios): https://claude.ai/artifact/6Ca6kZvoyEtp3K4d2xW6G7
 
-Copia de los tableros del lienzo. Las capturas de referencia y la fuente se cargan desde el lienzo (`/_blob/…` y `ds/pauta/`), así que aquí solo se guarda el marcado.
+Copia de los tableros del lienzo. Las capturas de referencia y la fuente se cargan desde el lienzo (`/_blob/…` y `ds/pauta/`), así que aquí solo se guarda el marcado. La matriz completa de paridad está en `docs/producto/09-paridad-de-pantallas.md` y en el tablero `Paridad.dc.html`.
 
-| Tablero | Qué enseña |
-|---|---|
-| `Main.dc.html` | Anatomía de la semana en Fantastical para Mac (9 zonas), qué pone Pauta en cada una y referencias de apoyo (Fantastical en iPhone, su ilustración del lenguaje natural, BusyCal y Notion Calendar) |
-| `MacSemana.dc.html`, `MacSemanaClaro.dc.html` | Semana en el Mac: barra lateral con sectores, mini mes y cuentas; rejilla con «todo el día», línea de ahora y conflicto; inspector con el ensayo y sus acciones de una sola vez |
-| `MacCaptura.dc.html` | Apuntar con ⌘K: «Cena con amigos el sábado a las 9», con la pregunta «¿noche o mañana?», la cuenta de destino y la vista previa |
-| `MacAno.dc.html` | El año como mapa de horas comprometidas, con festivos y vacaciones marcados |
-| `AndroidMes.dc.html`, `AndroidMesClaro.dc.html` | Mes con puntos por cuenta y la lista de hoy y mañana debajo (como Fantastical en iPhone) |
-| `AndroidCaptura.dc.html` | Apuntar en una hoja: pregunta de la hora, cuenta elegida a la vista y «Guardar» bloqueado hasta responder |
-| `AndroidOcurrencia.dc.html` | Cambiar solo este viernes el ensayo: mover a un hueco libre o saltarlo; la serie, aparte |
+| Pantalla | Escritorio | Móvil |
+|---|---|---|
+| Anatomía de Fantastical y qué pone Pauta | `Main.dc.html` | — |
+| Paridad (matriz) | `Paridad.dc.html` | — |
+| Día | `MacDia.dc.html` | `AndroidDia.dc.html` |
+| Semana | `MacSemana.dc.html`, `MacSemanaClaro.dc.html`, `WinSemana.dc.html` (Windows) | `AndroidSemana.dc.html` |
+| Mes | `MacMes.dc.html` | `AndroidMes.dc.html`, `AndroidMesClaro.dc.html`, `IphoneMes.dc.html` (390 px) |
+| Año como mapa de horas | `MacAno.dc.html` | `AndroidAno.dc.html` (girado: columnas = meses, filas = días) |
+| Apuntar (pregunta hora y cuenta) | `MacCaptura.dc.html` | `AndroidCaptura.dc.html` |
+| Cambiar solo esta vez | inspector de `MacSemana.dc.html` | `AndroidOcurrencia.dc.html` |
+| Ajustes › Cuentas | `MacCuentas.dc.html` | `AndroidCuentas.dc.html` |
+| Añadir cuenta (Google o Microsoft, permisos) | `MacAnadirCuenta.dc.html` | `AndroidAnadirCuenta.dc.html` |
+| Lo siguiente sin abrir Pauta | `MacBarraMenus.dc.html` (en Windows, bandeja) | `AndroidWidget.dc.html` |
 
-## Decisiones que proponen estas maquetas (D-033)
-- Se calca de Fantastical: mini mes con puntos, ‹ Hoy ›, escalas, cabecera del día, fila de todo el día, línea de ahora y bloques de color; en Android, mes arriba y lista debajo.
-- Cambia: escalas Día · Semana · Mes · Año (sin Trimestre) con las teclas D S M A; buscar y apuntar en el mismo ⌘K; sin el tiempo; la línea de ahora en lavanda; la lista de los próximos días la hace «Hoy» en el Mac.
-- Se añade: pregunta cuando la hora es ambigua y «Guardar» no se activa sin respuesta; la cuenta de destino siempre a la vista; cambios de un evento repetido solo para esa ocurrencia («Mover esta vez», «Saltar esta vez»), con «Cambiar toda la serie…» aparte; conflictos con punto rojo y explicados en «Pide atención»; el año como mapa de horas (BusyCal).
-- Cuenta propuesta al apuntar: en las maquetas aparece Gmail 2 ya marcada; cómo se elige (la última usada, una por tipo de evento o preguntar siempre) está por decidir (P-020).
+## Decisiones que proponen estas maquetas (D-033, D-034)
+- Se calca de Fantastical: mini mes con puntos, ‹ Hoy ›, escalas, cabecera del día, fila de todo el día, línea de ahora y bloques de color; en el móvil, mes arriba y lista debajo.
+- Cambia: escalas Día · Semana · Mes · Año (sin Trimestre), también en el móvil; buscar y apuntar en el mismo ⌘K (Ctrl K en Windows); sin el tiempo; la línea de ahora en lavanda.
+- Se añade: pregunta cuando la hora es ambigua; la cuenta de destino siempre a la vista y, por defecto, «Preguntar cada vez»; cambios de un evento repetido solo para esa ocurrencia; conflictos entre cuentas explicados en «Pide atención»; el año como mapa de horas.
+- Cuentas: tantas como quieras, de Google y de Microsoft; al conectar, solo lectura; escribir se activa por cuenta y pide confirmación de cada cambio. Si una cuenta es de solo lectura (Outlook en el ejemplo), Pauta solo ofrece mover el evento de la otra o abrir el servicio.
 
 ## Datos de ejemplo
-Todo es de ejemplo salvo el ensayo de los viernes (21:30–23:30) y el cambio de hora del domingo 25 de octubre de 2026 (último domingo de octubre). El viernes 23 coincide con «Hoy»: revisión del coche 10:00–11:00, tareas del plan 11:15–12:05, comida 13:30–15:30, médico 17:30–18:30 y ensayo. En qué calendario está el ensayo sigue sin saberse (P-001); se dibuja en Gmail 2. Los festivos del año son los nacionales habituales y están por comprobar en el BOE de 2026; faltan los autonómicos y locales.
+Todo es de ejemplo salvo el ensayo de los viernes (21:30–23:30) y el cambio de hora del domingo 25 de octubre de 2026. Cuentas: Gmail 1 y Gmail 2 (Google) y Outlook (Microsoft); correos como `[correo]`. El viernes 23 coincide con «Hoy». El solape de ejemplo es el sábado 24: ruta en bici (Gmail 2) y reunión de la comunidad (Outlook) de 12:00 a 13:00. En qué calendario está el ensayo sigue sin saberse (P-001); se dibuja en Gmail 2. Los festivos del año son los nacionales habituales, por comprobar en el BOE de 2026.

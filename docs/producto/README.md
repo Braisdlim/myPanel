@@ -10,3 +10,4 @@ El diseño visual está **aparcado** hasta cerrar esta definición.
 6. [Síntesis e identidad](06-sintesis-e-identidad.md): qué cogemos de cada referencia, reglas de unificación y opciones de nombre, icono, tipografía y paleta.
 7. [Método de maquetas](07-metodo-de-maquetas.md): app base por sector, anatomía y calco con nuestro contenido antes de programar.
 8. [Datos financieros](08-datos-financieros.md): cómo recoger movimientos, inversiones y valores liquidativos gratis y con seguridad.
+9. [Paridad de pantallas y varias cuentas](09-paridad-de-pantallas.md): cada pantalla en escritorio (Mac y Windows) y en móvil (Android e iPhone); cuentas de Google y de Microsoft.

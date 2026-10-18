@@ -1,4 +1,4 @@
-Pauta es la secretaria personal de una sola persona: compromisos de dos cuentas de Gmail, tareas e inversiones en una misma app para Mac y Android. Debe sentirse como una app nativa del Mac, tranquila y precisa: poca información a la vista, el detalle al tocar, y nada que se mueva o se guarde sin que el usuario lo vea.
+Pauta es la secretaria personal de una sola persona: compromisos de todas sus cuentas de calendario (varias de Google, de Microsoft…), tareas e inversiones en una misma app para escritorio (Mac y Windows) y móvil (Android e iPhone), con las mismas pantallas en los dos. Debe sentirse como una app nativa del Mac, tranquila y precisa: poca información a la vista, el detalle al tocar, y nada que se mueva o se guarde sin que el usuario lo vea.
 
 Construye con estas piezas: `tokens.json` (colores, tipografía, espacios, radios, sombras y medidas), `components/bundle.css` (clases `pa-*`) y los iconos de `assets/Iconos`. Las fichas de cada componente dicen qué clases usar y qué datos pones tú.
 
@@ -20,7 +20,7 @@ Construye con estas piezas: `tokens.json` (colores, tipografía, espacios, radio
 - **Horas**: 24 h, «21:30»; intervalos con raya corta sin espacios, «21:30–23:30». Si una hora puede ser de mañana o de noche, se pregunta: nunca se guarda una hora ambigua.
 - **Duraciones**: «15 min», «1 h 30 min».
 - **Dinero y porcentajes**: punto de millares, coma decimal y espacio no separable antes del símbolo: «12.480,35 €», «+0,42 %». Signo menos real (−) y flecha en las variaciones: «↓ −1,10 %».
-- **Glosario**: Hoy · Planificar · Esta noche · Algún día · Pide atención · Apuntar · cuenta (no «calendario» cuando se habla de Gmail 1 o Gmail 2) · opcional (lo que se puede mover).
+- **Glosario**: Hoy · Planificar · Esta noche · Algún día · Pide atención · Apuntar · cuenta (no «calendario» cuando se habla de Gmail 1, Gmail 2 u Outlook) · opcional (lo que se puede mover).
 - Los datos de las fichas de componentes son ejemplos, salvo el ensayo de los viernes de 21:30 a 23:30.
 
 ## Color
@@ -31,7 +31,7 @@ Construye con estas piezas: `tokens.json` (colores, tipografía, espacios, radio
 - **Un solo acento**, `accent` (lavanda plana, sin degradados ni brillos): «ahora» (línea y nodo), selección (`accent-soft`), foco (`focus`) y la acción principal (relleno `accent` con texto `on-accent`). Nunca para decorar ni para la opción elegida de un segmentado.
 - **Semánticos**, aparte del acento: `gain` y `loss` (siempre con flecha y signo, porque verde y rojo se confunden con algunos daltonismos), `attention` (sobrecarga, reglas) y `danger` (conflictos y borrar). Cada uno con su fondo `-soft`.
 - **Gráficos financieros, como Bolsa**: la línea y su degradado son `gain` si el periodo elegido sube y `loss` si baja, medido contra la línea punteada del valor de partida; mientras se inspecciona un punto, el gráfico pasa a `accent`. En las listas de Finanzas la variación va en píldora sólida (`pa-delta--solid`, texto `on-gain`/`on-loss`).
-- **Cuentas**: `cuenta-1` (cielo) y `cuenta-2` (melocotón). Solo como punto, barra de evento o nombre; el texto sobre `cuenta-1-soft` y `cuenta-2-soft` va en `text`.
+- **Cuentas**: `cuenta-1` (cielo), `cuenta-2` (melocotón), `cuenta-3` (rosa) y `cuenta-4` (turquesa), en el orden en que se añaden; el usuario puede cambiarlos. Solo como punto, barra de evento o nombre; el texto sobre los `cuenta-N-soft` va en `text`. El color nunca va solo: la cuenta se nombra (y en listas cortas lleva su inicial). Desde la quinta cuenta, los colores se repiten.
 - **Mapa anual**: `heat-0`…`heat-4`, una sola escala del acento.
 - **Lo opcional** (ensayo, rutinas que se pueden mover) va rayado con `hatch` y borde discontinuo; lo fijo, sólido; un conflicto, punto `danger`.
 

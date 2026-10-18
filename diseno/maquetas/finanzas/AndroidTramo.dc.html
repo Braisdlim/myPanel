@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Finanzas en Android, variación entre dos fechas</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden;">
+  <div class="pa-scrim" style="height: 44px; flex: none;"></div>
+  <section class="pa-sheet" aria-label="Indexado mundial" style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 14px; padding-top: 8px; overflow: hidden;">
+    <div class="pa-sheet__grabber" style="margin-bottom: 0;"></div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin: 0 -12px;">
+      <button class="pa-btn pa-btn--icon" aria-label="Cerrar"><svg class="pa-icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+      <button class="pa-btn pa-btn--icon" aria-label="Más opciones"><svg class="pa-icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
+    </div>
+
+    <div style="margin-top: -6px;">
+      <h1 class="pa-sheet__title" style="font-size: 26px; line-height: 32px;">Indexado mundial</h1>
+      <div style="font-size: 13px; line-height: 18px; color: var(--text-2);">Fondo · [ISIN] · [gestora] · EUR</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: 12px; background: var(--raised);">
+      <span style="font-size: 13px; line-height: 18px; color: var(--text-3);">tramo elegido</span>
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"><b class="pa-num" style="font-size: 20px; line-height: 26px; font-weight: 600;">27 feb – 12 jun</b><span class="pa-delta pa-delta--up">↑ +6,3&nbsp;%</span></div>
+      <span class="pa-num" style="font-size: 14px; line-height: 19px; color: var(--text-2);">27,90 € → 29,68 € · tu posición <span class="pa-up">+2.020,55&nbsp;€</span></span>
+    </div>
+
+    <div class="pa-seg" role="group" aria-label="Periodo" style="display: flex; align-self: stretch;"><button aria-pressed="false" style="flex: 1;">1S</button><button aria-pressed="false" style="flex: 1;">1M</button><button aria-pressed="false" style="flex: 1;">3M</button><button aria-pressed="true" style="flex: 1;">1A</button><button aria-pressed="false" style="flex: 1;">5A</button><button aria-pressed="false" style="flex: 1;">Todo</button></div>
+
+    <svg class="pa-chart pa-chart--up" viewBox="0 0 380 178" role="img" aria-label="Tramo del 27 de febrero al 12 de junio: sube un 6,3 %"><defs><linearGradient id="g-movil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="g0"></stop><stop offset="1" class="g1"></stop></linearGradient></defs><line class="grid" x1="0" y1="36.8" x2="320" y2="36.8"></line><line class="grid" x1="0" y1="65.7" x2="320" y2="65.7"></line><line class="grid" x1="0" y1="94.5" x2="320" y2="94.5"></line><line class="grid" x1="0" y1="123.4" x2="320" y2="123.4"></line><line class="grid" x1="0" y1="158" x2="320" y2="158"></line><text class="axis" x="328" y="40.8">31,00</text><text class="axis" x="328" y="69.7">30,00</text><text class="axis" x="328" y="98.5">29,00</text><text class="axis" x="328" y="127.4">28,00</text><g class="faded"><path d="M0.0,91.0 L6.2,101.0 L12.3,110.6 L18.5,103.7 L24.6,123.5 L30.8,123.9 L36.9,142.9 L43.1,132.5 L49.2,129.9 L55.4,117.1 L61.5,120.7 L67.7,116.4 L73.8,118.1 L80.0,123.9 L86.2,121.8 L92.3,132.1 L98.5,134.4 L104.6,127.4 L110.8,126.1 L116.9,128.9 L123.1,108.6 L129.2,107.2 L135.4,111.7 L141.5,109.4 L147.7,113.3 L153.8,115.9 L160.0,118.2 L166.2,99.1 L172.3,98.0 L178.5,95.6 L184.6,88.5 L190.8,68.7 L196.9,70.0 L203.1,75.0 L209.2,50.5 L215.4,63.7 L221.5,66.3 L227.7,59.0 L233.8,36.0 L240.0,44.4 L246.2,66.9 L252.3,59.7 L258.5,63.8 L264.6,66.6 L270.8,61.3 L276.9,58.3 L283.1,54.6 L289.2,57.9 L295.4,44.5 L301.5,28.8 L307.7,27.6 L313.8,31.2 L320.0,23.0 L320,158 L0,158 Z" fill="url(#g-movil)"></path><line class="baseline" x1="0" y1="91" x2="320" y2="91"></line><polyline class="bench" points="0.0,91.0 6.2,87.9 12.3,92.5 18.5,94.1 24.6,88.1 30.8,87.9 36.9,88.9 43.1,87.1 49.2,86.6 55.4,85.9 61.5,95.0 67.7,85.4 73.8,83.7 80.0,87.5 86.2,81.8 92.3,79.5 98.5,78.8 104.6,72.7 110.8,60.2 116.9,56.6 123.1,47.5 129.2,35.3 135.4,40.0 141.5,42.1 147.7,37.2 153.8,45.6 160.0,46.3 166.2,38.7 172.3,32.3 178.5,28.5 184.6,37.9 190.8,24.5 196.9,20.8 203.1,15.8 209.2,12.3 215.4,21.0 221.5,28.1 227.7,33.9 233.8,22.8 240.0,26.6 246.2,27.1 252.3,27.8 258.5,23.9 264.6,20.4 270.8,18.2 276.9,24.4 283.1,40.6 289.2,38.9 295.4,36.8 301.5,29.4 307.7,29.2 313.8,31.8 320.0,28.8"></polyline><polyline class="line" points="0.0,91.0 6.2,101.0 12.3,110.6 18.5,103.7 24.6,123.5 30.8,123.9 36.9,142.9 43.1,132.5 49.2,129.9 55.4,117.1 61.5,120.7 67.7,116.4 73.8,118.1 80.0,123.9 86.2,121.8 92.3,132.1 98.5,134.4 104.6,127.4 110.8,126.1 116.9,128.9 123.1,108.6 129.2,107.2 135.4,111.7 141.5,109.4 147.7,113.3 153.8,115.9 160.0,118.2 166.2,99.1 172.3,98.0 178.5,95.6 184.6,88.5 190.8,68.7 196.9,70.0 203.1,75.0 209.2,50.5 215.4,63.7 221.5,66.3 227.7,59.0 233.8,36.0 240.0,44.4 246.2,66.9 252.3,59.7 258.5,63.8 264.6,66.6 270.8,61.3 276.9,58.3 283.1,54.6 289.2,57.9 295.4,44.5 301.5,28.8 307.7,27.6 313.8,31.2 320.0,23.0"></polyline></g><path d="M110.8,126.1 L116.9,128.9 L123.1,108.6 L129.2,107.2 L135.4,111.7 L141.5,109.4 L147.7,113.3 L153.8,115.9 L160.0,118.2 L166.2,99.1 L172.3,98.0 L178.5,95.6 L184.6,88.5 L190.8,68.7 L196.9,70.0 L203.1,75.0 L203.1,158 L110.8,158 Z" fill="url(#g-movil)"></path><line class="range-edge" x1="110.8" y1="8" x2="110.8" y2="158"></line><line class="range-edge" x1="203.1" y1="8" x2="203.1" y2="158"></line><polyline class="line" points="110.8,126.1 116.9,128.9 123.1,108.6 129.2,107.2 135.4,111.7 141.5,109.4 147.7,113.3 153.8,115.9 160.0,118.2 166.2,99.1 172.3,98.0 178.5,95.6 184.6,88.5 190.8,68.7 196.9,70.0 203.1,75.0"></polyline><circle class="point" cx="110.8" cy="126.1" r="5"></circle><circle class="point" cx="203.1" cy="75.0" r="5"></circle><text class="axis" x="4" y="176">nov</text><text class="axis" x="58" y="176">ene</text><text class="axis" x="110" y="176">mar</text><text class="axis" x="163" y="176">may</text><text class="axis" x="216" y="176">jul</text><text class="axis" x="270" y="176">sep</text></svg>
+    <p style="margin: -4px 0 0; font-size: 14px; line-height: 19px; color: var(--text-2);">Toca el gráfico con <b style="color: var(--text); font-weight: 500;">dos dedos</b> para marcar un tramo; con uno ves un día. Fuera del tramo, el gráfico se apaga.</p>
+    <dl style="margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; row-gap: 8px; font-size: 14px; line-height: 19px;">
+      <div style="display: flex; justify-content: space-between; gap: 8px;"><dt style="color: var(--text-3);">Días</dt><dd class="pa-num" style="margin: 0; font-weight: 600;">105</dd></div>
+      <div style="display: flex; justify-content: space-between; gap: 8px;"><dt style="color: var(--text-3);">Aportado</dt><dd class="pa-num" style="margin: 0; font-weight: 600;">1.200 €</dd></div>
+    </dl>
+    <button class="pa-btn" style="width: 100%;">Quitar el tramo</button>
+    <p style="margin: 0; font-size: 12px; line-height: 16px; color: var(--text-3);">Cifras de ejemplo · fuente del valor liquidativo pendiente</p>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

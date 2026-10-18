@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Barra de menús del Mac</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="position: relative; width: 1440px; height: 900px; box-sizing: border-box; background: var(--sidebar); color: var(--text); font-family: var(--font-sans); font-size: 14px; line-height: 20px; overflow: hidden;">
+  <div style="height: 30px; display: flex; align-items: center; justify-content: flex-end; gap: 18px; padding: 0 16px; background: var(--bg); border-bottom: 1px solid var(--line); font-size: 13px; color: var(--text-2);">
+    <span style="display: flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 6px; background: var(--hover); color: var(--text);"><span style="width: 3px; height: 12px; border-radius: 2px; background: var(--cuenta-1);"></span>Revisión del coche · en 20 min</span>
+    <span class="pa-num">vie 23 oct 9:40</span>
+  </div>
+  <div style="position: absolute; right: 120px; top: 36px;">
+    <div class="pa-menubar" style="width: 320px;">
+      <div class="pa-mb__next"><span class="pa-label">lo siguiente · en 20 min</span><b>Revisión del coche</b><span class="pa-muted pa-num">10:00–11:00 · Gmail 1</span></div>
+      <div class="pa-mb__ev"><span class="bar" style="background: var(--text-3);"></span><time>11:15</time>Tareas del plan (3)</div>
+      <div class="pa-mb__ev"><span class="bar c2"></span><time>13:30</time>Comida familiar</div>
+      <div class="pa-mb__ev"><span class="bar"></span><time>17:30</time>Médico</div>
+      <div class="pa-mb__ev"><span class="bar c2"></span><time>21:30</time>Ensayo (opcional)</div>
+      <div class="pa-mb__sep"></div>
+      <div class="pa-mb__ev" style="color: var(--text-2);"><span class="pa-dot pa-dot--danger" style="margin: 0 2px;"></span>Mañana se solapan dos planes</div>
+      <div class="pa-mb__sep"></div>
+      <div class="pa-mb__cmd"><span>Apuntar…</span><span><span class="pa-kbd">⌥</span> <span class="pa-kbd">Espacio</span></span></div>
+      <div class="pa-mb__cmd"><span>Abrir Pauta</span><span class="pa-kbd">⌘O</span></div>
+    </div>
+  </div>
+  <div style="position: absolute; left: 64px; top: 120px; width: 560px; display: flex; flex-direction: column; gap: 10px;">
+    <span class="pa-label">fuera de la app · escritorio</span>
+    <h1 style="margin: 0; font-size: 28px; line-height: 34px; font-weight: 600; letter-spacing: -0.015em;">Mini agenda en la barra de menús</h1>
+    <p style="margin: 0; color: var(--text-2);">Lo siguiente con cuánto falta, el resto del día de todas tus cuentas, lo que pide atención y apuntar con un atajo global. En Windows va en la bandeja del sistema, junto al reloj, con el mismo contenido.</p>
+    <p style="margin: 0; color: var(--text-2);">En el móvil, su pareja es el widget de la pantalla de inicio.</p>
+    <p style="margin: 8px 0 0; font-size: 12px; color: var(--text-3);">Necesita la app de escritorio (Tauri). Contenido de ejemplo.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

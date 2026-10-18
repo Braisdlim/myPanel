@@ -1,24 +1,113 @@
 {
  "v": 3,
- "createdOnFiles": {"v": 1, "at": "2026-10-18T13:40:00Z"},
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-18T13:40:00Z"
+ },
  "title": "Pauta · Hoy",
- "launch": {"view": "canvas"},
+ "launch": {
+  "view": "canvas"
+ },
  "pages": [],
  "boards": {
-  "Main.dc.html": {"x": 0, "y": 0, "w": 1600, "h": 1180, "title": "Anatomía de Things 3 (Hoy) y cómo la ocupa Pauta"},
-  "MacHoy.dc.html": {"x": 1680, "y": 0, "w": 1440, "h": 900, "title": "Hoy · Mac · oscuro"},
-  "MacHoyClaro.dc.html": {"x": 3200, "y": 0, "w": 1440, "h": 900, "title": "Hoy · Mac · claro"},
-  "MacPlanificar.dc.html": {"x": 0, "y": 1520, "w": 1440, "h": 900, "title": "Hoy · Mac · planificar el día"},
-  "AndroidHoy.dc.html": {"x": 1520, "y": 1520, "w": 412, "h": 915, "title": "Hoy · Android"},
-  "AndroidPlanificar.dc.html": {"x": 2012, "y": 1520, "w": 412, "h": 915, "title": "Hoy · Android · planificar el día"},
-  "AndroidHoyClaro.dc.html": {"x": 2504, "y": 1520, "w": 412, "h": 915, "title": "Hoy · Android · claro"}
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1600,
+   "h": 1180,
+   "title": "Anatomía de Things 3 (Hoy) y cómo la ocupa Pauta"
+  },
+  "MacHoy.dc.html": {
+   "x": 1680,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "Hoy · Mac · oscuro"
+  },
+  "MacHoyClaro.dc.html": {
+   "x": 3200,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "Hoy · Mac · claro"
+  },
+  "MacPlanificar.dc.html": {
+   "x": 0,
+   "y": 1520,
+   "w": 1440,
+   "h": 900,
+   "title": "Hoy · Mac · planificar el día"
+  },
+  "AndroidHoy.dc.html": {
+   "x": 1520,
+   "y": 1520,
+   "w": 412,
+   "h": 915,
+   "title": "Hoy · Android"
+  },
+  "AndroidPlanificar.dc.html": {
+   "x": 2012,
+   "y": 1520,
+   "w": 412,
+   "h": 915,
+   "title": "Hoy · Android · planificar el día"
+  },
+  "AndroidHoyClaro.dc.html": {
+   "x": 2504,
+   "y": 1520,
+   "w": 412,
+   "h": 915,
+   "title": "Hoy · Android · claro"
+  },
+  "AndroidAtencion.dc.html": {
+   "x": 2996,
+   "y": 1520,
+   "w": 412,
+   "h": 915,
+   "title": "Hoy · Android · pide atención"
+  },
+  "MacAtencion.dc.html": {
+   "x": 3488,
+   "y": 1520,
+   "w": 1440,
+   "h": 900,
+   "title": "Hoy · Mac · pide atención"
+  }
  },
- "order": ["Main.dc.html", "MacHoy.dc.html", "MacHoyClaro.dc.html", "MacPlanificar.dc.html", "AndroidHoy.dc.html", "AndroidPlanificar.dc.html", "AndroidHoyClaro.dc.html"],
+ "order": [
+  "Main.dc.html",
+  "MacHoy.dc.html",
+  "MacHoyClaro.dc.html",
+  "MacPlanificar.dc.html",
+  "AndroidHoy.dc.html",
+  "AndroidPlanificar.dc.html",
+  "AndroidHoyClaro.dc.html",
+  "AndroidAtencion.dc.html",
+  "MacAtencion.dc.html"
+ ],
  "notes": {
-  "fila1": {"x": 0, "y": -300, "text": "Hoy: Things 3 como base, Pauta encima", "kind": "title1", "maxW": 4640},
-  "fila2": {"x": 0, "y": 1240, "text": "Planificar el día y Android", "kind": "title1", "maxW": 2916}
+  "fila1": {
+   "x": 0,
+   "y": -300,
+   "text": "Hoy: Things 3 como base, Pauta encima",
+   "kind": "title1",
+   "maxW": 4640
+  },
+  "fila2": {
+   "x": 0,
+   "y": 1240,
+   "text": "Planificar el día, Pide atención y móvil",
+   "kind": "title1",
+   "maxW": 4928
+  }
  },
  "designSystems": [
-  {"title": "Pauta", "namespace": "pauta", "artifact": "https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m", "version": "1792330627-9be5", "copiedAt": "2026-10-18T13:40:00Z"}
+  {
+   "title": "Pauta",
+   "namespace": "pauta",
+   "artifact": "https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m",
+   "version": "1792332239-aff4",
+   "copiedAt": "2026-10-18T13:40:00Z"
+  }
  ]
 }

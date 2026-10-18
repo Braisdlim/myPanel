@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cuentas en Android</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden;">
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 8px 16px 16px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; align-items: center; margin: 0 -12px;"><button class="pa-btn pa-btn--icon" aria-label="Volver a Ajustes"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 22px; height: 22px;"><path d="m15 18-6-6 6-6" /></svg></button><span style="font-size: 15px; color: var(--text-2);">Ajustes</span></div>
+    <h1 style="margin: 0; font-size: 28px; line-height: 34px; font-weight: 600; letter-spacing: -0.015em;">Cuentas</h1>
+    <div class="pa-card" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+      <div style="display: flex; gap: 12px; align-items: center;"><span style="flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--cuenta-1-soft); color: var(--cuenta-1); font-weight: 600;">G</span><span style="flex: 1; min-width: 0;"><span style="display: block; font-weight: 600;">Gmail 1 <span style="font-weight: 400; color: var(--text-2);">· Google</span></span><span style="display: block; font-size: 13px; color: var(--text-2);">[correo 1]@gmail.com</span></span></div>
+      <div style="display: flex; gap: 10px; align-items: center; padding: 4px 0;"><button aria-label="Color 1" aria-pressed="true" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-1); box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--text);"></button><button aria-label="Color 2" aria-pressed="false" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-2);"></button><button aria-label="Color 3" aria-pressed="false" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-3);"></button><button aria-label="Color 4" aria-pressed="false" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-4);"></button><button class="pa-btn pa-btn--plain pa-btn--sm" style="margin-left: auto; margin-right: -12px;">2 calendarios ›</button></div>
+      <div class="pa-toggle" style="min-height: 44px;"><span class="pa-toggle__text"><span class="pa-toggle__title" style="font-weight: 400;">Pauta puede crear y cambiar</span><span class="pa-toggle__meta">Solo lectura</span></span><button class="pa-switch" role="switch" aria-checked="false" aria-label="Escritura en Gmail 1"></button></div>
+    </div>
+    <div class="pa-card" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+      <div style="display: flex; gap: 12px; align-items: center;"><span style="flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--cuenta-2-soft); color: var(--cuenta-2); font-weight: 600;">G</span><span style="flex: 1; min-width: 0;"><span style="display: block; font-weight: 600;">Gmail 2 <span style="font-weight: 400; color: var(--text-2);">· Google</span></span><span style="display: block; font-size: 13px; color: var(--text-2);">[correo 2]@gmail.com</span></span></div>
+      <div style="display: flex; gap: 10px; align-items: center; padding: 4px 0;"><button aria-label="Color 1" aria-pressed="false" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-1);"></button><button aria-label="Color 2" aria-pressed="true" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-2); box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--text);"></button><button aria-label="Color 3" aria-pressed="false" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-3);"></button><button aria-label="Color 4" aria-pressed="false" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-4);"></button><button class="pa-btn pa-btn--plain pa-btn--sm" style="margin-left: auto; margin-right: -12px;">2 calendarios ›</button></div>
+      <div class="pa-toggle" style="min-height: 44px;"><span class="pa-toggle__text"><span class="pa-toggle__title" style="font-weight: 400;">Pauta puede crear y cambiar</span><span class="pa-toggle__meta">Te pregunto antes de cada cambio</span></span><button class="pa-switch" role="switch" aria-checked="true" aria-label="Escritura en Gmail 2"></button></div>
+    </div>
+    <div class="pa-card" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+      <div style="display: flex; gap: 12px; align-items: center;"><span style="flex: none; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--cuenta-3-soft); color: var(--cuenta-3); font-weight: 600;">O</span><span style="flex: 1; min-width: 0;"><span style="display: block; font-weight: 600;">Outlook <span style="font-weight: 400; color: var(--text-2);">· Microsoft</span></span><span style="display: block; font-size: 13px; color: var(--text-2);">[correo]@outlook.com</span></span></div>
+      <div style="display: flex; gap: 10px; align-items: center; padding: 4px 0;"><button aria-label="Color 1" aria-pressed="false" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-1);"></button><button aria-label="Color 2" aria-pressed="false" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-2);"></button><button aria-label="Color 3" aria-pressed="true" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-3); box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--text);"></button><button aria-label="Color 4" aria-pressed="false" style="width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; background: var(--cuenta-4);"></button><button class="pa-btn pa-btn--plain pa-btn--sm" style="margin-left: auto; margin-right: -12px;">1 calendario ›</button></div>
+      <div class="pa-toggle" style="min-height: 44px;"><span class="pa-toggle__text"><span class="pa-toggle__title" style="font-weight: 400;">Pauta puede crear y cambiar</span><span class="pa-toggle__meta">Solo lectura</span></span><button class="pa-switch" role="switch" aria-checked="false" aria-label="Escritura en Outlook"></button></div>
+    </div>
+    <div class="pa-card" style="padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px;"><span><span style="display: block;">Al apuntar, guardar en</span><span style="display: block; font-size: 13px; color: var(--text-2);">Preguntar cada vez</span></span><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--text-3);"><path d="m9 18 6-6-6-6" /></svg></div>
+    <button class="pa-btn pa-btn--primary" style="margin-top: auto; width: 100%; gap: 8px;"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /> <path d="M12 5v14" /></svg>Añadir cuenta</button>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

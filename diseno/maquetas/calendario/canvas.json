@@ -1,26 +1,225 @@
 {
  "v": 3,
- "createdOnFiles": {"v": 1, "at": "2026-10-18T15:30:00Z"},
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-18T15:30:00Z"
+ },
  "title": "Pauta · Calendario",
- "launch": {"view": "canvas"},
+ "launch": {
+  "view": "canvas"
+ },
  "pages": [],
  "boards": {
-  "Main.dc.html": {"x": 0, "y": 0, "w": 1600, "h": 1220, "title": "Anatomía de Fantastical (Mac) y cómo la ocupa Pauta"},
-  "MacSemana.dc.html": {"x": 1680, "y": 0, "w": 1440, "h": 900, "title": "Calendario · Mac · semana · oscuro"},
-  "MacSemanaClaro.dc.html": {"x": 3200, "y": 0, "w": 1440, "h": 900, "title": "Calendario · Mac · semana · claro"},
-  "MacCaptura.dc.html": {"x": 1680, "y": 1020, "w": 1440, "h": 900, "title": "Calendario · Mac · apuntar en lenguaje natural (⌘K)"},
-  "MacAno.dc.html": {"x": 3200, "y": 1020, "w": 1440, "h": 900, "title": "Calendario · Mac · año (horas comprometidas)"},
-  "AndroidMes.dc.html": {"x": 0, "y": 2300, "w": 412, "h": 915, "title": "Calendario · Android · mes y lista"},
-  "AndroidCaptura.dc.html": {"x": 492, "y": 2300, "w": 412, "h": 915, "title": "Calendario · Android · apuntar"},
-  "AndroidOcurrencia.dc.html": {"x": 984, "y": 2300, "w": 412, "h": 915, "title": "Calendario · Android · cambiar solo este viernes"},
-  "AndroidMesClaro.dc.html": {"x": 1476, "y": 2300, "w": 412, "h": 915, "title": "Calendario · Android · mes · claro"}
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1600,
+   "h": 1220,
+   "title": "Anatomía de Fantastical (Mac) y cómo la ocupa Pauta"
+  },
+  "Paridad.dc.html": {
+   "x": 0,
+   "y": 1340,
+   "w": 1440,
+   "h": 1180,
+   "title": "Paridad: cada pantalla en escritorio y en móvil"
+  },
+  "MacSemana.dc.html": {
+   "x": 1680,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "Calendario · Mac · semana · oscuro"
+  },
+  "MacSemanaClaro.dc.html": {
+   "x": 3200,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "Calendario · Mac · semana · claro"
+  },
+  "WinSemana.dc.html": {
+   "x": 4720,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "Calendario · Windows · semana"
+  },
+  "MacDia.dc.html": {
+   "x": 1680,
+   "y": 1020,
+   "w": 1440,
+   "h": 900,
+   "title": "Calendario · Mac · día"
+  },
+  "MacMes.dc.html": {
+   "x": 3200,
+   "y": 1020,
+   "w": 1440,
+   "h": 900,
+   "title": "Calendario · Mac · mes"
+  },
+  "MacAno.dc.html": {
+   "x": 4720,
+   "y": 1020,
+   "w": 1440,
+   "h": 900,
+   "title": "Calendario · Mac · año (horas comprometidas)"
+  },
+  "MacCaptura.dc.html": {
+   "x": 1680,
+   "y": 2040,
+   "w": 1440,
+   "h": 900,
+   "title": "Calendario · Mac · apuntar (⌘K)"
+  },
+  "MacCuentas.dc.html": {
+   "x": 3200,
+   "y": 2040,
+   "w": 1440,
+   "h": 900,
+   "title": "Ajustes · Mac · cuentas (2 Google + 1 Microsoft)"
+  },
+  "MacAnadirCuenta.dc.html": {
+   "x": 4720,
+   "y": 2040,
+   "w": 1440,
+   "h": 900,
+   "title": "Ajustes · Mac · añadir cuenta"
+  },
+  "MacBarraMenus.dc.html": {
+   "x": 1680,
+   "y": 3060,
+   "w": 1440,
+   "h": 900,
+   "title": "Fuera de la app · Mac · barra de menús"
+  },
+  "AndroidDia.dc.html": {
+   "x": 0,
+   "y": 4380,
+   "w": 412,
+   "h": 915,
+   "title": "Móvil · día"
+  },
+  "AndroidSemana.dc.html": {
+   "x": 492,
+   "y": 4380,
+   "w": 412,
+   "h": 915,
+   "title": "Móvil · semana"
+  },
+  "AndroidMes.dc.html": {
+   "x": 984,
+   "y": 4380,
+   "w": 412,
+   "h": 915,
+   "title": "Móvil · mes y lista"
+  },
+  "AndroidAno.dc.html": {
+   "x": 1476,
+   "y": 4380,
+   "w": 412,
+   "h": 915,
+   "title": "Móvil · año (horas comprometidas)"
+  },
+  "AndroidCaptura.dc.html": {
+   "x": 1968,
+   "y": 4380,
+   "w": 412,
+   "h": 915,
+   "title": "Móvil · apuntar"
+  },
+  "AndroidOcurrencia.dc.html": {
+   "x": 2460,
+   "y": 4380,
+   "w": 412,
+   "h": 915,
+   "title": "Móvil · cambiar solo este viernes"
+  },
+  "AndroidCuentas.dc.html": {
+   "x": 2952,
+   "y": 4380,
+   "w": 412,
+   "h": 915,
+   "title": "Móvil · cuentas"
+  },
+  "AndroidAnadirCuenta.dc.html": {
+   "x": 3444,
+   "y": 4380,
+   "w": 412,
+   "h": 915,
+   "title": "Móvil · añadir cuenta"
+  },
+  "AndroidWidget.dc.html": {
+   "x": 3936,
+   "y": 4380,
+   "w": 412,
+   "h": 915,
+   "title": "Móvil · widget"
+  },
+  "AndroidMesClaro.dc.html": {
+   "x": 4428,
+   "y": 4380,
+   "w": 412,
+   "h": 915,
+   "title": "Móvil · mes · claro"
+  },
+  "IphoneMes.dc.html": {
+   "x": 4920,
+   "y": 4380,
+   "w": 390,
+   "h": 844,
+   "title": "Móvil · iPhone (390 px) · mes"
+  }
  },
- "order": ["Main.dc.html", "MacSemana.dc.html", "MacSemanaClaro.dc.html", "MacCaptura.dc.html", "MacAno.dc.html", "AndroidMes.dc.html", "AndroidCaptura.dc.html", "AndroidOcurrencia.dc.html", "AndroidMesClaro.dc.html"],
+ "order": [
+  "Main.dc.html",
+  "Paridad.dc.html",
+  "MacSemana.dc.html",
+  "MacSemanaClaro.dc.html",
+  "WinSemana.dc.html",
+  "MacDia.dc.html",
+  "MacMes.dc.html",
+  "MacAno.dc.html",
+  "MacCaptura.dc.html",
+  "MacCuentas.dc.html",
+  "MacAnadirCuenta.dc.html",
+  "MacBarraMenus.dc.html",
+  "AndroidDia.dc.html",
+  "AndroidSemana.dc.html",
+  "AndroidMes.dc.html",
+  "AndroidAno.dc.html",
+  "AndroidCaptura.dc.html",
+  "AndroidOcurrencia.dc.html",
+  "AndroidCuentas.dc.html",
+  "AndroidAnadirCuenta.dc.html",
+  "AndroidWidget.dc.html",
+  "AndroidMesClaro.dc.html",
+  "IphoneMes.dc.html"
+ ],
  "notes": {
-  "fila1": {"x": 0, "y": -300, "text": "Calendario: Fantastical como base, Pauta encima", "kind": "title1", "maxW": 4640},
-  "fila2": {"x": 0, "y": 2040, "text": "Calendario en Android", "kind": "title1", "maxW": 1888}
+  "fila1": {
+   "x": 0,
+   "y": -300,
+   "text": "Calendario: Fantastical como base, Pauta encima",
+   "kind": "title1",
+   "maxW": 6160
+  },
+  "fila2": {
+   "x": 0,
+   "y": 4080,
+   "text": "Calendario en el móvil (Android e iPhone)",
+   "kind": "title1",
+   "maxW": 5310
+  }
  },
  "designSystems": [
-  {"title": "Pauta", "namespace": "pauta", "artifact": "https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m", "version": "1792330627-9be5", "copiedAt": "2026-10-18T15:30:00Z"}
+  {
+   "title": "Pauta",
+   "namespace": "pauta",
+   "artifact": "https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m",
+   "version": "1792332239-aff4",
+   "copiedAt": "2026-10-18T15:30:00Z"
+  }
  ]
 }

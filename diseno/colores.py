@@ -32,6 +32,10 @@ T = {  # nombre: (oscuro, claro, uso)
  'cuenta-1-soft':('#6CC4F529', '#0A6FA61A', 'Relleno de los eventos de la cuenta 1 en la rejilla; el texto encima es text.'),
  'cuenta-2':     ('#F7A86E', '#A8520E', 'Color de la segunda cuenta de Gmail: punto, barra del evento y texto de su nombre.'),
  'cuenta-2-soft':('#F7A86E29', '#A8520E1A', 'Relleno de los eventos de la cuenta 2 en la rejilla; el texto encima es text.'),
+ 'cuenta-3':     ('#F08BD0', '#A8327F', 'Color de la tercera cuenta (por ejemplo, Outlook): punto, barra del evento y texto de su nombre.'),
+ 'cuenta-3-soft':('#F08BD029', '#A8327F1A', 'Relleno de los eventos de la cuenta 3 en la rejilla; el texto encima es text.'),
+ 'cuenta-4':     ('#4DD4C6', '#0B7A72', 'Color de la cuarta cuenta: punto, barra del evento y texto de su nombre. Desde la quinta, los colores se repiten y la cuenta se distingue por su nombre e inicial.'),
+ 'cuenta-4-soft':('#4DD4C629', '#0B7A721A', 'Relleno de los eventos de la cuenta 4 en la rejilla; el texto encima es text.'),
  'heat-0':       ('#1D1E25', '#E9E9EE', 'Mapa anual: día sin compromisos.'),
  'heat-1':       ('#2C2944', '#E2DBFA', 'Mapa anual: hasta 2 h comprometidas.'),
  'heat-2':       ('#423874', '#C7B8F5', 'Mapa anual: de 2 a 4 h.'),
@@ -62,10 +66,11 @@ for t in ('text', 'text-2', 'text-3'):
     for g in ('bg', 'sidebar', 'surface', 'raised'): PAIRS.append((t, g, None, 4.5))
 for g in ('bg', 'sidebar', 'surface'): PAIRS += [('accent', g, None, 4.5)]
 PAIRS += [('on-accent', 'accent', None, 4.5), ('text', 'accent-soft', 'sidebar', 4.5), ('text', 'accent-soft', 'surface', 4.5)]
-for s in ('gain', 'loss', 'attention', 'cuenta-1', 'cuenta-2'):
+for s in ('gain', 'loss', 'attention', 'cuenta-1', 'cuenta-2', 'cuenta-3', 'cuenta-4'):
     for g in ('bg', 'surface'): PAIRS.append((s, g, None, 4.5))
 PAIRS += [('on-gain', 'gain', None, 4.5), ('on-loss', 'loss', None, 4.5), ('gain', 'gain-soft', 'surface', 4.5), ('loss', 'loss-soft', 'surface', 4.5), ('text', 'attention-soft', 'surface', 4.5),
-          ('text', 'cuenta-1-soft', 'surface', 4.5), ('text', 'cuenta-2-soft', 'surface', 4.5)]
+          ('text', 'cuenta-1-soft', 'surface', 4.5), ('text', 'cuenta-2-soft', 'surface', 4.5),
+          ('text', 'cuenta-3-soft', 'surface', 4.5), ('text', 'cuenta-4-soft', 'surface', 4.5)]
 for g in ('surface', 'raised', 'bg'): PAIRS.append(('border-control', g, None, 3.0))
 PAIRS += [('switch-knob', 'border-control', None, 3.0), ('accent', 'raised', None, 3.0)]
 for g in ('bg', 'sidebar', 'surface', 'raised'): PAIRS.append(('focus', g, None, 3.0))

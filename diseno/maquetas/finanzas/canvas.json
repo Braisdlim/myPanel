@@ -79,6 +79,13 @@
    "w": 412,
    "h": 915,
    "title": "Finanzas · Android · añadir fondo o ETF"
+  },
+  "AndroidTramo.dc.html": {
+   "x": 4328,
+   "y": 1520,
+   "w": 412,
+   "h": 915,
+   "title": "Finanzas · Android · variación entre dos fechas"
   }
  },
  "order": [
@@ -91,7 +98,8 @@
   "AndroidClaro.dc.html",
   "MacTramo.dc.html",
   "MacAnadir.dc.html",
-  "AndroidAnadir.dc.html"
+  "AndroidAnadir.dc.html",
+  "AndroidTramo.dc.html"
  ],
  "notes": {
   "fila1": {
@@ -106,7 +114,7 @@
    "y": 1240,
    "text": "Android y estados",
    "kind": "title1",
-   "maxW": 4248
+   "maxW": 4740
   }
  },
  "designSystems": [
@@ -114,7 +122,7 @@
    "title": "Pauta",
    "namespace": "pauta",
    "artifact": "https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m",
-   "version": "1792330627-9be5",
+   "version": "1792332239-aff4",
    "copiedAt": "2026-10-18T13:12:00Z"
   }
  ]

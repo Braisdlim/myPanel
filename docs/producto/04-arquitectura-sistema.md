@@ -1,5 +1,7 @@
 # 4. Arquitectura del sistema
 
+> Actualización del 18-10-2026: las cuentas de calendario pasan a ser varias, de Google y de Microsoft (D-034), y las plataformas, Mac y Windows en escritorio y Android e iPhone en móvil (D-036). Los diagramas de abajo aún muestran solo Google; se rehacen al cerrar P-028 y P-029.
+
 Cómo funciona por dentro: piezas, flujos de datos, modelo de datos y decisiones abiertas. Es una propuesta; lo marcado como **[decisión abierta]** necesita tu respuesta o una prueba.
 
 ## 4.1 Contexto: con qué se conecta

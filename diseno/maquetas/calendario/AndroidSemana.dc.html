@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Semana en Android</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden;">
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 16px 16px 0; display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 style="margin: 0; font-size: 28px; line-height: 34px; font-weight: 600; letter-spacing: -0.015em;">Semana 43 </h1>
+      <div style="display: flex; align-items: center; margin-right: -12px;"><button class="pa-btn pa-btn--sm">Hoy</button><button class="pa-btn pa-btn--icon" aria-label="Buscar"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px;"><path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /></svg></button></div>
+    </div>
+    <div class="pa-seg" role="group" aria-label="Escala" style="display: flex;"><button aria-pressed="false" style="flex: 1;">Día</button><button aria-pressed="true" style="flex: 1;">Semana</button><button aria-pressed="false" style="flex: 1;">Mes</button><button aria-pressed="false" style="flex: 1;">Año</button></div>
+    <div class="pa-tg" style="--days: 7; --hour-height: 38px; grid-template-columns: 26px repeat(7, minmax(0, 1fr)); margin: 0 -8px 0 -10px;"><div class="pa-tg__corner" style="height: 48px;"></div><div class="pa-tg__day" style="flex-direction: column; gap: 0; height: 48px;"><span>L</span><span class="pa-tg__num">19</span></div><div class="pa-tg__day" style="flex-direction: column; gap: 0; height: 48px;"><span>M</span><span class="pa-tg__num">20</span></div><div class="pa-tg__day" style="flex-direction: column; gap: 0; height: 48px;"><span>X</span><span class="pa-tg__num">21</span></div><div class="pa-tg__day" style="flex-direction: column; gap: 0; height: 48px;"><span>J</span><span class="pa-tg__num">22</span></div><div class="pa-tg__day pa-tg__day--today" style="flex-direction: column; gap: 0; height: 48px;"><span>V</span><span class="pa-tg__num">23</span></div><div class="pa-tg__day" style="flex-direction: column; gap: 0; height: 48px;"><span>S</span><span class="pa-tg__num">24</span></div><div class="pa-tg__day" style="flex-direction: column; gap: 0; height: 48px;"><span>D</span><span class="pa-tg__num">25</span></div><div class="pa-tg__hours"><div class="pa-tg__hour" style="visibility: hidden;">9</div><div class="pa-tg__hour">10</div><div class="pa-tg__hour">11</div><div class="pa-tg__hour">12</div><div class="pa-tg__hour">13</div><div class="pa-tg__hour">14</div><div class="pa-tg__hour">15</div><div class="pa-tg__hour">16</div><div class="pa-tg__hour">17</div><div class="pa-tg__hour">18</div><div class="pa-tg__hour">19</div><div class="pa-tg__hour">20</div><div class="pa-tg__hour">21</div><div class="pa-tg__hour">22</div><div class="pa-tg__hour">23</div></div><div class="pa-tg__col" style="height: calc(15 * var(--hour-height));"><div class="pa-ev pa-ev--c2" style="--start: 10; --dur: 1; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Gim</div></div><div class="pa-tg__col" style="height: calc(15 * var(--hour-height));"><div class="pa-ev pa-ev--c3" style="--start: 3; --dur: 0.5; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Banco</div></div><div class="pa-tg__col" style="height: calc(15 * var(--hour-height));"><div class="pa-ev pa-ev--c2" style="--start: 10; --dur: 1; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Gim</div></div><div class="pa-tg__col" style="height: calc(15 * var(--hour-height));"><div class="pa-ev " style="--start: 8; --dur: 1; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Dentista</div><div class="pa-ev pa-ev--c3" style="--start: 9; --dur: 1; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Inglés</div></div><div class="pa-tg__col" style="height: calc(15 * var(--hour-height));"><div class="pa-ev " style="--start: 1; --dur: 1; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Coche</div><div class="pa-ev pa-ev--task" style="--start: 2.25; --dur: 0.8333; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Tareas</div><div class="pa-ev pa-ev--c2" style="--start: 4.5; --dur: 2; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Comida</div><div class="pa-ev " style="--start: 8.5; --dur: 1; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Médico</div><div class="pa-ev pa-ev--optional" style="--start: 12.5; --dur: 2.5; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Ensayo</div><div class="pa-tg__now" style="--at: 0.6667;"></div></div><div class="pa-tg__col" style="height: calc(15 * var(--hour-height));"><div class="pa-ev pa-ev--c2 pa-ev--conflict" style="--start: 1; --dur: 3; --lanes: 2; --lane: 0; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Bici</div><div class="pa-ev pa-ev--c3 pa-ev--conflict" style="--start: 3; --dur: 1.5; --lanes: 2; --lane: 1; padding: 2px 3px 2px 6px; font-size: 10.5px; line-height: 13px;">Reun.</div></div><div class="pa-tg__col" style="height: calc(15 * var(--hour-height));"></div></div>
+    <p style="margin: 0; font-size: 13px; line-height: 18px; color: var(--text-3);">Toca un bloque para verlo; mantén pulsado un hueco para apuntar ahí. El punto rojo del sábado es un solape entre dos cuentas.</p>
+  </main>
+  <nav class="pa-tabbar" aria-label="Sectores" style="flex: none;">
+    <button class="pa-tab"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>Hoy</button>
+    <button class="pa-tab" aria-current="page"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg>Calendario</button>
+    <button class="pa-tab--add" aria-label="Apuntar"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+    <button class="pa-tab"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m16 9-5.5 5.5L8 12"></path></svg>Tareas</button>
+    <button class="pa-tab"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg>Finanzas</button>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
