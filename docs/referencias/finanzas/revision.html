@@ -1,0 +1,294 @@
+<title>Referencias de Finanzas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500&display=swap">
+<style>
+/* Hoja de revisión: capturas grandes, pie que dice qué mirar, decisión clara por idea. */
+:root {
+  --bg: #f5f4f0; --surface: #ffffff; --fg: #1c1b19; --muted: #5c5953; --line: #e2dfd7; --accent: #3b5b86;
+  --ok: #2c7a4b; --warn: #8a5a00; --chip: #eeece6;
+  --f-display: "Newsreader", Georgia, serif; --f-body: "Instrument Sans", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #141413; --surface: #1c1c1a; --fg: #ecebe6; --muted: #a9a69f; --line: #302f2b; --accent: #9fbbe2; --ok: #7fcf9c; --warn: #e8bf6a; --chip: #262522; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #141413; --surface: #1c1c1a; --fg: #ecebe6; --muted: #a9a69f; --line: #302f2b; --accent: #9fbbe2; --ok: #7fcf9c; --warn: #e8bf6a; --chip: #262522; color-scheme: dark; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 980px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 36px 80px; }
+.kicker { margin: 0; font-size: 13px; color: var(--muted); }
+h1 { font-family: var(--f-display); font-weight: 500; font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin: 6px 0 12px; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-weight: 500; font-size: clamp(24px, 3.4vw, 30px); line-height: 1.2; margin: 0; text-wrap: balance; }
+h3 { font-size: 15px; font-weight: 600; margin: 22px 0 6px; }
+p, li { max-width: 70ch; }
+.lead { font-size: 18px; margin: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.legend li { padding: 6px 12px; border-radius: 999px; background: var(--chip); font-size: 14px; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.toc a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--fg); text-decoration: none; font-size: 14px; background: var(--surface); }
+.idea { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: 12px; }
+.idea-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.from { font-size: 14px; color: var(--muted); }
+.what { margin: 10px 0 0; }
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+.shots figure.wide { grid-column: 1 / -1; }
+figure { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+figure a { display: block; background: #fff; }
+figure img { display: block; width: 100%; height: auto; }
+figcaption { padding: 12px 14px 14px; font-size: 14.5px; line-height: 1.5; }
+figcaption b { font-weight: 600; }
+.src { display: block; margin-top: 6px; font-size: 12.5px; color: var(--muted); }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+.box h3 { margin-top: 0; }
+.box ul { margin: 0; padding-left: 1.1em; }
+.box li + li { margin-top: 6px; }
+.gap { margin-top: 16px; padding: 12px 16px; border-left: 3px solid var(--warn); background: var(--surface); border-radius: 0 10px 10px 0; font-size: 14.5px; }
+.decide { margin-top: 16px; padding: 14px 18px; border-radius: 14px; border: 1px dashed var(--accent); font-size: 15px; }
+.together { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); }
+.foot { margin-top: 48px; font-size: 13px; color: var(--muted); }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 720px) { .shots, .cols { grid-template-columns: 1fr; } }
+</style>
+
+<div class="wrap">
+  <p class="kicker">Sector Finanzas · capturas reales descargadas el 18 de octubre de 2026</p>
+  <h1>Referencias de Finanzas</h1>
+  <p class="lead">Seis ideas candidatas, con capturas oficiales, qué mirar en cada una y qué nos llevaríamos a myPanel: ver tu patrimonio y tus fondos, cómo han ido estos días y avisarte de bajadas según tus reglas.</p>
+  <ul class="legend" aria-label="Cómo responder">
+    <li>✅ Aprobada</li><li>✏️ Aprobada con cambios</li><li>❌ Descartada</li>
+  </ul>
+  <nav class="toc" aria-label="Ideas">
+    <a href="#idea1">1 · Bolsa</a><a href="#idea2">2 · Copilot</a><a href="#idea3">3 · Finary</a><a href="#idea4">4 · getquin y Parqet</a><a href="#idea5">5 · Ghostfolio</a><a href="#idea6">6 · Avisos de bajadas</a><a href="#juntas">Cómo encajan</a>
+  </nav>
+
+  <section class="idea" id="idea1">
+    <div class="idea-head"><h2>1 · Lista de seguimiento y gráfico por periodos</h2><span class="from">Bolsa (Stocks) de Apple · Mac e iPhone</span></div>
+    <p class="what">La app que te gusta: a la izquierda tu lista de valores con minigráfico y variación del día; a la derecha, el gráfico grande con periodos, datos clave y noticias.</p>
+    <div class="shots">
+      <figure class="wide">
+        <a href="img/bolsa-de-apple-guia-mac-17.jpg" target="_blank" rel="noopener"><img src="img/bolsa-de-apple-guia-mac-17.jpg" alt="Bolsa en Mac: lista de seguimiento a la izquierda con minigráficos y variación; a la derecha, NASDAQ a 10 años, datos y noticia" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la lista de seguimiento con minigráfico y la variación en una píldora verde o roja; las pestañas para tener varios valores abiertos; los periodos 1D · 1S · 1M · 3M · 6M · YTD · 1A · 2A · 5A · 10A · Todo; los datos clave bajo el gráfico.
+          <span class="src">Guía de uso oficial de Bolsa para Mac (Apple)</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/bolsa-de-apple-guia-mac-16.jpg" target="_blank" rel="noopener"><img src="img/bolsa-de-apple-guia-mac-16.jpg" alt="Selección de un rango en el gráfico con la variación entre dos fechas: +57,95 y +18,30 %" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> al arrastrar sobre el gráfico se ve cuánto ha cambiado entre dos fechas (+18,30 %). Es la respuesta directa a «¿qué tal han ido estos días?».
+          <span class="src">Guía de uso oficial de Bolsa para Mac</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/bolsa-de-apple-guia-mac-15.jpg" target="_blank" rel="noopener"><img src="img/bolsa-de-apple-guia-mac-15.jpg" alt="Punto del gráfico con su fecha y valor" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> al pasar por el gráfico, la fecha y el valor exactos de ese punto.
+          <span class="src">Guía de uso oficial de Bolsa para Mac</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/bolsa-de-apple-guia-mac-20.jpg" target="_blank" rel="noopener"><img src="img/bolsa-de-apple-guia-mac-20.jpg" alt="Aviso «Earnings Report Tomorrow» con el botón «Add to Calendar»" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> «Resultados mañana» con el botón «Añadir al calendario». Un ejemplo perfecto de conexión entre sectores.
+          <span class="src">Guía de uso oficial de Bolsa para Mac</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/bolsa-de-apple-guia-mac-06.jpg" target="_blank" rel="noopener"><img src="img/bolsa-de-apple-guia-mac-06.jpg" alt="Menú de listas de seguimiento: varias listas y crear nueva" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> varias listas de seguimiento («Mis valores», otras propias) que se eligen arriba.
+          <span class="src">Guía de uso oficial de Bolsa para Mac</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/bolsa-de-apple-iphone-01.jpg" target="_blank" rel="noopener"><img src="img/bolsa-de-apple-iphone-01.jpg" alt="Bolsa en iPhone: lista oscura de valores con minigráficos y variación" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> en el móvil, la misma lista a pantalla completa; al tocar un valor se abre el gráfico.
+          <span class="src">App Store (captura oficial), Bolsa para iPhone 3.1</span></figcaption>
+      </figure>
+    </div>
+    <div class="cols">
+      <div class="box"><h3>Lo que tomaríamos</h3><ul>
+        <li>Barra lateral con tus fondos (y una lista de seguimiento) con minigráfico y variación.</li>
+        <li>Gráfico grande con periodos y <b>selección entre dos fechas</b>.</li>
+        <li>Botón «Añadir al calendario» para fechas importantes (aportaciones, vencimientos).</li>
+      </ul></div>
+      <div class="box"><h3>Lo que cambiaríamos</h3><ul>
+        <li>En lugar de cotizaciones al segundo, el <b>valor liquidativo diario</b> de tus fondos, con su fecha.</li>
+        <li>Mostrar <b>tus euros</b> (cuánto ganas o pierdes) además del porcentaje.</li>
+        <li>Sin noticias al principio: más fuentes, más ruido.</li>
+      </ul></div>
+    </div>
+    <p class="decide"><b>Tu decisión para la idea 1:</b> ✅ / ✏️ / ❌, y qué detalle te gusta o no.</p>
+  </section>
+
+  <section class="idea" id="idea2">
+    <div class="idea-head"><h2>2 · Patrimonio y acabado premium</h2><span class="from">Copilot Money 8.5 · iPad y Mac (solo EE. UU.)</span></div>
+    <p class="what">La referencia de acabado: barra lateral con todas tus cuentas, rendimiento frente a un índice, los movimientos del día y el detalle de cada cuenta a la derecha.</p>
+    <div class="shots">
+      <figure class="wide">
+        <a href="img/copilot-money-14.jpg" target="_blank" rel="noopener"><img src="img/copilot-money-14.jpg" alt="Copilot en iPad: inversiones con rendimiento frente a referencia, valores que más se mueven hoy, cuentas y detalle del bróker con asignación y posiciones" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> «Rendimiento» frente a una referencia en el mismo gráfico; «Lo que más se mueve hoy» en tarjetas con minigráfico; las cuentas con su variación a 3 meses; a la derecha, el bróker con asignación y posiciones. La misma estructura de tres zonas que Notion Calendar.
+          <span class="src">App Store EE. UU. (captura oficial), Copilot 8.5.0</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/copilot-money-15.jpg" target="_blank" rel="noopener"><img src="img/copilot-money-15.jpg" alt="Copilot: todas las cuentas con gráfico de patrimonio" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> «Todas tus cuentas en un sitio», con la evolución del patrimonio.
+          <span class="src">App Store EE. UU. (captura oficial), Copilot 8.5.0</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/copilot-money-09.jpg" target="_blank" rel="noopener"><img src="img/copilot-money-09.jpg" alt="Copilot: panel principal con gasto mensual y categorías" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> el panel principal oscuro con gasto del mes y categorías: denso pero ordenado.
+          <span class="src">App Store EE. UU. (captura oficial), Copilot 8.5.0</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/copilot-money-01.jpg" target="_blank" rel="noopener"><img src="img/copilot-money-01.jpg" alt="Copilot en iPhone: panel con lo que queda del presupuesto y categorías en anillos" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la versión móvil: una cifra principal y anillos por categoría.
+          <span class="src">App Store EE. UU. (captura oficial), Copilot 8.5.0</span></figcaption>
+      </figure>
+    </div>
+    <div class="cols">
+      <div class="box"><h3>Lo que tomaríamos</h3><ul>
+        <li>El nivel de acabado y la estructura de tres zonas en el Mac.</li>
+        <li>Tu rendimiento frente a un índice de referencia (p. ej., MSCI World).</li>
+        <li>«Lo que más se ha movido hoy» de tus fondos.</li>
+      </ul></div>
+      <div class="box"><h3>Lo que cambiaríamos</h3><ul>
+        <li>Copilot solo conecta con bancos de EE. UU.: es referencia visual, no de datos.</li>
+        <li>Presupuestos y categorías de gasto: solo si confirmas que los quieres (pregunta pendiente).</li>
+      </ul></div>
+    </div>
+    <p class="decide"><b>Tu decisión para la idea 2:</b> ✅ / ✏️ / ❌.</p>
+  </section>
+
+  <section class="idea" id="idea3">
+    <div class="idea-head"><h2>3 · Todo tu patrimonio europeo, en español</h2><span class="from">Finary 2.159 · iPhone e iPad (App Store España)</span></div>
+    <p class="what">Agrega bancos, fondos, inmuebles y cripto en euros y en español. Una cifra grande de patrimonio con su variación y, debajo, cada tipo de activo.</p>
+    <div class="shots">
+      <figure class="wide">
+        <a href="img/finary-11.jpg" target="_blank" rel="noopener"><img src="img/finary-11.jpg" alt="Finary en iPad: patrimonio bruto 823.817 €, +15.598 € (+1,9 %) en 7 días, gráfico y selector de periodo; debajo, activos" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> «Patrimonio bruto 823.817 €» con la variación en euros y porcentaje del periodo elegido (7 días); periodos 1D · 7D · 1M · YTD · 1A · Todo; activos por tipo debajo. Cifras en formato español.
+          <span class="src">App Store España (captura oficial), Finary 2.159.0</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/finary-12.jpg" target="_blank" rel="noopener"><img src="img/finary-12.jpg" alt="Finary: visión centralizada por tipo de activo con importes y minigráficos" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> cada tipo de activo (inmuebles, cuentas de inversión, cripto, cuentas bancarias) con su importe y minigráfico.
+          <span class="src">App Store España (captura oficial), Finary 2.159.0</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/finary-17.jpg" target="_blank" rel="noopener"><img src="img/finary-17.jpg" alt="Finary: rendimiento detallado por posición, incluido un fondo Amundi MSCI World UCITS" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> el rendimiento por posición con fondos europeos (aparece un Amundi MSCI World UCITS): justo tu tipo de inversión.
+          <span class="src">App Store España (captura oficial), Finary 2.159.0</span></figcaption>
+      </figure>
+    </div>
+    <div class="cols">
+      <div class="box"><h3>Lo que tomaríamos</h3><ul>
+        <li>Patrimonio bruto, neto y financiero con variación en € y % por periodo.</li>
+        <li>Desglose por tipo de activo y rendimiento por fondo.</li>
+        <li>Formato español (miles con punto, € detrás).</li>
+      </ul></div>
+      <div class="box"><h3>Lo que cambiaríamos</h3><ul>
+        <li>Finary está pensado sobre todo para Francia; su conexión con bancos españoles no está confirmada [H·s].</li>
+        <li>Sin venta de productos propios: myPanel no recomienda ni vende nada.</li>
+      </ul></div>
+    </div>
+    <p class="decide"><b>Tu decisión para la idea 3:</b> ✅ / ✏️ / ❌.</p>
+  </section>
+
+  <section class="idea" id="idea4">
+    <div class="idea-head"><h2>4 · Rentabilidad real, comparación y resumen del día</h2><span class="from">getquin 2.266 y Parqet 1.26 · iPhone (App Store España)</span></div>
+    <p class="what">Los dos rastreadores de cartera europeos más completos: tu cartera frente a índices, rentabilidad por trimestre, un resumen de cómo ha ido desde ayer y dividendos.</p>
+    <div class="shots">
+      <figure>
+        <a href="img/getquin-08.jpg" target="_blank" rel="noopener"><img src="img/getquin-08.jpg" alt="getquin: tu cartera frente a MSCI World y S&amp;P 500, y cuadrícula de rentabilidad por trimestre y año en verde y rojo" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> tu cartera frente a MSCI World y S&amp;P 500, y una <b>cuadrícula de rentabilidad por trimestre y año</b> en verde o rojo. Es la misma idea de mapa de calor que la vista anual del Calendario.
+          <span class="src">App Store España (captura oficial), getquin 2.266.0</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/parqet-06.jpg" target="_blank" rel="noopener"><img src="img/parqet-06.jpg" alt="Parqet: resumen diario, tu patrimonio disminuyó 8.254,70 € (−1,02 %), gráfico de la semana y comparación con S&amp;P 500, DAX y FTSE All-World" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> «Tu resumen diario»: cuánto ha cambiado tu patrimonio en euros y %, la semana en un gráfico y la comparación con índices. Es lo que pediste: «qué tal han ido las inversiones estos días».
+          <span class="src">App Store España (captura oficial), Parqet 1.26.2</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/getquin-03.jpg" target="_blank" rel="noopener"><img src="img/getquin-03.jpg" alt="getquin: todos tus brókers en una app, con Trade Republic, DEGIRO y MyInvestor" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> conecta con brókers europeos, incluido <b>MyInvestor</b> (español). Señal de que esas conexiones existen.
+          <span class="src">App Store España (captura oficial), getquin 2.266.0</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/getquin-05.jpg" target="_blank" rel="noopener"><img src="img/getquin-05.jpg" alt="getquin: dividendos pasados y futuros por mes" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> dividendos pasados y futuros por mes (útil si tienes fondos o acciones de reparto).
+          <span class="src">App Store España (captura oficial), getquin 2.266.0</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/parqet-05.jpg" target="_blank" rel="noopener"><img src="img/parqet-05.jpg" alt="Parqet X-Ray: qué hay dentro de tus ETF" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> «X-Ray»: qué empresas hay dentro de tus fondos o ETF.
+          <span class="src">App Store España (captura oficial), Parqet 1.26.2</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/parqet-01.jpg" target="_blank" rel="noopener"><img src="img/parqet-01.jpg" alt="Parqet: valor de cartera en anillo con TIR y dividendos" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> valor de cartera con rentabilidad (TIR) y dividendos a primera vista.
+          <span class="src">App Store España (captura oficial), Parqet 1.26.2</span></figcaption>
+      </figure>
+    </div>
+    <div class="cols">
+      <div class="box"><h3>Lo que tomaríamos</h3><ul>
+        <li><b>Resumen del día</b> en Hoy y en Finanzas: cuánto has ganado o perdido desde ayer y frente a un índice.</li>
+        <li>Cuadrícula de rentabilidad por mes o trimestre (misma pieza que el año del Calendario).</li>
+        <li>Rentabilidad real (TIR o TWR), no solo «valor de hoy menos lo aportado».</li>
+      </ul></div>
+      <div class="box"><h3>Lo que cambiaríamos</h3><ul>
+        <li>Menos gráficos a la vez: uno principal y el resto al tocar.</li>
+        <li>Dividendos y X-Ray solo si tus fondos lo necesitan.</li>
+        <li>Hay quejas de exactitud en getquin [H·s]: mostraremos siempre fecha y fuente de cada precio.</li>
+      </ul></div>
+    </div>
+    <p class="decide"><b>Tu decisión para la idea 4:</b> ✅ / ✏️ / ❌.</p>
+  </section>
+
+  <section class="idea" id="idea5">
+    <div class="idea-head"><h2>5 · Motor de cartera de código abierto en tu NAS</h2><span class="from">Ghostfolio · código abierto (AGPL-3.0)</span></div>
+    <p class="what">No es para copiar su aspecto: es una pieza que podría hacer los cálculos de cartera (rentabilidad, asignación por clase, región y divisa) dentro de tu NAS, sin enviar tus datos a terceros.</p>
+    <div class="shots">
+      <figure>
+        <a href="img/ghostfolio-github-directa-01.jpg" target="_blank" rel="noopener"><img src="img/ghostfolio-github-directa-01.jpg" alt="Ghostfolio en móvil: gráfico de rendimiento y valor total con periodos" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> el valor total y el rendimiento por periodos (Hoy, YTD, 1A, 5A, Máx). Su interfaz es sencilla; lo valioso es el motor.
+          <span class="src">Repositorio oficial de Ghostfolio en GitHub</span></figcaption>
+      </figure>
+      <div class="box"><h3>Por qué está aquí</h3><ul>
+        <li>Ahorra programar cálculos financieros delicados desde cero.</li>
+        <li>Se instala en Docker (encaja con el NAS) y tiene API REST.</li>
+        <li>Licencia AGPL: sirve para uso propio; si algún día se distribuyera myPanel, habría que revisarla.</li>
+        <li>Decisión ligada a «¿NAS o Cloudflare?».</li>
+      </ul></div>
+    </div>
+    <p class="decide"><b>Tu decisión para la idea 5:</b> ✅ / ✏️ / ❌ (es más una decisión técnica que visual).</p>
+  </section>
+
+  <section class="idea" id="idea6">
+    <div class="idea-head"><h2>6 · Avisos de bajadas con tus reglas</h2><span class="from">Fintonic 10.0 (España) y getquin</span></div>
+    <p class="what">Lo que pediste: enterarte cuando un fondo baja para valorar una aportación extra. Ninguna app revisada lo resuelve como lo queremos, lo que confirma el valor de esta idea.</p>
+    <div class="shots">
+      <figure>
+        <a href="img/fintonic-07.jpg" target="_blank" rel="noopener"><img src="img/fintonic-07.jpg" alt="Fintonic: lista de notificaciones con avisos de comisiones, movimientos duplicados y saldo bajo" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> una bandeja de avisos clara (comisiones, movimientos duplicados, saldo bajo), cada uno con su motivo e importe. Es la referencia para la lista de avisos.
+          <span class="src">App Store España (captura oficial), Fintonic 10.0.8</span></figcaption>
+      </figure>
+      <div class="box"><h3>Lo que hacen otros (comprobado)</h3><ul>
+        <li><b>getquin</b> no ofrece alertas de precio individuales: avisa automáticamente de «movimientos significativos», sin que puedas elegir el umbral [H·r ayuda oficial de getquin].</li>
+        <li><b>Bolsa de Apple</b> no tiene alertas de precio en su guía.</li>
+      </ul>
+      <h3>Nuestra versión</h3><ul>
+        <li>Reglas por fondo que defines tú: «cae un 5 % desde su máximo de 30 días», «cae más de un 2 % en un día», «recuérdame aportar el día 5».</li>
+        <li>El aviso explica el dato: «−5,2 % desde el máximo del 2 oct; valor liquidativo del 17 oct (fuente)».</li>
+        <li>Opciones: crear tarea «Valorar aportación», ignorar o ajustar la regla. Nunca «compra ahora».</li>
+      </ul></div>
+    </div>
+    <p class="decide"><b>Tu decisión para la idea 6:</b> ✅ / ✏️ / ❌, y qué umbrales te parecen útiles.</p>
+  </section>
+
+  <section class="together" id="juntas">
+    <h2>Cómo encajan en myPanel</h2>
+    <div class="cols">
+      <div class="box"><h3>Mac</h3><ul>
+        <li>Barra lateral de Finanzas: patrimonio total arriba y, debajo, tus fondos con minigráfico y variación (Bolsa).</li>
+        <li>Contenido: gráfico grande con periodos y selección entre fechas (Bolsa), frente a un índice (Copilot y getquin).</li>
+        <li>Inspector: detalle del fondo, su regla de aviso y la fecha y fuente del último precio.</li>
+        <li>Año: cuadrícula de rentabilidad por mes, la misma pieza que el mapa de calor del Calendario.</li>
+      </ul></div>
+      <div class="box"><h3>Android y Hoy</h3><ul>
+        <li>En Hoy, una tarjeta discreta «Tu dinero hoy: +312 € (+0,4 %)» (Parqet), que se puede ocultar.</li>
+        <li>Finanzas en el móvil: cifra grande y periodos (Finary), lista de fondos debajo (Bolsa).</li>
+        <li>Avisos de reglas en la bandeja común de «Pide atención» (Fintonic).</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <p class="foot">Capturas © de sus respectivos autores (Apple, Copilot Money, Finary, QUIN Technologies, Parqet Fintech, Ghostfolio, Fintonic). Uso interno como referencia; página privada. Fuentes: guía de uso de Bolsa para Mac (support.apple.com, versión 8.0), App Store (Bolsa 3.1, Copilot 8.5.0 en EE. UU., Finary 2.159.0, getquin 2.266.0, Parqet 1.26.2, Fintonic 10.0.8 en España), github.com/ghostfolio/ghostfolio, help.getquin.com/en/articles/13305365-push-notifications-on-price-movements.</p>
+</div>

@@ -61,12 +61,12 @@ for (const a of fuentes[sector].appstore ?? []) {
   try {
     let r = null;
     if (a.id) {
-      const j = JSON.parse(curl(`https://itunes.apple.com/lookup?id=${a.id}&country=es`));
+      const j = JSON.parse(curl(`https://itunes.apple.com/lookup?id=${a.id}&country=${a.country ?? "es"}`));
       r = j.results?.[0];
       if (r && a.seller && !r.sellerName?.includes(a.seller)) r = null;
     }
     if (!r) {
-      const j = JSON.parse(curl(`https://itunes.apple.com/search?term=${encodeURIComponent(a.term)}&entity=${a.entity}&country=es&limit=10`));
+      const j = JSON.parse(curl(`https://itunes.apple.com/search?term=${encodeURIComponent(a.term)}&entity=${a.entity}&country=${a.country ?? "es"}&limit=10`));
       r = j.results?.find((x) => !a.seller || x.sellerName?.includes(a.seller));
     }
     if (!r) { fallos.push({ url: a.app, error: "no encontrada en la App Store" }); continue; }
@@ -77,7 +77,8 @@ for (const a of fuentes[sector].appstore ?? []) {
   } catch (e) { fallos.push({ url: `${a.app} (App Store)`, error: e.message }); }
 }
 
-// 2) Páginas oficiales
+// 2) Páginas oficiales (contador por app para no sobrescribir si varias páginas comparten nombre)
+const contador = {};
 for (const p of fuentes[sector].paginas ?? []) {
   try {
     const html = curl(p.url);
@@ -85,10 +86,12 @@ for (const p of fuentes[sector].paginas ?? []) {
     for (const m of html.matchAll(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/gi)) urls.add(m[1]);
     for (const m of html.matchAll(/<img[^>]+src=["']([^"']+)["']/gi)) urls.add(m[1]);
     let i = 0;
+    contador[p.app] ??= 0;
     for (const raw of urls) {
       if (/\.svg(\?|$)|data:|logo|icon|avatar|favicon/i.test(raw)) continue;
       const abs = new URL(raw, p.url).href;
-      guardar(abs, `${slug(p.app)}-${String(++i).padStart(2, "0")}`, { app: p.app, idea: p.idea, fuente: "Web oficial", pagina: p.url });
+      i++;
+      guardar(abs, `${slug(p.app)}-${String(++contador[p.app]).padStart(2, "0")}`, { app: p.app, idea: p.idea, fuente: "Web oficial", pagina: p.url });
       if (i >= 15) break;
     }
   } catch (e) { fallos.push({ url: p.url, error: e.message.split("\n")[0] }); }

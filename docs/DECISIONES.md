@@ -60,12 +60,13 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | P-009 | Confirmar límites gratuitos de D1 y Turso en sus páginas oficiales. | D-005 |
 
 | P-010 | Revisar la v2: acento (lavanda/ámbar), fuente (Outfit/Plus Jakarta), qué sobra o falta. | Congelar tokens, fase 1a |
-| P-012 | «Financia»: ¿es la app Bolsa (Stocks) de Apple? | Comparativa de finanzas |
+| P-012 | ~~«Financia»~~ Resuelto: es Bolsa (Stocks) de Apple. | — |
 | P-013 | Entidades financieras (bancos, gestoras, brókers, ISIN) y si interesan también gastos e ingresos. | Conectores de finanzas |
 | P-014 | ¿Mac personal? ¿Opción 2 o nativa? | D-022 |
 | P-015 | Orden de prioridad de los sectores. | Hoja de ruta |
 | P-016 | ¿Notas personales en alguna app? | Sector de búsqueda y conocimiento |
 | P-017 | ~~Acceso de red para capturas~~ Resuelto: el usuario amplió el acceso de red. | — |
+| P-019 | Aprobar o descartar las 6 ideas de Finanzas; gastos sí o no; entidades y fondos; umbrales de aviso. | Esquemas de Finanzas (D3) |
 | P-018 | Aprobar o descartar las 4 ideas del Calendario cuando estén las capturas. | Esquemas del Calendario (D3) |
 | P-011 | Alojamiento de la fase 1a (Cloudflare gratis con cuenta del usuario, o esperar al NAS). | Despliegue de la fase 1a |
 
@@ -81,3 +82,4 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | 18-10-2026 | Comparativa por sector (calendario, tareas, finanzas, búsqueda, memoria, Mac) y datos financieros en España | `docs/producto/`. GoCardless cerrado a cuentas nuevas; Enable Banking con producción restringida gratuita; PSD2 no cubre inversiones; sin fuente gratuita fiable de valores liquidativos por ISIN. |
 | 18-10-2026 | Referencias visuales del Calendario (Fantastical, Notion Calendar, BusyCal, Reclaim) | Dossier `docs/referencias/calendario.md` y script de descarga; capturas bloqueadas por la red del entorno (solo GitHub accesible). |
 | 18-10-2026 | Descarga de capturas del Calendario | 123 capturas reales (App Store y webs oficiales), 0 fallos; 20 seleccionadas en una página de revisión privada. |
+| 18-10-2026 | Referencias de Finanzas (Bolsa, Copilot, Finary, getquin, Parqet, Ghostfolio, Fintonic) | 98 capturas reales, 0 fallos; 21 seleccionadas. getquin conecta con MyInvestor y no permite umbrales de aviso propios; Copilot solo en EE. UU.; guía de Bolsa ya en versión 8.0 para macOS 27. |

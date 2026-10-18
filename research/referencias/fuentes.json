@@ -97,5 +97,117 @@
         "url": "https://flexibits.com/img/fantastical/timezone-selection@2x.png"
       }
     ]
+  },
+  "finanzas": {
+    "appstore": [
+      {
+        "app": "Bolsa de Apple (iPhone)",
+        "idea": "1-bolsa",
+        "id": 1069512882,
+        "term": "Bolsa",
+        "entity": "software",
+        "seller": "Apple"
+      },
+      {
+        "app": "Copilot Money",
+        "idea": "2-copilot",
+        "id": 1447330651,
+        "term": "Copilot Money",
+        "entity": "software",
+        "seller": "Copilot",
+        "country": "us"
+      },
+      {
+        "app": "Finary",
+        "idea": "3-finary",
+        "id": 1569413444,
+        "term": "Finary",
+        "entity": "software",
+        "seller": "FINARY"
+      },
+      {
+        "app": "getquin",
+        "idea": "4-getquin",
+        "id": 1513629447,
+        "term": "getquin",
+        "entity": "software",
+        "seller": "QUIN"
+      },
+      {
+        "app": "Parqet",
+        "idea": "4-getquin",
+        "id": 1547114259,
+        "term": "Parqet",
+        "entity": "software",
+        "seller": "Parqet"
+      },
+      {
+        "app": "Fintonic",
+        "idea": "control",
+        "id": 672220319,
+        "term": "Fintonic",
+        "entity": "software",
+        "seller": "Fintonic"
+      }
+    ],
+    "paginas": [
+      {
+        "app": "Bolsa de Apple (guía Mac)",
+        "idea": "1-bolsa",
+        "url": "https://support.apple.com/es-es/guide/stocks/st220531654a/mac"
+      },
+      {
+        "app": "Bolsa de Apple (guía Mac)",
+        "idea": "1-bolsa",
+        "url": "https://support.apple.com/es-es/guide/stocks/st9b6d0fb213/mac"
+      },
+      {
+        "app": "Bolsa de Apple (guía Mac)",
+        "idea": "1-bolsa",
+        "url": "https://support.apple.com/es-es/guide/stocks/stc4cfc704df/mac"
+      },
+      {
+        "app": "Bolsa de Apple (guía Mac)",
+        "idea": "1-bolsa",
+        "url": "https://support.apple.com/es-es/guide/stocks/st96acfa8842/mac"
+      },
+      {
+        "app": "Bolsa de Apple (guía Mac)",
+        "idea": "1-bolsa",
+        "url": "https://support.apple.com/es-es/guide/stocks/st7e0b19a267/mac"
+      },
+      {
+        "app": "Bolsa de Apple (guía Mac)",
+        "idea": "1-bolsa",
+        "url": "https://support.apple.com/es-es/guide/stocks/st60e8b8ef98/mac"
+      },
+      {
+        "app": "Bolsa de Apple (guía Mac)",
+        "idea": "1-bolsa",
+        "url": "https://support.apple.com/es-es/guide/stocks/st036cd9623f/mac"
+      },
+      {
+        "app": "Finary (web)",
+        "idea": "3-finary",
+        "url": "https://finary.com/es/seguimiento-del-patrimonio"
+      },
+      {
+        "app": "Ghostfolio (web)",
+        "idea": "5-ghostfolio",
+        "url": "https://ghostfol.io/en"
+      }
+    ],
+    "directas": [
+      {
+        "app": "Ghostfolio (GitHub)",
+        "idea": "5-ghostfolio",
+        "url": "https://raw.githubusercontent.com/ghostfolio/ghostfolio/main/apps/client/src/assets/images/screenshot.png"
+      },
+      {
+        "app": "Ghostfolio (GitHub)",
+        "idea": "5-ghostfolio",
+        "url": "https://raw.githubusercontent.com/ghostfolio/ghostfolio/main/apps/client/src/assets/images/video-preview.jpg"
+      }
+    ]
   }
 }
