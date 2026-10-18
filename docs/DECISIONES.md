@@ -1,6 +1,6 @@
 # Documento vivo: decisiones, supuestos, fuentes y pendientes
 
-Última actualización: 18-10-2026 (fase 0c: dirección visual v2).
+Última actualización: 18-10-2026 (etapa D1: definición del producto; diseño aparcado).
 Detalle: [`fase-0/investigacion-y-propuesta.md`](fase-0/investigacion-y-propuesta.md) y [`fase-0/prototipo-y-herramientas.md`](fase-0/prototipo-y-herramientas.md) y [`fase-0/direccion-visual-v2.md`](fase-0/direccion-visual-v2.md).
 
 Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazada** · **Sustituida**.
@@ -25,6 +25,10 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | D-014 | La app no tramita vacaciones: solo apunta días libres y puede recordar pedirlos en el portal de la empresa. | Aceptada | El usuario usa el portal corporativo desde el PC de empresa. | — |
 | D-015 | Dos cuentas de Gmail personales desde el diseño inicial. | Aceptada | Respuesta del usuario. | — |
 | D-016 | ~~Tokens v1 (ámbar, Figtree)~~ Sustituida por D-018. | Sustituida | — | — |
+| D-019 | **Diseño visual aparcado.** Nuevo orden: producto → arquitectura → plataforma → sistema de diseño → pantallas (etapas D1–D4). | Aceptada (petición del usuario) | Las dos rondas de diseño quedaron incompletas (sin calendario semanal ni mensual, sin finanzas). | — |
+| D-020 | Alcance ampliado: sectores Calendario (día, semana, mes, año, agenda), Finanzas (patrimonio, fondos, precios) y Oportunidades (reglas de aviso definidas por el usuario, sin recomendaciones). | Propuesta | Petición del usuario; ver `producto/01` y `producto/02`. | Al cerrar D1 |
+| D-021 | Arquitectura API primero: los clientes (web, Android, Mac) solo hablan con la API. | Propuesta | Permite añadir un cliente Mac nativo sin rehacer el servidor. | D2 |
+| D-022 | Plataforma: provisionalmente web + carcasa Tauri en Mac (opción 2); alternativas PWA, nativa SwiftUI + Kotlin, Compose Multiplatform. | Decisión abierta | `producto/04`, sección 4.6. | D2 |
 | D-018 | Dirección visual v2: cristal oscuro con brillos ambientales, *bento* en escritorio, barra flotante en móvil, Outfit con pesos ligeros, acento lavanda en degradado; cuentas cielo y melocotón. Estructura: foco de C + captura de A + «Planificar» (línea del día de B). | Propuesta (pendiente de tu revisión) | Referencias aportadas por el usuario; contraste ≥ 4,5:1 comprobado. | Tras revisar en el Honor |
 | D-017 | NAS: no necesario en la fase 1; decidir antes de la fase 2 (índice local, modelos pequeños, automatización de navegador). Código portable Cloudflare/Node. | Propuesta | Análisis en fase 0b, sección 2. | Antes de la fase 2 |
 
@@ -56,6 +60,11 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | P-009 | Confirmar límites gratuitos de D1 y Turso en sus páginas oficiales. | D-005 |
 
 | P-010 | Revisar la v2: acento (lavanda/ámbar), fuente (Outfit/Plus Jakarta), qué sobra o falta. | Congelar tokens, fase 1a |
+| P-012 | «Financia»: ¿es la app Bolsa (Stocks) de Apple? | Comparativa de finanzas |
+| P-013 | Entidades financieras (bancos, gestoras, brókers, ISIN) y si interesan también gastos e ingresos. | Conectores de finanzas |
+| P-014 | ¿Mac personal? ¿Opción 2 o nativa? | D-022 |
+| P-015 | Orden de prioridad de los sectores. | Hoja de ruta |
+| P-016 | ¿Notas personales en alguna app? | Sector de búsqueda y conocimiento |
 | P-011 | Alojamiento de la fase 1a (Cloudflare gratis con cuenta del usuario, o esperar al NAS). | Despliegue de la fase 1a |
 
 ## Registro de investigación
@@ -67,3 +76,4 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | 18-10-2026 | Skills y MCP para Astro + IA; NAS; Honor 600 Pro | Leídos `frontend-design` (oficial), `incluud/astro-agent-skills`, `FredKSchott/astro-skills` y la documentación oficial de Astro (repositorio `withastro/docs`). |
 | 18-10-2026 | Prototipo en Astro 7.4 + Svelte 5 | 3 composiciones, 52 capturas, contraste comprobado; publicado como página privada. |
 | 18-10-2026 | Referencias visuales del usuario (3 paneles) | Dirección v2 implementada en el prototipo; enlace de Dribbble bloqueado por la red. |
+| 18-10-2026 | Comparativa por sector (calendario, tareas, finanzas, búsqueda, memoria, Mac) y datos financieros en España | `docs/producto/`. GoCardless cerrado a cuentas nuevas; Enable Banking con producción restringida gratuita; PSD2 no cubre inversiones; sin fuente gratuita fiable de valores liquidativos por ISIN. |
