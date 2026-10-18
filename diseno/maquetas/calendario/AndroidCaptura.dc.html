@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Apuntar en Android</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden;">
+  <div class="pa-scrim" style="height: 120px; flex: none; display: flex; align-items: flex-end; padding: 0 16px 14px;"><span style="font-size: 28px; line-height: 34px; font-weight: 600; color: var(--text-3);">Octubre 2026</span></div>
+  <section class="pa-sheet" role="dialog" aria-label="Apuntar" style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 14px; padding-top: 8px; overflow: hidden;">
+    <div class="pa-sheet__grabber" style="margin-bottom: 0;"></div>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin: -4px -12px 0;">
+      <button class="pa-btn pa-btn--icon" aria-label="Cerrar"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px;"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button>
+      <h2 class="pa-sheet__title" style="font-size: 18px; line-height: 24px;">Apuntar</h2>
+      <span style="width: 48px;"></span>
+    </div>
+    <div class="pa-capture" style="box-shadow: none; background: var(--raised); padding: 14px;">
+      <div class="pa-capture__input" style="font-size: 18px; line-height: 26px;">Cena con amigos <span class="pa-hl">el sábado a las 9</span><span style="display: inline-block; width: 2px; height: 22px; margin-left: 1px; vertical-align: -4px; background: var(--accent);"></span></div>
+      <div class="pa-capture__tokens">
+        <span class="pa-chip pa-chip--token"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3" /> <path d="M16 2v3" /> <rect x="3" y="3" width="18" height="18" rx="2" /> <path d="M3 9h18" /></svg>sáb 24 oct<button class="pa-chip__x" aria-label="Quitar fecha"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button></span>
+        <span class="pa-chip pa-chip--token"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /></svg>¿9:00 o 21:00?<button class="pa-chip__x" aria-label="Quitar hora"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button></span>
+        <span class="pa-chip pa-chip--token"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22h14" /> <path d="M5 2h14" /> <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" /> <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" /></svg>1 h<button class="pa-chip__x" aria-label="Quitar duración"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button></span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 14px; background: var(--attention-soft);">
+      <span style="font-weight: 500;">¿Las 9 de la noche o de la mañana?</span>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;"><button class="pa-btn">21:00</button><button class="pa-btn">9:00</button></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px;"><span class="pa-label" style="font-size: 13px;">en qué cuenta</span><div class="pa-seg" role="group" aria-label="Cuenta de destino" style="display: flex;"><button aria-pressed="false" style="flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px;"><span class="pa-dot pa-dot--c1"></span>Gmail 1</button><button aria-pressed="true" style="flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 8px;"><span class="pa-dot pa-dot--c2"></span>Gmail 2</button></div></div>
+    <p style="margin: 0; padding: 12px 14px; border-radius: 12px; background: var(--raised); font-size: 14px; line-height: 19px; color: var(--text-2);">Se creará un <b style="color: var(--text); font-weight: 500;">evento</b> en <b style="color: var(--text); font-weight: 500;">Gmail 2</b>: sábado 24 oct, a la hora que elijas, 1 h.</p>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 13px; line-height: 18px; color: var(--text-3); text-align: center;">Elige la hora para poder guardar</span>
+      <button class="pa-btn pa-btn--primary" aria-disabled="true" style="width: 100%; opacity: 0.45;">Guardar evento</button>
+    </div>
+
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

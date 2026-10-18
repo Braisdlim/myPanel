@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Anatomía de Fantastical</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 1600px; height: 1220px; box-sizing: border-box; padding: 48px; background: var(--bg); color: var(--text); font-family: var(--font-sans); display: flex; flex-direction: column; gap: 28px;">
+  <div style="display: flex; flex-direction: column; gap: 6px;">
+    <span class="pa-label">referencia base · Fantastical para Mac 4.2.3 · captura oficial de la App Store</span>
+    <h1 style="margin: 0; font-size: 34px; line-height: 40px; font-weight: 600; letter-spacing: -0.02em;">Anatomía de la semana en Fantastical y cómo la ocupa Pauta</h1>
+    <p style="margin: 0; max-width: 900px; font-size: 15px; line-height: 22px; color: var(--text-2);">Fantastical da la ventana: mini mes, escalas, rejilla con la línea de ahora y su forma de apuntar escribiendo. Pauta añade lo que le falta para dos cuentas de Gmail: pregunta cuando una hora es ambigua, dice siempre en qué cuenta escribe y cambia un evento repetido solo esa vez.</p>
+  </div>
+
+  <div style="display: flex; gap: 40px; align-items: flex-start;">
+    <div style="position: relative; width: 880px; height: 326px; flex: none; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-menu);">
+      <img src="/_blob/fe50643f041e8db6b637a3dcf51ce5b7" alt="Fantastical en el Mac, tema oscuro: mini mes de septiembre con puntos, lista de los próximos días, barra con Hoy y las escalas Día, Semana, Mes, Trimestre y Año, cabeceras de día con el tiempo, fila de todo el día, línea roja de ahora y bloques de colores" style="display: block; width: 880px; height: 326px;">
+      <span style="position: absolute; left: 11.7%; top: 37%; transform: translate(-50%, -50%); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">1</span>
+      <span style="position: absolute; left: 4.9%; top: 62%; transform: translate(-50%, -50%); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">2</span>
+      <span style="position: absolute; left: 29.2%; top: 6%; transform: translate(-50%, -50%); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">3</span>
+      <span style="position: absolute; left: 61.4%; top: 6%; transform: translate(-50%, -50%); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">4</span>
+      <span style="position: absolute; left: 85.9%; top: 6%; transform: translate(-50%, -50%); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">5</span>
+      <span style="position: absolute; left: 39.9%; top: 19.4%; transform: translate(-50%, -50%); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">6</span>
+      <span style="position: absolute; left: 25.8%; top: 27.8%; transform: translate(-50%, -50%); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">7</span>
+      <span style="position: absolute; left: 25.7%; top: 49%; transform: translate(-50%, -50%); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">8</span>
+      <span style="position: absolute; left: 58.2%; top: 80%; transform: translate(-50%, -50%); width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">9</span>
+    </div>
+
+    <ol style="flex: 1; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; font-size: 14px; line-height: 20px;">
+      <li style="display: grid; grid-template-columns: 24px 150px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">1</span><span style="font-weight: 600;">Mini mes</span><span style="color: var(--text-2);">Se queda, bajo los sectores de la barra lateral. Los puntos, en el color de cada cuenta.</span></li>
+      <li style="display: grid; grid-template-columns: 24px 150px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">2</span><span style="font-weight: 600;">Lista de días</span><span style="color: var(--text-2);">En el Mac la hace «Hoy». En Android es la vista principal, bajo el mes, como en el iPhone.</span></li>
+      <li style="display: grid; grid-template-columns: 24px 150px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">3</span><span style="font-weight: 600;">‹ Hoy ›</span><span style="color: var(--text-2);">Igual: anterior, hoy y siguiente.</span></li>
+      <li style="display: grid; grid-template-columns: 24px 150px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">4</span><span style="font-weight: 600;">Escalas</span><span style="color: var(--text-2);">Día · Semana · Mes · Año con las teclas D S M A. Sin Trimestre.</span></li>
+      <li style="display: grid; grid-template-columns: 24px 150px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">5</span><span style="font-weight: 600;">Buscar</span><span style="color: var(--text-2);">Pasa a ⌘K: el mismo campo sirve para buscar y para apuntar escribiendo.</span></li>
+      <li style="display: grid; grid-template-columns: 24px 150px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">6</span><span style="font-weight: 600;">Cabecera del día</span><span style="color: var(--text-2);">Día y número; hoy en acento. Sin el tiempo: Fantastical lo trae de AccuWeather y Pauta no lo necesita para tu agenda.</span></li>
+      <li style="display: grid; grid-template-columns: 24px 150px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">7</span><span style="font-weight: 600;">Todo el día</span><span style="color: var(--text-2);">Igual, una franja fina con el color de la cuenta.</span></li>
+      <li style="display: grid; grid-template-columns: 24px 150px minmax(0, 1fr); gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">8</span><span style="font-weight: 600;">Línea de ahora</span><span style="color: var(--text-2);">En lavanda, el único acento, en vez de rojo.</span></li>
+      <li style="display: grid; grid-template-columns: 24px 150px minmax(0, 1fr); gap: 10px; padding: 8px 0;"><span style="font-weight: 700; color: var(--accent);">9</span><span style="font-weight: 600;">Bloques</span><span style="color: var(--text-2);">Relleno suave y barra a la izquierda en el color de la cuenta; rayado si es opcional, punto rojo si choca.</span></li>
+    </ol>
+  </div>
+
+  <div class="pa-card" style="padding: 18px 20px;">
+    <div class="pa-card__title">Lo que Pauta añade (no está en Fantastical)</div>
+    <ul style="margin: 10px 0 0; padding-left: 1.1em; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 32px; color: var(--text-2); font-size: 14px; line-height: 20px;">
+      <li><b style="color: var(--text); font-weight: 600;">Pregunta si la hora es ambigua</b> («¿21:00 o 9:00?») y nunca guarda una hora dudosa.</li>
+      <li><b style="color: var(--text); font-weight: 600;">Cuenta de destino a la vista</b> antes de escribir en Gmail 1 o Gmail 2, con confirmación.</li>
+      <li><b style="color: var(--text); font-weight: 600;">Cambios por ocurrencia</b>: «Saltar esta vez» y «Mover esta vez»; la serie, solo si la eliges.</li>
+      <li><b style="color: var(--text); font-weight: 600;">Conflictos explicados</b> en «Pide atención», con punto rojo en el bloque.</li>
+      <li><b style="color: var(--text); font-weight: 600;">Año como mapa de horas</b> comprometidas, con días libres y vacaciones (BusyCal).</li>
+      <li><b style="color: var(--text); font-weight: 600;">Mini agenda en la barra de menús</b> del Mac con lo siguiente (Notion Calendar).</li>
+    </ul>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px;">
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+      <img src="/_blob/f1f330765a67230254aa59b64f74d30b" alt="Fantastical en iPhone: mes con puntos de colores y debajo la lista de hoy" style="display: block; width: 100%; height: 260px; object-fit: cover; object-position: 50% 30%; border-radius: 10px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--text-2);"><b style="color: var(--text); font-weight: 600;">Fantastical en el móvil.</b> Mes arriba, lista debajo: base del Calendario en Android.</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+      <img src="/_blob/4d7a8a495ff62c99de9625099d143aa7" alt="Ilustración de Fantastical: una frase escrita se convierte en un evento" style="display: block; width: 100%; height: 260px; object-fit: cover; object-position: 50% 40%; border-radius: 10px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--text-2);"><b style="color: var(--text); font-weight: 600;">Lenguaje natural.</b> Ilustración oficial (no hay captura real): base de «Apuntar».</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+      <img src="/_blob/d2240ce5884f5ed10bb42413e257ad29" alt="BusyCal: vista año como mapa de calor y cajón de estadísticas" style="display: block; width: 100%; height: 260px; object-fit: cover; object-position: 30% 40%; border-radius: 10px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--text-2);"><b style="color: var(--text); font-weight: 600;">BusyCal.</b> El año como mapa de calor: base de la escala «Año».</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+      <img src="/_blob/b0eed90165db131e24a2e1d8af600b60" alt="Notion Calendar: desplegable de la barra de menús con lo siguiente" style="display: block; width: 100%; height: 260px; object-fit: cover; object-position: 88% 20%; border-radius: 10px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--text-2);"><b style="color: var(--text); font-weight: 600;">Notion Calendar.</b> Mini agenda en la barra de menús y teclas de una letra.</figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1220}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

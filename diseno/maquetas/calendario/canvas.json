@@ -1,0 +1,26 @@
+{
+ "v": 3,
+ "createdOnFiles": {"v": 1, "at": "2026-10-18T15:30:00Z"},
+ "title": "Pauta · Calendario",
+ "launch": {"view": "canvas"},
+ "pages": [],
+ "boards": {
+  "Main.dc.html": {"x": 0, "y": 0, "w": 1600, "h": 1220, "title": "Anatomía de Fantastical (Mac) y cómo la ocupa Pauta"},
+  "MacSemana.dc.html": {"x": 1680, "y": 0, "w": 1440, "h": 900, "title": "Calendario · Mac · semana · oscuro"},
+  "MacSemanaClaro.dc.html": {"x": 3200, "y": 0, "w": 1440, "h": 900, "title": "Calendario · Mac · semana · claro"},
+  "MacCaptura.dc.html": {"x": 1680, "y": 1020, "w": 1440, "h": 900, "title": "Calendario · Mac · apuntar en lenguaje natural (⌘K)"},
+  "MacAno.dc.html": {"x": 3200, "y": 1020, "w": 1440, "h": 900, "title": "Calendario · Mac · año (horas comprometidas)"},
+  "AndroidMes.dc.html": {"x": 0, "y": 2300, "w": 412, "h": 915, "title": "Calendario · Android · mes y lista"},
+  "AndroidCaptura.dc.html": {"x": 492, "y": 2300, "w": 412, "h": 915, "title": "Calendario · Android · apuntar"},
+  "AndroidOcurrencia.dc.html": {"x": 984, "y": 2300, "w": 412, "h": 915, "title": "Calendario · Android · cambiar solo este viernes"},
+  "AndroidMesClaro.dc.html": {"x": 1476, "y": 2300, "w": 412, "h": 915, "title": "Calendario · Android · mes · claro"}
+ },
+ "order": ["Main.dc.html", "MacSemana.dc.html", "MacSemanaClaro.dc.html", "MacCaptura.dc.html", "MacAno.dc.html", "AndroidMes.dc.html", "AndroidCaptura.dc.html", "AndroidOcurrencia.dc.html", "AndroidMesClaro.dc.html"],
+ "notes": {
+  "fila1": {"x": 0, "y": -300, "text": "Calendario: Fantastical como base, Pauta encima", "kind": "title1", "maxW": 4640},
+  "fila2": {"x": 0, "y": 2040, "text": "Calendario en Android", "kind": "title1", "maxW": 1888}
+ },
+ "designSystems": [
+  {"title": "Pauta", "namespace": "pauta", "artifact": "https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m", "version": "1792330627-9be5", "copiedAt": "2026-10-18T15:30:00Z"}
+ ]
+}
