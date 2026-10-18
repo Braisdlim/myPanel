@@ -28,7 +28,14 @@ Etiquetas: [H] comprobado, [I] inferencia, [P] propuesta, [?] por comprobar. Fue
 | Finanzas | Mis fondos y detalle | `finanzas/MacOscuro`, `MacClaro` | `AndroidLista`, `AndroidDetalle`, `AndroidClaro` | hecha |
 | Finanzas | Variación entre dos fechas | `MacTramo` | `AndroidTramo` | nueva |
 | Finanzas | Añadir fondo o ETF | `MacAnadir` | `AndroidAnadir` | hecha |
-| Tareas | Entrada, listas, proyecto, tarea | — | — | por hacer |
+| Tareas | Listas y áreas | barra lateral de Tareas | `tareas/AndroidListas` | nueva |
+| Tareas | Entrada | `tareas/MacEntrada` | `tareas/AndroidEntrada` | nueva |
+| Tareas | Proyecto | `MacProyecto`, `MacProyectoClaro` | `AndroidProyecto`, `AndroidProyectoClaro` | nueva |
+| Tareas | Tarea abierta | inspector de `MacTarea` | `AndroidTarea` (hoja) | nueva |
+| Tareas | Programadas | `MacProgramadas` | `AndroidProgramadas` | nueva |
+| Tareas | Apuntar una tarea | `tareas/MacCaptura` | `tareas/AndroidCaptura` | nueva |
+| Tareas | Revisión de la semana | `MacRevision` | `AndroidRevision` | nueva |
+| Tareas | En cualquier momento, Algún día, Registro | plantilla de Entrada | plantilla de Entrada | misma plantilla |
 | Ajustes | General, Avisos, Finanzas, Privacidad | — | — | por hacer |
 
 ## 3. Diferencias por plataforma

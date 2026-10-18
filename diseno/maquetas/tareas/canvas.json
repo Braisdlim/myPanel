@@ -1,0 +1,169 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-18T17:30:00Z"
+ },
+ "title": "Pauta · Tareas",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1600,
+   "h": 1260,
+   "title": "Anatomía de Things 3 (proyecto) y cómo lo ocupa Pauta"
+  },
+  "MacEntrada.dc.html": {
+   "x": 1680,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "Tareas · Mac · entrada"
+  },
+  "MacProyecto.dc.html": {
+   "x": 3200,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "Tareas · Mac · proyecto · oscuro"
+  },
+  "MacProyectoClaro.dc.html": {
+   "x": 4720,
+   "y": 0,
+   "w": 1440,
+   "h": 900,
+   "title": "Tareas · Mac · proyecto · claro"
+  },
+  "MacTarea.dc.html": {
+   "x": 1680,
+   "y": 1020,
+   "w": 1440,
+   "h": 900,
+   "title": "Tareas · Mac · tarea abierta"
+  },
+  "MacProgramadas.dc.html": {
+   "x": 3200,
+   "y": 1020,
+   "w": 1440,
+   "h": 900,
+   "title": "Tareas · Mac · programadas"
+  },
+  "MacCaptura.dc.html": {
+   "x": 4720,
+   "y": 1020,
+   "w": 1440,
+   "h": 900,
+   "title": "Tareas · Mac · apuntar (⌘K)"
+  },
+  "MacRevision.dc.html": {
+   "x": 1680,
+   "y": 2040,
+   "w": 1440,
+   "h": 900,
+   "title": "Tareas · Mac · revisión de la semana"
+  },
+  "AndroidListas.dc.html": {
+   "x": 0,
+   "y": 3360,
+   "w": 412,
+   "h": 915,
+   "title": "Tareas · móvil · listas y áreas"
+  },
+  "AndroidEntrada.dc.html": {
+   "x": 492,
+   "y": 3360,
+   "w": 412,
+   "h": 915,
+   "title": "Tareas · móvil · entrada"
+  },
+  "AndroidProyecto.dc.html": {
+   "x": 984,
+   "y": 3360,
+   "w": 412,
+   "h": 915,
+   "title": "Tareas · móvil · proyecto"
+  },
+  "AndroidTarea.dc.html": {
+   "x": 1476,
+   "y": 3360,
+   "w": 412,
+   "h": 915,
+   "title": "Tareas · móvil · tarea abierta"
+  },
+  "AndroidProgramadas.dc.html": {
+   "x": 1968,
+   "y": 3360,
+   "w": 412,
+   "h": 915,
+   "title": "Tareas · móvil · programadas"
+  },
+  "AndroidCaptura.dc.html": {
+   "x": 2460,
+   "y": 3360,
+   "w": 412,
+   "h": 915,
+   "title": "Tareas · móvil · apuntar"
+  },
+  "AndroidRevision.dc.html": {
+   "x": 2952,
+   "y": 3360,
+   "w": 412,
+   "h": 915,
+   "title": "Tareas · móvil · revisión de la semana"
+  },
+  "AndroidProyectoClaro.dc.html": {
+   "x": 3444,
+   "y": 3360,
+   "w": 412,
+   "h": 915,
+   "title": "Tareas · móvil · proyecto · claro"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "MacEntrada.dc.html",
+  "MacProyecto.dc.html",
+  "MacProyectoClaro.dc.html",
+  "MacTarea.dc.html",
+  "MacProgramadas.dc.html",
+  "MacCaptura.dc.html",
+  "MacRevision.dc.html",
+  "AndroidListas.dc.html",
+  "AndroidEntrada.dc.html",
+  "AndroidProyecto.dc.html",
+  "AndroidTarea.dc.html",
+  "AndroidProgramadas.dc.html",
+  "AndroidCaptura.dc.html",
+  "AndroidRevision.dc.html",
+  "AndroidProyectoClaro.dc.html"
+ ],
+ "notes": {
+  "fila1": {
+   "x": 0,
+   "y": -300,
+   "text": "Tareas: Things 3 como base, Pauta encima",
+   "kind": "title1",
+   "maxW": 6160
+  },
+  "fila2": {
+   "x": 0,
+   "y": 3060,
+   "text": "Tareas en el móvil (Android e iPhone)",
+   "kind": "title1",
+   "maxW": 3856
+  }
+ },
+ "designSystems": [
+  {
+   "title": "Pauta",
+   "namespace": "pauta",
+   "artifact": "https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m",
+   "version": "1792332239-aff4",
+   "copiedAt": "2026-10-18T17:30:00Z"
+  }
+ ]
+}

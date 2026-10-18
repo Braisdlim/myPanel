@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Apuntar una tarea en Android</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden;">
+  <div class="pa-scrim" style="height: 96px; flex: none;"></div>
+  <section class="pa-sheet" role="dialog" aria-label="Apuntar" style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 14px; padding-top: 8px; overflow: hidden;">
+    <div class="pa-sheet__grabber" style="margin-bottom: 0;"></div>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin: -4px -12px 0;"><button class="pa-btn pa-btn--icon" aria-label="Cerrar"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px;"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button><h2 class="pa-sheet__title" style="font-size: 18px; line-height: 24px;">Apuntar</h2><span style="width: 48px;"></span></div>
+    <div class="pa-capture" style="box-shadow: none; background: var(--raised); padding: 14px;">
+      <div class="pa-capture__input" style="font-size: 18px; line-height: 26px;">Recuérdame llamar a la gestoría <span class="pa-hl">el lunes a las 12</span> <span class="pa-hl">#trámites</span> <span class="pa-hl">20 min</span><span style="display: inline-block; width: 2px; height: 20px; margin-left: 1px; vertical-align: -4px; background: var(--accent);"></span></div>
+      <div class="pa-capture__tokens">
+        <span class="pa-chip pa-chip--token"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="m16 9-5.5 5.5L8 12" /></svg>Tarea<button class="pa-chip__x" aria-label="Cambiar a evento"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button></span>
+        <span class="pa-chip pa-chip--token"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3" /> <path d="M16 2v3" /> <rect x="3" y="3" width="18" height="18" rx="2" /> <path d="M3 9h18" /></svg>lun 26 oct · en 3 días<button class="pa-chip__x" aria-label="Quitar fecha"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button></span>
+        <span class="pa-chip pa-chip--token"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0" /> <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" /></svg>aviso 12:00<button class="pa-chip__x" aria-label="Quitar aviso"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button></span>
+        <span class="pa-chip pa-chip--token"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" /></svg>Trámites<button class="pa-chip__x" aria-label="Quitar lista"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button></span>
+        <span class="pa-chip pa-chip--token"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="M12 6v6l4 2" /></svg>20 min<button class="pa-chip__x" aria-label="Quitar duración"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></svg></button></span>
+      </div>
+      <div class="pa-capture__preview"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /> <path d="m16 9-5.5 5.5L8 12" /></svg><span>Se creará una <b>tarea</b> en <b>Trámites</b>: lunes 26 oct, aviso a las 12:00, 20 min. Se guarda en Pauta; no se escribe en ningún calendario.</span></div>
+      
+    </div>
+    <div class="pa-seg" role="group" aria-label="Tipo" style="display: flex;"><button aria-pressed="true" style="flex: 1;">Tarea</button><button aria-pressed="false" style="flex: 1;">Evento</button></div>
+    <button class="pa-btn pa-btn--primary" style="margin-top: auto; width: 100%;">Guardar tarea</button>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
