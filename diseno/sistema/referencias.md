@@ -40,6 +40,7 @@ Cada pieza toma un comportamiento de una app de referencia; el aspecto (color, t
 | «Hoy» con eventos arriba y «Esta noche» (`Carcasa`) | Things 3 | Estructura y calma de la vista | Eventos de dos cuentas con su punto |
 | Fila limpia sin separadores (`Fila`) | Things 3 | Título y detalle gris, sin líneas | Duración estimada al final |
 | Capacidad del día (`Capacidad`) | Sunsama | Duraciones, total y aviso de sobrecarga | Gratis y opcional |
+| Opción de sí o no (`Interruptor`) | Interruptores de macOS y Android | Pista con botón que se desliza | Colores de Pauta; apagado por defecto si al encenderlo se escribe en otro servicio |
 | Revisión semanal Importante/Urgente | TickTick | Solo la matriz, como vista de revisión | Sin Pomodoro, hábitos ni sonidos |
 
 ## Finanzas

@@ -11,6 +11,7 @@ T = {  # nombre: (oscuro, claro, uso)
  'line':         ('#FFFFFF14', '#14161E17', 'Separadores entre filas y entre zonas de la carcasa.'),
  'line-strong':  ('#FFFFFF24', '#14161E29', 'Borde de tarjetas en claro y de menús; contorno discontinuo de lo opcional.'),
  'border-control': ('#6E717C', '#8A8D97', 'Borde de campos, casillas y controles que deben verse (3:1 sobre surface y raised).'),
+ 'switch-knob':  ('#F2F3F5', '#FFFFFF', 'Botón del interruptor apagado, sobre la pista border-control (3:1). Encendido, el botón es on-accent sobre accent.'),
  'text':         ('#F2F3F5', '#16171B', 'Texto principal sobre bg, sidebar, surface, raised y los fondos suaves.'),
  'text-2':       ('#A6A9B3', '#565963', 'Texto secundario: detalle de una fila, subtítulos, etiquetas de campos. Sobre bg, sidebar, surface y raised.'),
  'text-3':       ('#8E919C', '#62656F', 'Texto terciario: horas de la rejilla, etiquetas de sección, marcadores de posición. Sobre bg, sidebar, surface y raised.'),
@@ -66,6 +67,7 @@ for s in ('gain', 'loss', 'attention', 'cuenta-1', 'cuenta-2'):
 PAIRS += [('on-gain', 'gain', None, 4.5), ('on-loss', 'loss', None, 4.5), ('gain', 'gain-soft', 'surface', 4.5), ('loss', 'loss-soft', 'surface', 4.5), ('text', 'attention-soft', 'surface', 4.5),
           ('text', 'cuenta-1-soft', 'surface', 4.5), ('text', 'cuenta-2-soft', 'surface', 4.5)]
 for g in ('surface', 'raised', 'bg'): PAIRS.append(('border-control', g, None, 3.0))
+PAIRS += [('switch-knob', 'border-control', None, 3.0), ('accent', 'raised', None, 3.0)]
 for g in ('bg', 'sidebar', 'surface', 'raised'): PAIRS.append(('focus', g, None, 3.0))
 PAIRS += [('heat-4', 'heat-0', None, 3.0), ('heat-3', 'surface', None, 3.0)]
 

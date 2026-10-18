@@ -1,6 +1,6 @@
 # Documento vivo: decisiones, supuestos, fuentes y pendientes
 
-Última actualización: 18-10-2026 (Finanzas aprobada; maquetas de «Hoy» en el lienzo, pendientes de revisión).
+Última actualización: 18-10-2026 (Finanzas y Hoy aprobadas; interruptor en el sistema; maquetas del Calendario en curso).
 Detalle: [`fase-0/investigacion-y-propuesta.md`](fase-0/investigacion-y-propuesta.md) y [`fase-0/prototipo-y-herramientas.md`](fase-0/prototipo-y-herramientas.md) y [`fase-0/direccion-visual-v2.md`](fase-0/direccion-visual-v2.md).
 
 Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazada** · **Sustituida**.
@@ -38,7 +38,8 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | D-028 | Datos financieros en dos niveles: A) importar los ficheros que descargas (CaixaBank, MyInvestor, Trade Republic) como base; B) opcional, PSD2 de solo lectura con Enable Banking en modo restringido (gratis, cuentas propias). Descartadas: API no oficial de Trade Republic, rascado con credenciales, apps agregadoras. Datos financieros solo en Mac o NAS, cifrados. Valor liquidativo: EODHD gratis + web de la gestora. | Aplazada (documentada; el usuario decide no implementarla todavía, 18-10-2026) | `producto/08` | Cuando se retome Finanzas en código |
 | D-029 | Seguimiento de aportaciones mensuales: eliges fondos o ETF (buscador por nombre o ISIN), importe, día y desde dónde aportas (MyInvestor, Trade Republic u otro). Pauta recuerda la aportación, pregunta ese día si se hizo y suma lo aportado; nunca compra. El buscador necesita una fuente de datos de fondos (aplazada con D-028). | Propuesta (petición del usuario) | Maquetas `MacAnadir` y `AndroidAnadir` | Al revisar el lienzo |
 | D-030 | Gráficos financieros como Bolsa: verde si el periodo sube, rojo si baja, contra el valor de partida (línea punteada) y con degradado; acento solo al inspeccionar; píldoras sólidas en listas (colores `on-gain`/`on-loss`, contraste comprobado). | Aceptada (petición del usuario) | Capturas oficiales de Bolsa; sistema de diseño versión 2 | — |
-| D-031 | «Hoy» calcado de Things 3: en el Mac, barra lateral + lista del día + inspector (lo siguiente, pide atención, tu dinero hoy); en Android, título grande, lista y pestañas. Se añaden la barra de capacidad (tiempo libre hasta el ensayo), duración en cada tarea y «Planificar el día»: eliges tareas y Pauta propone dónde caben (Sunsama en el Mac, línea del día de Structured en Android). Lo propuesto va en acento con borde discontinuo hasta que lo guardas. Escribir el plan en Google Calendar queda desactivado por defecto y sin cuenta elegida (P-020). | Propuesta | Maquetas en `diseno/maquetas/hoy/` y lienzo https://claude.ai/artifact/8GLyXqURLfdiLKDDpgec8h | Al responder P-026 |
+| D-031 | «Hoy» calcado de Things 3: en el Mac, barra lateral + lista del día + inspector (lo siguiente, pide atención, tu dinero hoy); en Android, título grande, lista y pestañas. Se añaden la barra de capacidad (tiempo libre hasta el ensayo), duración en cada tarea y «Planificar el día»: eliges tareas y Pauta propone dónde caben (Sunsama en el Mac, línea del día de Structured en Android). Lo propuesto va en acento con borde discontinuo hasta que lo guardas. Escribir el plan en Google Calendar queda desactivado por defecto y sin cuenta elegida (P-020). | Aceptada (usuario: «Hoy listo», 18-10-2026) | Maquetas en `diseno/maquetas/hoy/` y lienzo https://claude.ai/artifact/8GLyXqURLfdiLKDDpgec8h | Al responder P-026 |
+| D-032 | Componente Interruptor (`pa-switch`, `pa-toggle`) en el sistema de diseño, con el color nuevo `switch-knob`: pista `border-control` apagado y `accent` encendido. Si al encenderlo se escribe en un servicio externo, empieza apagado y la escritura se confirma aparte con la cuenta de destino. | Aceptada (petición del usuario, 18-10-2026) | Contraste comprobado con `diseno/colores.py` (4,38:1 y 3,31:1); tokens versión 3 | — |
 | D-017 | NAS: no necesario en la fase 1; decidir antes de la fase 2 (índice local, modelos pequeños, automatización de navegador). Código portable Cloudflare/Node. | Propuesta | Análisis en fase 0b, sección 2. | Antes de la fase 2 |
 
 ## Supuestos
@@ -83,7 +84,7 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | P-023 | ~~Herramienta y apps base~~ Resuelto: lienzo de Claude; Fantastical, Things 3 y Bolsa. | — |
 | P-024 | ~~Revisar las maquetas de Finanzas~~ Resuelto: aprobadas («Finanzas listo», 18-10-2026). | — |
 | P-025 | (Aplazado) Aprobar los niveles A/B de datos financieros y hacer las pruebas: un fichero por entidad (anonimizado), cuenta de Enable Banking (la creas tú) y clave gratuita de EODHD. | Conectores de finanzas |
-| P-026 | Revisar las maquetas de «Hoy» (lienzo): inspector a la derecha, «Planificar el día» con propuesta automática y si añadir al sistema de diseño un interruptor y el estado «propuesta» de `pa-ev`. | Maquetas del Calendario y código de Hoy |
+| P-026 | ~~Revisar las maquetas de «Hoy»~~ Resuelto: aprobadas («Hoy listo», 18-10-2026); el interruptor pasa al sistema (D-032) y el estado «propuesta» sigue en las maquetas. | — |
 | P-011 | Alojamiento de la fase 1a (Cloudflare gratis con cuenta del usuario, o esperar al NAS). | Despliegue de la fase 1a |
 
 ## Registro de investigación

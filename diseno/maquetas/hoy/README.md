@@ -1,6 +1,6 @@
 # Maquetas de «Hoy» (calco de Things 3)
 
-Fecha: 18-10-2026. Estado: **propuesta, pendiente de tu revisión** (P-026).
+Fecha: 18-10-2026. Estado: **aprobadas** («Hoy listo», 18-10-2026).
 Lienzo (privado, con comentarios): https://claude.ai/artifact/8GLyXqURLfdiLKDDpgec8h
 
 Copia de los tableros del lienzo. Las capturas de referencia y la fuente se cargan desde el lienzo (`/_blob/…` y `ds/pauta/`), así que aquí solo se guarda el marcado.
@@ -23,5 +23,5 @@ Copia de los tableros del lienzo. Las capturas de referencia y la fuente se carg
 Todo es de ejemplo salvo el ensayo de los viernes (21:30–23:30). Las cifras cuadran: ahora son las 9:40; eventos de 10:00–11:00, 13:30–15:30 y 17:30–18:30; quedan 7 h 50 min libres hasta las 21:30; las cuatro tareas elegidas suman 1 h, así que quedan 6 h 50 min (13 % de barra). La duración de los eventos y el calendario del ensayo (P-001) son supuestos de la maqueta.
 
 ## Posibles añadidos al sistema de diseño (pendientes de aprobar)
-- Interruptor (`pa-switch`): ahora va con estilos sueltos en «Añadir a Google Calendar» y en «Aportación mensual» de Finanzas.
+- Interruptor: añadido al sistema el 18-10-2026 (`pa-switch`, `pa-toggle`) y ya usado aquí y en Finanzas.
 - Estado «propuesta» de la rejilla y la línea del día (`pa-ev--proposed`, nodo discontinuo en acento).

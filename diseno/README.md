@@ -1,6 +1,6 @@
 # Sistema de diseño de Pauta
 
-Versión 1 (18-10-2026). Página de revisión con vistas previas en vivo (privada): https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m
+Versión 1 (18-10-2026), con dos ampliaciones aprobadas el mismo día: gráficos verdes o rojos como Bolsa (tokens v2) e Interruptor (tokens v3). Página de revisión con vistas previas en vivo (privada): https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m
 
 Esta carpeta es la **única fuente** de los valores visuales de la app. La página de arriba es una copia para revisarla; si cambia una, se actualiza la otra.
 
@@ -25,5 +25,5 @@ python3 diseno/generar_tokens_css.py diseno/sistema/tokens.json diseno/sistema/t
 `generar_componentes.py` y `generar_logo.py` son los scripts que crearon las vistas previas (iconos copiados de `lucide-static`) y los logotipos (contornos de Inter); necesitan los paquetes descargados de npm y se dejan como registro.
 
 ## Comprobaciones hechas
-- Contraste: 112 pares, todos ≥ 4,5:1 en texto y ≥ 3:1 en bordes, iconos y foco, en los dos temas (`research/identidad/resultado-tokens.txt`).
+- Contraste: todos los pares de `colores.py` (112 en la versión 1, más los del gráfico y el interruptor), todos ≥ 4,5:1 en texto y ≥ 3:1 en bordes, iconos y foco, en los dos temas (`research/identidad/resultado-tokens.txt`).
 - Vistas previas renderizadas en escritorio y a 412 px (Honor 600 Pro), temas oscuro y claro, sin desbordes ni errores de carga.

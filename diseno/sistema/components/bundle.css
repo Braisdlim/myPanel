@@ -125,6 +125,18 @@ body { margin: 0; background: var(--bg); color: var(--text); }
 .pa-check[aria-checked="true"] svg { opacity: 1; }
 .pa-check--optional { border-style: dashed; }
 
+/* ---------- Interruptor ---------- */
+.pa-switch { position: relative; flex: none; box-sizing: border-box; width: 40px; height: 24px; padding: 0; border: 0; border-radius: var(--radius-pill); background: var(--border-control); cursor: pointer; transition: background-color var(--dur-1) var(--ease); }
+.pa-switch::before { content: ""; position: absolute; inset: -12px -4px; }
+.pa-switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--switch-knob); box-shadow: 0 1px 2px #00000033; transition: transform var(--dur-1) var(--ease), background-color var(--dur-1) var(--ease); }
+.pa-switch[aria-checked="true"] { background: var(--accent); }
+.pa-switch[aria-checked="true"]::after { transform: translateX(16px); background: var(--on-accent); }
+.pa-switch:disabled { opacity: 0.45; cursor: default; }
+.pa-toggle { display: flex; align-items: center; gap: 14px; min-height: 44px; }
+.pa-toggle__text { flex: 1; min-width: 0; }
+.pa-toggle__title { display: block; font-weight: 500; }
+.pa-toggle__meta { display: block; font-size: 12.5px; line-height: 17px; color: var(--text-2); }
+
 /* ---------- Fila ---------- */
 .pa-list { margin: 0; padding: 0; list-style: none; }
 .pa-list--lines > .pa-row + .pa-row { border-top: 1px solid var(--line); border-radius: 0; }
@@ -354,6 +366,12 @@ body { margin: 0; background: var(--bg); color: var(--text); }
   .pa-row__meta, .pa-row__end { font-size: 14px; line-height: 19px; }
   .pa-check { width: 22px; height: 22px; }
   .pa-check::before { inset: -13px; }
+  .pa-switch { width: 48px; height: 28px; }
+  .pa-switch::before { inset: -10px 0; }
+  .pa-switch::after { width: 22px; height: 22px; }
+  .pa-switch[aria-checked="true"]::after { transform: translateX(20px); }
+  .pa-toggle { min-height: var(--tap); }
+  .pa-toggle__meta { font-size: 13px; line-height: 18px; }
   .pa-figure__value { font-size: 40px; line-height: 46px; }
   .pa-viewhead h1 { font-size: 28px; line-height: 34px; }
   .pa-shell { border-radius: 0; box-shadow: none; grid-template-rows: minmax(0, 1fr) auto; }

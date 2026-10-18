@@ -178,6 +178,29 @@ Círculo para completar una tarea.
 El área táctil crece 8 px alrededor (13 px en el móvil) sin cambiar el dibujo. Al completar, la fila pasa a `pa-row--done`.
 ''')
 
+C['Interruptor'] = dict(group='Entrada', height=190, sub='Apagado, encendido y no disponible, con su texto',
+ html='''<div style="display:flex;flex-direction:column;gap:6px;padding:16px 20px;max-width:440px">
+  <div class="pa-toggle"><span class="pa-toggle__text"><span class="pa-toggle__title">Añadir el plan a Google Calendar</span><span class="pa-toggle__meta">Antes de escribir te enseño los bloques y la cuenta</span></span><button class="pa-switch" role="switch" aria-checked="false" aria-label="Añadir el plan a Google Calendar"></button></div>
+  <div class="pa-toggle"><span class="pa-toggle__text"><span class="pa-toggle__title">Aportación mensual</span><span class="pa-toggle__meta">200 € el día 5</span></span><button class="pa-switch" role="switch" aria-checked="true" aria-label="Aportación mensual"></button></div>
+  <div class="pa-toggle"><span class="pa-toggle__text"><span class="pa-toggle__title" style="color:var(--text-3)">Avisar en el Mac</span><span class="pa-toggle__meta">Necesita la app de escritorio</span></span><button class="pa-switch" role="switch" aria-checked="false" aria-label="Avisar en el Mac" disabled></button></div>
+</div>''',
+ readme='''# Interruptor
+
+Activa o desactiva una opción que se aplica al momento (sin botón de guardar aparte).
+
+**Clases**: `pa-switch` sobre `<button role="switch" aria-checked>`; el botón redondo es un pseudoelemento. Apagado: pista `border-control` y botón `switch-knob`; encendido: pista `accent` y botón `on-accent`; no disponible: `disabled` (opacidad 0,45). Con su texto: `pa-toggle` → `pa-toggle__text` (`pa-toggle__title` + `pa-toggle__meta`) y el interruptor a la derecha.
+
+**Medidas**: 40 × 24 px en el Mac y 48 × 28 px en Android; el área que se puede pulsar llega a 48 px de alto sin cambiar el dibujo. El botón se desliza en `dur-1` (140 ms); con movimiento reducido, cambia sin animación.
+
+**Qué pones tú**: el estado, el texto y un `aria-label` igual al título.
+
+**Cuándo**: opciones de sí o no, como «Añadir el plan a Google Calendar» en Planificar el día o «Aportación mensual» en Añadir fondo. Si al encenderlo se va a escribir en un servicio externo, empieza **apagado**, el texto dice qué se escribirá y la escritura se confirma aparte, indicando la cuenta de destino.
+
+**No**: para elegir entre más de dos opciones (usa `Segmentado`) ni para completar tareas (usa `Casilla`).
+
+Contraste comprobado con `diseno/colores.py`: botón apagado sobre la pista 4,38:1 (oscuro) y 3,31:1 (claro); botón encendido sobre `accent` como el texto `on-accent` (≥ 4,5:1). Sale de los interruptores de macOS y Android, con los colores de Pauta.
+''')
+
 def row_task(title, meta='', end='', state='false'):
     return (f'<li class="pa-row pa-row--hover{" pa-row--done" if state == "true" else ""}">{chk(state)}'
             f'<span class="pa-row__main"><span class="pa-row__title">{title}</span>'
