@@ -1,0 +1,35 @@
+# Prueba local de function calling en español (18-10-2026)
+# Máquina: contenedor Linux, 4 vCPU Intel Xeon 2,1 GHz (AVX2/AVX-512), 15 GB RAM, sin GPU.
+# Motor: node-llama-cpp 3.22.2 (llama.cpp v0.7.0 precompilado, CPU). Modelos GGUF Q4_K_M de Hugging Face.
+# Modelos: unsloth/Qwen3.5-2B-GGUF (1,28 GB) y LiquidAI/LFM2.5-1.2B-Instruct-GGUF (0,73 GB).
+
+## Velocidad con la CPU libre (velocidad.mjs)
+{"modelo":"LFM2.5-1.2B-Instruct-Q4_K_M.gguf","hilos":4,"plantilla":"ChatML","prefill_tokens":961,"prefill_tok_s":270.1,"decode_tokens":64,"decode_tok_s":24.7}
+{"modelo":"Qwen3.5-2B-Q4_K_M.gguf","hilos":4,"plantilla":"Qwen","prefill_tokens":841,"prefill_tok_s":157.9,"decode_tokens":63,"decode_tok_s":12.6}
+
+## Herramientas, Qwen3.5-2B, CPU libre (prueba-tools.mjs)
+Modelo: Qwen3.5-2B-Q4_K_M.gguf | hilos: 4 | llama.cpp: prebuilt
+{"pregunta":"Busca los correos de Iberdrola de septiembre en la cuenta del trabajo","esperado":"buscar_correos","llamada":{"nombre":"buscar_correos","params":{"consulta":"Iberdrola","cuenta":"trabajo"}},"ok":true,"segundos":10.3,"tokens_generados":21,"respuesta":"\n\n\n\nNo se encontraron correos de Iberdrola en la cuenta de trabajo para septiembre."}
+{"pregunta":"¿Tengo algún correo de Renfe con el billete del viaje a Vigo?","esperado":"buscar_correos","llamada":{"nombre":"buscar_correos","params":{"consulta":"billete viaje Vigo","cuenta":"personal"}},"ok":true,"segundos":9.5,"tokens_generados":22,"respuesta":"\n\n\n\nNo he encontrado ningún correo con información sobre el billete de viaje a Vigo en tu cuenta personal."}
+{"pregunta":"Encuéntrame el PDF del contrato de alquiler en Drive","esperado":"buscar_archivos","llamada":{"nombre":"buscar_archivos","params":{"texto":"contrato de alquiler","servicio":"drive","tipo":"pdf"}},"ok":true,"segundos":10.8,"tokens_generados":35,"respuesta":"\n\n\n\nNo se encontraron archivos con el nombre \"contrato de alquiler\" en Google Drive. ¿Podrías intentar buscar con otro nombre o con una extensión diferente?"}
+{"pregunta":"Busca en OneDrive la hoja de cálculo de gastos de 2025","esperado":"buscar_archivos","llamada":{"nombre":"buscar_archivos","params":{"texto":"hoja de cálculo de gastos de 2025","servicio":"onedrive","tipo":"hoja"}},"ok":true,"segundos":11.5,"tokens_generados":27,"respuesta":"\n\n\n\nNo se encontraron archivos con ese nombre específico en OneDrive. ¿Te gustaría buscar con otro nombre o en otro servicio?"}
+{"pregunta":"Pon dentista el jueves que viene a las 17:30, una hora","esperado":"crear_evento","llamada":{"nombre":"crear_evento","params":{"titulo":"Consulta con dentista","inicio":"2026-10-19T17:30","fin":"2026-10-19T18:30"}},"ok":true,"segundos":12.8,"tokens_generados":31,"respuesta":"\n\n\n\nHe creado un evento para la consulta con dentista el jueves a las 17:30. ¿Te gustaría que lo confirmes?"}
+{"pregunta":"Crea un evento mañana de 9 a 10 llamado revisión con Marta","esperado":"crear_evento","llamada":{"nombre":"crear_evento","params":{"titulo":"Revisión con Marta","inicio":"2026-10-19T09:00","fin":"2026-10-19T10:00"}},"ok":true,"segundos":13.1,"tokens_generados":27,"respuesta":"\n\n\n\nHe creado el evento de calendario para mañana, de 9 a 10, llamado \"Revisión con Marta\"."}
+{"pregunta":"Apúntame cena con mis padres el sábado 24 a las nueve de la noche","esperado":"crear_evento","llamada":{"nombre":"crear_evento","params":{"titulo":"Cena con mis padres","inicio":"2026-10-24T21:00","fin":"2026-10-24T22:00"}},"ok":true,"segundos":13.5,"tokens_generados":32,"respuesta":"\n\n\n\n¡He añadido la cena con tus padres para el sábado 24 a las 21:00. ¡Espero que disfrutes!"}
+{"pregunta":"¿Qué tal estás? Solo quería saludar","esperado":null,"llamada":null,"ok":true,"segundos":4.7,"tokens_generados":8,"respuesta":"\n\n¡Hola! ¿Cómo estás?"}
+RESUMEN Qwen3.5-2B-Q4_K_M.gguf: herramienta correcta 8/8; tiempo total 86.1 s; tokens generados 203 (≈2.4 tok/s de media incluyendo prefill).
+
+## Herramientas, LFM2.5-1.2B (primera tanda; la CPU estaba compartida con otra prueba, los tiempos no son representativos)
+Modelo: LFM2.5-1.2B-Instruct-Q4_K_M.gguf | hilos: 4 | llama.cpp: prebuilt
+{"pregunta":"Busca los correos de Iberdrola de septiembre en la cuenta del trabajo","esperado":"buscar_correos","llamada":null,"ok":false,"segundos":3.3,"tokens_generados":26,"respuesta":"No encuentro la información solicitada en los datos disponibles. ¿Podría proporcionar más detalles o aclarar su solicitud?"}
+{"pregunta":"¿Tengo algún correo de Renfe con el billete del viaje a Vigo?","esperado":"buscar_correos","llamada":null,"ok":false,"segundos":6.3,"tokens_generados":57,"respuesta":"No tengo acceso directo a tu correo ni a la información de tus cuentas. Si quieres, puedo ayudarte a buscar correos en tu cuenta de Gmail o a preparar un evento"}
+{"pregunta":"Encuéntrame el PDF del contrato de alquiler en Drive","esperado":"buscar_archivos","llamada":null,"ok":false,"segundos":3.3,"tokens_generados":27,"respuesta":"No encuentro el PDF del contrato de alquiler en Drive. ¿Quieres que te ayude a buscar algo más específico?"}
+{"pregunta":"Busca en OneDrive la hoja de cálculo de gastos de 2025","esperado":"buscar_archivos","llamada":null,"ok":false,"segundos":4.1,"tokens_generados":24,"respuesta":"No encuentro la información solicitada en OneDrive. ¿Podría proporcionar más detalles o verificar la ruta?"}
+{"pregunta":"Pon dentista el jueves que viene a las 17:30, una hora","esperado":"crear_evento","llamada":null,"ok":false,"segundos":3.6,"tokens_generados":23,"respuesta":"Confirmar el evento para el jueves a las 17:30 con una duración de una hora."}
+{"pregunta":"Crea un evento mañana de 9 a 10 llamado revisión con Marta","esperado":"crear_evento","llamada":null,"ok":false,"segundos":3.7,"tokens_generados":29,"respuesta":"Entendido. Crearé el evento para mañana de 9 a 10 con el título \"revisión\" y la persona Marta."}
+{"pregunta":"Apúntame cena con mis padres el sábado 24 a las nueve de la noche","esperado":"crear_evento","llamada":null,"ok":false,"segundos":2.9,"tokens_generados":20,"respuesta":"Confirmar la cena con tus padres para el sábado 24 a las 9 PM."}
+{"pregunta":"¿Qué tal estás? Solo quería saludar","esperado":null,"llamada":null,"ok":true,"segundos":2.8,"tokens_generados":17,"respuesta":"Estoy bien, gracias por preguntar. ¿En qué puedo ayudarte hoy?"}
+RESUMEN LFM2.5-1.2B-Instruct-Q4_K_M.gguf: herramienta correcta 1/8; tiempo total 30.0 s; tokens generados 223 (≈7.4 tok/s de media incluyendo prefill).
+
+## Nota: con LFM2.5 node-llama-cpp eligió la plantilla genérica ChatML, que no reconoce el formato de llamadas de LFM (<|tool_call_start|>...); por eso no hubo ninguna llamada. Es un fallo de integración del motor, no una medida del modelo.
+## Nota: la primera tanda de Qwen3.5-2B (CPU compartida) dio 8/8 aciertos con 11-53 s por petición; se descarta por la contención.

@@ -46,7 +46,7 @@ Detalle y enlaces: `research/almacenamiento/` (Cloudflare y bases gestionadas, N
    - a) Cifradas de extremo a extremo y sincronizadas por Cloudflare, como el resto. Los movimientos los descarga tu app de escritorio con tu clave de Enable Banking guardada en el llavero del sistema, así ningún servidor los ve en claro.
    - b) Solo en el NAS, como decía D-028, y en el móvil solo cuando estés conectado a Tailscale.
    - Los precios de los fondos son públicos: los puede traer el servidor de Cloudflare cada día sin problema.
-5. **El NAS, desde ya, para las copias**: cada noche guarda una copia cifrada de todo (regla 3-2-1). Más adelante, para lo pesado que conviene tener en casa, como indexar el correo o una IA local.
+5. **El NAS, desde ya, para las copias**: cada noche guarda una copia cifrada de todo (regla 3-2-1). (Actualizado el 18-10-2026: el NAS deja de hacer falta; ver D-045 y `producto/11` §9.)
 6. **Sincronización**: propia y sencilla al principio. Cada cambio lleva su hora y, si hay choque, gana el último campo cambiado. Con un solo usuario los choques son raros. Los motores de sincronización disponibles hoy no encajan del todo:
    - PowerSync exige Postgres y su plugin de Tauri va por la 0.0.6.
    - Electric y Zero no guardan cambios sin conexión.
