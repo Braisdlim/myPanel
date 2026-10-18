@@ -5,6 +5,7 @@ Aplicación personal y privada tipo «secretaria»: reúne compromisos, tareas, 
 **Estado**: etapa D1, definición del producto (diseño visual aparcado). Empieza por [docs/producto](docs/producto/README.md).
 
 ## Documentación
+- [Referencias visuales por sector](docs/referencias/README.md)
 - [Definición del producto: visión, sectores, comparativa, arquitectura y plan](docs/producto/README.md)
 - [Fase 0 — investigación y propuesta](docs/fase-0/investigacion-y-propuesta.md)
 - [Fase 0b — prototipo, herramientas de IA para Astro y NAS](docs/fase-0/prototipo-y-herramientas.md)

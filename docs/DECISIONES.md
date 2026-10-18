@@ -65,6 +65,8 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | P-014 | ¿Mac personal? ¿Opción 2 o nativa? | D-022 |
 | P-015 | Orden de prioridad de los sectores. | Hoja de ruta |
 | P-016 | ¿Notas personales en alguna app? | Sector de búsqueda y conocimiento |
+| P-017 | Acceso de red para descargar capturas de referencia (App Store y webs oficiales), o capturas pegadas por el usuario. | Dossiers de referencias visuales |
+| P-018 | Aprobar o descartar las 4 ideas del Calendario cuando estén las capturas. | Esquemas del Calendario (D3) |
 | P-011 | Alojamiento de la fase 1a (Cloudflare gratis con cuenta del usuario, o esperar al NAS). | Despliegue de la fase 1a |
 
 ## Registro de investigación
@@ -77,3 +79,4 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | 18-10-2026 | Prototipo en Astro 7.4 + Svelte 5 | 3 composiciones, 52 capturas, contraste comprobado; publicado como página privada. |
 | 18-10-2026 | Referencias visuales del usuario (3 paneles) | Dirección v2 implementada en el prototipo; enlace de Dribbble bloqueado por la red. |
 | 18-10-2026 | Comparativa por sector (calendario, tareas, finanzas, búsqueda, memoria, Mac) y datos financieros en España | `docs/producto/`. GoCardless cerrado a cuentas nuevas; Enable Banking con producción restringida gratuita; PSD2 no cubre inversiones; sin fuente gratuita fiable de valores liquidativos por ISIN. |
+| 18-10-2026 | Referencias visuales del Calendario (Fantastical, Notion Calendar, BusyCal, Reclaim) | Dossier `docs/referencias/calendario.md` y script de descarga; capturas bloqueadas por la red del entorno (solo GitHub accesible). |
