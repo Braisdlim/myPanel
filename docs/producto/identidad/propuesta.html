@@ -1,0 +1,427 @@
+<title>Sistema myPanel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500&family=Inter:opsz,wght@14..32,300..600&family=Geist:wght@300..600&display=swap">
+<style>
+/* Documento de propuesta: lectura vertical; la demo de la carcasa es la pieza viva que cambia con tus elecciones. */
+:root {
+  --bg: #f5f4f0; --surface: #ffffff; --fg: #1c1b19; --muted: #5c5953; --line: #e2dfd7; --accent: #3b5b86; --chip: #eeece6; --ok: #2c7a4b;
+  --f-display: "Newsreader", Georgia, serif; --f-body: "Instrument Sans", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #141413; --surface: #1c1c1a; --fg: #ecebe6; --muted: #a9a69f; --line: #302f2b; --accent: #9fbbe2; --chip: #262522; --ok: #7fcf9c; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #141413; --surface: #1c1c1a; --fg: #ecebe6; --muted: #a9a69f; --line: #302f2b; --accent: #9fbbe2; --chip: #262522; --ok: #7fcf9c; color-scheme: dark; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 36px 80px; }
+.kicker { margin: 0; font-size: 13px; color: var(--muted); }
+h1 { font-family: var(--f-display); font-weight: 500; font-size: clamp(32px, 5.4vw, 48px); line-height: 1.08; margin: 6px 0 12px; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-weight: 500; font-size: clamp(24px, 3.4vw, 31px); line-height: 1.2; margin: 0 0 6px; text-wrap: balance; }
+h3 { font-size: 15px; font-weight: 600; margin: 0 0 6px; }
+p, li { max-width: 72ch; }
+.lead { font-size: 18px; margin: 0; }
+section { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); }
+.sub { color: var(--muted); margin: 0 0 18px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; min-width: 0; }
+.box ul, .box ol { margin: 0; padding-left: 1.15em; }
+.box li + li { margin-top: 6px; }
+.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 34px 1fr; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; max-width: none; }
+.steps li::before { content: counter(s); font-family: var(--f-display); font-size: 24px; line-height: 1; color: var(--accent); }
+.steps b { display: block; }
+.now { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; background: var(--chip); font-size: 12.5px; font-weight: 500; }
+.tag { font-size: 12.5px; color: var(--muted); }
+.rules { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.rules li { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; max-width: none; }
+.rules b { display: block; margin-bottom: 2px; }
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+th { font-size: 13px; font-weight: 600; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 600; white-space: nowrap; }
+.sector { margin-top: 22px; }
+.sector h3 { font-size: 18px; font-family: var(--f-display); font-weight: 500; margin-bottom: 10px; }
+.take { display: grid; gap: 8px; }
+.take div { display: grid; grid-template-columns: 150px 1fr; gap: 12px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.take span:first-child { font-weight: 600; }
+.out { margin: 10px 0 0; font-size: 14.5px; color: var(--muted); }
+.pick { cursor: pointer; text-align: left; font: inherit; color: inherit; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.pick[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent) inset; }
+.pick .rec { align-self: flex-start; font-size: 12px; font-weight: 600; color: var(--ok); }
+.pick small { color: var(--muted); font-size: 13.5px; line-height: 1.45; }
+.icon { width: 88px; height: 88px; }
+.sample { font-size: 15px; line-height: 1.45; border-top: 1px solid var(--line); padding-top: 10px; }
+.sample .big { font-size: 30px; font-weight: 300; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.sample .t { font-size: 17px; font-weight: 500; }
+.sw { display: grid; grid-template-columns: 1fr 1fr; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+.sw > div { padding: 10px; display: grid; gap: 6px; font-size: 13px; }
+.sw .btn { justify-self: start; padding: 4px 10px; border-radius: 999px; font-weight: 600; font-size: 12.5px; }
+.sw .dots { display: flex; gap: 5px; }
+.sw .dots i { width: 10px; height: 10px; border-radius: 50%; display: block; }
+.foot { margin-top: 48px; font-size: 13px; color: var(--muted); }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Demo de la carcasa: colores propios de la app, se muestran tal cual en ambos temas de la página ---------- */
+.demo { --r: 14px; border-radius: 18px; overflow: hidden; border: 1px solid var(--d-line); background: var(--d-bg); color: var(--d-text); font-family: var(--d-font); font-size: 14px; line-height: 1.4; margin-top: 16px; }
+.demo[data-tema="oscuro"] { --d-bg: #0E0F13; --d-side: #131419; --d-surface: #17181D; --d-raised: #202128; --d-line: rgb(255 255 255 / .08); --d-text: #F2F3F5; --d-text2: #A6A9B3; --d-text3: #8E919C; --d-gain: #5FD08F; --d-loss: #FF7F7F; --d-att: #F2CC6B; --d-p: #6CC4F5; --d-s: #F7A86E; --d-hatch: rgb(255 255 255 / .12); }
+.demo[data-tema="claro"]  { --d-bg: #F4F4F6; --d-side: #ECECEF; --d-surface: #FFFFFF; --d-raised: #FFFFFF; --d-line: rgb(20 22 30 / .09); --d-text: #16171B; --d-text2: #565963; --d-text3: #696C76; --d-gain: #1D7F47; --d-loss: #C42F38; --d-att: #8A5E00; --d-p: #0A6FA6; --d-s: #A8520E; --d-hatch: rgb(20 22 30 / .12); }
+.demo[data-tema="oscuro"][data-acc="lavanda"] { --d-acc: #B7A2FF; --d-ink: #16102E; --d-acc-soft: rgb(183 162 255 / .16); }
+.demo[data-tema="oscuro"][data-acc="indigo"]  { --d-acc: #8E9EFF; --d-ink: #0D1233; --d-acc-soft: rgb(142 158 255 / .16); }
+.demo[data-tema="oscuro"][data-acc="ambar"]   { --d-acc: #F2B55E; --d-ink: #2A1A00; --d-acc-soft: rgb(242 181 94 / .16); }
+.demo[data-tema="claro"][data-acc="lavanda"]  { --d-acc: #6A4BDB; --d-ink: #FFFFFF; --d-acc-soft: rgb(106 75 219 / .10); }
+.demo[data-tema="claro"][data-acc="indigo"]   { --d-acc: #3B4FD6; --d-ink: #FFFFFF; --d-acc-soft: rgb(59 79 214 / .10); }
+.demo[data-tema="claro"][data-acc="ambar"]    { --d-acc: #9A5800; --d-ink: #FFFFFF; --d-acc-soft: rgb(154 88 0 / .10); }
+.demo[data-font="inter"]   { --d-font: "Inter", system-ui, sans-serif; }
+.demo[data-font="sistema"] { --d-font: -apple-system, BlinkMacSystemFont, system-ui, "Roboto", sans-serif; }
+.demo[data-font="geist"]   { --d-font: "Geist", system-ui, sans-serif; }
+.demo .bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--d-line); background: var(--d-side); }
+.demo .lights { display: flex; gap: 6px; }
+.demo .lights i { width: 11px; height: 11px; border-radius: 50%; background: var(--d-text3); opacity: .5; display: block; }
+.demo .search { flex: 1; max-width: 360px; margin: 0 auto; padding: 5px 12px; border-radius: 8px; background: var(--d-raised); border: 1px solid var(--d-line); color: var(--d-text3); font-size: 13px; }
+.demo .kbd { font-size: 12px; color: var(--d-text3); }
+.demo .body { display: grid; grid-template-columns: 170px minmax(0, 1fr) 250px; min-height: 380px; }
+.demo nav.side { background: var(--d-side); border-right: 1px solid var(--d-line); padding: 12px 8px; display: flex; flex-direction: column; gap: 2px; }
+.demo nav.side .lab { font-size: 11.5px; color: var(--d-text3); padding: 10px 10px 4px; }
+.demo nav.side button { all: unset; cursor: pointer; display: flex; align-items: center; gap: 9px; padding: 6px 10px; border-radius: 8px; color: var(--d-text2); }
+.demo nav.side button svg { width: 16px; height: 16px; flex: none; }
+.demo nav.side button[aria-current="page"] { background: var(--d-acc-soft); color: var(--d-text); }
+.demo nav.side button[aria-current="page"] svg { color: var(--d-acc); }
+.demo nav.side button:focus-visible { outline: 2px solid var(--d-acc); }
+.demo .sub-item { padding: 5px 10px 5px 35px; color: var(--d-text3); font-size: 13px; }
+.demo main { padding: 18px 20px; min-width: 0; }
+.demo aside { border-left: 1px solid var(--d-line); padding: 18px 16px; background: var(--d-bg); min-width: 0; }
+.demo h4 { margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.01em; }
+.demo .meta { color: var(--d-text2); font-size: 13px; }
+.demo .num { font-variant-numeric: tabular-nums; }
+.demo .row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--d-line); min-width: 0; }
+.demo .row:last-child { border-bottom: 0; }
+.demo .row .grow { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.demo .chk { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--d-text3); flex: none; }
+.demo .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.demo .evs { background: var(--d-surface); border: 1px solid var(--d-line); border-radius: 10px; padding: 8px 12px; margin: 12px 0; display: grid; gap: 3px; font-size: 13px; }
+.demo .evs .h { color: var(--d-acc); font-variant-numeric: tabular-nums; margin-right: 6px; }
+.demo .sec { margin-top: 14px; font-size: 12.5px; color: var(--d-text3); }
+.demo .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.demo .chip { padding: 2px 9px; border-radius: 999px; background: var(--d-raised); border: 1px solid var(--d-line); font-size: 12px; color: var(--d-text2); }
+.demo .chip.on { background: var(--d-acc); color: var(--d-ink); border-color: transparent; }
+.demo .primary { display: inline-block; margin-top: 14px; padding: 7px 14px; border-radius: 999px; background: var(--d-acc); color: var(--d-ink); font-weight: 600; font-size: 13px; }
+.demo .card { background: var(--d-surface); border: 1px solid var(--d-line); border-radius: var(--r); padding: 12px 14px; margin-top: 12px; }
+.demo .week { display: grid; grid-template-columns: 34px repeat(5, minmax(0, 1fr)); gap: 4px; margin-top: 12px; font-size: 11.5px; }
+.demo .week .hd { color: var(--d-text3); text-align: center; padding-bottom: 4px; }
+.demo .week .hd.today { color: var(--d-acc); font-weight: 600; }
+.demo .week .hr { color: var(--d-text3); text-align: right; padding-right: 4px; font-variant-numeric: tabular-nums; }
+.demo .week .cell { background: var(--d-surface); border-radius: 4px; min-height: 30px; }
+.demo .ev { border-radius: 5px; padding: 3px 5px; font-size: 11px; line-height: 1.25; background: var(--d-raised); border-left: 3px solid var(--d-p); color: var(--d-text); overflow: hidden; }
+.demo .ev.s { border-left-color: var(--d-s); }
+.demo .ev.opt { background: repeating-linear-gradient(135deg, var(--d-hatch) 0 2px, transparent 2px 7px), var(--d-surface); border: 1px dashed var(--d-text3); border-left: 3px solid var(--d-s); }
+.demo .ev.now { box-shadow: 0 0 0 1.5px var(--d-acc); }
+.demo .big { font-size: 32px; font-weight: 300; letter-spacing: -0.015em; }
+.demo .up { color: var(--d-gain); }
+.demo .down { color: var(--d-loss); }
+.demo .spark { width: 48px; height: 22px; flex: none; }
+.demo .chart { width: 100%; height: 110px; display: block; margin-top: 8px; }
+.demo .att { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; }
+.demo .att i { width: 8px; height: 8px; border-radius: 50%; background: var(--d-att); margin-top: 5px; flex: none; }
+.demo .tabs { display: none; }
+.demo-ctl { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; align-items: center; }
+.demo-ctl button { font: inherit; font-size: 14px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.demo-ctl button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.demo-ctl .lbl { font-size: 13px; color: var(--muted); margin-right: 2px; }
+.example { font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+
+@media (max-width: 760px) {
+  .grid2, .grid3, .rules { grid-template-columns: 1fr; }
+  .take div { grid-template-columns: 1fr; gap: 2px; }
+  .demo .body { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .demo nav.side, .demo aside, .demo .lights, .demo .kbd { display: none; }
+  .demo .tabs { display: flex; justify-content: space-around; border-top: 1px solid var(--d-line); background: var(--d-side); padding: 6px 4px 8px; position: relative; }
+  .demo .tabs button { all: unset; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 11px; color: var(--d-text3); min-width: 56px; min-height: 44px; justify-content: center; }
+  .demo .tabs button svg { width: 20px; height: 20px; }
+  .demo .tabs button[aria-current="page"] { color: var(--d-acc); }
+  .demo .tabs .plus { width: 44px; height: 44px; border-radius: 50%; background: var(--d-acc); color: var(--d-ink); display: grid; place-items: center; font-size: 24px; margin-top: -22px; box-shadow: 0 6px 16px rgb(0 0 0 / .3); }
+}
+@media (prefers-reduced-motion: no-preference) { .pick, .demo * { transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease; } }
+</style>
+
+<div class="wrap">
+  <p class="kicker">Propuesta del 18 de octubre de 2026 · cierra la etapa de referencias y abre la de identidad</p>
+  <h1>Una sola app con lo mejor de cada referencia</h1>
+  <p class="lead">Qué nos quedamos de cada app de Calendario, Tareas y Finanzas, cómo se une todo sin que parezca un Frankenstein, con qué herramienta lo diseñamos y tres opciones de nombre, icono, tipografía y color para que elijas. La demo de la carcasa cambia en vivo con lo que elijas.</p>
+
+  <section id="plan">
+    <h2>Cómo lo plantearía</h2>
+    <p class="sub">Cuatro pasos, en este orden. Cada uno termina con tu visto bueno antes del siguiente.</p>
+    <ol class="steps">
+      <li><div><b>Síntesis <span class="now">esta página</span></b>Qué cogemos de cada referencia y qué piezas comparten los sectores. Sustituye a las 15 decisiones sueltas que tenías pendientes en Calendario, Finanzas y Tareas: apruebas o corriges una sola tabla.</div></li>
+      <li><div><b>Identidad <span class="now">esta página</span></b>Nombre, icono, tipografía y paleta. Tres opciones de cada una, con recomendación.</div></li>
+      <li><div><b>Sistema de diseño</b>Con lo que elijas: tokens (color, tipo, espacios, radios), componentes (fila, tarjeta, ficha, hoja, inspector, rejilla de tiempo) y reglas, en una página de sistema de diseño que puedes abrir desde el móvil. Los mismos tokens quedan en el repositorio como única fuente para el código.</div></li>
+      <li><div><b>Tres pantallas clave</b>Hoy, Semana y Finanzas, en Mac y en el Honor, construidas ya en código (Astro + Svelte) con esos componentes. Las revisas en tus dispositivos reales, no en una imagen.</div></li>
+    </ol>
+    <div class="grid2" style="margin-top:16px">
+      <div class="box"><h3>Con qué lo haría</h3><ul>
+        <li><b>Identidad y sistema</b>: páginas privadas como esta y una página de sistema de diseño (tokens y componentes con vista previa). Se ven en el móvil, no cuestan nada y las edito directamente.</li>
+        <li><b>Pantallas</b>: directamente en el prototipo de código. El diseño y la app no se separan, y lo que apruebas es lo que se construye.</li>
+        <li><b>Revisión</b>: capturas automáticas en Android y escritorio, temas claro y oscuro, y contraste medido con un script.</li>
+      </ul></div>
+      <div class="box"><h3>Por qué no Figma (de momento)</h3><ul>
+        <li>El plan gratuito (Starter) da «acceso limitado»; el profesional cuesta 16 $/mes por editor [comprobado en figma.com/pricing, 18-10-2026].</li>
+        <li>Haría falta conectar tu cuenta para que yo pueda leerlo y escribir en él.</li>
+        <li>Para una sola persona añade un paso de traducción (Figma → código) sin aportar mucho. Si más adelante quieres tocar el diseño con tus manos, lo reconsideramos.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section id="reglas">
+    <h2>Seis reglas para que no parezca un Frankenstein</h2>
+    <p class="sub">Las apps de referencia tienen identidades muy distintas (el rojo de Todoist, el azul de Things, el violeta de Sunsama). Si copiamos su aspecto, sale un collage. Copiamos lo que hacen, no cómo se ven.</p>
+    <ul class="rules">
+      <li><b>Una carcasa, tres contenidos</b>Barra lateral, contenido e inspector en el Mac; pestañas abajo y hojas en Android. Cambiar de sector cambia el contenido, nunca la estructura.</li>
+      <li><b>Comportamiento sí, estética no</b>De cada referencia tomamos una función concreta. Colores, iconos y tipografía son siempre los nuestros.</li>
+      <li><b>Mismo problema, misma pieza</b>Si dos sectores necesitan lo mismo (una lista con valor, una escala de tiempo, un aviso), usan el mismo componente.</li>
+      <li><b>Una familia tipográfica y una escala</b>Jerarquía por tamaño y peso, cifras tabulares en horas y euros. Nada de una fuente por sector.</li>
+      <li><b>Un solo acento</b>Solo para «ahora», el foco y la acción principal. Ganancias, pérdidas y avisos tienen colores propios; cada cuenta de Gmail, un punto de color.</li>
+      <li><b>Mismas palabras</b>Un glosario común: Hoy, Planificar, Algún día, Pide atención. La misma acción se llama igual en todas partes.</li>
+    </ul>
+  </section>
+
+  <section id="carcasa">
+    <h2>La carcasa común, en vivo</h2>
+    <p class="sub">Cambia de sector con la barra lateral (o las pestañas en el móvil): la estructura no se mueve. Abajo puedes cambiar tema, acento y tipografía. Contenido de ejemplo, salvo el ensayo de los viernes.</p>
+    <div class="demo" id="demo" data-tema="oscuro" data-acc="lavanda" data-font="inter">
+      <div class="bar"><div class="lights"><i></i><i></i><i></i></div><div class="search">Apunta o busca… «ensayo viernes 21:30»</div><span class="kbd">⌘K</span></div>
+      <div class="body">
+        <nav class="side" aria-label="Sectores de la demo">
+          <button data-s="hoy" aria-current="page"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg>Hoy</button>
+          <button data-s="cal"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 6.5h12M5.5 1.5v3M10.5 1.5v3"/></svg>Calendario</button>
+          <button data-s="tar"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M5.5 8.2l1.7 1.7 3.3-3.6"/></svg>Tareas</button>
+          <button data-s="fin"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12l3.5-4 3 2.5L14 4"/><path d="M10.5 4H14v3.5"/></svg>Finanzas</button>
+          <div class="lab">cuentas</div>
+          <div class="sub-item"><span class="dot" style="background:var(--d-p);display:inline-block;margin-right:6px"></span>Gmail 1</div>
+          <div class="sub-item"><span class="dot" style="background:var(--d-s);display:inline-block;margin-right:6px"></span>Gmail 2</div>
+        </nav>
+        <main id="demo-main"></main>
+        <aside id="demo-aside"></aside>
+      </div>
+      <div class="tabs" aria-label="Sectores de la demo (móvil)">
+        <button data-s="hoy" aria-current="page"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5"/></svg>Hoy</button>
+        <button data-s="cal"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="2"/><path d="M2 6.5h12"/></svg>Calendario</button>
+        <span class="plus" aria-hidden="true">＋</span>
+        <button data-s="tar"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M5.5 8.2l1.7 1.7 3.3-3.6"/></svg>Tareas</button>
+        <button data-s="fin"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12l3.5-4 3 2.5L14 4"/></svg>Finanzas</button>
+      </div>
+    </div>
+    <div class="demo-ctl" role="group" aria-label="Opciones de la demo">
+      <span class="lbl">Tema</span><button data-k="tema" data-v="oscuro" aria-pressed="true">Oscuro</button><button data-k="tema" data-v="claro" aria-pressed="false">Claro</button>
+    </div>
+    <p class="example">El acento y la tipografía se cambian eligiendo en la sección «Identidad», más abajo.</p>
+  </section>
+
+  <section id="piezas">
+    <h2>Piezas compartidas</h2>
+    <p class="sub">El pegamento: componentes que salen de varias referencias y aparecen en varios sectores. Si estas siete piezas son comunes, la app se siente una sola.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Pieza</th><th>Sale de</th><th>Dónde aparece</th></tr></thead>
+      <tbody>
+        <tr><td>Captura única</td><td>Fantastical (lenguaje natural), Todoist (texto resaltado y fichas que se pueden quitar), Things (fecha sugerida con su distancia)</td><td>⌘K y atajo global en el Mac; botón ＋ y «Compartir» en Android. Crea tareas, eventos y notas, eligiendo cuenta.</td></tr>
+        <tr><td>Rejilla de tiempo</td><td>Google Calendar, TickTick, Structured, Sunsama</td><td>Día y semana del Calendario, «Planificar» de Tareas (línea del día en el móvil).</td></tr>
+        <tr><td>Escala anual</td><td>BusyCal (mapa de calor), Parqet y getquin (rentabilidad por mes)</td><td>Año del Calendario (horas comprometidas) y año de Finanzas (rentabilidad mensual). Mismo dibujo.</td></tr>
+        <tr><td>Fila con valor</td><td>Bolsa (minigráfico y variación), Things (fila limpia)</td><td>Tareas, eventos y fondos: icono o punto, título, detalle y un valor a la derecha.</td></tr>
+        <tr><td>Inspector</td><td>Notion Calendar, Copilot, Things</td><td>Panel derecho en el Mac; hoja inferior en Android. Mismo orden: qué, cuándo, de dónde viene, acciones.</td></tr>
+        <tr><td>Pide atención</td><td>Fintonic (bandeja de avisos), Sunsama (sobrecarga), Reclaim (conflictos)</td><td>Una sola bandeja para conflictos de agenda, días sobrecargados y reglas de Finanzas.</td></tr>
+        <tr><td>Teclado</td><td>Notion Calendar (atajos de una tecla y «?»)</td><td>Igual en todos los sectores: ⌘1–4 para sectores, D/S/M/A para escalas, «?» para la lista.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section id="sectores">
+    <h2>Qué cogemos de cada referencia</h2>
+    <p class="sub">Propuesta para aprobar o corregir de una vez. Todo pasa por las reglas de arriba.</p>
+
+    <div class="sector"><h3>Calendario</h3><div class="take">
+      <div><span>Fantastical</span><span>Escribir «ensayo viernes 21:30» y ver una vista previa antes de guardar; si hay duda («¿21:30 o 9:30?»), pregunta.</span></div>
+      <div><span>Notion Calendar</span><span>Teclas D/S/M/A, ⌘K y «?»; mini agenda en la barra de menús del Mac con lo siguiente.</span></div>
+      <div><span>BusyCal</span><span>Vista año como mapa de calor de horas ocupadas, con días libres y vacaciones marcados.</span></div>
+      <div><span>Reclaim</span><span>Rutinas flexibles con ventana, duración y hora ideal. Propone y tú confirmas; los cambios son de una sola ocurrencia.</span></div>
+      <div><span>Google y Apple</span><span>Las cinco vistas básicas y sus convenciones; Google Calendar sigue siendo la fuente de los eventos.</span></div>
+    </div><p class="out">Fuera: calendarios de otras personas superpuestos, mover cosas sin permiso.</p></div>
+
+    <div class="sector"><h3>Tareas</h3><div class="take">
+      <div><span>Things 3</span><span>«Hoy» con los eventos en un bloque compacto arriba, las tareas debajo y «Esta noche» al final; «Algún día»; la calma visual.</span></div>
+      <div><span>Todoist</span><span>El texto resaltado y convertido en fichas (va en la captura única). Voz para varias tareas, más adelante.</span></div>
+      <div><span>Sunsama</span><span>«Planificar el día»: duración por tarea, total de horas y aviso si no cabe; cierre del día opcional que pasa lo pendiente a mañana.</span></div>
+      <div><span>Structured</span><span>Línea del día con eventos, tareas y rutinas: es la rejilla de tiempo en el móvil.</span></div>
+      <div><span>TickTick</span><span>Solo la matriz «Importante / Urgente», como vista de revisión semanal.</span></div>
+    </div><p class="out">Fuera: Pomodoro, sonidos, hábitos con rachas (de momento), prioridades P1–P4.</p></div>
+
+    <div class="sector"><h3>Finanzas</h3><div class="take">
+      <div><span>Bolsa de Apple</span><span>Lista de fondos con minigráfico y variación; gráfico por periodos; variación entre dos fechas al arrastrar; «Añadir al calendario».</span></div>
+      <div><span>Copilot Money</span><span>El acabado de tres zonas y el rendimiento frente a un índice en el mismo gráfico.</span></div>
+      <div><span>Finary</span><span>Patrimonio en euros, por tipo de activo y por fondo.</span></div>
+      <div><span>getquin y Parqet</span><span>«Tu dinero hoy» (€ y %) y la cuadrícula de rentabilidad por mes (escala anual compartida).</span></div>
+      <div><span>Fintonic</span><span>La bandeja de avisos con motivo e importe (va en «Pide atención»).</span></div>
+      <div><span>Nuestro</span><span>Avisos de bajadas con tus reglas por fondo; explican el dato y su fecha, nunca recomiendan comprar.</span></div>
+    </div><p class="out">Aparte (decisión técnica): Ghostfolio como motor de cálculo si usamos el NAS. Fuera: noticias, cotizaciones al segundo.</p></div>
+  </section>
+
+  <section id="identidad">
+    <h2>Identidad: elige</h2>
+    <p class="sub">Toca una opción de cada grupo: la demo de arriba y los iconos se actualizan. Las recomendadas van marcadas.</p>
+
+    <h3 style="font-size:17px;margin-top:8px">Nombre e icono</h3>
+    <div class="grid3" role="group" aria-label="Nombre">
+      <button class="pick" data-k="nombre" data-v="pauta" aria-pressed="true">
+        <svg class="icon" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A2B33"/><stop offset="1" stop-color="#121318"/></linearGradient></defs><rect width="100" height="100" rx="23" fill="url(#g1)"/><rect x="22" y="30" width="56" height="7" rx="3.5" fill="#F2F3F5" opacity=".9"/><rect x="22" y="46.5" width="40" height="7" rx="3.5" class="acc-fill"/><circle cx="72" cy="50" r="5.5" class="acc-fill"/><rect x="22" y="63" width="30" height="7" rx="3.5" fill="#F2F3F5" opacity=".45"/></svg>
+        <span class="rec">Recomendado</span><b style="font-size:20px">Pauta</b>
+        <small>«La pauta del día»: lo que toca y en qué orden. Corto, en español, se dice fácil. Icono: tres líneas del día, la de ahora en acento. En la App Store española hay una app de noticias con ese nombre; no importa mientras la app sea privada.</small>
+      </button>
+      <button class="pick" data-k="nombre" data-v="mypanel" aria-pressed="false">
+        <svg class="icon" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="23" fill="url(#g1)"/><rect x="22" y="22" width="26" height="34" rx="7" class="acc-fill"/><rect x="52" y="22" width="26" height="18" rx="6" fill="#F2F3F5" opacity=".85"/><rect x="52" y="44" width="26" height="34" rx="7" fill="#F2F3F5" opacity=".35"/><rect x="22" y="60" width="26" height="18" rx="6" fill="#F2F3F5" opacity=".6"/></svg>
+        <b style="font-size:20px">myPanel</b>
+        <small>El nombre del proyecto. Describe bien el panel, pero mezcla inglés con una interfaz en español. Icono: cuatro bloques, uno en acento.</small>
+      </button>
+      <button class="pick" data-k="nombre" data-v="norte" aria-pressed="false">
+        <svg class="icon" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="23" fill="url(#g1)"/><path d="M50 18 L62 50 L38 50 Z" class="acc-fill"/><path d="M50 82 L62 50 L38 50 Z" fill="#F2F3F5" opacity=".4"/><circle cx="50" cy="50" r="4" fill="#121318"/></svg>
+        <b style="font-size:20px">Norte</b>
+        <small>Orientación: saber qué hacer ahora. Icono: una aguja. Hay una app de hábitos llamada «Norte Hábitos» en la App Store española, y la idea de brújula está muy vista.</small>
+      </button>
+    </div>
+
+    <h3 style="font-size:17px;margin-top:28px">Tipografía</h3>
+    <div class="grid3" role="group" aria-label="Tipografía">
+      <button class="pick" data-k="font" data-v="inter" aria-pressed="true">
+        <span class="rec">Recomendada</span><b>Inter</b>
+        <small>La más parecida a la fuente del Mac (San Francisco) que se puede usar libremente (licencia OFL). Tiene versión para titulares y cifras tabulares. Se ve igual en el Mac y en el Honor.</small>
+        <div class="sample" style="font-family:'Inter',system-ui,sans-serif"><div class="t">Viernes · Ensayo</div><div class="big">21:30–23:30</div><div>12.480,35 € <span style="color:#2c7a4b">+0,42 %</span></div></div>
+      </button>
+      <button class="pick" data-k="font" data-v="sistema" aria-pressed="false">
+        <b>La del sistema</b>
+        <small>San Francisco en el Mac y Roboto (o la de MagicOS) en el Honor. Lo más nativo posible y no pesa nada, pero cada dispositivo se ve distinto. No podemos incluir San Francisco en la app: su licencia solo permite maquetas para sistemas de Apple.</small>
+        <div class="sample" style="font-family:-apple-system,BlinkMacSystemFont,system-ui,Roboto,sans-serif"><div class="t">Viernes · Ensayo</div><div class="big">21:30–23:30</div><div>12.480,35 € <span style="color:#2c7a4b">+0,42 %</span></div></div>
+      </button>
+      <button class="pick" data-k="font" data-v="geist" aria-pressed="false">
+        <b>Geist</b>
+        <small>Más personalidad, moderna y algo técnica (licencia OFL). Se distingue más de Apple, que también puede ser bueno, pero se aleja del «se siente como el Mac».</small>
+        <div class="sample" style="font-family:'Geist',system-ui,sans-serif"><div class="t">Viernes · Ensayo</div><div class="big">21:30–23:30</div><div>12.480,35 € <span style="color:#2c7a4b">+0,42 %</span></div></div>
+      </button>
+    </div>
+    <p class="example">Las cifras en euros son de ejemplo.</p>
+
+    <h3 style="font-size:17px;margin-top:28px">Paleta</h3>
+    <p class="sub" style="margin-bottom:12px">Base común en las tres: grises grafito con un matiz frío, oscuro por defecto y claro seleccionable. Lo que cambia es el acento. Ganancias en verde, pérdidas en rojo, avisos en amarillo y las dos cuentas en cielo y melocotón, iguales en las tres. Todo el texto supera el contraste 4,5:1 en ambos temas (medido con un script).</p>
+    <div class="grid3" role="group" aria-label="Paleta">
+      <button class="pick" data-k="acc" data-v="lavanda" aria-pressed="true">
+        <span class="rec">Recomendada</span><b>Lavanda, sin brillos</b>
+        <small>Mantiene el color de tus referencias, pero plano: sin degradados ni resplandores, que era lo que restaba seriedad a la v2.</small>
+        <div class="sw"><div style="background:#17181D;color:#F2F3F5"><span>Oscuro</span><span class="btn" style="background:#B7A2FF;color:#16102E">Planificar</span><span class="dots"><i style="background:#6CC4F5"></i><i style="background:#F7A86E"></i><i style="background:#5FD08F"></i><i style="background:#FF7F7F"></i></span></div><div style="background:#FFFFFF;color:#16171B"><span>Claro</span><span class="btn" style="background:#6A4BDB;color:#fff">Planificar</span><span class="dots"><i style="background:#0A6FA6"></i><i style="background:#A8520E"></i><i style="background:#1D7F47"></i><i style="background:#C42F38"></i></span></div></div>
+      </button>
+      <button class="pick" data-k="acc" data-v="indigo" aria-pressed="false">
+        <b>Índigo</b>
+        <small>Más sobrio y cercano al azul del sistema de Apple sin copiarlo. Riesgo: se parece al cielo de una de tus cuentas.</small>
+        <div class="sw"><div style="background:#17181D;color:#F2F3F5"><span>Oscuro</span><span class="btn" style="background:#8E9EFF;color:#0D1233">Planificar</span><span class="dots"><i style="background:#6CC4F5"></i><i style="background:#F7A86E"></i><i style="background:#5FD08F"></i><i style="background:#FF7F7F"></i></span></div><div style="background:#FFFFFF;color:#16171B"><span>Claro</span><span class="btn" style="background:#3B4FD6;color:#fff">Planificar</span><span class="dots"><i style="background:#0A6FA6"></i><i style="background:#A8520E"></i><i style="background:#1D7F47"></i><i style="background:#C42F38"></i></span></div></div>
+      </button>
+      <button class="pick" data-k="acc" data-v="ambar" aria-pressed="false">
+        <b>Ámbar</b>
+        <small>Cálido y con más carácter. Riesgo: se confunde con el amarillo de los avisos y el melocotón de la otra cuenta.</small>
+        <div class="sw"><div style="background:#17181D;color:#F2F3F5"><span>Oscuro</span><span class="btn" style="background:#F2B55E;color:#2A1A00">Planificar</span><span class="dots"><i style="background:#6CC4F5"></i><i style="background:#F7A86E"></i><i style="background:#5FD08F"></i><i style="background:#FF7F7F"></i></span></div><div style="background:#FFFFFF;color:#16171B"><span>Claro</span><span class="btn" style="background:#9A5800;color:#fff">Planificar</span><span class="dots"><i style="background:#0A6FA6"></i><i style="background:#A8520E"></i><i style="background:#1D7F47"></i><i style="background:#C42F38"></i></span></div></div>
+      </button>
+    </div>
+    <p class="example">Puntos de cada muestra: cuenta 1, cuenta 2, ganancia y pérdida.</p>
+  </section>
+
+  <section id="decides">
+    <h2>Lo que decides tú</h2>
+    <div class="grid2">
+      <div class="box"><h3>Ahora</h3><ol>
+        <li>¿Te vale el plan de cuatro pasos y la herramienta?</li>
+        <li>La tabla «Qué cogemos»: ✅, o dime qué quitar o añadir.</li>
+        <li>Nombre e icono, tipografía y paleta (o una mezcla).</li>
+      </ol></div>
+      <div class="box"><h3>Después (no bloquea el diseño)</h3><ul>
+        <li>NAS o Cloudflare, y Tauri o nativa en el Mac.</li>
+        <li>Gastos e ingresos o solo inversiones; tus fondos y umbrales de aviso.</li>
+        <li>En qué cuenta se escriben los bloques planificados.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <p class="foot">Comprobado el 18-10-2026: licencia de San Francisco (developer.apple.com/fonts: «solely for creating mock-ups of user interfaces» para sistemas de Apple); Tauri usa WebKit (WKWebView) en macOS (v2.tauri.app/reference/webview-versions); Inter con eje de tamaño óptico, Geist y Geist Mono disponibles en Google Fonts; precios de Figma (figma.com/pricing); nombres buscados en la App Store española (API de búsqueda de iTunes). Contraste: research/identidad/contraste.py. Iconos: bocetos para elegir dirección, no definitivos.</p>
+</div>
+
+<script>
+const demo = document.getElementById('demo');
+const main = document.getElementById('demo-main');
+const aside = document.getElementById('demo-aside');
+const spark = (pts, cls) => `<svg class="spark" viewBox="0 0 64 22" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="currentColor" stroke-width="1.6" class="${cls}" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+const S = {
+  hoy: {
+    main: `<h4>Hoy</h4><div class="meta">Viernes, 24 de octubre</div>
+      <div class="evs"><div><span class="h">10:00</span>Ejemplo: revisión del coche</div><div><span class="h">13:30</span>Ejemplo: comida familiar</div></div>
+      <div class="row"><span class="chk"></span><span class="grow">Ejemplo: pedir cita en la barbería</span><span class="meta num">15 min</span></div>
+      <div class="row"><span class="chk"></span><span class="grow">Ejemplo: revisar la factura de la luz</span><span class="meta num">20 min</span></div>
+      <div class="sec">esta noche</div>
+      <div class="row"><span class="dot" style="background:var(--d-s)"></span><span class="grow">Ensayo (opcional)</span><span class="meta num">21:30</span></div>
+      <div class="card"><div class="meta">Tu dinero hoy</div><div class="num" style="font-size:18px">+312 € <span class="up">+0,4 %</span></div></div>`,
+    aside: `<div class="meta">pide atención</div>
+      <div class="card att"><i></i><div>Mañana tienes <b class="num">7 h</b> ocupadas: las <b class="num">3</b> tareas planificadas no caben.</div></div>
+      <div class="card att"><i></i><div>Un fondo ha caído un <b class="num">5,2 %</b> desde su máximo de 30 días.</div></div>
+      <span class="primary">Planificar el día</span>`
+  },
+  cal: {
+    main: `<h4>Semana 43</h4><div class="meta">20–24 de octubre · <span class="chip">D</span> <span class="chip on">S</span> <span class="chip">M</span> <span class="chip">A</span></div>
+      <div class="week">
+        <div></div><div class="hd">lun 20</div><div class="hd">mar 21</div><div class="hd today">mié 22</div><div class="hd">jue 23</div><div class="hd">vie 24</div>
+        <div class="hr">9</div><div class="cell"><div class="ev">Ejemplo</div></div><div class="cell"></div><div class="cell"><div class="ev now">Ahora</div></div><div class="cell"></div><div class="cell"><div class="ev s">Ejemplo</div></div>
+        <div class="hr">13</div><div class="cell"></div><div class="cell"><div class="ev s">Ejemplo</div></div><div class="cell"></div><div class="cell"><div class="ev">Ejemplo</div></div><div class="cell"></div>
+        <div class="hr">21</div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"><div class="ev opt">Ensayo</div></div>
+      </div>`,
+    aside: `<div class="meta">evento</div><h4 style="font-size:18px;margin-top:4px">Ensayo</h4>
+      <div class="meta num">Viernes 24, 21:30–23:30</div>
+      <div class="chips"><span class="chip">Opcional</span><span class="chip">Cada viernes</span></div>
+      <div class="sec">cuenta</div><div class="row"><span class="dot" style="background:var(--d-s)"></span><span class="grow">Pendiente de saber en qué calendario está</span></div>
+      <div class="sec">si cambias algo</div><div class="meta">Solo esta vez, salvo que digas «toda la serie».</div>`
+  },
+  tar: {
+    main: `<h4>Planificar</h4><div class="meta">Lo que cabe hoy</div>
+      <div class="card" style="margin-top:12px"><div class="meta">Apunta</div>
+        <div style="margin-top:4px">Llamar al seguro <span style="color:var(--d-acc)">mañana a las 10</span></div>
+        <div class="chips"><span class="chip">Mañana 10:00 ✕</span><span class="chip">Tarea ✕</span><span class="chip"><span class="dot" style="background:var(--d-p);display:inline-block;margin-right:4px"></span>Gmail 1 ✕</span></div></div>
+      <div class="row" style="margin-top:8px"><span class="chk"></span><span class="grow">Ejemplo: renovar el DNI</span><span class="meta num">30 min</span></div>
+      <div class="row"><span class="chk"></span><span class="grow">Ejemplo: preparar la declaración</span><span class="meta num">1 h</span></div>
+      <div class="row"><span class="chk"></span><span class="grow">Ejemplo: ordenar fotos</span><span class="meta">algún día</span></div>`,
+    aside: `<div class="meta">tu día</div><div class="big num" style="font-size:26px">3 h 40 min libres</div>
+      <div class="meta">Planificado: <span class="num">1 h 30 min</span></div>
+      <div style="height:6px;border-radius:3px;background:var(--d-raised);margin-top:10px;overflow:hidden"><div style="width:41%;height:100%;background:var(--d-acc)"></div></div>
+      <span class="primary">Colocar en el calendario</span>
+      <div class="meta" style="margin-top:8px">Te enseña dónde irían y en qué cuenta; nada se guarda sin tu confirmación.</div>`
+  },
+  fin: {
+    main: `<h4>Finanzas</h4><div class="meta">Patrimonio · cifras de ejemplo</div>
+      <div class="big num" style="margin-top:6px">48.215 €</div><div class="num up">+1.204 € (+2,6 %) · 3 meses</div>
+      <svg class="chart" viewBox="0 0 300 110" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,80 30,76 60,82 90,70 120,72 150,60 180,64 210,50 240,54 270,40 300,34" fill="none" stroke="var(--d-acc)" stroke-width="2"/><polyline points="0,82 30,80 60,82 90,76 120,76 150,70 180,70 210,64 240,64 270,58 300,56" fill="none" stroke="var(--d-text3)" stroke-width="1.2" stroke-dasharray="3 3"/></svg>
+      <div class="chips"><span class="chip">1S</span><span class="chip">1M</span><span class="chip on">3M</span><span class="chip">1A</span><span class="chip">Todo</span><span class="chip">frente a índice</span></div>`,
+    aside: `<div class="meta">tus fondos (ejemplo)</div>
+      <div class="row"><span class="grow">Mundial</span><span class="up">${spark('0,16 12,14 24,15 36,10 48,9 64,5','')}</span><span class="num up">+0,4 %</span></div>
+      <div class="row"><span class="grow">Emergentes</span><span class="down">${spark('0,6 12,8 24,7 36,12 48,14 64,17','')}</span><span class="num down">−1,1 %</span></div>
+      <div class="row"><span class="grow">Renta fija</span><span class="up">${spark('0,12 12,12 24,11 36,11 48,10 64,10','')}</span><span class="num up">+0,1 %</span></div>
+      <div class="sec">regla de aviso</div><div class="meta">Avísame si cae un <span class="num">5 %</span> desde su máximo de 30 días.</div>`
+  }
+};
+function show(s) {
+  main.innerHTML = S[s].main; aside.innerHTML = S[s].aside;
+  demo.querySelectorAll('[data-s]').forEach(b => { if (b.dataset.s === s) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+}
+demo.addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (b) show(b.dataset.s); });
+show('hoy');
+
+const ACC_ICON = { lavanda: '#B7A2FF', indigo: '#8E9EFF', ambar: '#F2B55E' };
+function paintIcons() { document.querySelectorAll('.acc-fill').forEach(el => el.setAttribute('fill', ACC_ICON[demo.dataset.acc])); }
+document.addEventListener('click', e => {
+  const b = e.target.closest('button[data-k]'); if (!b) return;
+  const k = b.dataset.k, v = b.dataset.v;
+  document.querySelectorAll(`button[data-k="${k}"]`).forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  if (k === 'tema' || k === 'acc' || k === 'font') demo.dataset[k] = v;
+  if (k === 'acc') paintIcons();
+});
+paintIcons();
+</script>

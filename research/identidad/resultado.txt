@@ -1,0 +1,35 @@
+oscuro text       sobre surface 15.96 OK
+oscuro text2      sobre surface  7.55 OK
+oscuro text3      sobre surface  5.64 OK
+oscuro gain       sobre surface  9.20 OK
+oscuro loss       sobre surface  7.25 OK
+oscuro attention  sobre surface 11.50 OK
+oscuro personal   sobre surface  9.16 OK
+oscuro secundaria sobre surface  9.10 OK
+oscuro acento lavanda  sobre bg       8.78 OK
+oscuro acento lavanda  sobre surface  8.12 OK
+oscuro texto del botón lavanda   8.39 OK
+oscuro acento indigo   sobre bg       7.74 OK
+oscuro acento indigo   sobre surface  7.16 OK
+oscuro texto del botón indigo    7.37 OK
+oscuro acento ambar    sobre bg      10.53 OK
+oscuro acento ambar    sobre surface  9.75 OK
+oscuro texto del botón ambar     9.27 OK
+claro  text       sobre surface 17.91 OK
+claro  text2      sobre surface  6.99 OK
+claro  text3      sobre surface  5.24 OK
+claro  gain       sobre surface  5.03 OK
+claro  loss       sobre surface  5.51 OK
+claro  attention  sobre surface  5.70 OK
+claro  personal   sobre surface  5.47 OK
+claro  secundaria sobre surface  5.41 OK
+claro  acento lavanda  sobre bg       5.25 OK
+claro  acento lavanda  sobre surface  5.77 OK
+claro  texto del botón lavanda   5.77 OK
+claro  acento indigo   sobre bg       5.84 OK
+claro  acento indigo   sobre surface  6.41 OK
+claro  texto del botón indigo    6.41 OK
+claro  acento ambar    sobre bg       5.07 OK
+claro  acento ambar    sobre surface  5.57 OK
+claro  texto del botón ambar     5.57 OK
+TODO OK

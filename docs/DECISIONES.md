@@ -1,6 +1,6 @@
 # Documento vivo: decisiones, supuestos, fuentes y pendientes
 
-Última actualización: 18-10-2026 (etapa D1: definición del producto; diseño aparcado).
+Última actualización: 18-10-2026 (etapa D1 → identidad: síntesis de referencias y opciones de identidad).
 Detalle: [`fase-0/investigacion-y-propuesta.md`](fase-0/investigacion-y-propuesta.md) y [`fase-0/prototipo-y-herramientas.md`](fase-0/prototipo-y-herramientas.md) y [`fase-0/direccion-visual-v2.md`](fase-0/direccion-visual-v2.md).
 
 Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazada** · **Sustituida**.
@@ -30,6 +30,8 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | D-021 | Arquitectura API primero: los clientes (web, Android, Mac) solo hablan con la API. | Propuesta | Permite añadir un cliente Mac nativo sin rehacer el servidor. | D2 |
 | D-022 | Plataforma: provisionalmente web + carcasa Tauri en Mac (opción 2); alternativas PWA, nativa SwiftUI + Kotlin, Compose Multiplatform. | Decisión abierta | `producto/04`, sección 4.6. | D2 |
 | D-018 | Dirección visual v2: cristal oscuro con brillos ambientales, *bento* en escritorio, barra flotante en móvil, Outfit con pesos ligeros, acento lavanda en degradado; cuentas cielo y melocotón. Estructura: foco de C + captura de A + «Planificar» (línea del día de B). | Propuesta (pendiente de tu revisión) | Referencias aportadas por el usuario; contraste ≥ 4,5:1 comprobado. | Tras revisar en el Honor |
+| D-023 | Proceso de diseño: síntesis → identidad → sistema de diseño (página + tokens en el repositorio) → tres pantallas en código. Sin Figma de momento. | Propuesta | `producto/06`. Figma Starter con acceso limitado y Professional 16 $/mes por editor [H 18-10-2026]. | Al responder P-021 |
+| D-024 | Identidad: nombre **Pauta**, tipografía **Inter**, acento **lavanda plano** sobre grafito frío (alternativas: myPanel/Norte, sistema/Geist, índigo/ámbar). | Decisión abierta | `producto/06`; contraste comprobado en `research/identidad/`. Sustituiría a D-018 (v2). | Al responder P-021 |
 | D-017 | NAS: no necesario en la fase 1; decidir antes de la fase 2 (índice local, modelos pequeños, automatización de navegador). Código portable Cloudflare/Node. | Propuesta | Análisis en fase 0b, sección 2. | Antes de la fase 2 |
 
 ## Supuestos
@@ -69,6 +71,7 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | P-019 | Aprobar o descartar las 6 ideas de Finanzas; gastos sí o no; entidades y fondos; umbrales de aviso. | Esquemas de Finanzas (D3) |
 | P-018 | Aprobar o descartar las 4 ideas del Calendario cuando estén las capturas. | Esquemas del Calendario (D3) |
 | P-020 | Aprobar o descartar las 5 ideas de Tareas; voz pronto o más tarde; vistas de TickTick que sobran; si las tareas planificadas se escriben en Google Calendar y en qué cuenta. | Esquemas de Tareas (D3) |
+| P-021 | Responder la síntesis (tabla «Qué cogemos», sustituye a P-018, P-019 y P-020 en lo visual), el plan de diseño y la identidad (nombre, icono, tipografía, paleta). | Sistema de diseño (paso 3) |
 | P-011 | Alojamiento de la fase 1a (Cloudflare gratis con cuenta del usuario, o esperar al NAS). | Despliegue de la fase 1a |
 
 ## Registro de investigación
@@ -85,3 +88,4 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | 18-10-2026 | Descarga de capturas del Calendario | 123 capturas reales (App Store y webs oficiales), 0 fallos; 20 seleccionadas en una página de revisión privada. |
 | 18-10-2026 | Referencias de Finanzas (Bolsa, Copilot, Finary, getquin, Parqet, Ghostfolio, Fintonic) | 98 capturas reales, 0 fallos; 21 seleccionadas. getquin conecta con MyInvestor y no permite umbrales de aviso propios; Copilot solo en EE. UU.; guía de Bolsa ya en versión 8.0 para macOS 27. |
 | 18-10-2026 | Referencias de Tareas (Things 3, Todoist, TickTick, Sunsama, Structured) | 118 capturas reales, 0 fallos; 24 seleccionadas. La captura de Todoist para Mac muestra el lenguaje natural resaltado con fichas (cubre el hueco de Fantastical). Ramble: fecha límite y duración por voz son de pago. Sunsama: unos 20 $/mes sin plan gratis (reseña). |
+| 18-10-2026 | Síntesis de referencias e identidad | Reglas de unificación, 7 piezas compartidas y tabla por sector; 3 opciones de nombre, tipografía y paleta. Licencia de San Francisco solo para maquetas en sistemas Apple; Tauri usa WKWebView en macOS; Inter/Geist en Google Fonts; contraste de las 3 paletas ≥ 4,5:1. |
