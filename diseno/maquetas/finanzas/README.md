@@ -1,6 +1,6 @@
 # Maquetas de Finanzas (calco de Bolsa)
 
-Fecha: 18-10-2026. Estado: **propuesta, pendiente de tu revisión**.
+Fecha: 18-10-2026. Estado: **aprobadas** («Finanzas listo», 18-10-2026).
 Lienzo (privado, con comentarios): https://claude.ai/artifact/1Dmp1APhbBSL1Y1F3NuNAU
 
 Copia de los tableros del lienzo. Las capturas de Bolsa y la fuente se cargan desde el lienzo (`/_blob/…` y `ds/pauta/`), así que aquí solo se guarda el marcado.

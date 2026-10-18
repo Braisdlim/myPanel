@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Planificar el día en Android</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden;">
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin: 0 -12px;">
+      <button class="pa-btn pa-btn--icon" aria-label="Cerrar sin guardar"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px;"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+      <div style="text-align: center;"><div style="font-size: 18px; line-height: 24px; font-weight: 600;">Planificar el día</div><div style="font-size: 13px; line-height: 18px; color: var(--text-2);">viernes, 24 de octubre</div></div>
+      <span style="width: 48px;"></span>
+    </div>
+
+    <div class="pa-capacity" style="--p: 13%;">
+      <div class="pa-capacity__nums" style="font-size: 14px;"><span>1 h elegida · cabe</span><span>6 h 50 min libres</span></div>
+      <div class="pa-capacity__bar"><div class="pa-capacity__fill"></div></div>
+    </div>
+
+    <ul class="pa-dayline" style="margin-top: 4px;">
+<li><span class="pa-dayline__time">9:40</span><span class="pa-dayline__rail"><span class="pa-dayline__node pa-dayline__node--now" ></span></span><span class="pa-dayline__body"><span class="pa-row__title">Ahora</span><span class="pa-row__meta">20 min hasta la revisión</span></span></li>
+<li><span class="pa-dayline__time">10:00</span><span class="pa-dayline__rail"><span class="pa-dayline__node pa-dayline__node--c1" ></span></span><span class="pa-dayline__body"><span class="pa-row__title">Revisión del coche</span><span class="pa-row__meta">10:00–11:00 · Gmail 1</span></span></li>
+<li><span class="pa-dayline__time" style="color: var(--accent); font-weight: 500;">11:15</span><span class="pa-dayline__rail"><span class="pa-dayline__node" style="background: var(--bg); box-shadow: 0 0 0 3px var(--bg), inset 0 0 0 2px var(--accent);"></span></span><span class="pa-dayline__body"><span style="display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; border-radius: 12px; background: var(--accent-soft); border: 1px dashed var(--accent);"><span style="display: flex; justify-content: space-between; gap: 8px;"><span class="pa-row__title" style="font-weight: 600;">Propuesta</span><span style="font-size: 13px; color: var(--accent); font-weight: 500;">hasta 12:05</span></span><span style="display: flex; justify-content: space-between; gap: 8px; font-size: 14px; line-height: 20px;"><span>Revisar la factura de la luz</span><span class="pa-num" style="color: var(--text-2);">20 min</span></span><span style="display: flex; justify-content: space-between; gap: 8px; font-size: 14px; line-height: 20px;"><span>Llamar al seguro del coche</span><span class="pa-num" style="color: var(--text-2);">15 min</span></span><span style="display: flex; justify-content: space-between; gap: 8px; font-size: 14px; line-height: 20px;"><span>Pedir cita para el DNI</span><span class="pa-num" style="color: var(--text-2);">15 min</span></span></span></span></li>
+<li class="free" style="min-height: 0;"><span class="pa-dayline__time"></span><span class="pa-dayline__rail"></span><span class="pa-dayline__free" style="font-size: 14px;">1 h 25 min libres</span></li>
+<li><span class="pa-dayline__time">13:30</span><span class="pa-dayline__rail"><span class="pa-dayline__node pa-dayline__node--c2" ></span></span><span class="pa-dayline__body"><span class="pa-row__title">Comida familiar</span><span class="pa-row__meta">13:30–15:30 · Gmail 2</span></span></li>
+<li><span class="pa-dayline__time" style="color: var(--accent); font-weight: 500;">15:45</span><span class="pa-dayline__rail"><span class="pa-dayline__node" style="background: var(--bg); box-shadow: 0 0 0 3px var(--bg), inset 0 0 0 2px var(--accent);"></span></span><span class="pa-dayline__body"><span style="display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; border-radius: 12px; background: var(--accent-soft); border: 1px dashed var(--accent);"><span style="display: flex; justify-content: space-between; gap: 8px;"><span class="pa-row__title" style="font-weight: 600;">Propuesta</span><span style="font-size: 13px; color: var(--accent); font-weight: 500;">hasta 15:55</span></span><span style="display: flex; justify-content: space-between; gap: 8px; font-size: 14px; line-height: 20px;"><span>Pedir cita en la barbería</span><span class="pa-num" style="color: var(--text-2);">10 min</span></span></span></span></li>
+<li><span class="pa-dayline__time">17:30</span><span class="pa-dayline__rail"><span class="pa-dayline__node pa-dayline__node--c1" ></span></span><span class="pa-dayline__body"><span class="pa-row__title">Médico</span><span class="pa-row__meta">17:30–18:30 · Gmail 1</span></span></li>
+<li class="free" style="min-height: 0;"><span class="pa-dayline__time"></span><span class="pa-dayline__rail"></span><span class="pa-dayline__free" style="font-size: 14px;">3 h libres</span></li>
+<li><span class="pa-dayline__time">21:30</span><span class="pa-dayline__rail"><span class="pa-dayline__node pa-dayline__node--optional" ></span></span><span class="pa-dayline__body"><span class="pa-row__title">Ensayo</span><span class="pa-row__meta">Opcional · 21:30–23:30 · Gmail 2</span></span></li>
+    </ul>
+
+    <button class="pa-btn pa-btn--plain" style="align-self: flex-start; margin: -6px 0 0 44px; gap: 6px; padding: 0 12px;"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px;"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>Elegir más tareas (2 sin fecha)</button>
+
+    <div style="margin-top: auto; display: flex; align-items: center; gap: 12px; min-height: 48px;">
+      <span style="flex: 1; min-width: 0;"><span style="display: block; font-weight: 500;">Añadir a Google Calendar</span><span style="display: block; font-size: 13px; line-height: 18px; color: var(--text-2);">Desactivado · antes te enseño la cuenta</span></span>
+      <button role="switch" aria-checked="false" aria-label="Añadir a Google Calendar" style="position: relative; flex: none; width: 48px; height: 28px; padding: 0; border: 0; border-radius: var(--radius-pill); background: var(--line-strong);"><span style="position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--text);"></span></button>
+    </div>
+    <button class="pa-btn pa-btn--primary" style="width: 100%;">Guardar el plan</button>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

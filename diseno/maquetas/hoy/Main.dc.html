@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Anatomía de Things 3</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 1600px; height: 1180px; box-sizing: border-box; padding: 48px; background: var(--bg); color: var(--text); font-family: var(--font-sans); display: flex; flex-direction: column; gap: 28px;">
+  <div style="display: flex; flex-direction: column; gap: 6px;">
+    <span class="pa-label">referencia base · Things 3 para Mac 3.24.1 · captura oficial de la App Store</span>
+    <h1 style="margin: 0; font-size: 34px; line-height: 40px; font-weight: 600; letter-spacing: -0.02em;">Anatomía de «Hoy» en Things y cómo la ocupa Pauta</h1>
+    <p style="margin: 0; max-width: 860px; font-size: 15px; line-height: 22px; color: var(--text-2);">Things da la estructura y la calma. Pauta añade lo que Things no tiene: cuánto tiempo libre te queda, lo que pide atención y lo siguiente que viene.</p>
+  </div>
+
+  <div style="display: flex; gap: 40px; align-items: flex-start;">
+    <div style="position: relative; width: 560px; height: 669px; flex: none; border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-menu);">
+      <img src="/_blob/8baf7929720a8df3e6680739e45e258b" alt="Things 3 en el Mac: barra lateral con Entrada, Hoy, Programadas y áreas; vista Hoy con eventos en un bloque, tareas con su proyecto y la sección Esta noche" style="display: block; width: 560px; height: 669px;">
+      <span style="position: absolute; left: 29%; top: 31.2%; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">1</span>
+      <span style="position: absolute; left: 61.5%; top: 7.6%; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">2</span>
+      <span style="position: absolute; left: 87%; top: 17%; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">3</span>
+      <span style="position: absolute; left: 91%; top: 33%; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">4</span>
+      <span style="position: absolute; left: 62%; top: 63%; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">5</span>
+      <span style="position: absolute; left: 84%; top: 94.5%; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: var(--on-accent); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;">6</span>
+    </div>
+
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 22px;">
+      <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column;">
+        <li style="display: grid; grid-template-columns: 30px 200px minmax(0, 1fr); gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">1</span><span style="font-weight: 600;">Barra lateral</span><span style="color: var(--text-2);">La de Pauta: sectores con sus recuentos (Hoy, Calendario, Tareas, Finanzas, Pide atención). Las listas de Things (Entrada, Programadas, Algún día) viven dentro de Tareas.</span></li>
+        <li style="display: grid; grid-template-columns: 30px 200px minmax(0, 1fr); gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">2</span><span style="font-weight: 600;">Título «Hoy»</span><span style="color: var(--text-2);">«Hoy» con la fecha debajo y, a la derecha, la acción principal: «Planificar el día».</span></li>
+        <li style="display: grid; grid-template-columns: 30px 200px minmax(0, 1fr); gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">3</span><span style="font-weight: 600;">Bloque de eventos</span><span style="color: var(--text-2);">Igual de compacto. La hora va en el color de su cuenta (cielo o melocotón) y el siguiente evento dice cuánto falta.</span></li>
+        <li style="display: grid; grid-template-columns: 30px 200px minmax(0, 1fr); gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">4</span><span style="font-weight: 600;">Tareas con su proyecto</span><span style="color: var(--text-2);">La misma fila: casilla, título y lista debajo. Se añade la duración estimada a la derecha y «vence hoy» en rojo, como la bandera de Things.</span></li>
+        <li style="display: grid; grid-template-columns: 30px 200px minmax(0, 1fr); gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 700; color: var(--accent);">5</span><span style="font-weight: 600;">Esta noche</span><span style="color: var(--text-2);">Se mantiene tal cual: el ensayo de los viernes (opcional) y el cierre del día.</span></li>
+        <li style="display: grid; grid-template-columns: 30px 200px minmax(0, 1fr); gap: 12px; padding: 11px 0;"><span style="font-weight: 700; color: var(--accent);">6</span><span style="font-weight: 600;">Barra inferior</span><span style="color: var(--text-2);">Fuera. Para apuntar: ⌘K en la barra superior del Mac y el ＋ central en Android.</span></li>
+      </ol>
+      <div class="pa-card">
+        <div class="pa-card__title">Lo que Pauta añade (no está en Things)</div>
+        <ul style="margin: 10px 0 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 6px; color: var(--text-2); font-size: 14px; line-height: 20px;">
+          <li><b style="color: var(--text); font-weight: 600;">Tiempo libre del día</b> y aviso si no cabe (Sunsama).</li>
+          <li><b style="color: var(--text); font-weight: 600;">Planificar el día</b>: eliges tareas, pones duración y Pauta propone dónde caben (Sunsama), dibujado como la línea del día de Structured en Android.</li>
+          <li><b style="color: var(--text); font-weight: 600;">Lo siguiente</b> con cuánto falta (Notion Calendar) y <b style="color: var(--text); font-weight: 600;">Pide atención</b> en el inspector.</li>
+          <li><b style="color: var(--text); font-weight: 600;">Tu dinero hoy</b>, discreto y ocultable (Parqet).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px;">
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+      <img src="/_blob/a87421357faf414d4cc4db49c7acd024" alt="Things en iPhone: vista Hoy" style="display: block; width: 100%; height: 190px; object-fit: cover; object-position: 50% 32%; border-radius: 10px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--text-2);"><b style="color: var(--text); font-weight: 600;">Things en el móvil.</b> La misma vista a pantalla completa: base de «Hoy» en Android.</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+      <img src="/_blob/894a7213d1869c9e9dce21da9d73bb7a" alt="Sunsama: plan del lunes con duraciones" style="display: block; width: 100%; height: 190px; object-fit: cover; object-position: 50% 38%; border-radius: 10px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--text-2);"><b style="color: var(--text); font-weight: 600;">Sunsama.</b> Duración en cada tarea y total del día: base de «Planificar el día».</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+      <img src="/_blob/e4641d6cad77922ab7dd25a6aa43af89" alt="Structured: línea vertical del día con iconos y duraciones" style="display: block; width: 100%; height: 190px; object-fit: cover; object-position: 50% 40%; border-radius: 10px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--text-2);"><b style="color: var(--text); font-weight: 600;">Structured.</b> La línea del día con huecos: así se planifica en Android.</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+      <img src="/_blob/566427f5910f297c3f045ceec8bf0d79" alt="Notion Calendar: menú de la barra con Upcoming in 45 min" style="display: block; width: 100%; height: 190px; object-fit: cover; object-position: 88% 20%; border-radius: 10px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--text-2);"><b style="color: var(--text); font-weight: 600;">Notion Calendar.</b> «Lo siguiente, en 45 min»: arriba del inspector de «Hoy».</figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1600,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
