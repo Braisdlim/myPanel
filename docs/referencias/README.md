@@ -30,7 +30,7 @@ Todas las referencias se adaptan a estos elementos comunes, nunca al revés:
 ## Estado por sector
 | Sector | Dossier | Capturas | Decisión |
 |---|---|---|---|
-| Calendario | [calendario.md](calendario.md) | Pendientes (red bloqueada) | Pendiente |
+| Calendario | [calendario.md](calendario.md) · [revisión](https://claude.ai/artifact/V2Wp6obG8vzFD2mkpWsZih) | 123 descargadas, 20 seleccionadas | Pendiente de tu decisión |
 | Finanzas | — | — | — |
 | Tareas | — | — | — |
 | Correo, documentos y búsqueda | — | — | — |

@@ -1,0 +1,272 @@
+<title>Referencias del Calendario</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500&display=swap">
+<style>
+/* Hoja de revisión: capturas grandes, pie que dice qué mirar, decisión clara por idea. */
+:root {
+  --bg: #f5f4f0; --surface: #ffffff; --fg: #1c1b19; --muted: #5c5953; --line: #e2dfd7; --accent: #3b5b86;
+  --ok: #2c7a4b; --warn: #8a5a00; --chip: #eeece6;
+  --f-display: "Newsreader", Georgia, serif; --f-body: "Instrument Sans", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #141413; --surface: #1c1c1a; --fg: #ecebe6; --muted: #a9a69f; --line: #302f2b; --accent: #9fbbe2; --ok: #7fcf9c; --warn: #e8bf6a; --chip: #262522; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #141413; --surface: #1c1c1a; --fg: #ecebe6; --muted: #a9a69f; --line: #302f2b; --accent: #9fbbe2; --ok: #7fcf9c; --warn: #e8bf6a; --chip: #262522; color-scheme: dark; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 980px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 36px 80px; }
+.kicker { margin: 0; font-size: 13px; color: var(--muted); }
+h1 { font-family: var(--f-display); font-weight: 500; font-size: clamp(30px, 5vw, 44px); line-height: 1.1; margin: 6px 0 12px; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-weight: 500; font-size: clamp(24px, 3.4vw, 30px); line-height: 1.2; margin: 0; text-wrap: balance; }
+h3 { font-size: 15px; font-weight: 600; margin: 22px 0 6px; }
+p, li { max-width: 70ch; }
+.lead { font-size: 18px; margin: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.legend li { padding: 6px 12px; border-radius: 999px; background: var(--chip); font-size: 14px; }
+.toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.toc a { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--fg); text-decoration: none; font-size: 14px; background: var(--surface); }
+.idea { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: 12px; }
+.idea-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.from { font-size: 14px; color: var(--muted); }
+.what { margin: 10px 0 0; }
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+.shots figure.wide { grid-column: 1 / -1; }
+figure { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; }
+figure a { display: block; background: #fff; }
+figure img { display: block; width: 100%; height: auto; }
+figcaption { padding: 12px 14px 14px; font-size: 14.5px; line-height: 1.5; }
+figcaption b { font-weight: 600; }
+.src { display: block; margin-top: 6px; font-size: 12.5px; color: var(--muted); }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+.box { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+.box h3 { margin-top: 0; }
+.box ul { margin: 0; padding-left: 1.1em; }
+.box li + li { margin-top: 6px; }
+.gap { margin-top: 16px; padding: 12px 16px; border-left: 3px solid var(--warn); background: var(--surface); border-radius: 0 10px 10px 0; font-size: 14.5px; }
+.decide { margin-top: 16px; padding: 14px 18px; border-radius: 14px; border: 1px dashed var(--accent); font-size: 15px; }
+.together { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--line); }
+.foot { margin-top: 48px; font-size: 13px; color: var(--muted); }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 720px) { .shots, .cols { grid-template-columns: 1fr; } }
+</style>
+
+<div class="wrap">
+  <p class="kicker">Sector Calendario · capturas reales descargadas el 18 de octubre de 2026</p>
+  <h1>Referencias del Calendario</h1>
+  <p class="lead">Cuatro ideas candidatas, con sus capturas oficiales, qué mirar en cada una y qué nos llevaríamos a myPanel. Al final, cómo encajan juntas.</p>
+  <ul class="legend" aria-label="Cómo responder">
+    <li>✅ Aprobada</li><li>✏️ Aprobada con cambios</li><li>❌ Descartada</li>
+  </ul>
+  <nav class="toc" aria-label="Ideas">
+    <a href="#idea1">1 · Lenguaje natural</a><a href="#idea2">2 · Teclado y barra de menús</a><a href="#idea3">3 · Vista anual</a><a href="#idea4">4 · Rutinas flexibles</a><a href="#juntas">Cómo encajan</a>
+  </nav>
+
+  <!-- IDEA 1 -->
+  <section class="idea" id="idea1">
+    <div class="idea-head"><h2>1 · Lenguaje natural y ventana principal</h2><span class="from">Fantastical 4.2.3 · Mac y iPhone</span></div>
+    <p class="what">Escribes una frase y crea el evento o la tarea. En el Mac combina una barra lateral con el mes y la lista de lo próximo, y la rejilla de la semana a la derecha.</p>
+    <div class="shots">
+      <figure class="wide">
+        <a href="img/fantastical-mac-08.jpg" target="_blank" rel="noopener"><img src="img/fantastical-mac-08.jpg" alt="Fantastical en Mac: barra lateral oscura con septiembre 2025 y lista de próximos eventos; a la derecha, vista semana con el tiempo de cada día" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la barra lateral con el mes y los números de semana, la lista «Up Next» con el botón «Join» y el tiempo por día. Arriba, el selector Día · Semana · Mes · Trimestre, y la línea roja de la hora actual.
+          <span class="src">App Store (captura oficial), Fantastical para Mac 4.2.3</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/fantastical-mac-04.jpg" target="_blank" rel="noopener"><img src="img/fantastical-mac-04.jpg" alt="Ilustración: la frase «Reunión de seguimiento con Michael todos los martes a las 2 PM» se convierte en un evento" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la promesa: una frase («todos los martes a las 2 PM») se convierte en un evento recurrente.
+          <span class="src">App Store (captura oficial). Es una ilustración de marketing, no la pantalla real</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/fantastical-mac-03.jpg" target="_blank" rel="noopener"><img src="img/fantastical-mac-03.jpg" alt="Cuadrícula de vistas de Fantastical: día, semana, mes y año en claro y oscuro" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la misma estructura (barra lateral + rejilla) en todas las escalas y en los dos temas.
+          <span class="src">App Store (captura oficial), Fantastical para Mac 4.2.3</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/fantastical-iphone-01.jpg" target="_blank" rel="noopener"><img src="img/fantastical-iphone-01.jpg" alt="Fantastical en iPhone: franja de días arriba y lista del día debajo" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la franja de días (DayTicker) arriba y la lista debajo. Es la referencia para el móvil Android.
+          <span class="src">App Store (captura oficial), Fantastical para iPhone 4.2.3</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/fantastical-mac-10.jpg" target="_blank" rel="noopener"><img src="img/fantastical-mac-10.jpg" alt="Fantastical: selector de zonas horarias con hora actual y original" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> las zonas horarias, que muestran la hora actual y la original del evento. Útil en viajes.
+          <span class="src">App Store (captura oficial), Fantastical para Mac 4.2.3</span></figcaption>
+      </figure>
+    </div>
+    <div class="cols">
+      <div class="box"><h3>Lo que tomaríamos</h3><ul>
+        <li>Un campo único de captura (⌘K y ＋) que entiende frases en español.</li>
+        <li>Barra lateral con el mes y la lista de próximos; rejilla a la derecha.</li>
+        <li>Franja de días en el móvil.</li>
+      </ul></div>
+      <div class="box"><h3>Lo que cambiaríamos</h3><ul>
+        <li>Ver la interpretación <b>antes</b> de guardar y que pregunte «¿21:30 o 09:30?» si hay duda.</li>
+        <li>Elegir siempre la cuenta de destino (Personal o Secundaria).</li>
+        <li>Sin el tiempo meteorológico al principio (requiere otro proveedor).</li>
+      </ul></div>
+    </div>
+    <p class="gap"><b>Hueco:</b> ni la App Store ni la web oficial muestran la pantalla real de la entrada con vista previa, solo la ilustración. Nuestro prototipo ya simulaba ese comportamiento.</p>
+    <p class="decide"><b>Tu decisión para la idea 1:</b> ✅ / ✏️ / ❌, y qué detalle te gusta o no.</p>
+  </section>
+
+  <!-- IDEA 2 -->
+  <section class="idea" id="idea2">
+    <div class="idea-head"><h2>2 · Teclado primero y barra de menús</h2><span class="from">Notion Calendar · Mac, web e iPhone 1.92</span></div>
+    <p class="what">Todo se hace con teclado (paleta ⌘K y atajos de una tecla). Desde la barra de menús del Mac ves lo siguiente y la agenda sin abrir la app.</p>
+    <div class="shots">
+      <figure class="wide">
+        <a href="img/notion-calendar-web-06.jpg" target="_blank" rel="noopener"><img src="img/notion-calendar-web-06.jpg" alt="Barra de menús del Mac con «Operations Research… in 45 m» y desplegable con la agenda del día; panel lateral con próximos, compartir disponibilidad y atajos" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la barra de menús dice «… in 45 m» y despliega la agenda del día. En el panel derecho de la app, cada acción muestra su tecla (S, F, ⌘K), así se aprenden los atajos sin manual.
+          <span class="src">Web oficial de Notion Calendar</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/notion-calendar-web-09.jpg" target="_blank" rel="noopener"><img src="img/notion-calendar-web-09.jpg" alt="Paleta de comandos «Type a command…» con acciones y su tecla" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la paleta ⌘K: se escribe y se elige una acción, cada una con su tecla.
+          <span class="src">Web oficial de Notion Calendar</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/notion-calendar-web-08.jpg" target="_blank" rel="noopener"><img src="img/notion-calendar-web-08.jpg" alt="Columna de horas con dos zonas horarias" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> varias columnas de horas, una por zona horaria.
+          <span class="src">Web oficial de Notion Calendar</span></figcaption>
+      </figure>
+      <figure class="wide">
+        <a href="img/notion-calendar-web-14.jpg" target="_blank" rel="noopener"><img src="img/notion-calendar-web-14.jpg" alt="Ventana completa de Notion Calendar: barra lateral con mes y calendarios, día central, menú contextual y panel de detalle" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> el patrón de Mac de tres zonas: barra lateral (mes y calendarios por cuenta), contenido e inspector a la derecha con el detalle del evento. Es la estructura común que proponemos para toda la app.
+          <span class="src">Web oficial de Notion Calendar</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/notion-calendar-ayuda-01.jpg" target="_blank" rel="noopener"><img src="img/notion-calendar-ayuda-01.jpg" alt="Lista de atajos de teclado buscable" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la lista de atajos, que se abre con «?» y se puede buscar.
+          <span class="src">Ayuda oficial de Notion</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/notion-calendar-iphone-01.jpg" target="_blank" rel="noopener"><img src="img/notion-calendar-iphone-01.jpg" alt="Notion Calendar en iPhone: vista de días con la hora actual y tarjeta «Upcoming in 19 min»" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> en el móvil, la tarjeta inferior «Upcoming in 19 min»: lo siguiente siempre a mano.
+          <span class="src">App Store (captura oficial), Notion Calendar para iPhone 1.92.0</span></figcaption>
+      </figure>
+    </div>
+    <div class="cols">
+      <div class="box"><h3>Lo que tomaríamos</h3><ul>
+        <li>Paleta ⌘K común a toda la app; atajos D, S, M y A para las escalas; «?» para verlos todos.</li>
+        <li>Cada acción muestra su tecla (atajos descubribles).</li>
+        <li>Mac: la barra de menús con «Dentista en 1 h 20 min» y la agenda del día.</li>
+        <li>Móvil: tarjeta fija con lo siguiente.</li>
+      </ul></div>
+      <div class="box"><h3>Lo que cambiaríamos</h3><ul>
+        <li>Sin superponer el calendario de otras personas ni compartir disponibilidad: es una app solo tuya.</li>
+        <li>En Android, la barra de menús se traduce en widget y notificación (fase 5).</li>
+        <li>La barra de menús y los atajos globales exigen app de escritorio (Tauri o nativa).</li>
+      </ul></div>
+    </div>
+    <p class="decide"><b>Tu decisión para la idea 2:</b> ✅ / ✏️ / ❌, y qué detalle te gusta o no.</p>
+  </section>
+
+  <!-- IDEA 3 -->
+  <section class="idea" id="idea3">
+    <div class="idea-head"><h2>3 · Vista anual como mapa de calor</h2><span class="from">BusyCal 2026.4.2 · Mac</span></div>
+    <p class="what">El año completo en una sola pantalla: 12 filas (meses) por 31 columnas (días), coloreadas según lo ocupado de cada día, con un resumen de estadísticas debajo.</p>
+    <div class="shots">
+      <figure class="wide">
+        <a href="img/busycal-documentacion-05.jpg" target="_blank" rel="noopener"><img src="img/busycal-documentacion-05.jpg" alt="Vista año de BusyCal en modo mapa de calor de julio 2025 a junio 2026, con tarjetas de resumen debajo" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> doce meses móviles (de julio a junio) en una cuadrícula; los días más ocupados, más intensos; hoy marcado en verde. Debajo, «Overview» con tarjetas: calendario más usado, mes y día más activos y horas totales.
+          <span class="src">Documentación oficial de BusyCal</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/busycal-documentacion-02.jpg" target="_blank" rel="noopener"><img src="img/busycal-documentacion-02.jpg" alt="Vista año en modo Banners: eventos largos como barras de color" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> el modo «Banners»: los eventos de varios días (viajes, vacaciones) se ven como barras.
+          <span class="src">Documentación oficial de BusyCal</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/busycal-documentacion-03.jpg" target="_blank" rel="noopener"><img src="img/busycal-documentacion-03.jpg" alt="Ajustes de la vista: Year Planner, Show Highlights, mostrar al pasar el ratón, estilo Banners o Heatmap" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> los ajustes: planificador anual, destacados, detalle al pasar el ratón y estilo (Banners o Heatmap).
+          <span class="src">Documentación oficial de BusyCal</span></figcaption>
+      </figure>
+      <figure class="wide">
+        <a href="img/busycal-documentacion-06.jpg" target="_blank" rel="noopener"><img src="img/busycal-documentacion-06.jpg" alt="Vista año clásica de 12 minimeses con resumen" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la alternativa clásica de 12 minimeses: más familiar y menos densa.
+          <span class="src">Documentación oficial de BusyCal</span></figcaption>
+      </figure>
+    </div>
+    <div class="cols">
+      <div class="box"><h3>Lo que tomaríamos</h3><ul>
+        <li>Vista Año con mapa de calor de <b>horas comprometidas</b> (no solo número de eventos).</li>
+        <li>Vacaciones y días libres como barras (modo «Banners»).</li>
+        <li>Resumen útil para ti: días libres que te quedan, semanas más cargadas, vacaciones apuntadas.</li>
+      </ul></div>
+      <div class="box"><h3>Lo que cambiaríamos</h3><ul>
+        <li>Menos densidad que BusyCal: el mapa de calor a la vista y el detalle al tocar un día.</li>
+        <li>En móvil, 12 minimeses desplazables en lugar de 12×31.</li>
+        <li>La misma cuadrícula anual servirá en Finanzas (rentabilidad por mes): unifica.</li>
+      </ul></div>
+    </div>
+    <p class="decide"><b>Tu decisión para la idea 3:</b> ✅ / ✏️ / ❌. ¿Mapa de calor, minimeses o ambos?</p>
+  </section>
+
+  <!-- IDEA 4 -->
+  <section class="idea" id="idea4">
+    <div class="idea-head"><h2>4 · Rutinas flexibles</h2><span class="from">Reclaim (web)</span></div>
+    <p class="what">Una rutina («Habit») es un bloque que se mueve dentro de una franja: duración mínima y máxima, días y horas posibles, hora ideal y prioridad. Si algo la pisa, Reclaim la recoloca sola.</p>
+    <div class="shots">
+      <figure class="wide">
+        <a href="img/reclaim-ayuda-04.jpg" target="_blank" rel="noopener"><img src="img/reclaim-ayuda-04.jpg" alt="Lista de rutinas en tarjetas con duración, frecuencia, horas y próxima vez; a la derecha, el formulario de nueva rutina" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> cada rutina en tarjeta con duración (30 min – 1 h), frecuencia, franja horaria y «Next: miércoles a las 11:45». A la derecha, el editor: prioridad, color, duración mínima y máxima, y horas por día de la semana.
+          <span class="src">Ayuda oficial de Reclaim</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/reclaim-ayuda-09.jpg" target="_blank" rel="noopener"><img src="img/reclaim-ayuda-09.jpg" alt="Campos de duración mínima y máxima" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la duración mínima y máxima.
+          <span class="src">Ayuda oficial de Reclaim</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/reclaim-ayuda-12.jpg" target="_blank" rel="noopener"><img src="img/reclaim-ayuda-12.jpg" alt="Campo de hora ideal" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la hora ideal dentro de la franja.
+          <span class="src">Ayuda oficial de Reclaim</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/reclaim-ayuda-06.jpg" target="_blank" rel="noopener"><img src="img/reclaim-ayuda-06.jpg" alt="Selector de prioridad: crítica, alta, media, baja" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> la prioridad (crítica, alta, media o baja), que decide qué cede ante un conflicto.
+          <span class="src">Ayuda oficial de Reclaim</span></figcaption>
+      </figure>
+      <figure>
+        <a href="img/reclaim-ayuda-14.jpg" target="_blank" rel="noopener"><img src="img/reclaim-ayuda-14.jpg" alt="Opción: si la rutina no cabe, dejarla en el calendario o quitarla" loading="lazy"></a>
+        <figcaption><b>Fíjate en:</b> qué hacer si no cabe (dejarla o quitarla). Es justo el caso de tu ensayo.
+          <span class="src">Ayuda oficial de Reclaim</span></figcaption>
+      </figure>
+    </div>
+    <div class="cols">
+      <div class="box"><h3>Lo que tomaríamos</h3><ul>
+        <li>El modelo: franja, duración mínima y máxima, hora ideal, prioridad y qué hacer si no cabe.</li>
+        <li>Tarjeta con «Próxima vez» para cada rutina.</li>
+        <li>Rutinas visibles como bloques rayados (opcionales) en el calendario.</li>
+      </ul></div>
+      <div class="box"><h3>Lo que cambiaríamos</h3><ul>
+        <li>Reclaim mueve las cosas solo; myPanel <b>propone</b> y tú confirmas.</li>
+        <li>Excepción solo para esa ocurrencia; la serie no cambia sin orden expresa.</li>
+        <li>Tu ensayo: viernes 21:30–23:30, opcional y prioridad media: si choca con un plan, te pregunta.</li>
+      </ul></div>
+    </div>
+    <p class="gap"><b>Hueco:</b> no he encontrado capturas oficiales de cómo se ven las rutinas colocadas en la semana; solo el editor y la lista.</p>
+    <p class="decide"><b>Tu decisión para la idea 4:</b> ✅ / ✏️ / ❌, y qué detalle te gusta o no.</p>
+  </section>
+
+  <!-- JUNTAS -->
+  <section class="together" id="juntas">
+    <h2>Cómo encajan juntas en myPanel</h2>
+    <div class="cols">
+      <div class="box"><h3>Mac</h3><ul>
+        <li>Barra lateral: mes, lista de próximos y tus dos cuentas (Fantastical y Notion).</li>
+        <li>Contenido: Día, Semana, Mes y <b>Año con mapa de calor</b> (BusyCal), con las teclas D, S, M y A.</li>
+        <li>Inspector a la derecha con el detalle del evento (Notion).</li>
+        <li>⌘K para apuntar con lenguaje natural y vista previa (Fantastical) o para ir a cualquier sitio.</li>
+        <li>Barra de menús: «Dentista en 1 h 20 min» (Notion).</li>
+        <li>Rutinas opcionales rayadas con su franja; los conflictos se resuelven con propuestas (Reclaim, adaptado).</li>
+      </ul></div>
+      <div class="box"><h3>Android</h3><ul>
+        <li>Franja de días arriba y lista o rejilla debajo (Fantastical).</li>
+        <li>Tarjeta fija con lo siguiente (Notion).</li>
+        <li>Botón ＋ con el mismo campo de lenguaje natural.</li>
+        <li>Año en 12 minimeses con intensidad de color.</li>
+        <li>Avisos de conflicto con opciones, como en el Mac.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <p class="foot">Capturas © de sus respectivos autores (Flexibits, Notion Labs, Busy Apps, Reclaim). Uso interno como referencia; página privada. Fuentes: App Store España (Fantastical 4.2.3, Notion Calendar 1.92.0, BusyCal 2026.4.2), flexibits.com, notion.com/product/calendar, notion.com/help/notion-calendar-keyboard-shortcuts, busymac.com/docs/busycal/70590-year-view, help.reclaim.ai/en/articles/4129152.</p>
+</div>

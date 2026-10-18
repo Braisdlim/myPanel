@@ -35,12 +35,22 @@ function curl(url, out) {
 }
 const slug = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
+const decode = (u) => u.replace(/&amp;/g, "&").replace(/&#x2F;/g, "/");
+// Next.js sirve imágenes redimensionadas: se pide la original
+function original(u) {
+  const m = u.match(/\/_next\/image\?url=([^&]+)/);
+  if (m) { const inner = decodeURIComponent(m[1]); return inner.startsWith("/") ? new URL(inner, u).href : inner; }
+  // App Store: pedir la captura a tamaño completo en lugar de la miniatura
+  return u.replace(/\/\d+x\d+bb\.(jpg|png|webp)$/, "/2400x0w.$1");
+}
+
 function guardar(url, base, meta) {
+  url = original(decode(url));
   const ext = (url.match(/\.(png|jpe?g|webp|gif)(\?|$)/i)?.[1] ?? "jpg").toLowerCase();
   const file = `${base}.${ext}`;
   const path = join(outDir, file);
   try {
-    curl(url, path);
+    try { curl(url, path); } catch { curl(url, path); } // un reintento ante cortes
     if (statSync(path).size < 12_000) return; // iconos y miniaturas: fuera
     manifiesto.push({ archivo: file, url, fecha: hoy, ...meta });
   } catch (e) { fallos.push({ url, error: e.message.split("\n")[0] }); }
@@ -82,6 +92,12 @@ for (const p of fuentes[sector].paginas ?? []) {
       if (i >= 15) break;
     }
   } catch (e) { fallos.push({ url: p.url, error: e.message.split("\n")[0] }); }
+}
+
+// 3) Imágenes concretas elegidas a mano
+let k = 0;
+for (const x of fuentes[sector].directas ?? []) {
+  guardar(x.url, `${slug(x.app)}-directa-${String(++k).padStart(2, "0")}`, { app: x.app, idea: x.idea, fuente: "Web oficial (imagen concreta)" });
 }
 
 writeFileSync(join(outDir, "manifiesto.json"), JSON.stringify({ sector, fecha: hoy, imagenes: manifiesto, fallos }, null, 2));

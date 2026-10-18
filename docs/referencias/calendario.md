@@ -1,6 +1,10 @@
 # Referencias: Calendario
 
-Fecha: 18-10-2026. Estado: **capturas pendientes**. La red del entorno bloquea la App Store y las webs oficiales; solo llega a GitHub. En cuanto haya acceso, el script las descarga solo.
+Fecha: 18-10-2026. Estado: **capturas descargadas y seleccionadas; pendiente de tu decisión**.
+
+- Página de revisión (privada): https://claude.ai/artifact/V2Wp6obG8vzFD2mkpWsZih
+- Descarga: 123 capturas reales, 0 fallos (App Store España: Fantastical 4.2.3, Notion Calendar 1.92.0, BusyCal 2026.4.2, Google Calendar 26.39.1; webs y ayudas oficiales de Flexibits, Notion, BusyMac y Reclaim). Selección: 20 capturas.
+- Huecos: (1) no hay captura oficial de la entrada en lenguaje natural de Fantastical con vista previa, solo una ilustración; (2) no hay captura oficial de las rutinas de Reclaim colocadas en la semana.
 
 Ideas candidatas: el lenguaje natural de **Fantastical**, el teclado y la barra de menús de **Notion Calendar**, la vista anual como mapa de calor de **BusyCal** y las rutinas flexibles de **Reclaim**.
 
@@ -109,7 +113,15 @@ Ideas candidatas: el lenguaje natural de **Fantastical**, el teclado y la barra 
 ## Referencias de control (para no olvidar lo básico)
 - **Google Calendar** (vistas día, semana, mes, año y agenda; es tu fuente de datos) y **Calendario de Apple** (convenciones de macOS). Capturas opcionales, para comparar.
 
-## Lo que te pediré cuando estén las capturas
+## Selección usada en la revisión
+| Idea | Capturas |
+|---|---|
+| 1 | fantastical-mac-08 (ventana principal), mac-04 (ilustración del lenguaje natural), mac-03 (vistas), iphone-01 (DayTicker), mac-10 (zonas horarias) |
+| 2 | notion-calendar-web-06 (barra de menús y panel con teclas), web-09 (paleta ⌘K), web-08 (zonas horarias), web-14 (ventana con inspector), ayuda-01 (lista de atajos), iphone-01 (tarjeta «Upcoming») |
+| 3 | busycal-documentacion-05 (mapa de calor + Overview), -02 (Banners), -03 (ajustes), -06 (12 minimeses) |
+| 4 | reclaim-ayuda-04 (lista y editor), -09 (duración), -12 (hora ideal), -06 (prioridad), -14 (si no cabe) |
+
+## Lo que te pido ahora
 Para cada idea: ✅ aprobada, ✏️ aprobada con cambios o ❌ descartada, y qué detalle te gusta o no.
 
 ## Fuentes (consultadas el 18-10-2026)

@@ -1,21 +1,101 @@
 {
   "calendario": {
     "appstore": [
-      { "app": "Fantastical (Mac)", "idea": "1-lenguaje-natural", "id": 975937182, "term": "Fantastical", "entity": "macSoftware", "seller": "Flexibits" },
-      { "app": "Fantastical (iPhone)", "idea": "1-lenguaje-natural", "id": 718043190, "term": "Fantastical", "entity": "software", "seller": "Flexibits" },
-      { "app": "Notion Calendar (Mac)", "idea": "2-teclado-barra-menus", "term": "Notion Calendar", "entity": "macSoftware", "seller": "Notion" },
-      { "app": "Notion Calendar (iPhone)", "idea": "2-teclado-barra-menus", "term": "Notion Calendar", "entity": "software", "seller": "Notion" },
-      { "app": "BusyCal (Mac)", "idea": "3-vista-anual", "id": 1173663647, "term": "BusyCal", "entity": "macSoftware", "seller": "BusyMac" },
-      { "app": "BusyCal (iPhone)", "idea": "3-vista-anual", "id": 1035689743, "term": "BusyCal", "entity": "software", "seller": "BusyMac" },
-      { "app": "Google Calendar (iPhone)", "idea": "control", "term": "Google Calendar", "entity": "software", "seller": "Google" }
+      {
+        "app": "Fantastical (Mac)",
+        "idea": "1-lenguaje-natural",
+        "id": 975937182,
+        "term": "Fantastical",
+        "entity": "macSoftware",
+        "seller": "Flexibits"
+      },
+      {
+        "app": "Fantastical (iPhone)",
+        "idea": "1-lenguaje-natural",
+        "id": 718043190,
+        "term": "Fantastical",
+        "entity": "software",
+        "seller": "Flexibits"
+      },
+      {
+        "app": "Notion Calendar (iPhone)",
+        "idea": "2-teclado-barra-menus",
+        "term": "Notion Calendar",
+        "entity": "software",
+        "seller": "Notion"
+      },
+      {
+        "app": "BusyCal (Mac)",
+        "idea": "3-vista-anual",
+        "id": 1173663647,
+        "term": "BusyCal",
+        "entity": "macSoftware",
+        "seller": "Busy"
+      },
+      {
+        "app": "BusyCal (iPhone)",
+        "idea": "3-vista-anual",
+        "id": 1035689743,
+        "term": "BusyCal",
+        "entity": "software",
+        "seller": "Busy"
+      },
+      {
+        "app": "Google Calendar (iPhone)",
+        "idea": "control",
+        "term": "Google Calendar",
+        "entity": "software",
+        "seller": "Google"
+      }
     ],
     "paginas": [
-      { "app": "Fantastical (web)", "idea": "1-lenguaje-natural", "url": "https://flexibits.com/fantastical" },
-      { "app": "Notion Calendar (web)", "idea": "2-teclado-barra-menus", "url": "https://www.notion.com/product/calendar" },
-      { "app": "Notion Calendar (ayuda)", "idea": "2-teclado-barra-menus", "url": "https://www.notion.com/help/notion-calendar-keyboard-shortcuts" },
-      { "app": "BusyCal (documentación)", "idea": "3-vista-anual", "url": "https://www.busymac.com/docs/busycal/70590-year-view/" },
-      { "app": "Reclaim (web)", "idea": "4-rutinas-flexibles", "url": "https://reclaim.ai/features/habits" },
-      { "app": "Reclaim (ayuda)", "idea": "4-rutinas-flexibles", "url": "https://help.reclaim.ai/en/articles/4129152" }
+      {
+        "app": "Fantastical (web)",
+        "idea": "1-lenguaje-natural",
+        "url": "https://flexibits.com/fantastical"
+      },
+      {
+        "app": "Notion Calendar (web)",
+        "idea": "2-teclado-barra-menus",
+        "url": "https://www.notion.com/product/calendar"
+      },
+      {
+        "app": "Notion Calendar (ayuda)",
+        "idea": "2-teclado-barra-menus",
+        "url": "https://www.notion.com/help/notion-calendar-keyboard-shortcuts"
+      },
+      {
+        "app": "BusyCal (documentación)",
+        "idea": "3-vista-anual",
+        "url": "https://www.busymac.com/docs/busycal/70590-year-view/"
+      },
+      {
+        "app": "Reclaim (web)",
+        "idea": "4-rutinas-flexibles",
+        "url": "https://reclaim.ai/features/habits"
+      },
+      {
+        "app": "Reclaim (ayuda)",
+        "idea": "4-rutinas-flexibles",
+        "url": "https://help.reclaim.ai/en/articles/4129152"
+      }
+    ],
+    "directas": [
+      {
+        "app": "Fantastical (web)",
+        "idea": "1-lenguaje-natural",
+        "url": "https://flexibits.com/img/fantastical/ipad-angled@2x.png"
+      },
+      {
+        "app": "Fantastical (web)",
+        "idea": "1-lenguaje-natural",
+        "url": "https://flexibits.com/img/fantastical/hero/promo-video-poster@2x.jpg"
+      },
+      {
+        "app": "Fantastical (web)",
+        "idea": "2-teclado-barra-menus",
+        "url": "https://flexibits.com/img/fantastical/timezone-selection@2x.png"
+      }
     ]
   }
 }
