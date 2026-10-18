@@ -32,7 +32,7 @@ Todas las referencias se adaptan a estos elementos comunes, nunca al revés:
 |---|---|---|---|
 | Calendario | [calendario.md](calendario.md) · [revisión](https://claude.ai/artifact/V2Wp6obG8vzFD2mkpWsZih) | 123 descargadas, 20 seleccionadas | Pendiente de tu decisión |
 | Finanzas | [finanzas.md](finanzas.md) · [revisión](https://claude.ai/artifact/NL6KyAiHjEGTTJ6VMP1GCc) | 98 descargadas, 21 seleccionadas | Pendiente de tu decisión |
-| Tareas | — | — | — |
+| Tareas | [tareas.md](tareas.md) · [revisión](https://claude.ai/artifact/FCyV5pXLj82tfDd4Nfb2Eq) | 118 descargadas, 24 seleccionadas | Pendiente de tu decisión |
 | Correo, documentos y búsqueda | — | — | — |
 | Lo que sé de ti | — | — | — |
 

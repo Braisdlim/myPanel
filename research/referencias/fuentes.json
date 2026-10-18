@@ -209,5 +209,91 @@
         "url": "https://raw.githubusercontent.com/ghostfolio/ghostfolio/main/apps/client/src/assets/images/video-preview.jpg"
       }
     ]
+  },
+  "tareas": {
+    "appstore": [
+      {
+        "app": "Things 3 (Mac)",
+        "idea": "1-things",
+        "id": 904280696,
+        "term": "Things 3",
+        "entity": "macSoftware",
+        "seller": "Cultured Code"
+      },
+      {
+        "app": "Things 3 (iPhone)",
+        "idea": "1-things",
+        "term": "Things 3",
+        "entity": "software",
+        "seller": "Cultured Code"
+      },
+      {
+        "app": "Todoist (Mac)",
+        "idea": "2-todoist",
+        "term": "Todoist",
+        "entity": "macSoftware",
+        "seller": "Todoist",
+        "id": 585829637
+      },
+      {
+        "app": "Todoist (iPhone)",
+        "idea": "2-todoist",
+        "term": "Todoist",
+        "entity": "software",
+        "seller": "Todoist"
+      },
+      {
+        "app": "TickTick (Mac)",
+        "idea": "3-ticktick",
+        "term": "TickTick",
+        "entity": "macSoftware",
+        "seller": "Appest"
+      },
+      {
+        "app": "TickTick (iPhone)",
+        "idea": "3-ticktick",
+        "term": "TickTick",
+        "entity": "software",
+        "seller": "Appest"
+      },
+      {
+        "app": "Sunsama (iPhone)",
+        "idea": "4-sunsama",
+        "term": "Sunsama",
+        "entity": "software",
+        "seller": "Summay",
+        "id": 1475755747
+      },
+      {
+        "app": "Structured (iPhone)",
+        "idea": "5-structured",
+        "id": 1499198946,
+        "term": "Structured",
+        "entity": "software",
+        "seller": "unorderly"
+      }
+    ],
+    "paginas": [
+      {
+        "app": "Things (web)",
+        "idea": "1-things",
+        "url": "https://culturedcode.com/things/"
+      },
+      {
+        "app": "Todoist (Ramble)",
+        "idea": "2-todoist",
+        "url": "https://www.todoist.com/help/articles/dictate-and-add-tasks-with-ramble-P1Raq7vVF"
+      },
+      {
+        "app": "Sunsama (web)",
+        "idea": "4-sunsama",
+        "url": "https://www.sunsama.com/"
+      },
+      {
+        "app": "TickTick (web)",
+        "idea": "3-ticktick",
+        "url": "https://ticktick.com/"
+      }
+    ]
   }
 }

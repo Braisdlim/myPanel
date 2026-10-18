@@ -68,6 +68,7 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | P-017 | ~~Acceso de red para capturas~~ Resuelto: el usuario amplió el acceso de red. | — |
 | P-019 | Aprobar o descartar las 6 ideas de Finanzas; gastos sí o no; entidades y fondos; umbrales de aviso. | Esquemas de Finanzas (D3) |
 | P-018 | Aprobar o descartar las 4 ideas del Calendario cuando estén las capturas. | Esquemas del Calendario (D3) |
+| P-020 | Aprobar o descartar las 5 ideas de Tareas; voz pronto o más tarde; vistas de TickTick que sobran; si las tareas planificadas se escriben en Google Calendar y en qué cuenta. | Esquemas de Tareas (D3) |
 | P-011 | Alojamiento de la fase 1a (Cloudflare gratis con cuenta del usuario, o esperar al NAS). | Despliegue de la fase 1a |
 
 ## Registro de investigación
@@ -83,3 +84,4 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | 18-10-2026 | Referencias visuales del Calendario (Fantastical, Notion Calendar, BusyCal, Reclaim) | Dossier `docs/referencias/calendario.md` y script de descarga; capturas bloqueadas por la red del entorno (solo GitHub accesible). |
 | 18-10-2026 | Descarga de capturas del Calendario | 123 capturas reales (App Store y webs oficiales), 0 fallos; 20 seleccionadas en una página de revisión privada. |
 | 18-10-2026 | Referencias de Finanzas (Bolsa, Copilot, Finary, getquin, Parqet, Ghostfolio, Fintonic) | 98 capturas reales, 0 fallos; 21 seleccionadas. getquin conecta con MyInvestor y no permite umbrales de aviso propios; Copilot solo en EE. UU.; guía de Bolsa ya en versión 8.0 para macOS 27. |
+| 18-10-2026 | Referencias de Tareas (Things 3, Todoist, TickTick, Sunsama, Structured) | 118 capturas reales, 0 fallos; 24 seleccionadas. La captura de Todoist para Mac muestra el lenguaje natural resaltado con fichas (cubre el hueco de Fantastical). Ramble: fecha límite y duración por voz son de pago. Sunsama: unos 20 $/mes sin plan gratis (reseña). |
