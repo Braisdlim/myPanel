@@ -54,6 +54,7 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 ## Hechos de ejemplo que NO son datos
 
 - «Toca el saxofón»: ejemplo hipotético del encargo. **No guardar como hecho.**
+- Día de ejemplo de maquetas y fichas: **viernes 23 de octubre de 2026** (antes ponía «viernes 24», que en 2026 es sábado; corregido el 18-10-2026). Todo lo demás de ese día es inventado salvo el ensayo de los viernes de 21:30 a 23:30.
 
 ## Pendientes (abiertos)
 

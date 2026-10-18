@@ -139,7 +139,7 @@ C['Captura'] = dict(group='Entrada', height=330, sub='Lenguaje natural con ficha
     <span class="pa-chip pa-chip--token">{i:calendar-clock}Evento<button class="pa-chip__x" aria-label="Cambiar a tarea">{i:x}</button></span>
   </div>
   <div class="pa-capture__ask"><span>¿Las 9:30 de la mañana o las 21:30?</span><button class="pa-btn pa-btn--sm">9:30</button><button class="pa-btn pa-btn--sm">21:30</button></div>
-  <div class="pa-capture__preview">{i:calendar}<span>Se creará un <b>evento</b> en <b>Gmail 2</b>: viernes 24 oct, hora por confirmar, cada viernes.</span></div>
+  <div class="pa-capture__preview">{i:calendar}<span>Se creará un <b>evento</b> en <b>Gmail 2</b>: viernes 23 oct, hora por confirmar, cada viernes.</span></div>
   <div class="pa-capture__foot"><span>Guardar <span class="pa-kbd">↵</span></span><span>Cerrar <span class="pa-kbd">esc</span></span></div>
  </div>
 </div>''',
@@ -215,8 +215,8 @@ C['Fila'] = dict(group='Listas y datos', height=330, sub='La misma fila para tar
   <li class="pa-row pa-row--hover"><span class="pa-dot pa-dot--c2"></span><span class="pa-row__main"><span class="pa-row__title">Ensayo</span><span class="pa-row__meta">Opcional · cada viernes · Gmail 2</span></span><span class="pa-row__end">21:30</span></li>
  </ul>
  <ul class="pa-list pa-list--lines" style="margin-top:12px">
-  <li class="pa-row"><span class="pa-row__main"><span class="pa-row__title">Fondo indexado mundial</span><span class="pa-row__meta">Valor del 23 oct</span></span><span class="pa-row__end">''' + SP_UP + '''<span class="pa-delta pa-delta--solid pa-delta--up">↑ +0,42 %</span></span></li>
-  <li class="pa-row"><span class="pa-row__main"><span class="pa-row__title">Fondo de emergentes</span><span class="pa-row__meta">Valor del 23 oct</span></span><span class="pa-row__end">''' + SP_DN + '''<span class="pa-delta pa-delta--solid pa-delta--down">↓ −1,10 %</span></span></li>
+  <li class="pa-row"><span class="pa-row__main"><span class="pa-row__title">Fondo indexado mundial</span><span class="pa-row__meta">Valor del 22 oct</span></span><span class="pa-row__end">''' + SP_UP + '''<span class="pa-delta pa-delta--solid pa-delta--up">↑ +0,42 %</span></span></li>
+  <li class="pa-row"><span class="pa-row__main"><span class="pa-row__title">Fondo de emergentes</span><span class="pa-row__meta">Valor del 22 oct</span></span><span class="pa-row__end">''' + SP_DN + '''<span class="pa-delta pa-delta--solid pa-delta--down">↓ −1,10 %</span></span></li>
  </ul>
 </div>''',
  readme='''# Fila
@@ -260,7 +260,7 @@ C['Cifra'] = dict(group='Listas y datos', height=170, sub='La cifra principal co
   <div class="pa-figure__label">Patrimonio</div>
   <div class="pa-figure__value">48.215,30 €</div>
   <div class="pa-figure__row"><span class="pa-delta pa-delta--up">↑ +1.204 €</span><span class="pa-delta pa-delta--up">↑ +2,6 %</span><span class="pa-muted">en 3 meses</span></div>
-  <div class="pa-figure__src">Valores liquidativos del 23 oct · cifras de ejemplo</div>
+  <div class="pa-figure__src">Valores liquidativos del 22 oct · cifras de ejemplo</div>
 </div>''',
  readme='''# Cifra
 
@@ -337,9 +337,9 @@ def ev(start, dur, title, time, cls=''):
     return f'<div class="pa-ev {cls}" style="--start:{start};--dur:{dur}{lane}">{title}<small>{time}</small></div>'
 TG = ('<div class="pa-tg" style="--days:5">'
       '<div class="pa-tg__corner"></div>'
-      '<div class="pa-tg__day">lun <span class="pa-tg__num">20</span></div><div class="pa-tg__day">mar <span class="pa-tg__num">21</span></div>'
-      '<div class="pa-tg__day pa-tg__day--today">mié <span class="pa-tg__num">22</span></div><div class="pa-tg__day">jue <span class="pa-tg__num">23</span></div>'
-      '<div class="pa-tg__day">vie <span class="pa-tg__num">24</span></div>'
+      '<div class="pa-tg__day">lun <span class="pa-tg__num">19</span></div><div class="pa-tg__day">mar <span class="pa-tg__num">20</span></div>'
+      '<div class="pa-tg__day pa-tg__day--today">mié <span class="pa-tg__num">21</span></div><div class="pa-tg__day">jue <span class="pa-tg__num">22</span></div>'
+      '<div class="pa-tg__day">vie <span class="pa-tg__num">23</span></div>'
       '<div class="pa-tg__hours"><div class="pa-tg__hour">17:00</div><div class="pa-tg__hour">18:00</div><div class="pa-tg__hour">19:00</div><div class="pa-tg__hour">20:00</div><div class="pa-tg__hour">21:00</div><div class="pa-tg__hour">22:00</div><div class="pa-tg__hour">23:00</div></div>'
       '<div class="pa-tg__col">' + ev(0.5, 1, 'Médico', '17:30–18:30') + '</div>'
       '<div class="pa-tg__col">' + ev(1, 1.5, 'Revisar factura', '18:00–19:30', 'pa-ev--task') + '</div>'
@@ -400,8 +400,8 @@ def year_html():
             if d > n: out.append('<span class="pa-year__c" hidden></span>'); continue
             attrs = ''
             if m == 7 and 4 <= d <= 15: attrs = ' data-libre'
-            elif m == 9 and d == 22: attrs = f' data-h="3" data-hoy'
-            elif m > 9 or (m == 9 and d > 22): attrs = ''
+            elif m == 9 and d == 23: attrs = f' data-h="3" data-hoy'
+            elif m > 9 or (m == 9 and d > 23): attrs = ''
             else: attrs = f' data-h="{random.choice([0,0,1,1,1,2,2,3,4])}"'
             out.append(f'<span class="pa-year__c"{attrs}></span>')
     return '<div class="pa-year" aria-label="Horas comprometidas por día en 2026 (ejemplo)">' + ''.join(out) + '</div>'
@@ -452,7 +452,7 @@ Barra que compara el tiempo planificado con el tiempo libre del día.
 C['Aviso'] = dict(group='Avisos', height=300, sub='Elementos de «Pide atención»: conflicto, sobrecarga y regla de Finanzas',
  html='''<div style="padding:16px;display:flex;flex-direction:column;gap:10px;max-width:440px">
   <div class="pa-alert"><span class="pa-dot pa-dot--danger"></span><span class="pa-alert__title">El jueves se solapan dos citas</span><span class="pa-alert__text">Reunión (Gmail 1) y Llamada (Gmail 2), de 18:00 a 18:30.</span><div class="pa-alert__actions"><button class="pa-btn pa-btn--sm">Ver en la semana</button></div></div>
-  <div class="pa-alert"><span class="pa-dot pa-dot--attention"></span><span class="pa-alert__title">Un fondo ha caído un 5,2 %</span><span class="pa-alert__text">Desde su máximo de 30 días (2 oct). Tu regla avisa a partir del 5 %.</span><span class="pa-alert__src">Valor liquidativo del 23 oct · gestora</span><div class="pa-alert__actions"><button class="pa-btn pa-btn--sm">Crear tarea «Valorar aportación»</button><button class="pa-btn pa-btn--plain pa-btn--sm">Ajustar la regla</button></div></div>
+  <div class="pa-alert"><span class="pa-dot pa-dot--attention"></span><span class="pa-alert__title">Un fondo ha caído un 5,2 %</span><span class="pa-alert__text">Desde su máximo de 30 días (2 oct). Tu regla avisa a partir del 5 %.</span><span class="pa-alert__src">Valor liquidativo del 22 oct · gestora</span><div class="pa-alert__actions"><button class="pa-btn pa-btn--sm">Crear tarea «Valorar aportación»</button><button class="pa-btn pa-btn--plain pa-btn--sm">Ajustar la regla</button></div></div>
 </div>''',
  readme='''# Aviso
 
@@ -469,7 +469,7 @@ C['Inspector'] = dict(group='Carcasa', height=420, sub='Panel de detalle a la de
  html='''<div style="padding:12px"><aside class="pa-inspector">
   <div class="pa-label">evento</div>
   <h2 class="pa-insp__title">Ensayo</h2>
-  <div class="pa-insp__meta">Viernes 24 oct, 21:30–23:30</div>
+  <div class="pa-insp__meta">Viernes 23 oct, 21:30–23:30</div>
   <ul class="pa-insp__rows">
    <li>{i:repeat}<span>Cada viernes<small>Opcional: se puede mover si hace falta</small></span></li>
    <li><span class="pa-dot pa-dot--c2" style="margin:4px"></span><span>Gmail 2<small>Calendario por confirmar</small></span></li>
@@ -577,7 +577,7 @@ C['Carcasa'] = dict(group='Carcasa', height=600, width=1180, sub='Barra superior
   <div class="pa-shell__body">
    <nav class="pa-sidebar" aria-label="Sectores"><button class="pa-side__item" aria-current="page">{{i:sun}}Hoy<span class="pa-side__count">3</span></button><button class="pa-side__item">{{i:calendar}}Calendario</button><button class="pa-side__item">{{i:circle-check}}Tareas</button><button class="pa-side__item">{{i:trending-up}}Finanzas</button><div class="pa-side__label">cuentas</div><div class="pa-side__account"><span class="pa-dot pa-dot--c1"></span>Gmail 1</div><div class="pa-side__account"><span class="pa-dot pa-dot--c2"></span>Gmail 2</div></nav>
    <main class="pa-content">
-    <div class="pa-viewhead"><div><h1>Hoy</h1><p>Viernes, 24 de octubre</p></div><button class="pa-btn pa-btn--primary">Planificar el día</button></div>
+    <div class="pa-viewhead"><div><h1>Hoy</h1><p>Viernes, 23 de octubre</p></div><button class="pa-btn pa-btn--primary">Planificar el día</button></div>
     <ul class="pa-list">
      <li class="pa-row"><span class="pa-dot pa-dot--c1"></span><span class="pa-row__main"><span class="pa-row__title">Revisión del coche</span></span><span class="pa-row__end">10:00</span></li>
      <li class="pa-row"><span class="pa-dot pa-dot--c2"></span><span class="pa-row__main"><span class="pa-row__title">Comida familiar</span></span><span class="pa-row__end">13:30</span></li>

@@ -16,7 +16,7 @@ Construye con estas piezas: `tokens.json` (colores, tipografía, espacios, radio
 - Títulos y botones con mayúscula solo al principio: «Planificar el día». Etiquetas de sección en minúscula: «esta noche», «cuentas», «pide atención».
 - Los botones dicen lo que pasa y su alcance: «Guardar», «Mover esta vez», «Saltar esta vez», «Crear tarea «Valorar aportación»». Nunca «Aceptar» ni «OK».
 - Errores: qué ha pasado y cómo arreglarlo. «No se pudo leer Gmail 2: vuelve a conectar la cuenta en Ajustes.»
-- **Fechas**: «viernes, 24 de octubre» en títulos; «vie 24 oct» en filas y fichas; «hoy», «mañana» y «en 7 días» cuando ayudan.
+- **Fechas**: «viernes, 23 de octubre» en títulos; «vie 23 oct» en filas y fichas; «hoy», «mañana» y «en 7 días» cuando ayudan.
 - **Horas**: 24 h, «21:30»; intervalos con raya corta sin espacios, «21:30–23:30». Si una hora puede ser de mañana o de noche, se pregunta: nunca se guarda una hora ambigua.
 - **Duraciones**: «15 min», «1 h 30 min».
 - **Dinero y porcentajes**: punto de millares, coma decimal y espacio no separable antes del símbolo: «12.480,35 €», «+0,42 %». Signo menos real (−) y flecha en las variaciones: «↓ −1,10 %».

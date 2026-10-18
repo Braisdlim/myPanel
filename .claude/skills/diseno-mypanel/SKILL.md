@@ -21,7 +21,7 @@ description: Dirección visual y reglas de interfaz de myPanel. Usar antes de di
 - Rayado = opcional; sólido = fijo; punto rojo = conflicto. Cada gráfico responde a una pregunta del usuario; nada decorativo.
 - `backdrop-filter` solo en hojas y barra de pestañas (rendimiento en Android).
 - Etiquetas de sección en minúscula inicial, sin mayúsculas sostenidas ni numeraciones decorativas.
-- Horas y cifras tabulares (`pa-num`). Nunca mostrar una hora ambigua sin preguntar. Formatos: «vie 24 oct», «21:30–23:30», «1 h 30 min», «12.480,35 €», «↓ −1,10 %».
+- Horas y cifras tabulares (`pa-num`). Nunca mostrar una hora ambigua sin preguntar. Formatos: «vie 23 oct», «21:30–23:30», «1 h 30 min», «12.480,35 €», «↓ −1,10 %».
 - Iconos Lucide 1.50.0 en `currentColor`, trazo 1,75 a 16 px.
 
 ## Calidad mínima
