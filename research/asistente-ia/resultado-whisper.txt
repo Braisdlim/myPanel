@@ -1,0 +1,12 @@
+# Prueba faster-whisper 1.2.1 (CTranslate2 4.8.3), CPU int8, beam 5, idioma es — 18-10-2026
+# 10 clips de MLS español (test), 10 hablantes; «ruido 5 dB» = ruido rosa sintético a SNR 5 dB
+# Modelos: Systran/faster-whisper-{tiny,base,small} y mobiuslabsgmbh/faster-whisper-large-v3-turbo
+CPU: 4 hilos; audio: 10 clips, 140 s
+tiny             limpio      WER  24.4 %  tiempo   14.6 s  factor tiempo real 0.10  (carga 2.1 s)
+tiny             ruido 5 dB  WER  43.9 %  tiempo   19.8 s  factor tiempo real 0.14  (carga 2.1 s)
+base             limpio      WER  16.1 %  tiempo   24.5 s  factor tiempo real 0.18  (carga 5.4 s)
+base             ruido 5 dB  WER  34.4 %  tiempo   20.4 s  factor tiempo real 0.15  (carga 5.4 s)
+small            limpio      WER   8.9 %  tiempo   55.2 s  factor tiempo real 0.39  (carga 11.9 s)
+small            ruido 5 dB  WER  19.7 %  tiempo   48.1 s  factor tiempo real 0.34  (carga 11.9 s)
+large-v3-turbo   limpio      WER   4.4 %  tiempo   63.1 s  factor tiempo real 0.45  (carga 15.8 s)
+large-v3-turbo   ruido 5 dB  WER  13.3 %  tiempo   61.3 s  factor tiempo real 0.44  (carga 15.8 s)

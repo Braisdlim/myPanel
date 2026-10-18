@@ -21,7 +21,7 @@ Relacionado: D-002 (núcleo sin IA), D-010 (dictado por teclado en la fase 1), D
 - **El dictado del teclado sigue siendo lo mejor para la fase 1** (confirma D-010). Cuesta 0 € y no necesita código. En iPhone, el español de España se dicta en el propio dispositivo y sin conexión [H]. En el Mac depende del idioma y se ve en Ajustes [H]. En Windows, el dictado (Win+H) usa Azure y necesita conexión [H]. En el Honor, Gboard funciona, pero Google solo documenta el procesamiento en el dispositivo para los Pixel 6 o posteriores [H]; en otros móviles puede funcionar sin conexión, aunque Google no lo documenta [H·s].
 - **La Web Speech API no sirve como base común.** Chrome envía el audio a un servidor [H], y el modo en el dispositivo (`processLocally`) solo existe en Chrome y Edge de escritorio, no en Android [H]. En iPhone no funciona en las web apps de la pantalla de inicio (WebKit, 2021; [?] si sigue igual en iOS 27). Dentro de Tauri no es fiable: un fallo abierto en macOS desde 2023 y WebView2 sin soporte claro.
 - **Para un botón de micrófono propio (fase 3), lo más barato y sencillo es grabar el audio y enviarlo a Whisper en Cloudflare Workers AI**: 0,0005 $/min y 10 000 neuronas gratis al día, que dan para unos 214 min diarios [H + cálculo]. Cloudflare no conserva ni entrena con el audio [H] y ya es el servidor previsto (D-041). Groq (gratis hasta 8 h de audio al día) [H] y Gemini con audio directo [H] son las alternativas.
-- **Whisper en local** solo compensa en escritorio (Tauri): privado, sin conexión y gratis. En la prueba propia, el modelo base corre a 0,18× tiempo real en 4 hilos de CPU (sección 5.3). En el móvil pesa demasiado [I].
+- **Whisper en local** solo compensa en escritorio (Tauri): privado, sin conexión y gratis. En la prueba propia (4 hilos de CPU, sección 4.3), large-v3-turbo tuvo un WER de 4,4 % en limpio y 13,3 % con ruido sintético, con unos 2 s por orden de 5 s; tiny y base fallan demasiado con ruido. En el móvil pesa demasiado [I].
 
 ## 2. Web Speech API (`SpeechRecognition`)
 
@@ -114,7 +114,18 @@ WER (%) extraído de las tablas 10, 11 y 13 del PDF por posición de columna [H,
 Script: [`prueba-whisper.py`](prueba-whisper.py). Resultado: [`resultado-whisper.txt`](resultado-whisper.txt).
 Montaje: faster-whisper 1.2.1, CPU int8, `beam_size=5`, idioma fijado a `es`, 4 hilos de un Xeon a 2,1 GHz (servidor, no portátil). 10 clips de MLS español (test, CC BY 4.0) de 10 hablantes distintos, 140 s en total. Texto normalizado sin tildes ni puntuación. «Ruido 5 dB» es ruido rosa sintético a 5 dB de SNR, no ruido de calle real.
 
-RESULTADOS_PRUEBA
+| Modelo (faster-whisper) | WER limpio | WER con ruido 5 dB | Factor de tiempo real (limpio / ruido) | Una orden de 5 s tardaría | Carga del modelo |
+|---|---|---|---|---|---|
+| tiny | 24,4 % | 43,9 % | 0,10 / 0,14 | ≈ 0,5–0,7 s | 2,1 s |
+| base | 16,1 % | 34,4 % | 0,18 / 0,15 | ≈ 0,8–0,9 s | 5,4 s |
+| small | 8,9 % | 19,7 % | 0,39 / 0,34 | ≈ 1,7–2 s | 11,9 s |
+| large-v3-turbo | **4,4 %** | **13,3 %** | 0,45 / 0,44 | ≈ 2,2 s | 15,8 s |
+
+Lectura [I]:
+- Con ruido, tiny y base fallan una de cada tres palabras o más: no sirven para órdenes dichas en la calle. Small es lo mínimo aceptable; turbo, lo recomendable.
+- En 4 hilos de servidor, turbo tarda unos 2 s por orden con el modelo ya cargado; en un Mac con Metal debería ir más rápido [?, sin medir]. Cargar el modelo cuesta entre 12 y 16 s, así que hay que mantenerlo en memoria o aceptar esa espera la primera vez.
+- La tendencia coincide con el artículo de Whisper (MLS: tiny 19,2 → large-v2 4,2). Los clips son de audiolibros y el ruido es sintético, así que la cifra real en la calle será otra.
+- La «orden de 5 s» es una estimación lineal (factor × 5 s); las órdenes cortas tienen un coste fijo que no se midió [?].
 
 ### 4.4 Whisper en el navegador (transformers.js)
 
@@ -160,7 +171,7 @@ Ventajas [I]: cero código, cero coste, el usuario ya lo conoce, y el texto lleg
 | Dictado del teclado | 0 € | Buena [I]; sin benchmark [?] | iPhone: en el dispositivo [H]. Honor: [?]. Windows: Azure [H] | iPhone sí; Android [?]; Windows no | Ninguno | Todas |
 | Web Speech API | 0 € | Depende del motor [?] | Chrome: servidores de Google [H]; Safari: en el dispositivo [I] | Solo Chrome escritorio con `processLocally` | Bajo, pero con muchos casos especiales | Chrome Android y Safari en pestaña; Tauri y web app iOS dudosos |
 | Nativo (SpeechRecognizer / SpeechAnalyzer) | 0 € | Buena [?] | En el dispositivo si se fuerza [H] | Sí (tras descargar el modelo) | Alto: exige Tauri móvil o app nativa; hoy el móvil es web app (D-036) | Android e iOS |
-| whisper.cpp local (Tauri) | 0 € | Turbo y small, buenas en limpio; ver prueba | Total | Sí | Medio: plugin joven o integración propia; modelo de 180–550 MB | Mac y Windows |
+| whisper.cpp local (Tauri) | 0 € | Turbo: 4,4 % limpio y 13,3 % con ruido sintético; small: 8,9 % y 19,7 % (prueba propia) | Total | Sí | Medio: plugin joven o integración propia; modelo de 180–550 MB | Mac y Windows |
 | Whisper en navegador | 0 € | Como Whisper, según el modelo | Total | Sí | Medio-alto; 136–700 MB por dispositivo | Todas, en teoría |
 | **Cloudflare Whisper turbo** | **0 €** (≈ 214 min/día gratis) | Whisper large-v3-turbo | Sin retención ni entrenamiento [H] | No | Bajo: grabar con `MediaRecorder` y una ruta en el Worker | Todas |
 | Groq Whisper | 0 € (8 h/día) | Igual que el anterior | Sin retención por defecto [H] | No | Bajo; otra cuenta y otra clave | Todas |
@@ -178,7 +189,7 @@ Ventajas [I]: cero código, cero coste, el usuario ya lo conoce, y el texto lleg
 | Android (web app en Chrome) | Gboard o el teclado del sistema | Grabar → Cloudflare Whisper | Web Speech API de Chrome (gratis, sin servidor propio, pero el audio va a Google y no hay modo local) |
 | iPhone (web app en la pantalla de inicio) | Dictado del teclado (en el iPhone, sin conexión) | Grabar → Cloudflare Whisper | Nada nativo mientras sea web app; la Web Speech API no está disponible en web apps [H 2021] |
 | Mac (Tauri, WKWebView) | Dictado de macOS | whisper.cpp local con large-v3-turbo q5 (547 MB) o small q5 (181 MB): privado y sin conexión | Cloudflare Whisper |
-| Windows (Tauri, WebView2) | Win+H (Azure, en línea) | Cloudflare Whisper | whisper.cpp local (sin GPU, small o base según la velocidad) |
+| Windows (Tauri, WebView2) | Win+H (Azure, en línea) | Cloudflare Whisper | whisper.cpp local (sin GPU, small como mínimo: base falla demasiado con ruido) |
 
 Gemini con audio queda como **experimento opcional** para las órdenes que el parser no entienda (respeta D-002). Groq queda como **reserva** si Cloudflare falla o cambia de precio.
 
