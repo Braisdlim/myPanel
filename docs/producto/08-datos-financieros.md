@@ -20,7 +20,7 @@ Con esas condiciones hay dos vías aceptables (niveles A y B) y varias que desca
 | Vía | Qué cubre | Coste | Seguridad | Esfuerzo | Veredicto |
 |---|---|---|---|---|---|
 | **A · Importar los ficheros que tú descargas** | Todo: cuentas, tarjetas, órdenes de fondos y acciones | 0 € | Máxima: sin terceros ni credenciales; el fichero va de tu banco a tu equipo | ~5 min al mes | ✅ Base |
-| **B · PSD2 de solo lectura con Enable Banking** (modo restringido, cuentas propias) | Cuentas de pago: saldos y movimientos. **No** cubre fondos ni acciones | 0 € para cuentas propias [H FAQ de Enable Banking] | Alta: entras en la app de tu banco (SCA); el proveedor no ve tus claves; la ley solo permite leer; consentimiento con caducidad y revocable | Renovar el permiso cada 180 días como mucho | ✅ Opcional, tras una prueba |
+| **B · PSD2 de solo lectura con Enable Banking** (modo restringido, cuentas propias) | Cuentas de pago: saldos y movimientos. **No** cubre fondos ni acciones | 0 € para cuentas propias y uso personal; el número de cuentas enlazadas puede estar limitado [H condiciones de Enable Banking, 18-10-2026] | Alta: entras en la app de tu banco (SCA); el proveedor no ve tus claves; la ley solo permite leer; consentimiento con caducidad y revocable | Renovar el permiso cada 180 días como mucho | ✅ Opcional, tras una prueba |
 | C · Apps agregadoras (Fintonic, Finary…) | Varía | Gratis o de pago | Tus datos en su nube; no dan API para Pauta | — | ❌ No encaja |
 | D · API no oficial de Trade Republic (`pytr`) | Todo, incluido operar | 0 € | Guarda teléfono y PIN en un fichero; API privada de ingeniería inversa; puede violar sus condiciones; permite órdenes [H·s README y PyPI] | — | ❌ Descartada |
 | E · Rascar la web del banco con tu usuario y contraseña | Lo que veas en la web | 0 € | Compartir credenciales; frágil; choca con la SCA | — | ❌ Descartada |
@@ -45,15 +45,15 @@ Con esas condiciones hay dos vías aceptables (niveles A y B) y varias que desca
 | Entidad | Nivel A | Nivel B (PSD2) | Inversiones |
 |---|---|---|---|
 | CaixaBank | Excel de movimientos | Sí; documentado por Enable Banking [H] | No aplica |
-| MyInvestor | Excel de movimientos de la cuenta | Su PSD2 va por la plataforma de Redsys [H web de MyInvestor]; que Enable Banking la tenga está [?] | Fondos: posiciones a mano (participaciones) + valor liquidativo diario; órdenes desde Inversis |
-| Trade Republic | CSV de transacciones (desde abril de 2026) | API PSD2 oficial para proveedores con licencia, solo cuenta de efectivo [H guía TPP 2.1, julio de 2026]; que Enable Banking la tenga está [?] | Desde el CSV |
+| MyInvestor | Excel de movimientos de la cuenta | Su PSD2 va por la plataforma de Redsys [H web de MyInvestor]; en Enable Banking aparece en **beta**, 180 días [H lista pública de entidades, 18-10-2026] | Fondos: posiciones a mano (participaciones) + valor liquidativo diario; órdenes desde Inversis |
+| Trade Republic | CSV de transacciones (desde abril de 2026) | API PSD2 oficial para proveedores con licencia, solo cuenta de efectivo [H guía TPP 2.1, julio de 2026]; en Enable Banking aparece en **beta** y el consentimiento dura **90 días** [H lista pública de entidades y guía TPP, 18-10-2026] | Desde el CSV |
 
 ## 3. Valor liquidativo de los fondos (gratis)
 | Fuente | Cobertura | Coste | Pega | Veredicto |
 |---|---|---|---|---|
 | **EODHD**, plan gratuito | Tiene fondos europeos por ISIN (sufijo `.EUFUND`) [H fichas de su web] | 0 €: 20 llamadas/día, 1 año de histórico, uso personal [H página de precios] | Que el plan gratuito incluya `.EUFUND` está [?] | ✅ Primera opción, tras probar tus ISIN |
 | **Web de la gestora** | Oficial, fondo a fondo | 0 € | Un adaptador por gestora; cambian sus webs | ✅ Respaldo |
-| **CNMV** (fichero mensual con valores diarios) | Solo fondos registrados en España | 0 € | Llega con un mes de retraso; no cubre fondos irlandeses o luxemburgueses [H descripción de ficheros de la CNMV] | Solo histórico |
+| **CNMV** (fichero mensual con valores diarios) | Solo fondos registrados en España | 0 € | Fichero mensual con valores diarios [H descripción de ficheros de la CNMV]; que llegue con un mes de retraso y no cubra fondos irlandeses o luxemburgueses es [I] | Solo histórico |
 | Precio de tus propias operaciones | Tus fechas de compra | 0 € | No da el día a día | Complemento |
 | Yahoo Finance o Morningstar sin API oficial | Amplia | 0 € | Condiciones de uso; se rompe | ❌ |
 
@@ -87,3 +87,12 @@ Con 5–8 fondos, una llamada diaria por fondo cabe en las 20 gratuitas [I].
 - pytr: https://github.com/nborrmann/pytr · https://github.com/ptrstn/pytr · https://pypi.org/project/pytr/0.2.3 · https://glama.ai/mcp/servers/mwxga7ndfr
 - EODHD: https://eodhd.com/pricing · https://eodhd.com/financial-summary/IE00B3NHP925.EUFUND
 - CNMV: https://www.cnmv.es/DocPortal/Estadisticas/Descarga-Informacion-Individual/Periodicidad-Descripcion.pdf
+
+## Verificación del 18-10-2026
+Revisado otra vez en fuentes primarias (detalle en `research/almacenamiento/fuentes-finanzas.md`):
+- Enable Banking es gratis para uso personal según sus condiciones, no según el FAQ; puede limitar el número de cuentas enlazadas.
+- CaixaBank está estable (180 días); MyInvestor y Trade Republic están en beta, y Trade Republic caduca a los 90 días.
+- En bancos que usan Redsys solo cabe una sesión activa por usuario y proveedor: conectar otra app con Enable Banking podría cerrar la de Pauta [I].
+- El historial completo solo se puede leer en la primera hora tras autorizar; después, 90 días en muchos bancos.
+- Precios: EODHD gratis (20 llamadas/día) sigue siendo la primera opción; OpenFIGI (ISIN → ticker) y el BCE (tipos de cambio) funcionan gratis y los he probado; Twelve Data gratis no permite mostrar los datos y Marketstack se queda corto.
+- Tink y Salt Edge no aceptan altas abiertas; GoCardless sigue sin altas nuevas.
