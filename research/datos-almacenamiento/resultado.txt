@@ -1,0 +1,3 @@
+filas: 112.180
+tamaño de 10 años para 1 persona: 6.9 MB
+1.000 personas (estimado, ×1.000): 6.9 GB
