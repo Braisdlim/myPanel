@@ -1,0 +1,3 @@
+/* Solo el subconjunto latino (cubre el español) para que la página pese poco */
+@font-face { font-family: "Figtree Variable"; font-style: normal; font-display: swap; font-weight: 300 900; src: url("@fontsource-variable/figtree/files/figtree-latin-wght-normal.woff2") format("woff2-variations"); }
+@font-face { font-family: "Onest Variable"; font-style: normal; font-display: swap; font-weight: 100 900; src: url("@fontsource-variable/onest/files/onest-latin-wght-normal.woff2") format("woff2-variations"); }

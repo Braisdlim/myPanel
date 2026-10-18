@@ -3,7 +3,7 @@ name: revision-visual
 description: Revisión visual de pantallas de myPanel con Playwright en móvil Android y escritorio, temas oscuro y claro, y estados vacío/cargando/error/conflicto.
 ---
 
-1. Arranca la app o el prototipo en local.
+1. Arranca la app o el prototipo en local. Prototipo: `cd prototype && npx astro build`, y luego `PW_CHROMIUM=/opt/pw-browsers/chromium-1194/chrome-linux/chrome npx playwright test` (variables `COMPS`, `SCREENS`, `ESTADOS`, `THEMES`, `DEVICES`, `OUT`, `FORMAT=jpeg`).
 2. Con Playwright (Chromium ya instalado en `/opt/pw-browsers`; no ejecutes `playwright install`), captura cada pantalla en 360×800, 412×915 (táctil, `isMobile`) y 1440×900, con `colorScheme` `dark` y `light`, y con `reducedMotion: 'reduce'`.
 3. Incluye los estados: vacío, cargando, error (cuenta desconectada) y conflicto.
 4. Comprueba y anota:

@@ -1,0 +1,22 @@
+{
+  "name": "mypanel-prototipo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "capturas": "playwright test"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "9.1.0",
+    "@fontsource-variable/figtree": "5.3.0",
+    "@fontsource-variable/onest": "5.3.1",
+    "astro": "7.4.0",
+    "svelte": "5.57.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "typescript": "6.0.3"
+  }
+}
