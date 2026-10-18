@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Finanzas en Android, lista en claro</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="light" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden;">
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 20px 16px 0; display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+      <div>
+        <h1 style="margin: 0; font-size: 28px; line-height: 34px; font-weight: 600; letter-spacing: -0.015em;">Finanzas</h1>
+        <div style="font-size: 14px; line-height: 19px; color: var(--text-2);">viernes, 24 de octubre</div>
+      </div>
+      <div style="display: flex; margin-right: -12px;">
+        <button class="pa-btn pa-btn--icon" aria-label="Buscar"><svg class="pa-icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg></button>
+        <button class="pa-btn pa-btn--icon" aria-label="Más opciones"><svg class="pa-icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></button>
+      </div>
+    </div>
+
+    <div class="pa-card" style="padding: 16px;">
+      <div style="font-size: 14px; line-height: 19px; color: var(--text-2);">Patrimonio</div>
+      <div class="pa-num" style="font-size: 40px; line-height: 46px; font-weight: 300; letter-spacing: -0.02em;">48.215,30 €</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 6px;"><span class="pa-delta pa-delta--up">↑ +110,63 €</span><span class="pa-delta pa-delta--up">↑ +0,23 %</span><span style="font-size: 14px; color: var(--text-2);">hoy</span></div>
+      <div style="margin-top: 8px; font-size: 12px; line-height: 16px; color: var(--text-3);">Valores liquidativos del 23 oct · cifras de ejemplo</div>
+    </div>
+
+    <a href="#" style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 10px 14px; border-radius: 14px; background: var(--attention-soft); color: var(--text); text-decoration: none;">
+      <span class="pa-dot pa-dot--attention"></span>
+      <span style="flex: 1; font-size: 14px; line-height: 19px;"><b style="font-weight: 600;">Emergentes</b> ha caído un 5,2 % desde su máximo de 30 días</span>
+      <svg class="pa-icon" style="color: var(--text-2); transform: rotate(-90deg);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+    </a>
+
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <button style="display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--text); font: 600 17px/22px var(--font-sans);">Mis fondos<svg class="pa-icon" style="color: var(--text-3);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+      <span style="font-size: 14px; color: var(--text-3);">5 fondos</span>
+    </div>
+
+    <ul class="pa-list" style="display: flex; flex-direction: column; margin-top: -6px;">
+      <li style="display: grid; grid-template-columns: minmax(0, 1fr) 52px 100px; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line);">
+        <span style="min-width: 0;"><span style="display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Indexado mundial</span><span style="display: block; font-size: 13px; line-height: 18px; color: var(--text-2);">Renta variable</span></span>
+        <svg class="pa-spark pa-up" style="width: 52px;" viewBox="0 0 56 20" aria-hidden="true"><polyline points="0,15 8,13 16,14 24,10 32,11 40,7 48,8 56,4"></polyline></svg>
+        <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span class="pa-num" style="font-size: 15px; font-weight: 500;">21.840,11 €</span><span class="pa-delta pa-delta--up" style="min-width: 70px; justify-content: center;">↑ +0,42 %</span></span>
+      </li>
+      <li style="display: grid; grid-template-columns: minmax(0, 1fr) 52px 100px; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line);">
+        <span style="min-width: 0;"><span style="display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Indexado EE. UU.</span><span style="display: block; font-size: 13px; line-height: 18px; color: var(--text-2);">Renta variable</span></span>
+        <svg class="pa-spark pa-up" style="width: 52px;" viewBox="0 0 56 20" aria-hidden="true"><polyline points="0,16 8,14 16,15 24,11 32,9 40,10 48,6 56,5"></polyline></svg>
+        <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span class="pa-num" style="font-size: 15px; font-weight: 500;">12.305,77 €</span><span class="pa-delta pa-delta--up" style="min-width: 70px; justify-content: center;">↑ +0,61 %</span></span>
+      </li>
+      <li style="display: grid; grid-template-columns: minmax(0, 1fr) 52px 100px; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line);">
+        <span style="min-width: 0;"><span style="display: flex; align-items: center; gap: 6px; font-weight: 600;">Emergentes<span class="pa-dot pa-dot--attention"></span></span><span style="display: block; font-size: 13px; line-height: 18px; color: var(--text-2);">Renta variable · aviso</span></span>
+        <svg class="pa-spark pa-down" style="width: 52px;" viewBox="0 0 56 20" aria-hidden="true"><polyline points="0,6 8,8 16,7 24,10 32,9 40,13 48,14 56,16"></polyline></svg>
+        <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span class="pa-num" style="font-size: 15px; font-weight: 500;">4.118,40 €</span><span class="pa-delta pa-delta--down" style="min-width: 70px; justify-content: center;">↓ −1,10 %</span></span>
+      </li>
+      <li style="display: grid; grid-template-columns: minmax(0, 1fr) 52px 100px; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line);">
+        <span style="min-width: 0;"><span style="display: block; font-weight: 600;">Europa</span><span style="display: block; font-size: 13px; line-height: 18px; color: var(--text-2);">Renta variable</span></span>
+        <svg class="pa-spark pa-down" style="width: 52px;" viewBox="0 0 56 20" aria-hidden="true"><polyline points="0,9 8,8 16,10 24,9 32,11 40,10 48,12 56,12"></polyline></svg>
+        <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span class="pa-num" style="font-size: 15px; font-weight: 500;">3.960,05 €</span><span class="pa-delta pa-delta--down" style="min-width: 70px; justify-content: center;">↓ −0,27 %</span></span>
+      </li>
+      <li style="display: grid; grid-template-columns: minmax(0, 1fr) 52px 100px; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line);">
+        <span style="min-width: 0;"><span style="display: block; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Renta fija corto plazo</span><span style="display: block; font-size: 13px; line-height: 18px; color: var(--text-2);">Renta fija</span></span>
+        <svg class="pa-spark pa-up" style="width: 52px;" viewBox="0 0 56 20" aria-hidden="true"><polyline points="0,11 8,11 16,10 24,10 32,10 40,9 48,9 56,9"></polyline></svg>
+        <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px;"><span class="pa-num" style="font-size: 15px; font-weight: 500;">5.990,97 €</span><span class="pa-delta pa-delta--up" style="min-width: 70px; justify-content: center;">↑ +0,02 %</span></span>
+      </li>
+    </ul>
+    <div class="pa-label" style="font-size: 13px; line-height: 17px;">índices de referencia</div>
+    <ul class="pa-list" style="display: flex; flex-direction: column; margin-top: -8px;">
+      <li style="display: grid; grid-template-columns: minmax(0, 1fr) 52px 100px; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line);"><span style="font-weight: 500;">MSCI World</span><svg class="pa-spark pa-up" style="width: 52px;" viewBox="0 0 56 20" aria-hidden="true"><polyline points="0,14 8,13 16,13 24,10 32,10 40,8 48,8 56,5"></polyline></svg><span style="display: flex; justify-content: flex-end;"><span class="pa-delta pa-delta--up" style="min-width: 70px; justify-content: center;">↑ +0,38 %</span></span></li>
+      <li style="display: grid; grid-template-columns: minmax(0, 1fr) 52px 100px; align-items: center; gap: 12px; padding: 10px 0;"><span style="font-weight: 500;">S&amp;P 500</span><svg class="pa-spark pa-up" style="width: 52px;" viewBox="0 0 56 20" aria-hidden="true"><polyline points="0,15 8,14 16,12 24,12 32,9 40,9 48,7 56,6"></polyline></svg><span style="display: flex; justify-content: flex-end;"><span class="pa-delta pa-delta--up" style="min-width: 70px; justify-content: center;">↑ +0,57 %</span></span></li>
+    </ul>
+  </main>
+
+  <nav class="pa-tabbar" aria-label="Sectores" style="flex: none;">
+    <button class="pa-tab"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>Hoy</button>
+    <button class="pa-tab"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg>Calendario</button>
+    <button class="pa-tab--add" aria-label="Apuntar"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+    <button class="pa-tab"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="m16 9-5.5 5.5L8 12"></path></svg>Tareas</button>
+    <button class="pa-tab" aria-current="page"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg>Finanzas</button>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
