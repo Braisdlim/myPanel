@@ -8,7 +8,8 @@ body {
   font-family: var(--font-ui);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  font-weight: 450;
+  font-weight: var(--w-regular);
+  letter-spacing: .005em;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -24,7 +25,9 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(120% 60% at 50% -10%, var(--bg-glow) 0%, transparent 70%),
+    radial-gradient(60% 45% at 8% -5%, var(--glow-1) 0%, transparent 70%),
+    radial-gradient(45% 40% at 100% 20%, var(--glow-2) 0%, transparent 70%),
+    radial-gradient(60% 50% at 70% 110%, var(--glow-3) 0%, transparent 70%),
     var(--bg);
 }
 body::after {

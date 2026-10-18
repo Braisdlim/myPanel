@@ -22,8 +22,8 @@
 <style>
   .section { margin-top: var(--s6); }
   header { display: flex; justify-content: space-between; align-items: center; padding: 0 var(--s2); min-height: 32px; }
-  h3 { margin: 0; font-size: var(--fs-meta); line-height: var(--lh-meta); font-weight: 650; color: var(--text-2); display: flex; align-items: center; gap: var(--s2); }
-  .count { font-weight: 560; color: var(--text-3); }
+  h3 { margin: 0; font-size: var(--fs-meta); line-height: var(--lh-meta); font-weight: var(--w-strong); color: var(--text-2); display: flex; align-items: center; gap: var(--s2); }
+  .count { font-weight: var(--w-medium); color: var(--text-3); }
   .toggle { display: flex; align-items: center; gap: var(--s2); background: none; border: 0; padding: 0; min-height: 40px; color: inherit; }
   .chev { color: var(--text-3); display: inline-flex; transform: rotate(-90deg); transition: transform var(--t-med) var(--ease-out); }
   .chev.open { transform: none; }

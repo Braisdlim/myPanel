@@ -79,7 +79,7 @@
   .shell { min-height: 100dvh; }
   .main { max-width: 640px; margin: 0 auto; padding: var(--s4) var(--s4) calc(120px + env(safe-area-inset-bottom)); }
   .gap { margin-top: var(--s5); }
-  .page { margin: 0 0 var(--s5); padding: var(--s2) var(--s2) 0; font-size: var(--fs-display); line-height: var(--lh-display); font-weight: 720; letter-spacing: -.02em; }
+  .page { margin: 0 0 var(--s5); padding: var(--s2) var(--s2) 0; font-size: var(--fs-display); line-height: var(--lh-display); font-weight: var(--w-strong); letter-spacing: -.02em; }
   .side, .aside { display: none; }
 
   .tabbar {
@@ -90,9 +90,9 @@
     backdrop-filter: blur(18px) saturate(1.4);
     border-top: 1px solid var(--line);
   }
-  .tabbar button:not(.fab) { min-height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: none; border: 0; color: var(--text-3); font-size: 11.5px; font-weight: 600; }
+  .tabbar button:not(.fab) { min-height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: none; border: 0; color: var(--text-3); font-size: 11.5px; font-weight: var(--w-medium); }
   .tabbar button.on { color: var(--text); }
-  .fab { justify-self: center; width: 56px; height: 56px; border-radius: 18px; border: 0; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; box-shadow: 0 10px 24px -8px color-mix(in srgb, var(--accent) 60%, transparent); transition: transform var(--t-fast) var(--ease-spring); }
+  .fab { justify-self: center; width: 56px; height: 56px; border-radius: 18px; border: 0; background: var(--accent-grad); color: var(--accent-ink); display: grid; place-items: center; box-shadow: 0 10px 24px -8px color-mix(in srgb, var(--accent) 60%, transparent); transition: transform var(--t-fast) var(--ease-spring); }
   .fab:active { transform: scale(.93); }
 
   @media (min-width: 1024px) {
@@ -102,15 +102,15 @@
     .side { display: flex; flex-direction: column; gap: var(--s6); position: sticky; top: 0; height: 100dvh; padding: var(--s6) var(--s4); background: color-mix(in srgb, var(--surface-1) 55%, transparent); backdrop-filter: blur(20px); border-right: 1px solid var(--line); }
     .aside { display: block; padding: var(--s10) var(--s6) 0 0; }
     .aside :global(.section) { margin-top: 74px; }
-    .brand { margin: 0 var(--s2); font-weight: 720; letter-spacing: -.01em; }
-    .new { display: flex; align-items: center; gap: var(--s2); min-height: 44px; padding: 0 var(--s3); border-radius: var(--r-row); border: 0; background: var(--accent); color: var(--accent-ink); font-weight: 650; }
-    kbd { margin-left: auto; font: inherit; font-size: 11px; font-weight: 600; opacity: .7; }
+    .brand { margin: 0 var(--s2); font-weight: var(--w-strong); letter-spacing: -.01em; }
+    .new { display: flex; align-items: center; gap: var(--s2); min-height: 44px; padding: 0 var(--s3); border-radius: var(--r-row); border: 0; background: var(--accent-grad); color: var(--accent-ink); font-weight: var(--w-strong); }
+    kbd { margin-left: auto; font: inherit; font-size: 11px; font-weight: var(--w-medium); opacity: .7; }
     nav { display: grid; gap: 2px; }
-    nav button { display: flex; align-items: center; gap: var(--s3); min-height: 40px; padding: 0 var(--s3); border-radius: var(--r-chip); border: 0; background: none; color: var(--text-2); font-weight: 560; text-align: left; }
+    nav button { display: flex; align-items: center; gap: var(--s3); min-height: 40px; padding: 0 var(--s3); border-radius: var(--r-chip); border: 0; background: none; color: var(--text-2); font-weight: var(--w-medium); text-align: left; }
     nav button:hover { background: var(--surface-1); }
     nav button.on { background: var(--surface-3); color: var(--text); }
     .accts { margin-top: auto; display: grid; gap: var(--s3); padding: 0 var(--s2); }
-    .accts p { margin: 0; font-size: var(--fs-small); color: var(--text-3); font-weight: 600; }
+    .accts p { margin: 0; font-size: var(--fs-small); color: var(--text-3); font-weight: var(--w-medium); }
     .acct { display: grid; gap: 2px; }
     .acct small { font-size: 11.5px; color: var(--text-3); padding-left: 13px; }
   }

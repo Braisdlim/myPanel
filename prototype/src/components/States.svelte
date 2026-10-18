@@ -51,16 +51,16 @@
 
   .banner { display: grid; grid-template-columns: 28px 1fr; gap: var(--s3); padding: var(--s4); border-radius: var(--r-card); background: var(--danger-soft); border: 1px solid color-mix(in srgb, var(--danger) 25%, transparent); }
   .ic { color: var(--danger); padding-top: 1px; }
-  .b-title { margin: 0; font-weight: 620; }
+  .b-title { margin: 0; font-weight: var(--w-medium); }
   .b-text { margin: var(--s1) 0 0; font-size: var(--fs-meta); line-height: var(--lh-meta); color: var(--text-2); }
   .b-actions { display: flex; gap: var(--s3); margin-top: var(--s3); }
 
   .empty { text-align: left; padding: var(--s8) var(--s2) var(--s4); }
   .e-ic { color: var(--accent-text); display: inline-flex; }
-  .e-title { margin: var(--s3) 0 0; font-size: var(--fs-title); line-height: var(--lh-title); font-weight: 650; }
+  .e-title { margin: var(--s3) 0 0; font-size: var(--fs-title); line-height: var(--lh-title); font-weight: var(--w-strong); }
   .e-text { margin: var(--s2) 0 0; color: var(--text-2); max-width: 40ch; }
   .suggest { margin-top: var(--s4); display: flex; justify-content: space-between; align-items: center; gap: var(--s3); padding: var(--s3) var(--s3) var(--s3) var(--s4); border-radius: var(--r-row); background: var(--surface-1); border: 1px solid var(--line); }
 
-  .primary { min-height: 40px; padding: 0 var(--s4); border: 0; border-radius: var(--r-pill); background: var(--accent); color: var(--accent-ink); font-weight: 650; white-space: nowrap; }
-  .ghost { min-height: 40px; padding: 0 var(--s3); border: 0; background: none; font-weight: 600; color: var(--text-2); }
+  .primary { min-height: 40px; padding: 0 var(--s4); border: 0; border-radius: var(--r-pill); background: var(--accent-grad); color: var(--accent-ink); font-weight: var(--w-strong); white-space: nowrap; }
+  .ghost { min-height: 40px; padding: 0 var(--s3); border: 0; background: none; font-weight: var(--w-medium); color: var(--text-2); }
 </style>

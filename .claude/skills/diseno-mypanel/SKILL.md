@@ -11,8 +11,12 @@ description: Dirección visual y reglas de interfaz de myPanel. Usar antes de di
 
 ## Sistema actual
 - Tokens en `prototype/src/styles/tokens.css` (se moverán a la app). No inventes colores sueltos: usa tokens.
-- Un único acento («luz de lámpara», ámbar) para «ahora», foco y acción principal. Color de cuenta solo como punto + nombre en texto.
-- Un solo elemento con «material» (sombra, brillo, grano): la tarjeta «Lo siguiente». El resto, plano y tipográfico.
+- Dirección v2 (referencias del usuario: paneles oscuros de cristal tipo *bento*): fondo casi negro con brillos ambientales, tarjetas de cristal (borde fino + brillo superior), tarjeta «Lo siguiente» como única con degradado y luz.
+- Tipografía Outfit (alternativa Plus Jakarta Sans) con pesos ligeros: cifras grandes en 300, títulos en 400–500; nada de negritas pesadas.
+- Acento lavanda en degradado (`--accent-grad`) solo para «ahora», foco y acción principal; variante ámbar disponible. Color de cuenta solo como punto + nombre en texto.
+- Cada tarjeta: título (+ subtítulo) a la izquierda y como mucho un botón de icono a la derecha.
+- Rayado = opcional; sólido = fijo; punto rojo = conflicto. Cada gráfico responde a una pregunta del usuario; nada decorativo.
+- `backdrop-filter` solo en barra flotante y hojas (rendimiento en Android).
 - Etiquetas de sección en minúscula inicial, sin mayúsculas sostenidas ni numeraciones decorativas.
 - Horas con cifras tabulares (`.num`). Nunca mostrar una hora ambigua sin preguntar.
 

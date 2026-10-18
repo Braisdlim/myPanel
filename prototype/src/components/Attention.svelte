@@ -23,8 +23,12 @@
   .item { display: grid; grid-template-columns: 36px 1fr auto; gap: var(--s2); align-items: center; padding: 8px var(--s2) 8px var(--s1); min-height: var(--tap); }
   .ic { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 10px; color: var(--attention); background: color-mix(in srgb, var(--attention) 13%, transparent); }
   .body { display: grid; gap: 2px; min-width: 0; }
-  .title { font-weight: 520; }
+  .title { font-weight: var(--w-regular); }
   .meta { display: flex; gap: var(--s3); align-items: center; flex-wrap: wrap; font-size: var(--fs-meta); line-height: var(--lh-meta); color: var(--text-3); }
-  .act { min-height: 36px; padding: 0 var(--s3); border-radius: var(--r-pill); border: 1px solid var(--line-strong); background: none; font-size: var(--fs-meta); font-weight: 620; color: var(--text); white-space: nowrap; }
+  .act { min-height: 36px; padding: 0 var(--s3); border-radius: var(--r-pill); border: 1px solid var(--line-strong); background: none; font-size: var(--fs-meta); font-weight: var(--w-medium); color: var(--text); white-space: nowrap; }
   .act:hover { background: var(--surface-1); }
+  @container (max-width: 420px) {
+    .item { grid-template-columns: 36px 1fr; align-items: start; }
+    .act { grid-column: 2; justify-self: start; margin-top: 2px; }
+  }
 </style>

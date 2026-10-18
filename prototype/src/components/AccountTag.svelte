@@ -14,7 +14,7 @@
     gap: 6px;
     font-size: var(--fs-small);
     line-height: var(--lh-small);
-    font-weight: 560;
+    font-weight: var(--w-medium);
     color: var(--text-2);
     white-space: nowrap;
   }

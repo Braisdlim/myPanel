@@ -6,7 +6,7 @@ const cssFile = readdirSync(dir).find((f) => f.endsWith(".css"));
 const css = readFileSync(`${dir}/${cssFile}`, "utf8");
 const out = process.argv[2];
 writeFileSync(out, `<title>myPanel prototipo</title>
-<meta name="theme-color" content="#111318">
+<meta name="theme-color" content="#0c0c12">
 <style>${css}</style>
 <div id="app"></div>
 <script>${js}</script>

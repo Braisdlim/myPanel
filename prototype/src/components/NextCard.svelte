@@ -40,11 +40,11 @@
     z-index: -1;
     opacity: .55;
   }
-  .when { margin: 0; display: flex; align-items: center; gap: var(--s2); font-size: var(--fs-meta); line-height: var(--lh-meta); font-weight: 620; color: var(--accent-text); }
+  .when { margin: 0; display: flex; align-items: center; gap: var(--s2); font-size: var(--fs-meta); line-height: var(--lh-meta); font-weight: var(--w-medium); color: var(--accent-text); }
   .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
-  h2 { margin: var(--s3) 0 0; font-size: 26px; line-height: 30px; font-weight: 680; letter-spacing: -.01em; }
+  h2 { margin: var(--s3) 0 0; font-size: 26px; line-height: 30px; font-weight: var(--w-strong); letter-spacing: -.01em; }
   .lg h2 { font-size: 34px; line-height: 38px; letter-spacing: -.02em; }
-  .time { margin: var(--s1) 0 0; font-size: var(--fs-title); line-height: var(--lh-title); color: var(--text-2); font-weight: 520; }
+  .time { margin: var(--s1) 0 0; font-size: var(--fs-title); line-height: var(--lh-title); color: var(--text-2); font-weight: var(--w-regular); }
   .foot { margin-top: var(--s4); display: flex; justify-content: space-between; align-items: center; gap: var(--s3); flex-wrap: wrap; }
   .place { display: inline-flex; gap: 6px; align-items: center; font-size: var(--fs-meta); color: var(--text-2); }
   .note { margin: var(--s3) 0 0; padding-top: var(--s3); border-top: 1px solid var(--line); font-size: var(--fs-meta); line-height: var(--lh-meta); color: var(--text-2); }

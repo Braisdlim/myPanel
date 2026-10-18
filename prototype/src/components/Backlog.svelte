@@ -1,11 +1,14 @@
 <script>
+  let { bare = false } = $props();
   import { backlog, freeSlots } from "../data/demo.js";
   import { showToast } from "../lib/ui.svelte.js";
 </script>
 
 <div class="backlog">
-  <h1>Pendientes</h1>
-  <p class="lead">Cosas apuntadas sin fecha. Elige cuándo hacerlas o déjalas aquí.</p>
+  {#if !bare}
+    <h1>Pendientes</h1>
+    <p class="lead">Cosas apuntadas sin fecha. Elige cuándo hacerlas o déjalas aquí.</p>
+  {/if}
   <ul>
     {#each backlog as b, i}
       <li>
@@ -25,15 +28,15 @@
 </div>
 
 <style>
-  h1 { margin: 0; padding: var(--s2) var(--s2) 0; font-size: var(--fs-display); line-height: var(--lh-display); font-weight: 720; letter-spacing: -.02em; }
+  h1 { margin: 0; padding: var(--s2) var(--s2) 0; font-size: var(--fs-display); line-height: var(--lh-display); font-weight: var(--w-strong); letter-spacing: -.02em; }
   .lead { margin: var(--s2) var(--s2) var(--s6); color: var(--text-2); }
   ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s2); }
   li { display: grid; gap: 2px; padding: var(--s3) var(--s3); border-radius: var(--r-row); }
-  li:first-child { background: var(--surface-1); border: 1px solid var(--line); }
-  .t { font-weight: 560; }
+  li:first-child { background: var(--surface-3); border: 1px solid var(--line); }
+  .t { font-weight: var(--w-medium); }
   .age { font-size: var(--fs-meta); color: var(--text-3); }
   .prop { margin: var(--s3) 0 0; font-size: var(--fs-meta); color: var(--text-2); }
   .acts { display: flex; gap: var(--s2); margin-top: var(--s3); flex-wrap: wrap; }
-  .primary { min-height: 40px; padding: 0 var(--s4); border: 0; border-radius: var(--r-pill); background: var(--accent); color: var(--accent-ink); font-weight: 650; }
-  .ghost { min-height: 40px; padding: 0 var(--s3); border: 0; background: none; color: var(--text-2); font-weight: 600; }
+  .primary { min-height: 40px; padding: 0 var(--s4); border: 0; border-radius: var(--r-pill); background: var(--accent-grad); color: var(--accent-ink); font-weight: var(--w-strong); }
+  .ghost { min-height: 40px; padding: 0 var(--s3); border: 0; background: none; color: var(--text-2); font-weight: var(--w-medium); }
 </style>

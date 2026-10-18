@@ -45,7 +45,7 @@
   .check:active .circle { transform: scale(.88); }
   .checked .circle { background: var(--ok); border-color: var(--ok); color: var(--bg); }
   .body { display: flex; flex-direction: column; gap: 2px; padding: 10px 0; min-width: 0; }
-  .title { font-weight: 500; transition: color var(--t-med) var(--ease-out); }
+  .title { font-weight: var(--w-regular); transition: color var(--t-med) var(--ease-out); }
   .checked .title { color: var(--text-3); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--text-3) 60%, transparent); }
   .meta { font-size: var(--fs-meta); line-height: var(--lh-meta); color: var(--text-3); }
 </style>

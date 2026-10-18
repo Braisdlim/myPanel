@@ -1,14 +1,18 @@
 // Estado compartido del prototipo. Se inicializa desde la URL para poder capturar cada combinación.
 
 export const COMPOSITIONS = [
-  { id: "a", name: "A · Lista serena" },
-  { id: "b", name: "B · Línea del día" },
-  { id: "c", name: "C · Foco" },
+  { id: "v2", name: "v2 · Propuesta" },
+  { id: "a", name: "v1 A · Lista serena" },
+  { id: "b", name: "v1 B · Línea del día" },
+  { id: "c", name: "v1 C · Foco" },
 ];
 export const SCREENS = [
   { id: "hoy", name: "Hoy" },
+  { id: "planificar", name: "Planificar (v2)" },
+  { id: "pendientes", name: "Pendientes" },
   { id: "captura", name: "Captura" },
   { id: "busqueda", name: "Búsqueda" },
+  { id: "sistema", name: "Sistema de diseño (v2)" },
 ];
 export const STATES = [
   { id: "normal", name: "Normal" },
@@ -19,11 +23,12 @@ export const STATES = [
 ];
 
 export const ui = $state({
-  comp: "a",
+  comp: "v2",
   screen: "hoy",
   estado: "normal",
   theme: "system",
-  font: "figtree",
+  font: "outfit",
+  accent: "lavanda",
   bare: false,
   expanded: null,
   completed: [],
@@ -35,7 +40,7 @@ export function initFromUrl() {
   const hostTheme = document.documentElement.getAttribute("data-theme");
   if (hostTheme === "dark" || hostTheme === "light") ui.theme = hostTheme;
   const p = new URLSearchParams(location.search);
-  for (const k of ["comp", "screen", "estado", "theme", "font"]) if (p.get(k)) ui[k] = p.get(k);
+  for (const k of ["comp", "screen", "estado", "theme", "font", "accent"]) if (p.get(k)) ui[k] = p.get(k);
   ui.bare = p.has("bare");
 }
 
@@ -45,7 +50,8 @@ export function syncUrl() {
   p.set("screen", ui.screen);
   p.set("estado", ui.estado);
   if (ui.theme !== "system") p.set("theme", ui.theme);
-  if (ui.font !== "figtree") p.set("font", ui.font);
+  if (ui.font !== "outfit") p.set("font", ui.font);
+  if (ui.accent !== "lavanda") p.set("accent", ui.accent);
   if (ui.bare) p.set("bare", "");
   try { history.replaceState(null, "", `?${p}`); } catch {}
 }
@@ -54,8 +60,10 @@ export function applyTheme() {
   const root = document.documentElement;
   if (ui.theme === "system") root.removeAttribute("data-theme");
   else root.setAttribute("data-theme", ui.theme);
-  if (ui.font === "figtree") root.removeAttribute("data-font");
+  if (ui.font === "outfit") root.removeAttribute("data-font");
   else root.setAttribute("data-font", ui.font);
+  if (ui.accent === "lavanda") root.removeAttribute("data-accent");
+  else root.setAttribute("data-accent", ui.accent);
   try { localStorage.setItem("mypanel-theme", ui.theme); } catch {}
 }
 

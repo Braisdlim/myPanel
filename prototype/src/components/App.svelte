@@ -3,6 +3,14 @@
   import CompA from "./CompA.svelte";
   import CompB from "./CompB.svelte";
   import CompC from "./CompC.svelte";
+  import Shell from "./v2/Shell.svelte";
+  import Hoy2 from "./v2/Hoy.svelte";
+  import Planificar from "./v2/Planificar.svelte";
+  import Sistema from "./v2/Sistema.svelte";
+  import PageHead from "./v2/PageHead.svelte";
+  import Card from "./v2/Card.svelte";
+  import Backlog from "./Backlog.svelte";
+  import Search from "./Search.svelte";
   import Sheet from "./Sheet.svelte";
   import Capture from "./Capture.svelte";
   import Conflict from "./Conflict.svelte";
@@ -32,19 +40,27 @@
 </script>
 
 {#if ready}
-  {#if ui.comp === "a"}<CompA />{:else if ui.comp === "b"}<CompB />{:else}<CompC />{/if}
+  {#if ui.comp === "v2"}
+    <Shell>
+      {#if ui.screen === "planificar"}<Planificar />
+      {:else if ui.screen === "pendientes"}<PageHead title="Pendientes" subtitle="Sin fecha. Elige cuándo o déjalo aquí." /><Card><Backlog bare /></Card>
+      {:else if ui.screen === "busqueda"}<PageHead title="Buscar" subtitle="En tus dos cuentas de Drive y Gmail" /><Card><Search /></Card>
+      {:else if ui.screen === "sistema"}<Sistema />
+      {:else}<Hoy2 />{/if}
+    </Shell>
+  {:else if ui.comp === "a"}<CompA />{:else if ui.comp === "b"}<CompB />{:else}<CompC />{/if}
 
   {#if ui.screen === "captura"}
     {#if ui.comp === "c"}
       <Sheet label="Apuntar o buscar" variant="palette" onclose={() => go("hoy")}><Palette mode="apuntar" initial={SAMPLE} /></Sheet>
     {:else}
-      <Sheet label="Apuntar algo" title="Apuntar algo" onclose={() => go("hoy")}><Capture variant={ui.comp} initial={SAMPLE} onsaved={() => go("hoy")} /></Sheet>
+      <Sheet label="Apuntar algo" title="Apuntar algo" onclose={() => go("hoy")}><Capture variant={ui.comp === "v2" ? "b" : ui.comp} initial={SAMPLE} onsaved={() => go("hoy")} /></Sheet>
     {/if}
   {:else if ui.screen === "busqueda" && ui.comp === "c"}
     <Sheet label="Apuntar o buscar" variant="palette" onclose={() => go("hoy")}><Palette mode="buscar" /></Sheet>
   {/if}
 
-  {#if ui.estado === "conflicto" && ui.screen === "hoy"}
+  {#if ui.estado === "conflicto" && (ui.screen === "hoy" || ui.screen === "planificar")}
     <Sheet label="Conflicto el viernes" onclose={() => (ui.estado = "normal")}><Conflict /></Sheet>
   {/if}
 
@@ -56,7 +72,7 @@
   .toast {
     position: fixed; left: 50%; bottom: calc(150px + env(safe-area-inset-bottom)); transform: translateX(-50%);
     z-index: 70; max-width: min(92vw, 460px); padding: 12px 18px; border-radius: 14px;
-    background: var(--text); color: var(--bg); font-size: var(--fs-meta); font-weight: 600; line-height: var(--lh-meta);
+    background: var(--text); color: var(--bg); font-size: var(--fs-meta); font-weight: var(--w-medium); line-height: var(--lh-meta);
     box-shadow: 0 12px 30px rgb(0 0 0 / .35); animation: t var(--t-med) var(--ease-out);
   }
   @keyframes t { from { opacity: 0; transform: translate(-50%, 8px); } }

@@ -23,7 +23,7 @@
           {/each}
           {#if d.items.some((i) => i.conflict)}
             <button class="clash-btn" onclick={() => (ui.estado = "conflicto")}>
-              <Icon name="alert" size={14} />Se solapan. Ver opciones
+              <Icon name="alert" size={14} />Se solapan
             </button>
           {/if}
         {/if}
@@ -41,17 +41,17 @@
   .day { display: grid; grid-template-columns: 52px 1fr; gap: var(--s3); padding: 10px var(--s2); border-top: 1px solid var(--line); }
   .day:first-child { border-top: 0; }
   .date { display: flex; flex-direction: column; line-height: 1.1; }
-  .wd { font-size: var(--fs-small); color: var(--text-3); font-weight: 600; }
-  .dn { font-size: 18px; font-weight: 650; }
+  .wd { font-size: var(--fs-small); color: var(--text-3); font-weight: var(--w-medium); }
+  .dn { font-size: 18px; font-weight: var(--w-strong); }
   .items { display: grid; gap: 6px; min-width: 0; }
   .it { display: flex; align-items: center; gap: var(--s2); min-width: 0; font-size: var(--fs-meta); line-height: var(--lh-meta); }
-  .t { color: var(--text-2); font-weight: 560; flex: none; }
-  .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 520; }
+  .t { color: var(--text-2); font-weight: var(--w-medium); flex: none; }
+  .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--w-regular); }
   .opt { color: var(--text-3); display: inline-flex; }
   .it.clash .t { color: var(--danger); }
   .nothing { font-size: var(--fs-meta); color: var(--text-3); padding-top: 2px; }
-  .clash-btn { justify-self: start; display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 var(--s3); border-radius: var(--r-pill); border: 0; background: var(--danger-soft); color: var(--danger); font-size: var(--fs-small); font-weight: 650; }
+  .clash-btn { justify-self: start; display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 0 var(--s3); border-radius: var(--r-pill); border: 0; background: var(--danger-soft); color: var(--danger); font-size: var(--fs-small); font-weight: var(--w-strong); }
   .later { margin: var(--s3) 0 0; display: grid; grid-template-columns: 20px 1fr; gap: var(--s2); padding: var(--s3); border-radius: var(--r-row); background: var(--surface-1); font-size: var(--fs-meta); line-height: var(--lh-meta); color: var(--text-2); }
-  .later strong { color: var(--text); font-weight: 620; }
+  .later strong { color: var(--text); font-weight: var(--w-medium); }
   .later :global(svg) { margin-top: 1px; color: var(--text-3); }
 </style>

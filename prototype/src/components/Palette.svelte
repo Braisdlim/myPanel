@@ -22,7 +22,7 @@
 <style>
   .palette { display: grid; gap: var(--s4); padding-right: 44px; }
   .modes { display: inline-grid; grid-template-columns: 1fr 1fr; justify-self: start; padding: 3px; border-radius: var(--r-pill); background: var(--surface-3); }
-  .modes button { min-height: 36px; padding: 0 var(--s5); border-radius: var(--r-pill); border: 0; background: none; font-weight: 620; color: var(--text-2); font-size: var(--fs-meta); }
+  .modes button { min-height: 36px; padding: 0 var(--s5); border-radius: var(--r-pill); border: 0; background: none; font-weight: var(--w-medium); color: var(--text-2); font-size: var(--fs-meta); }
   .modes button.on { background: var(--text); color: var(--bg); }
   .palette :global(.capture), .palette :global(.search) { margin-right: -44px; }
 </style>

@@ -46,7 +46,7 @@
   .grabber { display: block; width: 36px; height: 5px; border-radius: 3px; background: var(--line-strong); margin: 0 auto var(--s3); }
   .head { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); min-height: 40px; margin-bottom: var(--s2); }
   .head.floating { position: absolute; top: var(--s5); right: var(--s4); margin: 0; z-index: 1; }
-  .title { margin: 0; font-size: var(--fs-title); line-height: var(--lh-title); font-weight: 680; }
+  .title { margin: 0; font-size: var(--fs-title); line-height: var(--lh-title); font-weight: var(--w-strong); }
   .close { margin-left: auto; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--surface-3); color: var(--text-2); display: grid; place-items: center; }
 
   @media (min-width: 1024px) {

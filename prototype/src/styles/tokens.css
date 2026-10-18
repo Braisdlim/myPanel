@@ -1,109 +1,145 @@
-/* Tokens del prototipo. Primera propuesta: se fijan tras la revisión visual. */
+/* Tokens v2 del prototipo: cristal oscuro, tipografía geométrica ligera, acento lavanda.
+   Mismos nombres que v1 para que los componentes compartidos se adapten solos. */
 
 :root {
   /* Espaciado: retícula de 4 px */
   --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px; --s6: 24px; --s8: 32px; --s10: 40px; --s14: 56px;
 
-  /* Radios según jerarquía: cuanto más elevado, más redondeado */
-  --r-chip: 8px; --r-row: 12px; --r-card: 18px; --r-sheet: 26px; --r-pill: 999px;
+  /* Radios por jerarquía */
+  --r-chip: 10px; --r-row: 14px; --r-card: 24px; --r-sheet: 28px; --r-pill: 999px;
 
   /* Movimiento */
   --ease-out: cubic-bezier(.2, .8, .2, 1);
   --ease-spring: cubic-bezier(.32, 1.24, .52, 1);
   --t-fast: 140ms; --t-med: 220ms; --t-slow: 320ms;
 
-  /* Tipografía */
-  --font-ui: "Figtree Variable", system-ui, sans-serif;
-  --fs-display: 32px; --lh-display: 36px;
-  --fs-title: 19px; --lh-title: 24px;
-  --fs-body: 16px; --lh-body: 22px;
-  --fs-meta: 13.5px; --lh-meta: 18px;
+  /* Tipografía: pesos ligeros, jerarquía por tamaño */
+  --font-ui: "Outfit Variable", system-ui, sans-serif;
+  --fs-hero: 34px; --lh-hero: 40px;
+  --fs-display: 30px; --lh-display: 36px;
+  --fs-number: 40px; --lh-number: 44px;
+  --fs-title: 17px; --lh-title: 22px;
+  --fs-body: 15.5px; --lh-body: 22px;
+  --fs-meta: 13px; --lh-meta: 18px;
   --fs-small: 12px; --lh-small: 16px;
+  --w-light: 300; --w-regular: 400; --w-medium: 500; --w-strong: 560;
 
   --tap: 48px;
-  color-scheme: dark;
-}
 
-/* Oscuro: dirección principal */
-:root, :root[data-theme="dark"] {
-  --bg: #111318;
-  --bg-glow: #1b1d25;
-  --surface-1: #181a20;
-  --surface-2: #20232b;
-  --surface-3: #2a2d36;
+  /* Oscuro (dirección principal) */
+  --bg: #0c0c12;
+  --glow-1: rgb(150 120 255 / .22);
+  --glow-2: rgb(236 140 230 / .10);
+  --glow-3: rgb(90 150 255 / .10);
+  --surface-1: rgb(255 255 255 / .035);   /* tarjeta de cristal */
+  --surface-2: #16151e;                   /* hojas y diálogos (opaco) */
+  --surface-3: rgb(255 255 255 / .07);    /* control, fila activa */
+  --card-highlight: linear-gradient(180deg, rgb(255 255 255 / .055), rgb(255 255 255 / 0) 42%);
   --line: rgb(255 255 255 / .07);
   --line-strong: rgb(255 255 255 / .12);
-  --text: #eceef1;
-  --text-2: #a5a9b2;
-  --text-3: #858a94;
-  --accent: #f1b862;          /* «luz de lámpara»: ahora, foco, acción principal */
-  --accent-ink: #1d1608;      /* texto sobre el acento */
-  --accent-text: #f1b862;
-  --accent-soft: rgb(241 184 98 / .14);
-  --personal: #82bbf6;
-  --secundaria: #c5aaf3;
-  --ok: #8fcd9e;
-  --attention: #eaa660;
-  --danger: #f28c80;
-  --danger-soft: rgb(242 140 128 / .13);
-  --scrim: rgb(5 6 9 / .62);
-  --shadow-hero: 0 1px 0 rgb(255 255 255 / .06) inset, 0 24px 48px -18px rgb(0 0 0 / .7), 0 4px 12px rgb(0 0 0 / .35);
-  --shadow-sheet: 0 -1px 0 rgb(255 255 255 / .06) inset, 0 -24px 60px rgb(0 0 0 / .55);
-  --hero-fill: linear-gradient(160deg, #2a2c35 0%, #1f2128 55%, #1b1d23 100%);
-  --grain-opacity: .05;
+  --text: #f3f2f8;
+  --text-2: #aeacbd;
+  --text-3: #9d9bae;
+  --accent: #b9a3ff;
+  --accent-grad: linear-gradient(135deg, #cdbdff 0%, #a37fff 55%, #e49cf3 100%);
+  --accent-ink: #170f2c;
+  --accent-text: #c4b2ff;
+  --accent-soft: rgb(185 163 255 / .14);
+  --personal: #7cc8f8;
+  --secundaria: #fdba74;
+  --ok: #7fd6a4;
+  --attention: #f4d06f;
+  --danger: #ff7a85;
+  --danger-soft: rgb(255 122 133 / .12);
+  --scrim: rgb(4 4 8 / .6);
+  --shadow-card: 0 1px 0 rgb(255 255 255 / .05) inset, 0 20px 40px -24px rgb(0 0 0 / .8);
+  --shadow-hero: 0 1px 0 rgb(255 255 255 / .08) inset, 0 30px 60px -28px rgb(80 50 180 / .55);
+  --shadow-sheet: 0 -1px 0 rgb(255 255 255 / .06) inset, 0 -30px 80px rgb(0 0 0 / .6);
+  --hero-fill: linear-gradient(150deg, rgb(185 163 255 / .16) 0%, rgb(255 255 255 / .04) 45%, rgb(228 156 243 / .06) 100%);
+  --hatch: repeating-linear-gradient(135deg, rgb(255 255 255 / .14) 0 2px, transparent 2px 7px);
+  --grain-opacity: .04;
   color-scheme: dark;
 }
 
+/* Claro */
 :root[data-theme="light"] {
-  --bg: #f4f5f7;
-  --bg-glow: #ffffff;
-  --surface-1: #ffffff;
+  --bg: #f3f2f8;
+  --glow-1: rgb(160 130 255 / .22);
+  --glow-2: rgb(240 150 230 / .14);
+  --glow-3: rgb(110 170 255 / .14);
+  --surface-1: rgb(255 255 255 / .68);
   --surface-2: #ffffff;
-  --surface-3: #eceef2;
-  --line: rgb(20 24 34 / .08);
-  --line-strong: rgb(20 24 34 / .14);
-  --text: #1a1c21;
-  --text-2: #565b65;
-  --text-3: #686d77;
-  --accent: #f1b862;
-  --accent-ink: #2a1c05;
-  --accent-text: #9a5f0c;
-  --accent-soft: rgb(241 184 98 / .22);
-  --personal: #2a74c7;
-  --secundaria: #7b55c4;
-  --ok: #2a7c43;
-  --attention: #96550a;
-  --danger: #c2412f;
-  --danger-soft: rgb(194 65 47 / .09);
-  --scrim: rgb(30 34 44 / .28);
-  --shadow-hero: 0 1px 0 rgb(255 255 255 / .9) inset, 0 22px 44px -20px rgb(30 40 60 / .28), 0 3px 10px rgb(30 40 60 / .07);
-  --shadow-sheet: 0 -18px 50px rgb(30 40 60 / .16);
-  --hero-fill: linear-gradient(160deg, #ffffff 0%, #fbfbfc 60%, #f6f7f9 100%);
-  --grain-opacity: .035;
+  --surface-3: rgb(24 18 50 / .055);
+  --card-highlight: linear-gradient(180deg, rgb(255 255 255 / .7), rgb(255 255 255 / 0) 40%);
+  --line: rgb(24 18 50 / .07);
+  --line-strong: rgb(24 18 50 / .13);
+  --text: #17151f;
+  --text-2: #55526a;
+  --text-3: #66637a;
+  --accent: #8f6cf2;
+  --accent-grad: linear-gradient(135deg, #7b5cea 0%, #6e4be0 55%, #9b45bb 100%);
+  --accent-ink: #ffffff;
+  --accent-text: #6a49d6;
+  --accent-soft: rgb(143 108 242 / .13);
+  --personal: #1f78ba;
+  --secundaria: #b45d0c;
+  --ok: #217446;
+  --attention: #855f00;
+  --danger: #c0344a;
+  --danger-soft: rgb(192 52 74 / .08);
+  --scrim: rgb(30 24 60 / .22);
+  --shadow-card: 0 1px 0 rgb(255 255 255 / .9) inset, 0 18px 36px -24px rgb(60 40 140 / .28);
+  --shadow-hero: 0 1px 0 rgb(255 255 255 / .9) inset, 0 30px 60px -30px rgb(110 70 230 / .4);
+  --shadow-sheet: 0 -20px 60px rgb(40 30 90 / .18);
+  --hero-fill: linear-gradient(150deg, rgb(169 139 255 / .2) 0%, rgb(255 255 255 / .75) 45%, rgb(240 160 230 / .14) 100%);
+  --hatch: repeating-linear-gradient(135deg, rgb(24 18 50 / .16) 0 2px, transparent 2px 7px);
+  --grain-opacity: .03;
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    --bg: #f4f5f7; --bg-glow: #ffffff; --surface-1: #ffffff; --surface-2: #ffffff; --surface-3: #eceef2;
-    --line: rgb(20 24 34 / .08); --line-strong: rgb(20 24 34 / .14);
-    --text: #1a1c21; --text-2: #565b65; --text-3: #686d77;
-    --accent: #f1b862; --accent-ink: #2a1c05; --accent-text: #9a5f0c; --accent-soft: rgb(241 184 98 / .22);
-    --personal: #2a74c7; --secundaria: #7b55c4; --ok: #2a7c43; --attention: #96550a; --danger: #c2412f; --danger-soft: rgb(194 65 47 / .09);
-    --scrim: rgb(30 34 44 / .28);
-    --shadow-hero: 0 1px 0 rgb(255 255 255 / .9) inset, 0 22px 44px -20px rgb(30 40 60 / .28), 0 3px 10px rgb(30 40 60 / .07);
-    --shadow-sheet: 0 -18px 50px rgb(30 40 60 / .16);
-    --hero-fill: linear-gradient(160deg, #ffffff 0%, #fbfbfc 60%, #f6f7f9 100%);
-    --grain-opacity: .035;
+    --bg: #f3f2f8;
+    --glow-1: rgb(160 130 255 / .22); --glow-2: rgb(240 150 230 / .14); --glow-3: rgb(110 170 255 / .14);
+    --surface-1: rgb(255 255 255 / .68); --surface-2: #ffffff; --surface-3: rgb(24 18 50 / .055);
+    --card-highlight: linear-gradient(180deg, rgb(255 255 255 / .7), rgb(255 255 255 / 0) 40%);
+    --line: rgb(24 18 50 / .07); --line-strong: rgb(24 18 50 / .13);
+    --text: #17151f; --text-2: #55526a; --text-3: #66637a;
+    --accent: #8f6cf2; --accent-grad: linear-gradient(135deg, #7b5cea 0%, #6e4be0 55%, #9b45bb 100%);
+    --accent-ink: #ffffff; --accent-text: #6a49d6; --accent-soft: rgb(143 108 242 / .13);
+    --personal: #1f78ba; --secundaria: #b45d0c; --ok: #217446; --attention: #855f00; --danger: #c0344a; --danger-soft: rgb(192 52 74 / .08);
+    --scrim: rgb(30 24 60 / .22);
+    --shadow-card: 0 1px 0 rgb(255 255 255 / .9) inset, 0 18px 36px -24px rgb(60 40 140 / .28);
+    --shadow-hero: 0 1px 0 rgb(255 255 255 / .9) inset, 0 30px 60px -30px rgb(110 70 230 / .4);
+    --shadow-sheet: 0 -20px 60px rgb(40 30 90 / .18);
+    --hero-fill: linear-gradient(150deg, rgb(169 139 255 / .2) 0%, rgb(255 255 255 / .75) 45%, rgb(240 160 230 / .14) 100%);
+    --hatch: repeating-linear-gradient(135deg, rgb(24 18 50 / .16) 0 2px, transparent 2px 7px);
+    --grain-opacity: .03;
     color-scheme: light;
   }
 }
 
-:root[data-font="onest"] { --font-ui: "Onest Variable", system-ui, sans-serif; }
+/* Variante de acento ámbar (para comparar con la v1) */
+:root[data-accent="ambar"] {
+  --accent: #f1c27d;
+  --accent-grad: linear-gradient(135deg, #f7d9a4 0%, #efb35f 60%, #f39a6b 100%);
+  --accent-ink: #231705;
+  --accent-text: #f3c98a;
+  --accent-soft: rgb(241 194 125 / .14);
+  --glow-1: rgb(240 180 100 / .14);
+  --glow-2: rgb(255 140 110 / .07);
+  --secundaria: #c4b5fd;
+  --attention: #f4d06f;
+}
+:root[data-accent="ambar"][data-theme="light"] {
+  --accent: #d99a3d; --accent-ink: #2a1a03; --accent-text: #8c560a; --secundaria: #6d4fd1; --attention: #7f5a00;
+}
+
+:root[data-font="jakarta"] { --font-ui: "Plus Jakarta Sans Variable", system-ui, sans-serif; }
 :root[data-font="system"] { --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
 
 @media (min-width: 1024px) {
-  :root { --fs-display: 34px; --lh-display: 40px; }
+  :root { --fs-hero: 40px; --lh-hero: 46px; --fs-display: 32px; --lh-display: 38px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

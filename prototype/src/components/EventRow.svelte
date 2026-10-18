@@ -59,12 +59,12 @@
     border-radius: var(--r-row);
   }
   .main:hover { background: color-mix(in srgb, var(--surface-1) 70%, transparent); }
-  .time { display: flex; flex-direction: column; font-size: var(--fs-meta); line-height: var(--lh-meta); font-weight: 600; padding-top: 2px; }
-  .end { color: var(--text-3); font-weight: 500; }
+  .time { display: flex; flex-direction: column; font-size: var(--fs-meta); line-height: var(--lh-meta); font-weight: var(--w-medium); padding-top: 2px; }
+  .end { color: var(--text-3); font-weight: var(--w-regular); }
   .body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-  .title { font-weight: 560; }
+  .title { font-weight: var(--w-medium); }
   .meta { display: flex; gap: var(--s3); align-items: center; flex-wrap: wrap; }
-  .kind { display: inline-flex; gap: 4px; align-items: center; font-size: var(--fs-small); color: var(--text-2); font-weight: 520; }
+  .kind { display: inline-flex; gap: 4px; align-items: center; font-size: var(--fs-small); color: var(--text-2); font-weight: var(--w-regular); }
   .chev { color: var(--text-3); padding-top: 3px; transition: transform var(--t-med) var(--ease-out); }
   .open .chev { transform: rotate(180deg); }
   .past .title, .past .time { color: var(--text-3); }
@@ -73,6 +73,6 @@
   .note { color: var(--text); }
   .src { color: var(--text-3); }
   .actions { display: flex; gap: var(--s4); flex-wrap: wrap; margin-top: var(--s1); }
-  .link { color: var(--accent-text); text-decoration: none; font-weight: 600; min-height: 32px; display: inline-flex; align-items: center; }
-  .ghost { background: none; border: 0; color: var(--text); font-weight: 600; padding: 0; min-height: 32px; }
+  .link { color: var(--accent-text); text-decoration: none; font-weight: var(--w-medium); min-height: 32px; display: inline-flex; align-items: center; }
+  .ghost { background: none; border: 0; color: var(--text); font-weight: var(--w-medium); padding: 0; min-height: 32px; }
 </style>
