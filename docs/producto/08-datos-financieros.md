@@ -1,6 +1,6 @@
 # Datos financieros: cómo recogerlos gratis y con seguridad
 
-Fecha: 18-10-2026. Estado: **propuesta, pendiente de tu revisión**.
+Fecha: 18-10-2026. Estado: **documentado y aplazado** por decisión del usuario: no se implementa todavía. Mientras tanto, las aportaciones se registran confirmándolas a mano (ver D-029).
 Entidades: MyInvestor, Trade Republic y CaixaBank. Objetivo: patrimonio, inversiones, en qué se gasta y avisos de bajadas.
 
 Etiquetas: [H] comprobado en fuente primaria · [H·r] vía resumen · [H·s] fuente secundaria · [I] inferencia · [P] propuesta · [?] por comprobar.

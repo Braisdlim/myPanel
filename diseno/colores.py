@@ -14,13 +14,15 @@ T = {  # nombre: (oscuro, claro, uso)
  'text':         ('#F2F3F5', '#16171B', 'Texto principal sobre bg, sidebar, surface, raised y los fondos suaves.'),
  'text-2':       ('#A6A9B3', '#565963', 'Texto secundario: detalle de una fila, subtítulos, etiquetas de campos. Sobre bg, sidebar, surface y raised.'),
  'text-3':       ('#8E919C', '#62656F', 'Texto terciario: horas de la rejilla, etiquetas de sección, marcadores de posición. Sobre bg, sidebar, surface y raised.'),
- 'accent':       ('#B7A2FF', '#6A4BDB', 'El único acento: «ahora», foco, selección y la acción principal. Texto y marcas sobre bg, sidebar y surface.'),
+ 'accent':       ('#B7A2FF', '#6A4BDB', 'El único acento: «ahora», foco, selección, la acción principal y el gráfico mientras se inspecciona un punto. Texto y marcas sobre bg, sidebar y surface.'),
  'on-accent':    ('#16102E', '#FFFFFF', 'Texto e iconos sobre un relleno accent (botón principal, ficha activa).'),
  'accent-soft':  ('#B7A2FF29', '#6A4BDB1A', 'Fondo de la selección en la barra lateral y de las partes reconocidas en la captura; el texto encima es text.'),
  'focus':        ('{accent}', '{accent}', 'Anillo de foco de 2 px; supera 3:1 sobre todas las superficies.'),
- 'gain':         ('#5FD08F', '#19723F', 'Subidas y ganancias; siempre con signo + y flecha ↑. Sobre bg, surface y gain-soft.'),
+ 'gain':         ('#5FD08F', '#19723F', 'Subidas y ganancias; siempre con signo + y flecha ↑. Línea y relleno del gráfico cuando el periodo sube. Sobre bg, surface y gain-soft.'),
+ 'on-gain':      ('#08261A', '#FFFFFF', 'Texto de la píldora sólida de subida (lista de Finanzas, como Bolsa).'),
  'gain-soft':    ('#5FD08F24', '#19723F1A', 'Fondo de la píldora de variación positiva y de las celdas positivas de la cuadrícula anual.'),
- 'loss':         ('#FF7F7F', '#C42F38', 'Bajadas y pérdidas; siempre con signo − y flecha ↓. Sobre bg, surface y loss-soft.'),
+ 'loss':         ('#FF7F7F', '#C42F38', 'Bajadas y pérdidas; siempre con signo − y flecha ↓. Línea y relleno del gráfico cuando el periodo baja. Sobre bg, surface y loss-soft.'),
+ 'on-loss':      ('#3A0A10', '#FFFFFF', 'Texto de la píldora sólida de bajada.'),
  'loss-soft':    ('#FF7F7F24', '#C42F381A', 'Fondo de la píldora de variación negativa y de las celdas negativas.'),
  'danger':       ('{loss}', '{loss}', 'Conflictos de agenda (punto) y acciones que borran. Siempre acompañado de texto.'),
  'attention':    ('#F2CC6B', '#8A5E00', 'Avisos de «Pide atención»: sobrecarga, reglas de Finanzas. Punto o icono con texto.'),
@@ -61,7 +63,7 @@ for g in ('bg', 'sidebar', 'surface'): PAIRS += [('accent', g, None, 4.5)]
 PAIRS += [('on-accent', 'accent', None, 4.5), ('text', 'accent-soft', 'sidebar', 4.5), ('text', 'accent-soft', 'surface', 4.5)]
 for s in ('gain', 'loss', 'attention', 'cuenta-1', 'cuenta-2'):
     for g in ('bg', 'surface'): PAIRS.append((s, g, None, 4.5))
-PAIRS += [('gain', 'gain-soft', 'surface', 4.5), ('loss', 'loss-soft', 'surface', 4.5), ('text', 'attention-soft', 'surface', 4.5),
+PAIRS += [('on-gain', 'gain', None, 4.5), ('on-loss', 'loss', None, 4.5), ('gain', 'gain-soft', 'surface', 4.5), ('loss', 'loss-soft', 'surface', 4.5), ('text', 'attention-soft', 'surface', 4.5),
           ('text', 'cuenta-1-soft', 'surface', 4.5), ('text', 'cuenta-2-soft', 'surface', 4.5)]
 for g in ('surface', 'raised', 'bg'): PAIRS.append(('border-control', g, None, 3.0))
 for g in ('bg', 'sidebar', 'surface', 'raised'): PAIRS.append(('focus', g, None, 3.0))

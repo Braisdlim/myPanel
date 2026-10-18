@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Añadir fondo o ETF en el Mac</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="position: relative; width: 1440px; height: 900px; box-sizing: border-box; display: grid; grid-template-rows: 52px minmax(0, 1fr); background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 14px; line-height: 20px; overflow: hidden;">
+  <header style="display: flex; align-items: center; gap: 12px; padding: 0 14px; background: var(--sidebar); border-bottom: 1px solid var(--line);">
+    <div style="display: flex; gap: 8px; width: 218px;"><span style="width: 12px; height: 12px; border-radius: 50%; background: var(--line-strong);"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: var(--line-strong);"></span><span style="width: 12px; height: 12px; border-radius: 50%; background: var(--line-strong);"></span></div>
+  </header>
+  <div style="display: grid; grid-template-columns: 232px 340px minmax(0, 1fr);">
+    <div style="background: var(--sidebar); border-right: 1px solid var(--line);"></div>
+    <div style="border-right: 1px solid var(--line);"></div>
+    <div></div>
+  </div>
+  <div class="pa-scrim" style="position: absolute; inset: 52px 0 0 0;"></div>
+
+  <section role="dialog" aria-label="Añadir fondo o ETF" style="position: absolute; left: 50%; top: 52px; transform: translateX(-50%); width: 640px; box-sizing: border-box; padding: 22px 24px 20px; border-radius: 0 0 var(--radius-xl) var(--radius-xl); background: var(--surface); box-shadow: var(--shadow-menu); display: flex; flex-direction: column; gap: 16px;">
+    <div>
+      <h2 style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 600; letter-spacing: -0.01em;">Añadir fondo o ETF</h2>
+      <p style="margin: 2px 0 0; font-size: 12.5px; line-height: 17px; color: var(--text-2);">Elige a qué aportas cada mes para seguir cómo va.</p>
+    </div>
+
+    <div class="pa-search" style="height: 36px; box-shadow: inset 0 0 0 1px var(--border-control), 0 0 0 2px var(--focus); color: var(--text);"><svg class="pa-icon" style="color: var(--text-3);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><span>msci world</span><span style="flex: none; color: var(--text-3); font-size: 12px;">3 resultados · busca por nombre o ISIN</span></div>
+
+    <ul class="pa-list" role="listbox" aria-label="Resultados" style="display: flex; flex-direction: column; gap: 2px; margin-top: -6px;">
+      <li role="option" aria-selected="true" style="display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 9px 12px; border-radius: 10px; background: var(--accent-soft);">
+        <span style="width: 16px; height: 16px; border-radius: 50%; background: var(--accent); box-shadow: inset 0 0 0 4px var(--surface), 0 0 0 1.5px var(--accent);"></span>
+        <span style="min-width: 0;"><span style="display: block; font-weight: 600;">Indexado MSCI World, clase A</span><span style="display: block; font-size: 12px; line-height: 16px; color: var(--text-2);">[ISIN] · [gestora] · EUR</span></span>
+        <span class="pa-chip" style="height: 22px; cursor: default;">Fondo</span>
+      </li>
+      <li role="option" aria-selected="false" style="display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 9px 12px; border-radius: 10px;">
+        <span style="width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--border-control);"></span>
+        <span style="min-width: 0;"><span style="display: block; font-weight: 600;">ETF MSCI World, acumulación</span><span style="display: block; font-size: 12px; line-height: 16px; color: var(--text-2);">[ISIN] · [bolsa] · EUR</span></span>
+        <span class="pa-chip" style="height: 22px; cursor: default;">ETF</span>
+      </li>
+      <li role="option" aria-selected="false" style="display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 9px 12px; border-radius: 10px;">
+        <span style="width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--border-control);"></span>
+        <span style="min-width: 0;"><span style="display: block; font-weight: 600;">Indexado MSCI World ESG</span><span style="display: block; font-size: 12px; line-height: 16px; color: var(--text-2);">[ISIN] · [gestora] · EUR</span></span>
+        <span class="pa-chip" style="height: 22px; cursor: default;">Fondo</span>
+      </li>
+    </ul>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 14px; border-top: 1px solid var(--line);">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-weight: 600;">Aportación mensual</span>
+        <button role="switch" aria-checked="true" aria-label="Aportación mensual" style="position: relative; width: 40px; height: 24px; padding: 0; border: 0; border-radius: var(--radius-pill); background: var(--accent); cursor: pointer;"><span style="position: absolute; top: 3px; left: 19px; width: 18px; height: 18px; border-radius: 50%; background: var(--on-accent);"></span></button>
+      </div>
+      <div style="display: grid; grid-template-columns: 120px 96px minmax(0, 1fr); gap: 12px;">
+        <label style="display: flex; flex-direction: column; gap: 6px;"><span class="pa-label">importe</span><input class="pa-field pa-num" value="200 €"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px;"><span class="pa-label">día del mes</span><input class="pa-field pa-num" value="5"></label>
+        <div style="display: flex; flex-direction: column; gap: 6px;"><span class="pa-label">desde</span><div class="pa-seg" role="group" aria-label="Dónde aportas" style="display: flex;"><button aria-pressed="true" style="flex: 1; white-space: nowrap; padding: 0 8px;">MyInvestor</button><button aria-pressed="false" style="flex: 1; white-space: nowrap; padding: 0 8px;">Trade Republic</button><button aria-pressed="false" style="flex: 0 0 auto; white-space: nowrap; padding: 0 12px;">Otro</button></div></div>
+      </div>
+      <div style="display: grid; grid-template-columns: 228px minmax(0, 1fr); gap: 12px; align-items: end;">
+        <label style="display: flex; flex-direction: column; gap: 6px;"><span class="pa-label">participaciones que ya tienes</span><input class="pa-field pa-num" value="0"></label>
+        <span style="font-size: 12px; line-height: 16px; color: var(--text-3); padding-bottom: 8px;">Opcional. Cuando conectemos tus datos, se rellenará solo.</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="pa-label">aviso</span>
+        <span class="pa-chip" style="cursor: default;">Cae un 5&nbsp;% desde su máximo de 30 días</span>
+        <button class="pa-btn pa-btn--plain pa-btn--sm">Cambiar</button>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border-radius: 12px; background: var(--raised); font-size: 12.5px; line-height: 17px; color: var(--text-2);">
+      <svg class="pa-icon" style="color: var(--text-3); margin-top: 1px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg>
+      <span>Cada <b style="color: var(--text); font-weight: 500;">día 5</b>: aportar <b class="pa-num" style="color: var(--text); font-weight: 500;">200&nbsp;€</b> a <b style="color: var(--text); font-weight: 500;">Indexado MSCI World</b> desde MyInvestor. Te pregunto ese día si se hizo y lo sumo a «Aportado»; nada se compra desde Pauta.</span>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; gap: 8px;">
+      <button class="pa-btn">Cancelar</button>
+      <button class="pa-btn pa-btn--primary">Añadir a Mis fondos</button>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

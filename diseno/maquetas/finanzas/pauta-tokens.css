@@ -16,8 +16,10 @@
   --accent-soft: #B7A2FF29;
   --focus: var(--accent);
   --gain: #5FD08F;
+  --on-gain: #08261A;
   --gain-soft: #5FD08F24;
   --loss: #FF7F7F;
+  --on-loss: #3A0A10;
   --loss-soft: #FF7F7F24;
   --danger: var(--loss);
   --attention: #F2CC6B;
@@ -55,8 +57,10 @@
   --accent-soft: #6A4BDB1A;
   --focus: var(--accent);
   --gain: #19723F;
+  --on-gain: #FFFFFF;
   --gain-soft: #19723F1A;
   --loss: #C42F38;
+  --on-loss: #FFFFFF;
   --loss-soft: #C42F381A;
   --danger: var(--loss);
   --attention: #8A5E00;

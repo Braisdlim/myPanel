@@ -2,7 +2,7 @@
 
 Píldora con el cambio de un valor: flecha, signo y cifra.
 
-**Clases**: `pa-delta` + `pa-delta--up` (`gain` sobre `gain-soft`), `--down` (`loss` sobre `loss-soft`) o `--flat` (`text-2` sobre `hover`).
+**Clases**: `pa-delta` + `pa-delta--up` (`gain` sobre `gain-soft`), `--down` (`loss` sobre `loss-soft`) o `--flat` (`text-2` sobre `hover`). Añade `pa-delta--solid` para la versión de relleno (`on-gain` sobre `gain`, `on-loss` sobre `loss`): es la de las listas de Finanzas, como las píldoras de Bolsa.
 
 **Qué pones tú**: el texto completo con flecha y signo: «↑ +0,42 %», «↓ −1,10 %». Usa el signo menos real (−), coma decimal y espacio antes de % y €.
 

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Añadir fondo o ETF en Android</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden;">
+  <div class="pa-scrim" style="height: 44px; flex: none;"></div>
+  <section class="pa-sheet" role="dialog" aria-label="Añadir fondo o ETF" style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 14px; padding-top: 8px; overflow: hidden;">
+    <div class="pa-sheet__grabber" style="margin-bottom: 0;"></div>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin: -4px -12px 0;">
+      <button class="pa-btn pa-btn--icon" aria-label="Cerrar"><svg class="pa-icon" style="width: 20px; height: 20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button>
+      <h2 class="pa-sheet__title" style="font-size: 18px; line-height: 24px;">Añadir fondo o ETF</h2>
+      <span style="width: 48px;"></span>
+    </div>
+
+    <div class="pa-search" style="height: 48px; font-size: 16px; box-shadow: inset 0 0 0 1px var(--border-control), 0 0 0 2px var(--focus); color: var(--text);"><svg class="pa-icon" style="width: 20px; height: 20px; color: var(--text-3);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><span>msci world</span></div>
+
+    <ul class="pa-list" role="listbox" aria-label="Resultados" style="display: flex; flex-direction: column; margin-top: -4px;">
+      <li role="option" aria-selected="true" style="display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 56px; padding: 6px 12px; border-radius: 12px; background: var(--accent-soft);">
+        <span style="width: 18px; height: 18px; border-radius: 50%; background: var(--accent); box-shadow: inset 0 0 0 4px var(--surface), 0 0 0 1.5px var(--accent);"></span>
+        <span style="min-width: 0;"><span style="display: block; font-weight: 600;">Indexado MSCI World, clase A</span><span style="display: block; font-size: 13px; line-height: 18px; color: var(--text-2);">[ISIN] · [gestora]</span></span>
+        <span class="pa-chip" style="height: 26px; cursor: default;">Fondo</span>
+      </li>
+      <li role="option" aria-selected="false" style="display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 12px; min-height: 56px; padding: 6px 12px;">
+        <span style="width: 18px; height: 18px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--border-control);"></span>
+        <span style="min-width: 0;"><span style="display: block; font-weight: 600;">ETF MSCI World, acumulación</span><span style="display: block; font-size: 13px; line-height: 18px; color: var(--text-2);">[ISIN] · [bolsa]</span></span>
+        <span class="pa-chip" style="height: 26px; cursor: default;">ETF</span>
+      </li>
+    </ul>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 12px; border-top: 1px solid var(--line);">
+      <div style="display: flex; align-items: center; justify-content: space-between; min-height: 44px;">
+        <span style="font-weight: 600;">Aportación mensual</span>
+        <button role="switch" aria-checked="true" aria-label="Aportación mensual" style="position: relative; width: 48px; height: 28px; padding: 0; border: 0; border-radius: var(--radius-pill); background: var(--accent);"><span style="position: absolute; top: 3px; left: 23px; width: 22px; height: 22px; border-radius: 50%; background: var(--on-accent);"></span></button>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+        <label style="display: flex; flex-direction: column; gap: 6px;"><span class="pa-label" style="font-size: 13px;">importe</span><input class="pa-field pa-num" value="200 €"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px;"><span class="pa-label" style="font-size: 13px;">día del mes</span><input class="pa-field pa-num" value="5"></label>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;"><span class="pa-label" style="font-size: 13px;">desde</span><div class="pa-seg" role="group" aria-label="Dónde aportas" style="display: flex;"><button aria-pressed="true" style="flex: 1; white-space: nowrap; padding: 0 8px;">MyInvestor</button><button aria-pressed="false" style="flex: 1; white-space: nowrap; padding: 0 8px;">Trade Republic</button><button aria-pressed="false" style="flex: 0 0 auto; padding: 0 12px;">Otro</button></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <span class="pa-chip" style="cursor: default;">Aviso: cae un 5&nbsp;% en 30 días</span>
+        <button class="pa-btn pa-btn--plain pa-btn--sm">Cambiar</button>
+      </div>
+    </div>
+
+    <p style="margin: 0; padding: 12px 14px; border-radius: 12px; background: var(--raised); font-size: 14px; line-height: 19px; color: var(--text-2);">Cada <b style="color: var(--text); font-weight: 500;">día 5</b>: aportar <b class="pa-num" style="color: var(--text); font-weight: 500;">200&nbsp;€</b> desde MyInvestor. Te pregunto ese día si se hizo; nada se compra desde Pauta.</p>
+
+    <button class="pa-btn pa-btn--primary" style="margin-top: auto; width: 100%;">Añadir a Mis fondos</button>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

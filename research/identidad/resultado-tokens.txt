@@ -26,6 +26,8 @@ oscuro cuenta-1        sobre bg                      9.90  mín 4.5  OK
 oscuro cuenta-1        sobre surface                 9.16  mín 4.5  OK
 oscuro cuenta-2        sobre bg                      9.83  mín 4.5  OK
 oscuro cuenta-2        sobre surface                 9.10  mín 4.5  OK
+oscuro on-gain         sobre gain                    8.37  mín 4.5  OK
+oscuro on-loss         sobre loss                    6.98  mín 4.5  OK
 oscuro gain            sobre gain-soft/surface       7.00  mín 4.5  OK
 oscuro loss            sobre loss-soft/surface       5.76  mín 4.5  OK
 oscuro text            sobre attention-soft/surface 12.17  mín 4.5  OK
@@ -68,6 +70,8 @@ claro  cuenta-1        sobre bg                      4.98  mín 4.5  OK
 claro  cuenta-1        sobre surface                 5.47  mín 4.5  OK
 claro  cuenta-2        sobre bg                      4.93  mín 4.5  OK
 claro  cuenta-2        sobre surface                 5.41  mín 4.5  OK
+claro  on-gain         sobre gain                    5.97  mín 4.5  OK
+claro  on-loss         sobre loss                    5.51  mín 4.5  OK
 claro  gain            sobre gain-soft/surface       5.17  mín 4.5  OK
 claro  loss            sobre loss-soft/surface       4.72  mín 4.5  OK
 claro  text            sobre attention-soft/surface 16.05  mín 4.5  OK

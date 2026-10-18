@@ -47,9 +47,10 @@ Cada pieza toma un comportamiento de una app de referencia; el aspecto (color, t
 | Decisión | Referencia | Qué se toma | Qué cambia |
 |---|---|---|---|
 | Fila con minigráfico y variación (`Fila`, `Minigrafico`, `Variacion`) | Bolsa de Apple | Lista de seguimiento | Fecha del valor liquidativo en el detalle |
-| Píldora de variación con flecha (`Variacion`) | Parqet, Copilot Money | Píldora de color con flecha | Flecha y signo siempre, por accesibilidad |
+| Píldora de variación con flecha (`Variacion`) | Bolsa de Apple, Parqet | Píldora sólida en las listas | Flecha y signo siempre, por accesibilidad; texto con contraste 4,5:1 |
 | Periodos y variación entre dos fechas (`Grafico`) | Bolsa de Apple | 1S · 1M · 3M · 1A · Todo y arrastrar sobre el gráfico | Mismo `Segmentado` que las escalas del Calendario |
-| Comparación con un índice (`Grafico`) | Copilot Money, getquin, Parqet | Línea de referencia en el mismo gráfico | Discontinua y en gris; solo la cartera en acento |
+| Color por periodo (`Grafico`) | Bolsa de Apple | Verde si sube, rojo si baja, contra la línea punteada del inicio; degradado; color neutro al inspeccionar | El neutro es nuestro acento |
+| Comparación con un índice (`Grafico`) | Copilot Money, getquin, Parqet | Línea de referencia en el mismo gráfico | Discontinua y en gris |
 | Cifra principal con fecha (`Cifra`) | Finary, Parqet | Patrimonio en euros grande | Siempre con fecha y fuente |
 | Cuadrícula de rentabilidad (`MapaAnual`) | getquin | Rentabilidad por periodo en celdas de color | Por meses y con el mismo dibujo que el año del Calendario |
 | Bandeja de avisos (`Aviso`) | Fintonic | Cada aviso con motivo e importe | Reglas propias; explica, nunca recomienda |

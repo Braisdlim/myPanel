@@ -30,6 +30,7 @@ Construye con estas piezas: `tokens.json` (colores, tipografía, espacios, radio
 - **Texto**: `text` principal, `text-2` detalle y subtítulos, `text-3` horas de rejilla, etiquetas y marcadores. Los tres superan 4,5:1 sobre `bg`, `sidebar`, `surface` y `raised` en los dos temas.
 - **Un solo acento**, `accent` (lavanda plana, sin degradados ni brillos): «ahora» (línea y nodo), selección (`accent-soft`), foco (`focus`) y la acción principal (relleno `accent` con texto `on-accent`). Nunca para decorar ni para la opción elegida de un segmentado.
 - **Semánticos**, aparte del acento: `gain` y `loss` (siempre con flecha y signo, porque verde y rojo se confunden con algunos daltonismos), `attention` (sobrecarga, reglas) y `danger` (conflictos y borrar). Cada uno con su fondo `-soft`.
+- **Gráficos financieros, como Bolsa**: la línea y su degradado son `gain` si el periodo elegido sube y `loss` si baja, medido contra la línea punteada del valor de partida; mientras se inspecciona un punto, el gráfico pasa a `accent`. En las listas de Finanzas la variación va en píldora sólida (`pa-delta--solid`, texto `on-gain`/`on-loss`).
 - **Cuentas**: `cuenta-1` (cielo) y `cuenta-2` (melocotón). Solo como punto, barra de evento o nombre; el texto sobre `cuenta-1-soft` y `cuenta-2-soft` va en `text`.
 - **Mapa anual**: `heat-0`…`heat-4`, una sola escala del acento.
 - **Lo opcional** (ensayo, rutinas que se pueden mover) va rayado con `hatch` y borde discontinuo; lo fijo, sólido; un conflicto, punto `danger`.

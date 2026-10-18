@@ -9,7 +9,7 @@ La pieza básica de toda lista: inicio, título con detalle y un valor al final.
 **Variantes por sector**
 - Tarea: casilla + título + lista o «Algún día» + duración estimada.
 - Evento: punto de cuenta + título + «opcional · cada viernes · Gmail 2» + hora.
-- Fondo: nombre + fecha del valor + minigráfico + variación.
+- Fondo: nombre + tipo y aportación mensual + minigráfico + valor con `Variacion` sólida debajo (como la lista de Bolsa).
 
 **No**: más de un valor al final; texto de dos líneas en el título; iconos de colores distintos por fila.
 
