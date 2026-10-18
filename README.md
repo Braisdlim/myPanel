@@ -1,10 +1,11 @@
 # myPanel
 
-Aplicación personal y privada tipo «secretaria»: reúne compromisos, tareas, correos y documentos de varias cuentas, ayuda a decidir cuándo hacer las cosas y ejecuta gestiones con supervisión. Ordenador y Android.
+**Pauta** (repositorio myPanel): aplicación personal y privada tipo «secretaria»: reúne compromisos, tareas, correos y documentos de varias cuentas, ayuda a decidir cuándo hacer las cosas y ejecuta gestiones con supervisión. Ordenador y Android.
 
-**Estado**: etapa D1, definición del producto (diseño visual aparcado). Empieza por [docs/producto](docs/producto/README.md).
+**Estado**: sistema de diseño v1 publicado ([diseno/](diseno/README.md)); siguiente paso, tres pantallas clave en código. Producto en [docs/producto](docs/producto/README.md).
 
 ## Documentación
+- [Sistema de diseño de Pauta](diseno/README.md)
 - [Referencias visuales por sector](docs/referencias/README.md)
 - [Definición del producto: visión, sectores, comparativa, arquitectura y plan](docs/producto/README.md)
 - [Fase 0 — investigación y propuesta](docs/fase-0/investigacion-y-propuesta.md)

@@ -1,0 +1,37 @@
+<!-- @dsCard height=288 -->
+<div class="cover">
+  <svg class="art" viewBox="480 0 480 288" width="480" height="288" aria-hidden="true">
+    <!-- bloques: accent 370×56, cuenta-1 330×56, heat-2 250×56, cuenta-2 130×56 (+ punto accent r=26, separado space-3)
+         disposición: pila escalonada de líneas, como las tres líneas de la marca; la de «ahora» arriba y en acento
+         patrón: rayas diagonales cuenta-2 recortadas en una píldora (fila «literal motif»: el rayado de lo opcional en la rejilla de tiempo)
+         escalas: alto 56 = 7×space-2, separación space-3 (12), rx = radius-pill → mitad del lado corto (28 y 20), paso de raya 10 -->
+    <defs><clipPath id="opt"><rect x="520" y="232" width="200" height="40" rx="20"/></clipPath></defs>
+    <rect class="accent" x="520" y="28" width="370" height="56" rx="28"/>
+    <circle class="accent" cx="928" cy="56" r="26"/>
+    <rect class="c1" x="600" y="96" width="330" height="56" rx="28"/>
+    <rect class="tint" x="520" y="164" width="250" height="56" rx="28"/>
+    <rect class="c2" x="782" y="164" width="130" height="56" rx="28"/>
+    <g clip-path="url(#opt)" class="stripes">
+      <line x1="510" y1="282" x2="570" y2="222"/><line x1="530" y1="282" x2="590" y2="222"/><line x1="550" y1="282" x2="610" y2="222"/>
+      <line x1="570" y1="282" x2="630" y2="222"/><line x1="590" y1="282" x2="650" y2="222"/><line x1="610" y1="282" x2="670" y2="222"/>
+      <line x1="630" y1="282" x2="690" y2="222"/><line x1="650" y1="282" x2="710" y2="222"/><line x1="670" y1="282" x2="730" y2="222"/>
+      <line x1="690" y1="282" x2="750" y2="222"/><line x1="710" y1="282" x2="770" y2="222"/>
+    </g>
+    <rect class="edge" x="520.75" y="232.75" width="198.5" height="38.5" rx="19.25"/>
+  </svg>
+  <div class="name">Pauta</div>
+  <div class="tag">Tu día, tus dos cuentas y tu dinero, en una sola app tranquila.</div>
+</div>
+<style>
+  .cover { position: relative; width: 960px; height: 288px; background: var(--bg); overflow: hidden; }
+  .art { position: absolute; right: 0; top: 0; }
+  .accent { fill: var(--accent); }
+  .c1 { fill: var(--cuenta-1); }
+  .c2 { fill: var(--cuenta-2); }
+  .tint { fill: var(--heat-2); }
+  .stripes line { stroke: var(--cuenta-2); stroke-width: 4; }
+  .edge { fill: none; stroke: var(--cuenta-2); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .name { position: absolute; left: 40px; bottom: 64px; max-width: 440px; font-family: var(--font-sans); font-size: 112px; line-height: .92; font-weight: 600; letter-spacing: -0.035em; font-variation-settings: "opsz" 32; color: var(--text); }
+  .tag { position: absolute; left: 42px; bottom: 32px; max-width: 440px; font-family: var(--font-sans); font-size: 14px; line-height: 20px; color: var(--text-2); }
+</style>
+<script>/* Portada estática. */</script>

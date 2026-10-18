@@ -1,0 +1,121 @@
+/* Pauta — generated from tokens.json */
+@font-face { font-family: "Inter Variable"; src: url("fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+:root, [data-theme="dark"] {
+  --bg: #0E0F13;
+  --sidebar: #131419;
+  --surface: #17181D;
+  --raised: #202128;
+  --hover: #FFFFFF0D;
+  --line: #FFFFFF14;
+  --line-strong: #FFFFFF24;
+  --border-control: #6E717C;
+  --text: #F2F3F5;
+  --text-2: #A6A9B3;
+  --text-3: #8E919C;
+  --accent: #B7A2FF;
+  --on-accent: #16102E;
+  --accent-soft: #B7A2FF29;
+  --focus: var(--accent);
+  --gain: #5FD08F;
+  --gain-soft: #5FD08F24;
+  --loss: #FF7F7F;
+  --loss-soft: #FF7F7F24;
+  --danger: var(--loss);
+  --attention: #F2CC6B;
+  --attention-soft: #F2CC6B1F;
+  --cuenta-1: #6CC4F5;
+  --cuenta-1-soft: #6CC4F529;
+  --cuenta-2: #F7A86E;
+  --cuenta-2-soft: #F7A86E29;
+  --heat-0: #1D1E25;
+  --heat-1: #2C2944;
+  --heat-2: #423874;
+  --heat-3: #7963CC;
+  --heat-4: #B7A2FF;
+  --hatch: #FFFFFF24;
+  --scrim: #04050899;
+  --shadow-card: 0 0 0 1px #FFFFFF0F;
+  --shadow-menu: 0 0 0 1px #FFFFFF1A, 0 16px 40px #00000080;
+  --shadow-sheet: 0 -1px 0 #FFFFFF14, 0 -24px 60px #00000099;
+  color-scheme: dark;
+}
+[data-theme="light"] {
+  --bg: #F4F4F6;
+  --sidebar: #ECECEF;
+  --surface: #FFFFFF;
+  --raised: #FFFFFF;
+  --hover: #14161E0A;
+  --line: #14161E17;
+  --line-strong: #14161E29;
+  --border-control: #8A8D97;
+  --text: #16171B;
+  --text-2: #565963;
+  --text-3: #62656F;
+  --accent: #6A4BDB;
+  --on-accent: #FFFFFF;
+  --accent-soft: #6A4BDB1A;
+  --focus: var(--accent);
+  --gain: #19723F;
+  --gain-soft: #19723F1A;
+  --loss: #C42F38;
+  --loss-soft: #C42F381A;
+  --danger: var(--loss);
+  --attention: #8A5E00;
+  --attention-soft: #8A5E0014;
+  --cuenta-1: #0A6FA6;
+  --cuenta-1-soft: #0A6FA61A;
+  --cuenta-2: #A8520E;
+  --cuenta-2-soft: #A8520E1A;
+  --heat-0: #E9E9EE;
+  --heat-1: #E2DBFA;
+  --heat-2: #C7B8F5;
+  --heat-3: #9C85EA;
+  --heat-4: #6A4BDB;
+  --hatch: #14161E24;
+  --scrim: #14161E4D;
+  --shadow-card: 0 0 0 1px #14161E14, 0 1px 2px #14161E0F;
+  --shadow-menu: 0 0 0 1px #14161E14, 0 16px 40px #14161E29;
+  --shadow-sheet: 0 -1px 0 #14161E14, 0 -24px 60px #14161E26;
+  color-scheme: light;
+}
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+  --sidebar-width: 232px;
+  --inspector-width: 300px;
+  --toolbar-height: 52px;
+  --row-height: 36px;
+  --row-height-movil: 52px;
+  --tap: 48px;
+  --tabbar-height: 64px;
+  --hour-height: 48px;
+  --font-sans: "Inter Variable", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-teclas: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.cifra { font-family: var(--font-sans); font-size: 34px; line-height: 40px; font-weight: 300; letter-spacing: -0.02em; font-variation-settings: "opsz" 32; }
+.titulo-1 { font-family: var(--font-sans); font-size: 24px; line-height: 30px; font-weight: 600; letter-spacing: -0.015em; font-variation-settings: "opsz" 28; }
+.titulo-2 { font-family: var(--font-sans); font-size: 17px; line-height: 22px; font-weight: 600; letter-spacing: -0.01em; }
+.titulo-3 { font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 600; }
+.cuerpo { font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 400; }
+.cuerpo-medio { font-family: var(--font-sans); font-size: 14px; line-height: 20px; font-weight: 500; }
+.secundario { font-family: var(--font-sans); font-size: 12.5px; line-height: 17px; font-weight: 400; }
+.etiqueta { font-family: var(--font-sans); font-size: 11.5px; line-height: 15px; font-weight: 500; letter-spacing: 0.01em; }
+.mini { font-family: var(--font-sans); font-size: 11px; line-height: 14px; font-weight: 500; }
+.cifra-movil { font-family: var(--font-sans); font-size: 40px; line-height: 46px; font-weight: 300; letter-spacing: -0.02em; font-variation-settings: "opsz" 32; }
+.titulo-1-movil { font-family: var(--font-sans); font-size: 28px; line-height: 34px; font-weight: 600; letter-spacing: -0.015em; font-variation-settings: "opsz" 28; }
+.titulo-2-movil { font-family: var(--font-sans); font-size: 20px; line-height: 26px; font-weight: 600; letter-spacing: -0.01em; }
+.cuerpo-movil { font-family: var(--font-sans); font-size: 16px; line-height: 22px; font-weight: 400; }
+.secundario-movil { font-family: var(--font-sans); font-size: 14px; line-height: 19px; font-weight: 400; }
+.etiqueta-movil { font-family: var(--font-sans); font-size: 13px; line-height: 17px; font-weight: 500; letter-spacing: 0.01em; }

@@ -9,16 +9,19 @@ description: Dirección visual y reglas de interfaz de myPanel. Usar antes de di
 - Móvil Android (Honor 600 Pro, ~412 px de ancho CSS) y escritorio diseñados a la vez.
 - Poca información al principio; los detalles se amplían al tocar.
 
-## Sistema actual
-- Tokens en `prototype/src/styles/tokens.css` (se moverán a la app). No inventes colores sueltos: usa tokens.
-- Dirección v2 (referencias del usuario: paneles oscuros de cristal tipo *bento*): fondo casi negro con brillos ambientales, tarjetas de cristal (borde fino + brillo superior), tarjeta «Lo siguiente» como única con degradado y luz.
-- Tipografía Outfit (alternativa Plus Jakarta Sans) con pesos ligeros: cifras grandes en 300, títulos en 400–500; nada de negritas pesadas.
-- Acento lavanda en degradado (`--accent-grad`) solo para «ahora», foco y acción principal; variante ámbar disponible. Color de cuenta solo como punto + nombre en texto.
+## Sistema actual: Pauta v1 (aprobado por el usuario el 18-10-2026)
+- **Fuente única**: `diseno/sistema/` (guía en `README.md`, valores en `tokens.json`, `tokens.css` generado, componentes `pa-*` en `components/bundle.css`). Revisión en vivo: https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m. Lee la guía y la ficha del componente antes de tocar una pantalla. No inventes colores, tamaños ni radios sueltos: usa tokens; si falta uno, añádelo a `tokens.json`, comprueba el contraste con `diseno/colores.py` y regenera `tokens.css`.
+- Nombre de la app: **Pauta** (el repositorio sigue llamándose myPanel). Icono: tres líneas del día, la de «ahora» en acento.
+- Estilo nativo de Mac, plano y tranquilo: superficies grafito separadas por bordes finos, **sin cristal, degradados ni resplandores** (la dirección v2 queda sustituida).
+- Tipografía **Inter Variable** con tamaño óptico, alojada con la app; pesos 300 (cifras), 400 (texto), 500 (controles), 600 (títulos), nunca más.
+- **Un solo acento, lavanda plana** (`accent`): «ahora», foco, selección y acción principal. Semánticos aparte (`gain`/`loss` siempre con flecha y signo, `attention`, `danger`). Cuentas: `cuenta-1` cielo y `cuenta-2` melocotón, solo como punto, barra o nombre.
+- Una carcasa para todo: barra lateral, contenido e inspector en el Mac; contenido + pestañas con ＋ en Android (< 640 px). Mismo problema, misma pieza (`Fila`, `RejillaTiempo`, `MapaAnual`, `Aviso`, `Captura`).
 - Cada tarjeta: título (+ subtítulo) a la izquierda y como mucho un botón de icono a la derecha.
 - Rayado = opcional; sólido = fijo; punto rojo = conflicto. Cada gráfico responde a una pregunta del usuario; nada decorativo.
-- `backdrop-filter` solo en barra flotante y hojas (rendimiento en Android).
+- `backdrop-filter` solo en hojas y barra de pestañas (rendimiento en Android).
 - Etiquetas de sección en minúscula inicial, sin mayúsculas sostenidas ni numeraciones decorativas.
-- Horas con cifras tabulares (`.num`). Nunca mostrar una hora ambigua sin preguntar.
+- Horas y cifras tabulares (`pa-num`). Nunca mostrar una hora ambigua sin preguntar. Formatos: «vie 24 oct», «21:30–23:30», «1 h 30 min», «12.480,35 €», «↓ −1,10 %».
+- Iconos Lucide 1.50.0 en `currentColor`, trazo 1,75 a 16 px.
 
 ## Calidad mínima
 - Contraste ≥ 4,5:1 en texto e indicadores ≥ 3:1 (comprobar con un script, no a ojo).

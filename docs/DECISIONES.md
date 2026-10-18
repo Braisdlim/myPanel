@@ -1,6 +1,6 @@
 # Documento vivo: decisiones, supuestos, fuentes y pendientes
 
-Última actualización: 18-10-2026 (etapa D1 → identidad: síntesis de referencias y opciones de identidad).
+Última actualización: 18-10-2026 (sistema de diseño de Pauta v1 publicado; siguiente paso: tres pantallas clave en código).
 Detalle: [`fase-0/investigacion-y-propuesta.md`](fase-0/investigacion-y-propuesta.md) y [`fase-0/prototipo-y-herramientas.md`](fase-0/prototipo-y-herramientas.md) y [`fase-0/direccion-visual-v2.md`](fase-0/direccion-visual-v2.md).
 
 Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazada** · **Sustituida**.
@@ -29,9 +29,10 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | D-020 | Alcance ampliado: sectores Calendario (día, semana, mes, año, agenda), Finanzas (patrimonio, fondos, precios) y Oportunidades (reglas de aviso definidas por el usuario, sin recomendaciones). | Propuesta | Petición del usuario; ver `producto/01` y `producto/02`. | Al cerrar D1 |
 | D-021 | Arquitectura API primero: los clientes (web, Android, Mac) solo hablan con la API. | Propuesta | Permite añadir un cliente Mac nativo sin rehacer el servidor. | D2 |
 | D-022 | Plataforma: provisionalmente web + carcasa Tauri en Mac (opción 2); alternativas PWA, nativa SwiftUI + Kotlin, Compose Multiplatform. | Decisión abierta | `producto/04`, sección 4.6. | D2 |
-| D-018 | Dirección visual v2: cristal oscuro con brillos ambientales, *bento* en escritorio, barra flotante en móvil, Outfit con pesos ligeros, acento lavanda en degradado; cuentas cielo y melocotón. Estructura: foco de C + captura de A + «Planificar» (línea del día de B). | Propuesta (pendiente de tu revisión) | Referencias aportadas por el usuario; contraste ≥ 4,5:1 comprobado. | Tras revisar en el Honor |
-| D-023 | Proceso de diseño: síntesis → identidad → sistema de diseño (página + tokens en el repositorio) → tres pantallas en código. Sin Figma de momento. | Propuesta | `producto/06`. Figma Starter con acceso limitado y Professional 16 $/mes por editor [H 18-10-2026]. | Al responder P-021 |
-| D-024 | Identidad: nombre **Pauta**, tipografía **Inter**, acento **lavanda plano** sobre grafito frío (alternativas: myPanel/Norte, sistema/Geist, índigo/ámbar). | Decisión abierta | `producto/06`; contraste comprobado en `research/identidad/`. Sustituiría a D-018 (v2). | Al responder P-021 |
+| D-018 | ~~Dirección visual v2: cristal oscuro con brillos ambientales, *bento* en escritorio, barra flotante en móvil, Outfit con pesos ligeros, acento lavanda en degradado; cuentas cielo y melocotón. Estructura: foco de C + captura de A + «Planificar» (línea del día de B).~~ Sustituida por D-024 y D-025. | Sustituida | — | — |
+| D-023 | Proceso de diseño: síntesis → identidad → sistema de diseño (página + tokens en el repositorio) → tres pantallas en código. Sin Figma de momento. | Aceptada (usuario, 18-10-2026) | `producto/06`. Figma Starter con acceso limitado y Professional 16 $/mes por editor [H 18-10-2026]. | Al responder P-021 |
+| D-024 | Identidad: nombre **Pauta**, tipografía **Inter**, acento **lavanda plano** sobre grafito frío (alternativas: myPanel/Norte, sistema/Geist, índigo/ámbar). | Aceptada (usuario, 18-10-2026) | `producto/06`; contraste comprobado en `research/identidad/`. Sustituiría a D-018 (v2). | Al responder P-021 |
+| D-025 | Sistema de diseño Pauta v1 en `diseno/sistema/` (única fuente): 33 colores en oscuro y claro, 15 estilos de texto (escritorio y móvil), espacios, radios, sombras, medidas, 25 componentes `pa-*`, iconos Lucide 1.50.0 y logotipos. | Propuesta (pendiente de tu revisión) | Síntesis aprobada (`producto/06`); contraste de 112 pares comprobado; vistas previas en escritorio y a 412 px. Página: https://claude.ai/artifact/JXsNVroPQxnUhhwAZaB83m | Al revisar las tres pantallas clave |
 | D-017 | NAS: no necesario en la fase 1; decidir antes de la fase 2 (índice local, modelos pequeños, automatización de navegador). Código portable Cloudflare/Node. | Propuesta | Análisis en fase 0b, sección 2. | Antes de la fase 2 |
 
 ## Supuestos
@@ -61,17 +62,18 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | P-008 | Ver las capturas de referencia (bloqueadas por la red del entorno). | Cerrar el análisis visual 3.1 |
 | P-009 | Confirmar límites gratuitos de D1 y Turso en sus páginas oficiales. | D-005 |
 
-| P-010 | Revisar la v2: acento (lavanda/ámbar), fuente (Outfit/Plus Jakarta), qué sobra o falta. | Congelar tokens, fase 1a |
+| P-010 | ~~Revisar la v2~~ Sustituido por P-022. | — |
 | P-012 | ~~«Financia»~~ Resuelto: es Bolsa (Stocks) de Apple. | — |
 | P-013 | Entidades financieras (bancos, gestoras, brókers, ISIN) y si interesan también gastos e ingresos. | Conectores de finanzas |
 | P-014 | ¿Mac personal? ¿Opción 2 o nativa? | D-022 |
 | P-015 | Orden de prioridad de los sectores. | Hoja de ruta |
 | P-016 | ¿Notas personales en alguna app? | Sector de búsqueda y conocimiento |
 | P-017 | ~~Acceso de red para capturas~~ Resuelto: el usuario amplió el acceso de red. | — |
-| P-019 | Aprobar o descartar las 6 ideas de Finanzas; gastos sí o no; entidades y fondos; umbrales de aviso. | Esquemas de Finanzas (D3) |
-| P-018 | Aprobar o descartar las 4 ideas del Calendario cuando estén las capturas. | Esquemas del Calendario (D3) |
-| P-020 | Aprobar o descartar las 5 ideas de Tareas; voz pronto o más tarde; vistas de TickTick que sobran; si las tareas planificadas se escriben en Google Calendar y en qué cuenta. | Esquemas de Tareas (D3) |
-| P-021 | Responder la síntesis (tabla «Qué cogemos», sustituye a P-018, P-019 y P-020 en lo visual), el plan de diseño y la identidad (nombre, icono, tipografía, paleta). | Sistema de diseño (paso 3) |
+| P-019 | ~~Ideas de Finanzas~~ Resuelto en la síntesis (P-021). Siguen abiertos: gastos sí o no; entidades y fondos; umbrales de aviso. | Esquemas de Finanzas (D3) |
+| P-018 | ~~Ideas del Calendario~~ Resuelto en la síntesis (P-021). | Esquemas del Calendario (D3) |
+| P-020 | ~~Ideas de Tareas~~ Resuelto en la síntesis (P-021). Sigue abierto: si las tareas planificadas se escriben en Google Calendar y en qué cuenta. | Esquemas de Tareas (D3) |
+| P-021 | ~~Síntesis, plan e identidad~~ Resuelto: todo lo recomendado aprobado (18-10-2026). | — |
+| P-022 | Revisar el sistema de diseño Pauta v1 (página de revisión) y señalar qué cambiar antes de construir las pantallas. | Tres pantallas clave (paso 4) |
 | P-011 | Alojamiento de la fase 1a (Cloudflare gratis con cuenta del usuario, o esperar al NAS). | Despliegue de la fase 1a |
 
 ## Registro de investigación
@@ -89,3 +91,4 @@ Estados: **Propuesta** (pendiente de tu revisión) · **Aceptada** · **Rechazad
 | 18-10-2026 | Referencias de Finanzas (Bolsa, Copilot, Finary, getquin, Parqet, Ghostfolio, Fintonic) | 98 capturas reales, 0 fallos; 21 seleccionadas. getquin conecta con MyInvestor y no permite umbrales de aviso propios; Copilot solo en EE. UU.; guía de Bolsa ya en versión 8.0 para macOS 27. |
 | 18-10-2026 | Referencias de Tareas (Things 3, Todoist, TickTick, Sunsama, Structured) | 118 capturas reales, 0 fallos; 24 seleccionadas. La captura de Todoist para Mac muestra el lenguaje natural resaltado con fichas (cubre el hueco de Fantastical). Ramble: fecha límite y duración por voz son de pago. Sunsama: unos 20 $/mes sin plan gratis (reseña). |
 | 18-10-2026 | Síntesis de referencias e identidad | Reglas de unificación, 7 piezas compartidas y tabla por sector; 3 opciones de nombre, tipografía y paleta. Licencia de San Francisco solo para maquetas en sistemas Apple; Tauri usa WKWebView en macOS; Inter/Geist en Google Fonts; contraste de las 3 paletas ≥ 4,5:1. |
+| 18-10-2026 | Sistema de diseño Pauta v1 | Revisadas de nuevo las capturas de referencia; Lucide 1.50.0 (ISC) y @fontsource-variable/inter 5.3.0 (OFL, ejes opsz 14–32 y wght 100–900, sin ⌘ en el subconjunto latino) comprobados en npm; icono adaptable de Android: lienzo 108 dp, zona segura 66 dp, capa monocroma (developer.android.com). Contraste de 112 pares OK. |

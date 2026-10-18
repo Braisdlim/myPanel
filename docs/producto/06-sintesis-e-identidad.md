@@ -1,6 +1,6 @@
 # Síntesis de referencias e identidad
 
-Fecha: 18-10-2026. Estado: **propuesta, pendiente de tu revisión**.
+Fecha: 18-10-2026. Estado: **aprobado por el usuario el 18-10-2026** (todo lo recomendado). Sistema de diseño resultante: [`diseno/`](../../diseno/README.md).
 Página de revisión (privada, con demo en vivo): https://claude.ai/artifact/SAbg5oEbwfe1pJT6XE9QXK · copia local: [`identidad/propuesta.html`](identidad/propuesta.html).
 
 ## 1. Plan [P]
