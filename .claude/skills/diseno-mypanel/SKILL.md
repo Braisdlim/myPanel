@@ -15,6 +15,7 @@ description: Dirección visual y reglas de interfaz de myPanel. Usar antes de di
 - Estilo nativo de Mac, plano y tranquilo: superficies grafito separadas por bordes finos, **sin cristal, degradados ni resplandores** (la dirección v2 queda sustituida).
 - Tipografía **Inter Variable** con tamaño óptico, alojada con la app; pesos 300 (cifras), 400 (texto), 500 (controles), 600 (títulos), nunca más.
 - **Un solo acento, lavanda plana** (`accent`): «ahora», foco, selección y acción principal. Semánticos aparte (`gain`/`loss` siempre con flecha y signo, `attention`, `danger`). Cuentas: `cuenta-1` cielo y `cuenta-2` melocotón, solo como punto, barra o nombre.
+- Gráficos financieros como Bolsa: línea y degradado `gain` si el periodo sube y `loss` si baja, contra la línea punteada del valor de partida; `accent` solo al inspeccionar un punto; píldoras sólidas (`pa-delta--solid`) en las listas.
 - Una carcasa para todo: barra lateral, contenido e inspector en el Mac; contenido + pestañas con ＋ en Android (< 640 px). Mismo problema, misma pieza (`Fila`, `RejillaTiempo`, `MapaAnual`, `Aviso`, `Captura`).
 - Cada tarjeta: título (+ subtítulo) a la izquierda y como mucho un botón de icono a la derecha.
 - Rayado = opcional; sólido = fijo; punto rojo = conflicto. Cada gráfico responde a una pregunta del usuario; nada decorativo.
