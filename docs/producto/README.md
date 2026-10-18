@@ -8,3 +8,4 @@ El diseño visual está **aparcado** hasta cerrar esta definición.
 4. [Arquitectura del sistema](04-arquitectura-sistema.md): contexto, piezas, flujos, modelo de datos y decisiones abiertas.
 5. [Plan y siguiente paso](05-plan.md): nueva hoja de ruta y preguntas.
 6. [Síntesis e identidad](06-sintesis-e-identidad.md): qué cogemos de cada referencia, reglas de unificación y opciones de nombre, icono, tipografía y paleta.
+7. [Método de maquetas](07-metodo-de-maquetas.md): app base por sector, anatomía y calco con nuestro contenido antes de programar.
