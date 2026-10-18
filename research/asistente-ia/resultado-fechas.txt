@@ -1,0 +1,15 @@
+# Salida de validar-fechas.mjs (temporal-polyfill 1.0.6, Node 22.22.0, 18-10-2026)
+✅ cena el viernes a las nueve y media
+   2026-10-23T21:30:00+02:00[Europe/Madrid] → 2026-10-23T23:00:00+02:00[Europe/Madrid]
+⚠️ cena el viernes a las nueve y media (modelo se equivoca de día)
+   2026-10-24T21:30:00+02:00[Europe/Madrid] → 2026-10-24T23:00:00+02:00[Europe/Madrid]
+   el 2026-10-24 no es viernes
+⚠️ guardia de la noche del sábado al domingo, de 1:30 a 3:30 (cruza el cambio de hora)
+   2026-10-25T01:30:00+02:00[Europe/Madrid] → 2026-10-25T03:30:00+01:00[Europe/Madrid]
+   dura PT3H reales aunque el reloj marque PT2H
+⚠️ llamar a las 2:30 del domingo 25 (hora repetida)
+   2026-10-25T02:30:00+02:00[Europe/Madrid] → 2026-10-25T02:45:00+02:00[Europe/Madrid]
+   02:30:00 ocurre dos veces (cambio de hora): preguntar
+⚠️ revisión el martes pasado
+   2026-10-13T10:00:00+02:00[Europe/Madrid] → 2026-10-13T11:00:00+02:00[Europe/Madrid]
+   está en el pasado
