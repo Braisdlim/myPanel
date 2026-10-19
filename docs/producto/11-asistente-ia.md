@@ -1,6 +1,6 @@
 # Asistente de IA: buscar correos y archivos y crear eventos hablando
 
-Fecha: 18-10-2026. Estado: **propuesta, pendiente de tu decisión** (P-036 y P-037).
+Fecha: 18-10-2026. Estado: **Cloudflare gratis y permisos aceptados** (19-10-2026); el modelo concreto, tras el banco de pruebas (P-037).
 Origen: petición del usuario («búscame este correo de no sé cuándo que decía esto», «búscame el currículum que tengo almacenado por ahí», «el viernes voy a tener una cena con mis amigos de tal hora a tal hora, y que ya se cree el evento solo»; «gratuito», «mantenimiento de coste cero»).
 Etiquetas: [H] comprobado en fuente primaria · [H·s] fuente secundaria · [I] inferencia · [P] propuesta · [?] por comprobar.
 Detalle, cifras y enlaces en `research/asistente-ia/`:
@@ -77,7 +77,8 @@ Carga supuesta: 50 peticiones al día de unos 3.000 tokens de entrada y 300 de s
 **Recomendación [P]**:
 1. **Una sola interfaz de proveedor**, compatible con el formato de OpenAI, que hablan casi todos (Cloudflare, Ollama, LM Studio, OpenAI, Gemini en modo compatible y otros). Cambiar de modelo es cambiar un ajuste, no rehacer la app.
 2. **Por defecto, Cloudflare Workers AI con Gemma 4**: 0 €, no entrena, sirve para el móvil y no añade un proveedor nuevo.
-3. **Antes de decidir, un banco de 30–50 frases tuyas en español** (buscar correos, archivos y crear eventos), pasado a 3 o 4 candidatos: Gemma 4 en Cloudflare, Gemini Flash-Lite, un modelo de pago barato y Foundation Models en el Mac. Medir aciertos, tiempo y coste. Así lo hacen los equipos serios: con pruebas propias, no con rankings.
+3. **Antes de decidir, un banco de 30–50 frases tuyas en español** (buscar correos, archivos y crear eventos), pasado a 4 o 5 candidatos: Gemma 4 y Granite 4.0 H Micro en Cloudflare, Gemini Flash-Lite, un modelo de pago barato y Foundation Models en el Mac. Medir aciertos, tiempo y coste. Así lo hacen los equipos serios: con pruebas propias, no con rankings. Si el pequeño acierta igual, se queda el pequeño.
+   - ¿Es Gemma 4 demasiado? (19-10-2026) No tanto como parece [H]: es de «mezcla de expertos», con 26 B parámetros en total pero solo 3,8 B activos por palabra, así que corre casi como un modelo de 4 B. En Cloudflare cuesta 0,10 / 0,30 USD por millón de tokens; Granite 4.0 H Micro, el más barato con herramientas, 0,017 / 0,112. Con tu uso, ambos son gratis.
 4. **Si el gratuito falla mucho**, la salida es un modelo de pago barato (1–2 € al mes), no montar nada local.
 5. **Local, opcional en el Mac**, para quien quiera que nada salga del equipo.
 
