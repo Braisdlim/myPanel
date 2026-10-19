@@ -1,0 +1,42 @@
+=== gpt-oss-120b 2026-10-19T18:35:00Z
+HTTP/1.1 200 Connection Established
+HTTP/2 200 
+x-ratelimit-limit-minute: 2
+ratelimit-remaining: 1
+ratelimit-reset: 59
+ratelimit-limit: 2
+x-ratelimit-remaining-minute: 1
+access-control-expose-headers: ratelimit-limit,ratelimit-remaining,ratelimit-reset,retry-after
+{"id":"chatcmpl-bdf41c5226f66339","choices":[{"index":0,"message":{"role":"assistant","reasoning":"Need to create event. Determine date: today is Monday 2026-10-19. \"El jueves que viene\" is Thursday next week? Usually means the upcoming Thursday. Since today Monday, this Thursday is 2026-10-22. Time 5:30 PM = 17:30, duration 1 hour, so end 18:30. Need iso8601 with zone Europe/Madrid. So start: 2026-10-22T17:30:00+02:00? Check DST. Europe/Madrid in October likely still CEST (UTC+2) until last Sunday of October. 2026-10-22 is before DST change, so +02:00. End 2026-10-22T18:30:00+02:00. Title: \"Cita con el dentista\". Use crear_evento function.","tool_calls":[{"id":"chatcmpl-tool-9f58fb60bb5d3085","type":"function","function":{"name":"crear_evento","arguments":"{\"inicio\": \"2026-10-22T17:30:00+02:00\", \"fin\": \"2026-10-22T18:30:00+02:00\", \"titulo\": \"Cita con el dentista\"}"}}]},"finish_reason":"tool_calls"}],"created":1792434901,"model":"gpt-oss-120b","object":"chat.completion","usage":{"prompt_tokens":218,"completion_tokens":261,"total_tokens":479,"completion_tokens_details":{"reasoning_tokens":0}}}
+=== Qwen3.8-27B 2026-10-19T18:35:12Z
+HTTP/1.1 200 Connection Established
+HTTP/2 200 
+ratelimit-reset: 47
+x-ratelimit-remaining-minute: 1
+x-ratelimit-limit-minute: 2
+ratelimit-remaining: 1
+ratelimit-limit: 2
+access-control-expose-headers: ratelimit-limit,ratelimit-remaining,ratelimit-reset,retry-after
+{"id":"chatcmpl-9792c096d4f393c1","choices":[{"index":0,"message":{"role":"assistant","reasoning":"The user is asking to create a dentist appointment at 5:30 PM on Thursday, lasting one hour.\n\nToday is Monday, 2026-10-19 (Europe/Madrid). \"El jueves que viene\" — this expression in Spanish can be ambiguous. \"El jueves que viene\" typically means the Thursday of next week, not this week's Thursday. Since today is Monday 2026-10-19, this week's Thursday would be 2026-10-22. \"El jueves que viene\" usually refers to the Thursday of the following week, i.e., 2026-10-29.\n\nIn Spanish, \"el jueves que viene\" literally means \"the Thursday that is coming\" and generally refers to the Thursday of the next week (not this week's Thursday). If they meant this week's Thursday, they would say \"este jueves.\" So \"el jueves que viene\" = Thursday of next week = 2026-10-29.\n\nTime: 5:30 PM = 17:30, duration 1 hour, so end time is 18:30. Timezone Europe/Madrid. In October 2026, Europe/Madrid is CEST (UTC+2) until the last Sunday of October, i.e., October 25, 2026. So 2026-10-29 is after the clock change (October 25, 2026, 03:00 CEST -> 02:00 CET). Therefore on October 29, Madrid will be on CET (UTC+1).\n\nLet me verify: 2026, the EU clock change happens on the last Sunday of October. Sundays in October 2026: October 4, 11, 18, 25. So the last Sunday is October 25, 2026. After that, Central European Time (CET, UTC+1). Therefore 2026-10-29 17:30 Europe/Madrid = 2026-10-29T17:30:00+01:
+=== Mistral-Small-3.2-24B-Instruct-2506 2026-10-19T18:36:10Z
+HTTP/1.1 200 Connection Established
+HTTP/2 200 
+ratelimit-reset: 49
+ratelimit-limit: 2
+x-ratelimit-remaining-minute: 1
+x-ratelimit-limit-minute: 2
+ratelimit-remaining: 1
+access-control-expose-headers: ratelimit-limit,ratelimit-remaining,ratelimit-reset,retry-after
+{"id":"chatcmpl-8affbfe4e2edbe6e","choices":[{"index":0,"message":{"role":"assistant","tool_calls":[{"id":"bVvepcjqC","type":"function","function":{"name":"crear_evento","arguments":"{\"titulo\": \"Cita con el dentista\", \"inicio\": \"2026-10-23T17:30:00 Europe/Madrid\", \"fin\": \"2026-10-23T18:30:00 Europe/Madrid\"}"}}]},"finish_reason":"tool_calls"}],"created":1792434971,"model":"Mistral-Small-3.2-24B-Instruct-2506","object":"chat.completion","usage":{"prompt_tokens":238,"completion_tokens":75,"total_tokens":313}}
+=== Qwen3.8-27B (respuesta completa) 2026-10-19T18:36:19Z
+
+=== Notas (19-10-2026, escritas a mano a partir de lo anterior)
+- La salida de arriba se recortó a 1.500 caracteres por línea; en Qwen3.8-27B se perdió la llamada final.
+- Qwen3.8-27B tardó unos 58 s en la primera llamada (18:35:12 → 18:36:10 UTC) por el razonamiento largo.
+  Dos reintentos (18:36:19 y siguiente) agotaron el tiempo de 60 s sin respuesta.
+- Cabeceras: límite anónimo de 2 peticiones/minuto por modelo (x-ratelimit-limit-minute: 2), como dice la documentación.
+- Interpretación de «el jueves que viene» (hoy lunes 19-10-2026):
+  gpt-oss-120b → 22-10-2026 17:30 +02:00 (este jueves), ISO correcto.
+  Qwen3.8-27B → razonó 29-10-2026 y cambio a CET (+01:00) tras el 25-10; llamada final no capturada.
+  Mistral-Small-3.2 → 23-10-2026 (viernes: error) y formato no ISO ("2026-10-23T17:30:00 Europe/Madrid").
+- Conclusión: la ambigüedad de «que viene» debe resolverla la app (preguntar o regla fija), no el modelo.

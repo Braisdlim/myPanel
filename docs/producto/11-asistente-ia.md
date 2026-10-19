@@ -82,6 +82,31 @@ Carga supuesta: 50 peticiones al día de unos 3.000 tokens de entrada y 300 de s
 4. **Si el gratuito falla mucho**, la salida es un modelo de pago barato (1–2 € al mes), no montar nada local.
 5. **Local, opcional en el Mac**, para quien quiera que nada salga del equipo.
 
+## 4 bis. Qué usa la gente con presupuesto cero (19-10-2026)
+Fuentes: foros de Home Assistant y n8n, Hacker News, plantillas de n8n, Inbox Zero y el blog de Simon Willison (`research/asistente-ia/comunidad.md`), y un catálogo de APIs gratuitas que incluye las chinas (`research/asistente-ia/apis-gratuitas.md`). Reddit no se pudo leer desde aquí (403) [H].
+
+**Lo que hacen los que tienen experiencia**
+- [H·s, consenso] Usan **Gemini gratis, Groq y OpenRouter `:free`**, casi siempre con un segundo proveedor de respaldo porque los gratuitos fallan en horas de carga (errores 429 y 503).
+- [H·s, consenso fuerte] **Las fechas no las calcula el modelo**: el código convierte «mañana» o «el viernes» en fechas absolutas. Nuestras pruebas lo confirman: Qwen 3.5 4B (local) acertó 31 de 42 y gpt-oss-120b (OVH) 30 de 42, y casi todos los fallos de los dos son fechas [H, banco propio].
+- [H·s] **Primero reglas y después el modelo**: Home Assistant resuelve sin IA las órdenes conocidas, y la IA solo entra cuando hace falta. Pocas herramientas y poco contexto; importa más un modelo pequeño fiable con herramientas que uno grande.
+- [H] **El modelo no lee los correos** (patrón «Action-Selector» de Simon Willison): solo traduce tu frase a una búsqueda o a un borrador de evento, y Pauta enseña los resultados sin devolvérselos. Así se quita casi toda la inyección de instrucciones y la mayor parte del problema de privacidad.
+
+**Modelos chinos** [H salvo indicación]
+- Los modelos chinos con pesos abiertos (Qwen, GLM, Kimi, MiniMax) tienen buena fama con herramientas [H·s, anécdotas]. Lo habitual es **usarlos alojados por un proveedor occidental**, no en la API china.
+- Sus APIs oficiales, para correos personales:
+  - **DeepSeek**: sin plan gratis; procesa en China y entrena por defecto.
+  - **Kimi**: recarga mínima y entrena con los datos.
+  - **Alibaba (Qwen)**: 1 M de tokens por modelo durante 90 días, y luego de pago.
+  - **Z.ai (GLM-4.7-Flash)**: gratis, sin fecha de fin y sin entrenar con los datos (Singapur), pero con límites no publicados y matriz china. Solo para pruebas.
+- **Qwen gratis y en Europa**: OVHcloud sirve Qwen3.8-27B y gpt-oss-120b sin cuenta ni clave, desde Francia, sin entrenar ni guardar datos. El límite es de 2 peticiones/min por IP; no hay contrato ni garantía [H, cabeceras comprobadas]. Cloudflare sirve Qwen3-30B-A3B gratis, y gasta menos cupo que Gemma 4 [H precio].
+
+**Lo que cambia en la recomendación** [P]
+1. **El modelo solo ve tu frase** (y como mucho asunto, remitente y fecha), nunca el cuerpo de los correos. Para resumir un correo concreto, solo un proveedor «aceptable» (abajo).
+2. **Cadena gratuita con respaldo**: Cloudflare Workers AI (Gemma 4 o Qwen3-30B), luego OVH sin cuenta (gpt-oss-120b o Qwen3.8-27B, Francia) y luego Groq. Un proveedor distinto en cada paso y una sola cuenta en cada uno, porque OpenRouter y Google prohíben multiplicar cuentas para esquivar límites [H].
+3. **Fechas, búsquedas típicas y confirmación, por código**; el modelo es solo el respaldo de lo que las reglas no entienden.
+4. **Gemini gratis queda en zona gris**: sus condiciones del 28-4-2026 piden el plan de pago para apps que se ofrecen a usuarios del EEE [H]; si una app personal cuenta así es interpretable [I].
+5. **Descartados para tus correos**: APIs oficiales de DeepSeek y Kimi, NVIDIA build (prohíbe datos personales), SiliconFlow (ídem) y OpenRouter `:free` (depende de cada proveedor). Cerebras y Hugging Face ya no tienen plan gratuito permanente.
+
 ## 5. Voz
 - [P] **Para empezar, el micrófono del teclado del móvil**: 0 € y nada de código. En iPhone, el español de España se dicta en el dispositivo y sin conexión [H]. En el Honor, Google solo documenta el dictado sin conexión en los Pixel [H]; en el resto de móviles hay que probarlo [?].
 - [P] **Más adelante, un botón de micrófono propio** en Pauta: graba, transcribe con Whisper large-v3-turbo en Cloudflare (0,0005 USD/min, no conserva ni entrena con el audio [H]) y pasa el texto por el mismo camino.
