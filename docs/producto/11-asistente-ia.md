@@ -1,6 +1,6 @@
 # Asistente de IA: buscar correos y archivos y crear eventos hablando
 
-Fecha: 18-10-2026. Estado: **Cloudflare gratis y permisos aceptados** (19-10-2026); el modelo concreto, tras el banco de pruebas (P-037).
+Fecha: 18-10-2026. **Aplazado a una versión posterior (D-047, 19-10-2026): en la primera versión las pantallas existen con datos de ejemplo y sin conectar.** Estado anterior: **Cloudflare gratis y permisos aceptados** (19-10-2026); el modelo concreto, tras el banco de pruebas (P-037).
 Origen: petición del usuario («búscame este correo de no sé cuándo que decía esto», «búscame el currículum que tengo almacenado por ahí», «el viernes voy a tener una cena con mis amigos de tal hora a tal hora, y que ya se cree el evento solo»; «gratuito», «mantenimiento de coste cero»).
 Etiquetas: [H] comprobado en fuente primaria · [H·s] fuente secundaria · [I] inferencia · [P] propuesta · [?] por comprobar.
 Detalle, cifras y enlaces en `research/asistente-ia/`:
