@@ -36,6 +36,15 @@ Etiquetas: [H] comprobado, [I] inferencia, [P] propuesta, [?] por comprobar. Fue
 | Tareas | Apuntar una tarea | `tareas/MacCaptura` | `tareas/AndroidCaptura` | nueva |
 | Tareas | Revisión de la semana | `MacRevision` | `AndroidRevision` | nueva |
 | Tareas | En cualquier momento, Algún día, Registro | plantilla de Entrada | plantilla de Entrada | misma plantilla |
+| Asistente | Preguntar o apuntar | barra ⌘K y sector «Asistente» | `asistente/AndroidApuntar` (＋) | nueva |
+| Asistente | Buscar un correo | `asistente/MacCorreo`, `MacCorreoClaro` | `AndroidCorreo`, `AndroidCorreoClaro` | nueva |
+| Asistente | Correo abierto | inspector de `MacCorreo` | `AndroidResultado` (hoja) | nueva |
+| Asistente | Encontrar un archivo | `MacArchivos` | `AndroidArchivos` | nueva |
+| Asistente | Crear un evento | `MacEvento` | `AndroidEvento`, `AndroidCreado` | nueva |
+| Asistente | Evento sacado de un correo | `MacDesdeCorreo` | `AndroidDesdeCorreo` | nueva |
+| Asistente | Dictar | micrófono de la barra de escribir | `AndroidVoz` | nueva |
+| Asistente | Estados (vacío, buscando, reconectar, sin cupo, creado) | `MacEstados` | `AndroidEstados` | nueva |
+| Ajustes | Asistente | `asistente/MacAjustes` | `asistente/AndroidAjustes` | nueva |
 | Ajustes | General, Avisos, Finanzas, Privacidad | — | — | por hacer |
 
 ## 3. Diferencias por plataforma

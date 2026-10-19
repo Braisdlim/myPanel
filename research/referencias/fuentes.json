@@ -295,5 +295,84 @@
         "url": "https://ticktick.com/"
       }
     ]
+  },
+  "asistente": {
+    "appstore": [
+      {
+        "app": "ChatGPT (iPhone)",
+        "idea": "1-chat",
+        "term": "ChatGPT",
+        "entity": "software",
+        "seller": "OpenAI"
+      },
+      {
+        "app": "Claude (iPhone)",
+        "idea": "1-chat",
+        "term": "Claude by Anthropic",
+        "entity": "software",
+        "seller": "Anthropic"
+      },
+      {
+        "app": "Raycast (Mac)",
+        "idea": "2-lanzador",
+        "term": "Raycast",
+        "entity": "macSoftware",
+        "seller": "Raycast"
+      },
+      {
+        "app": "Shortwave (iPhone)",
+        "idea": "3-correo-ia",
+        "term": "Shortwave Email",
+        "entity": "software",
+        "seller": "Shortwave"
+      },
+      {
+        "app": "Superhuman (iPhone)",
+        "idea": "3-correo-ia",
+        "term": "Superhuman",
+        "entity": "software",
+        "seller": "Superhuman"
+      },
+      {
+        "app": "Gemini (iPhone)",
+        "idea": "4-voz",
+        "term": "Google Gemini",
+        "entity": "software",
+        "seller": "Google",
+        "id": 6477489729
+      },
+      {
+        "app": "Perplexity (iPhone)",
+        "idea": "5-fuentes",
+        "term": "Perplexity",
+        "entity": "software",
+        "seller": "Perplexity",
+        "id": 1668000334
+      },
+      {
+        "app": "Fantastical (iPhone)",
+        "idea": "6-evento",
+        "term": "Fantastical",
+        "entity": "software",
+        "seller": "Flexibits"
+      }
+    ],
+    "paginas": [
+      {
+        "app": "Shortwave (web)",
+        "idea": "3-correo-ia",
+        "url": "https://www.shortwave.com/"
+      },
+      {
+        "app": "Raycast AI (web)",
+        "idea": "2-lanzador",
+        "url": "https://www.raycast.com/core-features/ai"
+      },
+      {
+        "app": "ChatGPT para Mac (web)",
+        "idea": "1-chat",
+        "url": "https://openai.com/chatgpt/desktop/"
+      }
+    ]
   }
 }

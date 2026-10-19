@@ -120,6 +120,9 @@ Tienes razón: **no hace falta**.
 
 [P] Lo único que añadiría es una exportación cifrada semanal **fuera de Cloudflare**, por si un día perdieras la cuenta. Esa copia puede ir a tu Drive o al NAS, si lo tienes encendido; ninguna de las dos cosas es obligatoria. El NAS queda fuera de la arquitectura (D-041 y D-017 actualizadas).
 
+## 9 bis. Maquetas (19-10-2026)
+Calco del asistente de Shortwave en escritorio y móvil: https://claude.ai/artifact/LK2CJNMSSyHTm88QsNgghP (copia en `diseno/maquetas/asistente/`, referencias en `docs/referencias/asistente.md`, propuesta D-046).
+
 ## 10. Lo que necesito de ti
 1. **Modelo**: ¿te vale empezar con Cloudflare gratis (Gemma 4) y decidir con el banco de pruebas, aceptando pasar a uno de pago de 1–2 € al mes si el gratuito no da la talla?
 2. **Permisos**: ¿aceptas `gmail.readonly` y `drive.readonly` (restringidos, solo lectura) en tus dos Gmail, y `Mail.Read` y `Files.Read` en Outlook?

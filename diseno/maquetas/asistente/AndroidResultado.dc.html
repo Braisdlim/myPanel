@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Asistente en Android: correo abierto</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden;">
+  <div class="pa-scrim" style="height: 150px; flex: none;"></div>
+  <section class="pa-sheet" role="dialog" aria-label="Correo" style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 12px; padding-top: 8px; overflow: hidden;">
+    <div class="pa-sheet__grabber" style="margin-bottom: 0;"></div>
+    <span class="pa-label" style="font-size: 13px;">correo 1 de 2 · Gmail 1</span>
+    <h2 class="pa-sheet__title">Factura de septiembre</h2>
+    <span style="font-size: 14px; color: var(--text-2);">Gestoría [nombre] · martes 6 oct, 10:12</span>
+    <div style="padding: 14px; border-radius: var(--radius-md); background: var(--raised); font-size: 15px; line-height: 22px; color: var(--text-2);">Hola:<br><br>Te adjuntamos la factura de septiembre por [importe]. El cargo se hará el [fecha] en la cuenta habitual.<br><br>Un saludo,<br>[nombre] · Gestoría [nombre]</div>
+    <span style="display: inline-flex; align-items: center; gap: 6px; padding: 0 12px; height: 36px; width: fit-content; border-radius: var(--radius-pill); box-shadow: inset 0 0 0 1px var(--line-strong); font-size: 14px; color: var(--text-2);"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 15px; height: 15px;"><path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" /></svg>Factura_2026-09.pdf · 92 KB</span>
+    <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-3);"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 15px; height: 15px;"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /></svg>Mostrado como texto: sin imágenes remotas ni enlaces activos</span>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;"><button class="pa-btn pa-btn--primary" style="width: 100%;"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px;"><path d="M15 3h6v6" /> <path d="M10 14 21 3" /> <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>Abrir en Gmail</button><button class="pa-btn" style="width: 100%;">Descargar el PDF</button></div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Apunta o pregunta en Android</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 412px; height: 915px; box-sizing: border-box; display: flex; flex-direction: column; background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 16px; line-height: 22px; overflow: hidden;">
+  <div class="pa-scrim" style="height: 330px; flex: none; display: flex; align-items: flex-end; padding: 0 16px 14px;"><span style="font-size: 28px; line-height: 34px; font-weight: 600; color: var(--text-3);">Hoy</span></div>
+  <section class="pa-sheet" role="dialog" aria-label="Apunta o pregunta" style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 12px; padding-top: 8px; overflow: hidden;">
+    <div class="pa-sheet__grabber" style="margin-bottom: 0;"></div>
+    <h2 class="pa-sheet__title" style="font-size: 18px; line-height: 24px; text-align: center;">Apunta o pregunta</h2>
+    <div style="display: flex; align-items: center; gap: 6px; min-height: 56px; box-sizing: border-box; padding: 0 6px 0 18px; border-radius: 26px; background: var(--raised); box-shadow: inset 0 0 0 1px var(--line-strong); font-size: 16px;"><span style="flex: 1; min-width: 0; color: var(--text-3);">Pregunta o apunta…</span><button class="pa-btn pa-btn--icon" aria-label="Dictar" style="width: 48px; min-height: 48px;"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 20px; height: 20px;"><path d="M12 19v3" /> <path d="M19 10v2a7 7 0 0 1-14 0v-2" /> <rect x="9" y="2" width="6" height="13" rx="3" /></svg></button><button class="pa-btn" aria-label="Enviar" aria-disabled="true" style="width: 48px; min-height: 48px; padding: 0; border-radius: 50%; opacity: 0.45;"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px;"><path d="m5 12 7-7 7 7" /> <path d="M12 19V5" /></svg></button></div>
+
+    <p style="margin: 0; font-size: 13px; line-height: 18px; color: var(--text-2);">Una tarea o un evento se apuntan como siempre; una pregunta abre el asistente.</p>
+    <span class="pa-label" style="font-size: 13px; margin-top: 4px;">prueba con</span>
+    <ul style="margin: 0; padding: 0; list-style: none; font-size: 15px;"><li style="display: flex; align-items: center; gap: 12px; min-height: 48px; border-top: 1px solid var(--line);"><span style="color: var(--text-3);"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px;"><path d="m21 21-4.34-4.34" /> <circle cx="11" cy="11" r="8" /></svg></span><span style="flex: 1;">El correo de Renfe con el billete</span><span style="font-size: 13px; color: var(--text-3);">buscar</span></li><li style="display: flex; align-items: center; gap: 12px; min-height: 48px; border-top: 1px solid var(--line);"><span style="color: var(--text-3);"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px;"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" /> <path d="M14 2v5a1 1 0 0 0 1 1h5" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /></svg></span><span style="flex: 1;">Mi currículum</span><span style="font-size: 13px; color: var(--text-3);">archivos</span></li><li style="display: flex; align-items: center; gap: 12px; min-height: 48px; border-top: 1px solid var(--line);"><span style="color: var(--text-3);"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px;"><path d="M16 18h6" /> <path d="M16 2v3" /> <path d="M19 15v6" /> <path d="M21 11.5V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h8.3" /> <path d="M3 9h18" /> <path d="M8 2v3" /></svg></span><span style="flex: 1;">El viernes ceno con amigos de 9 a 11</span><span style="font-size: 13px; color: var(--text-3);">evento</span></li><li style="display: flex; align-items: center; gap: 12px; min-height: 48px; border-top: 1px solid var(--line);"><span style="color: var(--text-3);"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px;"><circle cx="12" cy="12" r="10" /> <path d="m16 9-5.5 5.5L8 12" /></svg></span><span style="flex: 1;">Llamar a la gestoría el lunes</span><span style="font-size: 13px; color: var(--text-3);">tarea</span></li></ul>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":412,"height":915}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

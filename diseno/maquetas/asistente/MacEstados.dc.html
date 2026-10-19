@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Estados del asistente en el escritorio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="pauta-tokens.css">
+<link rel="stylesheet" href="ds/pauta/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Inter Variable"; src: url("ds/pauta/fonts/inter-latin-opsz-normal.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+body { margin: 0; }
+</style>
+</helmet>
+<div data-theme="dark" style="width: 1440px; height: 1100px; box-sizing: border-box; padding: 40px 48px; background: var(--sidebar); color: var(--text); font-family: var(--font-sans); font-size: 14px; line-height: 20px; display: flex; flex-direction: column; gap: 22px;">
+  <div style="display: flex; flex-direction: column; gap: 6px;">
+    <span class="pa-label">asistente · escritorio</span>
+    <h1 style="margin: 0; font-size: 30px; line-height: 36px; font-weight: 600; letter-spacing: -0.02em;">Estados de la conversación</h1>
+    <p style="margin: 0; max-width: 900px; color: var(--text-2);">Cada panel es la columna central del asistente. Lo mismo existe en el móvil (tablero «AndroidEstados»).</p>
+  </div>
+  <div style="flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 22px;">
+    <section style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+      <span class="pa-label">Primera vez</span>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: var(--radius-lg); background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden;">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding-top: 12px; text-align: center;"><span style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--accent-soft); color: var(--accent);"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 22px; height: 22px;"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></svg></span><h2 style="margin: 4px 0 0; font-size: 18px; line-height: 26px; font-weight: 600;">¿Qué buscas?</h2><p style="margin: 0; max-width: 340px; font-size: 13.5px; line-height: 19px; color: var(--text-2);">Busco en tus correos y archivos de las tres cuentas y te preparo eventos. No escribo nada sin que lo confirmes.</p></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px;"><button class="pa-chip" aria-pressed="false" style="flex: none;">el correo de Renfe con el billete</button><button class="pa-chip" aria-pressed="false" style="flex: none;">mi currículum</button><button class="pa-chip" aria-pressed="false" style="flex: none;">el viernes ceno con amigos de 9 a 11</button><button class="pa-chip" aria-pressed="false" style="flex: none;">¿qué tengo el sábado?</button></div>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+      <span class="pa-label">Buscando</span>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: var(--radius-lg); background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden;">
+<div style="align-self: flex-end; max-width: 80%; padding: 8px 14px; border-radius: 18px 18px 6px 18px; background: var(--raised); box-shadow: inset 0 0 0 1px var(--line); font-size: 14px; line-height: 20px;">Búscame el correo de la gestoría con la factura de septiembre</div>
+<div style="display: flex; align-items: center; gap: 6px; font-size: 12px; line-height: 16px; color: var(--text-3);"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px; color: var(--accent);"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></svg>Pauta</div>
+<ul style="margin: 0; padding: 4px 14px; list-style: none; border-radius: var(--radius-md); box-shadow: inset 0 0 0 1px var(--line); font-size: 13.5px;"><li style="display: flex; align-items: center; gap: 10px; padding: 8px 0;"><span class="pa-dot pa-dot--c1"></span><span style="flex: 1;">Gmail 1</span><span style="color: var(--text-2); display: flex; align-items: center; gap: 6px;"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px;"><path d="M20 6 9 17l-5-5" /></svg>listo · 2 correos</span></li><li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line);"><span class="pa-dot pa-dot--c2"></span><span style="flex: 1;">Gmail 2</span><span style="color: var(--accent); display: flex; align-items: center; gap: 6px;"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px;"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /> <path d="M21 3v5h-5" /> <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /> <path d="M8 16H3v5" /></svg>buscando…</span></li><li style="display: flex; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--line);"><span class="pa-dot pa-dot--c3"></span><span style="flex: 1;">Outlook</span><span style="color: var(--text-2); display: flex; align-items: center; gap: 6px;"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px;"><path d="M20 6 9 17l-5-5" /></svg>listo · 0</span></li></ul>
+<button class="pa-btn pa-btn--sm" style="align-self: flex-start;"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 12px; height: 12px;"><rect width="18" height="18" x="3" y="3" rx="2" /></svg>Detener</button>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+      <span class="pa-label">Cuenta por reconectar</span>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: var(--radius-lg); background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden;">
+<div style="align-self: flex-end; max-width: 80%; padding: 8px 14px; border-radius: 18px 18px 6px 18px; background: var(--raised); box-shadow: inset 0 0 0 1px var(--line); font-size: 14px; line-height: 20px;">¿Me ha escrito el banco esta semana?</div>
+<div style="display: flex; align-items: center; gap: 6px; font-size: 12px; line-height: 16px; color: var(--text-3);"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px; color: var(--accent);"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></svg>Pauta</div>
+<div class="pa-alert" style="box-shadow: inset 0 0 0 1px var(--line);"><span class="pa-dot pa-dot--attention"></span><span class="pa-alert__title">Outlook necesita que la vuelvas a conectar</span><span class="pa-alert__text">Microsoft ha cerrado la sesión (por ejemplo, tras cambiar la contraseña). He buscado solo en Gmail 1 y Gmail 2.</span><span class="pa-alert__actions"><button class="pa-btn pa-btn--sm">Volver a conectar</button></span></div>
+<p style="margin: 0; font-size: 14px; line-height: 21px; color: var(--text-2);">En Gmail 1 y Gmail 2 no hay correos del banco desde el lunes 19.</p>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+      <span class="pa-label">Sin cupo o sin conexión</span>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: var(--radius-lg); background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden;">
+<div class="pa-alert" style="box-shadow: inset 0 0 0 1px var(--line);"><span class="pa-dot pa-dot--attention"></span><span class="pa-alert__title">El asistente vuelve a las 2:00</span><span class="pa-alert__text">Se ha gastado el cupo gratuito de hoy. La búsqueda normal (⌘K) y apuntar siguen funcionando.</span><span class="pa-alert__src">10.000 de 10.000 neuronas · se renueva a medianoche UTC</span></div>
+<div class="pa-alert" style="box-shadow: inset 0 0 0 1px var(--line);"><span class="pa-dot" style="background: var(--text-3);"></span><span class="pa-alert__title">Sin conexión</span><span class="pa-alert__text">El asistente necesita internet. Lo que escribas se guarda y te lo preparo al volver; nada se crea sin que lo confirmes.</span></div>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 10px; min-width: 0;">
+      <span class="pa-label">Evento creado y comprobado</span>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 18px; border-radius: var(--radius-lg); background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden;">
+<div style="align-self: flex-end; max-width: 80%; padding: 8px 14px; border-radius: 18px 18px 6px 18px; background: var(--raised); box-shadow: inset 0 0 0 1px var(--line); font-size: 14px; line-height: 20px;">El viernes ceno con mis amigos de 9 a 11</div>
+<div style="display: flex; align-items: center; gap: 6px; font-size: 12px; line-height: 16px; color: var(--text-3);"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px; color: var(--accent);"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></svg>Pauta</div>
+<div style="padding: 10px 14px; border-radius: var(--radius-md); box-shadow: inset 0 0 0 1px var(--line); font-size: 13px; color: var(--text-3); display: flex; align-items: center; gap: 8px;"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px;"><path d="M16 18h6" /> <path d="M16 2v3" /> <path d="M19 15v6" /> <path d="M21 11.5V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h8.3" /> <path d="M3 9h18" /> <path d="M8 2v3" /></svg>Propuesta confirmada por ti a las 9:41</div>
+<section class="pa-card" aria-label="Evento creado" style="padding: 12px 14px; display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px;"><span style="display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--gain-soft); color: var(--gain);"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px;"><path d="M20 6 9 17l-5-5" /></svg></span><div style="min-width: 0;"><b style="font-weight: 500; font-size: 14px;">Creado en Gmail 2</b><span style="display: block; font-size: 13px; line-height: 18px; color: var(--text-2);">Cena con amigos · vie 30 oct · 21:00–23:00</span><span style="display: block; font-size: 12px; line-height: 17px; color: var(--text-3); margin-top: 2px;">Comprobado: lo he vuelto a leer en Google Calendar a las 9:42</span><div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;"><button class="pa-btn pa-btn--sm"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px;"><path d="M8 2v3" /> <path d="M16 2v3" /> <rect x="3" y="3" width="18" height="18" rx="2" /> <path d="M3 9h18" /></svg>Ver en el calendario</button><button class="pa-btn pa-btn--plain pa-btn--sm"><svg class="pa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 14px; height: 14px;"><path d="M9 14 4 9l5-5" /> <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11" /></svg>Deshacer…</button></div></div></section>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 10px;"><span class="pa-label">reglas</span>
+      <ul style="margin: 0; padding: 18px 18px 18px 34px; border-radius: var(--radius-lg); box-shadow: inset 0 0 0 1px var(--line); color: var(--text-2); display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; line-height: 19px;">
+        <li>Si una cuenta falla, se busca en las demás y se dice cuál faltó.</li>
+        <li>Sin cupo o sin conexión, el resto de Pauta sigue funcionando.</li>
+        <li>«Creado» solo aparece tras releer el evento en el calendario.</li>
+        <li>«Deshacer…» borra el evento creado, también con confirmación.</li>
+        <li>Las conversaciones no se guardan salvo que lo actives en Ajustes.</li>
+      </ul></section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
