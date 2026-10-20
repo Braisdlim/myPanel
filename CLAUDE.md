@@ -1,5 +1,7 @@
 # Reglas de trabajo para agentes
 
+- Al empezar una sesión nueva, lee `docs/TRASPASO.md` (estado actual, hechos del usuario, siguiente paso y trampas conocidas) y `docs/DECISIONES.md`. Al terminar un bloque de trabajo importante, actualiza `docs/TRASPASO.md`.
+
 - Idioma: español para documentos, interfaz y commits.
 - Antes de cada fase o funcionalidad importante, usa la skill `investigar-antes-de-construir`. Para cambios visuales, `revision-visual`.
 - Mantén `docs/DECISIONES.md` al día: decisiones, supuestos, fuentes con fecha y pendientes.
