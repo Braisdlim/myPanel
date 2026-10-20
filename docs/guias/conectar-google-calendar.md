@@ -4,6 +4,18 @@ Se hace una vez y tarda unos 10 minutos. Al terminar tendrás un **ID de cliente
 
 Comprobado el 20-10-2026 con la guía oficial de Google (quickstart de JavaScript, actualizada el 12-10-2026). Si algún menú ha cambiado de nombre, dímelo y actualizo la guía.
 
+> **Si la consola está en español** no aparece «Google Auth platform» en el menú lateral. Lo más fácil es abrir las páginas directamente; cambia `proyecto-pauta` si tu proyecto tiene otro ID:
+>
+> | Página | Dirección |
+> |---|---|
+> | Resumen | https://console.cloud.google.com/auth/overview?project=proyecto-pauta |
+> | Branding (marca) | https://console.cloud.google.com/auth/branding?project=proyecto-pauta |
+> | Audience (público) | https://console.cloud.google.com/auth/audience?project=proyecto-pauta |
+> | Data Access (acceso a los datos) | https://console.cloud.google.com/auth/scopes?project=proyecto-pauta |
+> | Clients (clientes) | https://console.cloud.google.com/auth/clients?project=proyecto-pauta |
+>
+> También llegas por **APIs y servicios › Pantalla de consentimiento de OAuth** o escribiendo «OAuth» en el buscador de arriba. «Plataforma de agentes» es otra cosa: no la uses.
+
 ## 1. Crear el proyecto
 1. Entra en https://console.cloud.google.com con una de tus cuentas de Gmail. Será la dueña del proyecto; la otra cuenta también podrá conectarse.
 2. Arriba, en el selector de proyectos, pulsa **New project**. Ponle de nombre `Pauta` y pulsa **Create**.
