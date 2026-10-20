@@ -1,0 +1,21 @@
+{
+  "name": "pauta",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "node --test pruebas/*.test.mjs",
+    "capturas": "playwright test"
+  },
+  "dependencies": {
+    "@astrojs/svelte": "9.1.0",
+    "astro": "7.4.1",
+    "svelte": "5.57.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1"
+  }
+}

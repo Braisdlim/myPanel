@@ -1,0 +1,25 @@
+---
+import "../../../diseno/sistema/tokens.css";
+import "../../../diseno/sistema/components/bundle.css";
+import "../estilos.css";
+import App from "../App.svelte";
+---
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Pauta</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      // Tema antes de pintar para no parpadear: el guardado en el dispositivo o el del sistema.
+      try { const t = localStorage.getItem("pauta-tema"); const osc = matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = t === "light" || t === "dark" ? t : osc ? "dark" : "light"; } catch {}
+    </script>
+  </head>
+  <body>
+    <App client:only="svelte" />
+    <noscript>Pauta necesita JavaScript.</noscript>
+  </body>
+</html>
