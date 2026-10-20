@@ -18,7 +18,8 @@
     nuevoPaso = "";
   }
   function marcarPaso(p) { guardar({ comprobacion: t.comprobacion.map((x) => (x.id === p.id ? { ...x, hecha: !x.hecha } : x)) }); }
-  async function borrar() { if (confirm(`¿Borrar «${t.titulo}»? No se puede deshacer.`)) { await borrarTarea(t); alCerrar(); } }
+  let confirmando = $state(false);
+  async function borrar() { await borrarTarea(t); alCerrar(); }
 </script>
 
 <div class="detalle">
@@ -76,7 +77,13 @@
     </span></li>
   </ul>
   <div class="pa-insp__actions">
-    <button class="pa-btn pa-btn--danger" onclick={borrar}><Icono n="trash-2" />Borrar</button>
+    {#if confirmando}
+      <span class="pregunta">¿Borrar esta tarea? No se puede deshacer.</span>
+      <button class="pa-btn pa-btn--danger" onclick={borrar}><Icono n="trash-2" />Sí, borrar</button>
+      <button class="pa-btn pa-btn--plain" onclick={() => (confirmando = false)}>Cancelar</button>
+    {:else}
+      <button class="pa-btn pa-btn--danger" onclick={() => (confirmando = true)}><Icono n="trash-2" />Borrar</button>
+    {/if}
   </div>
 </div>
 
@@ -98,6 +105,7 @@
   .fila .pa-field { height: 30px; font-size: 13px; padding: 0 8px; }
   .fichas { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
   small { margin-top: 4px; }
+  .pregunta { flex-basis: 100%; font-size: 13px; color: var(--text-2); }
   @media (max-width: 640px) {
     .titulo { font-size: 22px; line-height: 28px; }
     .notas, .pasos li, .paso { font-size: 15px; line-height: 20px; }

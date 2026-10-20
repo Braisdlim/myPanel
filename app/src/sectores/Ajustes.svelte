@@ -14,9 +14,8 @@
     URL.revokeObjectURL(url);
     avisar("Copia descargada");
   }
-  async function borrar() {
-    if (confirm("¿Borrar todas tus tareas, proyectos y ajustes de este dispositivo? No se puede deshacer.")) { await borrarTodo(); avisar("Datos borrados de este dispositivo"); }
-  }
+  let confirmando = $state(false);
+  async function borrar() { await borrarTodo(); confirmando = false; avisar("Datos borrados de este dispositivo"); }
 </script>
 
 {#snippet principal()}
@@ -86,7 +85,13 @@
       </ul>
       <div class="acciones">
         <button class="pa-btn" onclick={descargar}><Icono n="download" />Descargar una copia (JSON)</button>
-        <button class="pa-btn pa-btn--danger" onclick={borrar}><Icono n="trash-2" />Borrar todo de este dispositivo</button>
+        {#if confirmando}
+          <p class="aviso-borrar">Se borrarán {app.tareas.length} tareas, {app.proyectos.length} proyectos y tus ajustes de este dispositivo. No se puede deshacer.</p>
+          <button class="pa-btn pa-btn--danger" onclick={borrar}><Icono n="trash-2" />Sí, borrar todo</button>
+          <button class="pa-btn pa-btn--plain" onclick={() => (confirmando = false)}>Cancelar</button>
+        {:else}
+          <button class="pa-btn pa-btn--danger" onclick={() => (confirmando = true)}><Icono n="trash-2" />Borrar todo de este dispositivo</button>
+        {/if}
       </div>
     </section>
     <section class="bloque">
@@ -105,4 +110,5 @@
   .filas { margin-top: 0; }
   .acciones { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 8px; }
   p { margin: 8px 0 0; }
+  .aviso-borrar { flex-basis: 100%; margin: 0; color: var(--text); }
 </style>

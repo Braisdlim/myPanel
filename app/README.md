@@ -24,6 +24,8 @@ npm run build && npx astro preview --port 4330
 npm test             # pruebas de fechas, analizador y tareas (node --test)
 PW_CHROMIUM=/opt/pw-browsers/chromium-1194/chrome-linux/chrome npx playwright test   # capturas y revisión (contraste, táctil, consola)
 ```
+`npm run vista-previa -- <carpeta>` prepara la página privada de claude.ai (vista previa: https://claude.ai/artifact/TZbZd7bVhQfpRPeuQqVLqN). Allí no funcionan «Descargar una copia» (el visor bloquea las descargas) y los datos se guardan solo en ese navegador.
+
 Las capturas se guardan en `capturas/` (no van al repositorio). Variables: `THEMES=dark,light`, `FORMAT=png|jpeg`.
 
 ## Estructura

@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "node --test pruebas/*.test.mjs",
-    "capturas": "playwright test"
+    "capturas": "playwright test",
+    "vista-previa": "astro build && node scripts/vista-previa.mjs"
   },
   "dependencies": {
     "@astrojs/svelte": "9.1.0",
