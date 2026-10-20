@@ -118,3 +118,14 @@ export function ultimoDomingo(anio, mes) {
   d.setDate(d.getDate() - ((d.getDay() + 7) % 7));
   return aISO(d);
 }
+
+/** «hace un momento», «hace 5 min», «hace 3 h», «ayer a las 9:05», «el 12 oct a las 9:05» (para fechas con hora ISO) */
+export function haceCuanto(isoCompleto, ahora = new Date()) {
+  const t = new Date(isoCompleto), min = Math.round((ahora - t) / 60000);
+  if (min < 1) return "hace un momento";
+  if (min < 60) return `hace ${min} min`;
+  const dia = aISO(t), alas = `a las ${hora(t.getHours() * 60 + t.getMinutes())}`;
+  if (dia === aISO(ahora)) return `hace ${Math.floor(min / 60)} h`;
+  if (dia === sumarDias(aISO(ahora), -1)) return `ayer ${alas}`;
+  return `el ${corta(dia)} ${alas}`;
+}

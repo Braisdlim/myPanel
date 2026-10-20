@@ -1,7 +1,8 @@
 <script>
   import { app, ir } from "../lib/estado.svelte.js";
   import { deHoy, minutosPlaneados } from "../lib/tareas.js";
-  import { eventosDelDia, conflictos, cuenta, FONDOS, serie, euros, porcentaje } from "../lib/ejemplo.js";
+  import { eventosDelDia, conflictos, cuenta, esReal } from "../lib/agenda.svelte.js";
+  import { FONDOS, serie, euros, porcentaje } from "../lib/ejemplo.js";
   import { larga, rango, hora, duracion, sumarDias, corta } from "../lib/fechas.js";
   import Dos from "../componentes/Dos.svelte";
   import FilaTarea from "../componentes/FilaTarea.svelte";
@@ -61,12 +62,12 @@
     </div>
   </section>
 
-  <div class="pa-section"><Icono n="calendar" /><span class="pa-label">eventos de hoy</span><span class="etiqueta-ejemplo">ejemplo</span></div>
+  <div class="pa-section"><Icono n="calendar" /><span class="pa-label">eventos de hoy</span>{#if !esReal()}<span class="etiqueta-ejemplo">ejemplo</span>{/if}</div>
   <ul class="pa-list eventos">
     {#each eventos as e (e.id)}
       <li class="pa-row" class:pasado={!e.todoElDia && e.fin <= app.ahora}>
         <span class="pa-dot {e.cuenta ? 'pa-dot--' + cuenta(e.cuenta).color : ''}" class:opcional={e.opcional}></span>
-        <span class="pa-row__main"><span class="pa-row__title">{e.titulo}{#if e.opcional}<span class="pa-faint"> · opcional</span>{/if}</span><span class="pa-row__meta">{e.cuenta ? cuenta(e.cuenta).nombre : "Aviso"}{e.lugar ? ` · ${e.lugar}` : ""}</span></span>
+        <span class="pa-row__main"><span class="pa-row__title">{e.titulo}{#if e.opcional}<span class="pa-faint"> · opcional</span>{/if}</span><span class="pa-row__meta">{e.cuenta ? cuenta(e.cuenta).nombre : "Aviso"}{e.calendario && e.calendario !== cuenta(e.cuenta).correo ? ` · ${e.calendario}` : ""}{e.lugar ? ` · ${e.lugar}` : ""}</span></span>
         <span class="pa-row__end">{e.todoElDia ? "todo el día" : rango(e.inicio, e.fin)}</span>
       </li>
     {:else}
@@ -100,7 +101,7 @@
         <button class="pa-alert aviso" onclick={() => ir("atencion")}>
           <span class="pa-dot pa-dot--danger"></span><span class="pa-alert__title">{a.dia === app.hoy ? "Hoy" : "Mañana"} se solapan dos planes</span>
           <span class="pa-alert__text">{a.titulo} ({cuenta(a.cuenta).nombre}) y {b.titulo} ({cuenta(b.cuenta).nombre}), {rango(Math.max(a.inicio, b.inicio), Math.min(a.fin, b.fin))}</span>
-          <span class="pa-alert__src">Calendarios de ejemplo</span>
+          <span class="pa-alert__src">{esReal() ? "Tus calendarios" : "Calendarios de ejemplo"}</span>
         </button>
       {/each}
       {#if atrasadas}

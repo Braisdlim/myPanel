@@ -1,6 +1,7 @@
 <script>
   import { app, ir, guardarTarea } from "../lib/estado.svelte.js";
-  import { eventosEntre, conflictos, cuenta, FONDOS, serie, porcentaje } from "../lib/ejemplo.js";
+  import { eventosEntre, conflictos, cuenta, esReal } from "../lib/agenda.svelte.js";
+  import { FONDOS, serie, porcentaje } from "../lib/ejemplo.js";
   import { sumarDias, corta, distancia, rango } from "../lib/fechas.js";
   import Dos from "../componentes/Dos.svelte";
   import Icono from "../componentes/Icono.svelte";
@@ -24,7 +25,7 @@
         <span class="pa-dot pa-dot--danger"></span>
         <span class="pa-alert__title">{distancia(a.dia, app.hoy)[0].toUpperCase() + distancia(a.dia, app.hoy).slice(1)} se solapan dos planes</span>
         <span class="pa-alert__text">{a.titulo} ({cuenta(a.cuenta).nombre}, {rango(a.inicio, a.fin)}) y {b.titulo} ({cuenta(b.cuenta).nombre}, {rango(b.inicio, b.fin)}) · {corta(a.dia)}</span>
-        <span class="pa-alert__src">Ninguna de las dos cuentas lo ve por separado · calendarios de ejemplo</span>
+        <span class="pa-alert__src">Ninguna de las dos cuentas lo ve por separado{esReal() ? "" : " · calendarios de ejemplo"}</span>
         <span class="pa-alert__actions"><button class="pa-btn pa-btn--sm" onclick={() => ir("calendario", "dia", a.dia)}>Ver el día</button></span>
       </div>
     {/each}

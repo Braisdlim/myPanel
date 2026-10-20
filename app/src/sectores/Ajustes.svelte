@@ -1,6 +1,8 @@
 <script>
-  import { app, ir, cambiarAjuste, exportar, borrarTodo, avisar } from "../lib/estado.svelte.js";
+  import { app, ir, cambiarAjuste, exportar, borrarTodo, avisar, conectarGoogle, actualizarCuenta, cambiarCalendario, renombrarCuenta, desconectarCuenta, tienePermiso } from "../lib/estado.svelte.js";
   import { CUENTAS } from "../lib/ejemplo.js";
+  import { CLIENT_ID } from "../lib/google.js";
+  import { haceCuanto } from "../lib/fechas.js";
   import Dos from "../componentes/Dos.svelte";
   import Icono from "../componentes/Icono.svelte";
 
@@ -14,6 +16,34 @@
     URL.revokeObjectURL(url);
     avisar("Copia descargada");
   }
+  // ---------- cuentas ----------
+  let conectando = $state(false);
+  let error = $state(""); // del último «Conectar Google»
+  let errores = $state({}); // id de cuenta → mensaje
+  let quitando = $state(null); // id de la cuenta que se va a desconectar
+  let renombrando = $state(null);
+  let nombreNuevo = $state("");
+
+  async function conectar() {
+    conectando = true; error = "";
+    try { const c = await conectarGoogle(); avisar(`Conectada: ${c.correo}`); }
+    catch (e) { error = e.message; }
+    conectando = false;
+  }
+  async function intentar(c, f) {
+    errores[c.id] = "";
+    try { await f(); } catch (e) { errores[c.id] = e.message; }
+  }
+  const actualizar = (c) => intentar(c, () => actualizarCuenta(c));
+  async function alternarCalendario(c, cal) {
+    await cambiarCalendario(c, cal.id, !cal.activo);
+    if (!cal.activo) await actualizar(c); // al encenderlo hay que traer sus eventos
+  }
+  async function guardarNombre(e, c) { e.preventDefault(); await renombrarCuenta(c, nombreNuevo); renombrando = null; }
+  async function desconectar(c) { const retirado = await desconectarCuenta(c); quitando = null; avisar(retirado ? `Desconectada y sin permiso: ${c.correo}` : `Desconectada: ${c.correo}`); }
+  const numEventos = (c) => new Set((app.eventos[c.id] ?? []).map((e) => e.uid + e.calendarioId)).size;
+  const estado = (c) => { const s = app.sync[c.id]; app.ahora; return !s ? "Sin actualizar todavía" : s.estado === "cargando" ? "Actualizando…" : s.actualizado ? `Actualizado ${haceCuanto(s.actualizado)}` : "Sin actualizar todavía"; };
+
   let confirmando = $state(false);
   async function borrar() { await borrarTodo(); confirmando = false; avisar("Datos borrados de este dispositivo"); }
 </script>
@@ -45,18 +75,73 @@
     </section>
   {:else if sec === "cuentas"}
     <section class="bloque">
-      <h2>Cuentas conectadas <span class="etiqueta-ejemplo">ejemplo</span></h2>
-      <p class="pa-muted">Todavía no hay cuentas reales: estas tres son de ejemplo. Conectar tu Google Calendar en solo lectura es el siguiente paso.</p>
-      <ul class="pa-list pa-list--lines">
-        {#each CUENTAS as c}
-          <li class="pa-row"><span class="pa-dot pa-dot--{c.color}"></span><span class="pa-row__main"><span class="pa-row__title">{c.nombre}</span><span class="pa-row__meta">{c.proveedor} · {c.correo} · {c.escritura ? "calendario con escritura" : "solo lectura"}</span></span></li>
-        {/each}
-      </ul>
+      {#if app.cuentas.length}
+        <h2>Cuentas conectadas</h2>
+        <div class="cuentas">
+          {#each app.cuentas as c (c.id)}
+            <article class="pa-card cuenta" aria-label="Cuenta {c.correo}">
+              <div class="cuenta__cab">
+                <span class="pa-dot pa-dot--{c.color}"></span>
+                {#if renombrando === c.id}
+                  <form class="renombrar" onsubmit={(e) => guardarNombre(e, c)}>
+                    <!-- svelte-ignore a11y_autofocus -->
+                    <input class="pa-field" bind:value={nombreNuevo} aria-label="Nombre de la cuenta" placeholder={c.correo} autofocus onkeydown={(e) => e.key === "Escape" && (renombrando = null)} />
+                    <button class="pa-btn pa-btn--sm pa-btn--primary">Guardar</button>
+                  </form>
+                {:else}
+                  <span class="cuenta__nombre"><b>{c.nombre}</b><span class="pa-faint">{c.nombre !== c.correo ? `${c.correo} · ` : ""}Google · solo lectura</span></span>
+                  <button class="pa-btn pa-btn--icon" aria-label="Cambiar el nombre de {c.correo}" title="Cambiar el nombre" onclick={() => { renombrando = c.id; nombreNuevo = c.nombre === c.correo ? "" : c.nombre; }}><Icono n="pencil" /></button>
+                {/if}
+              </div>
+              <p class="cuenta__estado" class:con-error={app.sync[c.id]?.estado === "error"}>
+                {estado(c)} · {numEventos(c)} eventos guardados en este dispositivo
+              </p>
+              {#if errores[c.id]}<p class="cuenta__error" role="alert">{errores[c.id]}</p>{/if}
+
+              <div class="pa-label calendarios">calendarios</div>
+              {#each c.calendarios as cal (cal.id)}
+                <div class="pa-toggle">
+                  <span class="pa-toggle__text"><span class="pa-toggle__title">{cal.nombre}</span><span class="pa-toggle__meta">{cal.principal ? "Principal" : cal.rol === "owner" ? "Tuyo" : cal.rol === "reader" || cal.rol === "freeBusyReader" ? "Compartido contigo" : "Suscrito"}</span></span>
+                  <button class="pa-switch" role="switch" aria-checked={cal.activo ? "true" : "false"} aria-label="Mostrar {cal.nombre}" onclick={() => alternarCalendario(c, cal)}></button>
+                </div>
+              {/each}
+
+              <div class="acciones">
+                <button class="pa-btn pa-btn--sm" onclick={() => actualizar(c)} disabled={app.sync[c.id]?.estado === "cargando"}><Icono n="refresh-cw" tam={14} />Actualizar</button>
+                {#if quitando === c.id}
+                  <p class="aviso-borrar">Se borrarán de este dispositivo los eventos guardados de <b>{c.correo}</b> {#if tienePermiso(c)}y Pauta retirará su permiso en Google{:else}. El permiso de Google se retira en <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener noreferrer">tu cuenta de Google</a> (Pauta no puede hacerlo sin pedírtelo otra vez){/if}. Tu Google Calendar no cambia.</p>
+                  <button class="pa-btn pa-btn--sm pa-btn--danger" onclick={() => desconectar(c)}><Icono n="log-out" tam={14} />Sí, desconectar</button>
+                  <button class="pa-btn pa-btn--sm pa-btn--plain" onclick={() => (quitando = null)}>Cancelar</button>
+                {:else}
+                  <button class="pa-btn pa-btn--sm pa-btn--plain" onclick={() => (quitando = c.id)}><Icono n="log-out" tam={14} />Desconectar</button>
+                {/if}
+              </div>
+            </article>
+          {/each}
+        </div>
+      {:else}
+        <h2>Cuentas conectadas <span class="etiqueta-ejemplo">ejemplo</span></h2>
+        <p class="pa-muted">Todavía no hay cuentas reales: estas tres son de ejemplo y desaparecen al conectar la primera.</p>
+        <ul class="pa-list pa-list--lines">
+          {#each CUENTAS as c}
+            <li class="pa-row"><span class="pa-dot pa-dot--{c.color}"></span><span class="pa-row__main"><span class="pa-row__title">{c.nombre}</span><span class="pa-row__meta">{c.proveedor} · {c.correo} · {c.escritura ? "calendario con escritura" : "solo lectura"}</span></span></li>
+          {/each}
+        </ul>
+      {/if}
+
       <div class="acciones">
-        <button class="pa-btn" disabled><Icono n="user-plus" />Conectar Google</button>
-        <button class="pa-btn" disabled><Icono n="user-plus" />Conectar Microsoft</button>
+        <button class="pa-btn" class:pa-btn--primary={!app.cuentas.length && CLIENT_ID} onclick={conectar} disabled={!CLIENT_ID || conectando}><Icono n="user-plus" />{conectando ? "Esperando a Google…" : app.cuentas.length ? "Conectar otra cuenta de Google" : "Conectar Google"}</button>
+        <button class="pa-btn" disabled title="Más adelante"><Icono n="user-plus" />Conectar Microsoft</button>
       </div>
-      <p class="pa-faint">Al conectar se pedirá solo lectura. Escribir en un calendario se activa por cuenta y cada cambio se confirma diciendo la cuenta de destino.</p>
+      {#if error}<p class="cuenta__error" role="alert">{error}</p>{/if}
+      {#if !CLIENT_ID}
+        <p class="pa-muted">Para conectar Google falta un paso que se hace una vez: crear tu ID de cliente en Google Cloud y ponerlo en <code>app/.env</code>. La guía está en <code>docs/guias/conectar-google-calendar.md</code>.</p>
+      {/if}
+      <ul class="pa-insp__rows filas">
+        <li><Icono n="shield-check" /><span>Solo lectura<small>Pauta pide dos permisos: ver la lista de tus calendarios y ver sus eventos. No puede crear, cambiar ni borrar nada.</small></span></li>
+        <li><Icono n="lock" /><span>El permiso no se guarda<small>Dura una hora y vive solo en esta pestaña. Al recargar ves lo guardado; «Actualizar» lo vuelve a pedir.</small></span></li>
+        <li><Icono n="triangle-alert" /><span>Aviso de app no verificada<small>Google lo muestra porque la app es tuya y no ha pasado su revisión. Puedes retirar el permiso cuando quieras en <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener noreferrer">tu cuenta de Google</a>.</small></span></li>
+      </ul>
     </section>
   {:else if sec === "avisos"}
     <section class="bloque">
@@ -79,14 +164,14 @@
     <section class="bloque">
       <h2>Dónde están tus datos</h2>
       <ul class="pa-insp__rows filas">
-        <li><Icono n="hard-drive" /><span>En este dispositivo<small>{app.persistente ? "Tareas, proyectos y ajustes se guardan en este navegador; no salen de aquí" : "Este navegador no deja guardar: se perderán al cerrar"}</small></span></li>
+        <li><Icono n="hard-drive" /><span>En este dispositivo<small>{app.persistente ? `Tareas, proyectos, ajustes${app.cuentas.length ? " y la copia de tus calendarios" : ""} se guardan en este navegador; no salen de aquí` : "Este navegador no deja guardar: se perderán al cerrar"}</small></span></li>
         <li><Icono n="cloud" /><span>Sin sincronizar<small>Llegará más adelante, cifrado en tu dispositivo (D-041)</small></span></li>
-        <li><Icono n="info" /><span>{app.tareas.length} tareas y {app.proyectos.length} proyectos guardados</span></li>
+        <li><Icono n="info" /><span>{app.tareas.length} tareas y {app.proyectos.length} proyectos guardados{#if app.cuentas.length}<small>{app.cuentas.length === 1 ? "1 cuenta conectada" : `${app.cuentas.length} cuentas conectadas`}</small>{/if}</span></li>
       </ul>
       <div class="acciones">
         <button class="pa-btn" onclick={descargar}><Icono n="download" />Descargar una copia (JSON)</button>
         {#if confirmando}
-          <p class="aviso-borrar">Se borrarán {app.tareas.length} tareas, {app.proyectos.length} proyectos y tus ajustes de este dispositivo. No se puede deshacer.</p>
+          <p class="aviso-borrar">Se borrarán {app.tareas.length} tareas, {app.proyectos.length} proyectos{app.cuentas.length ? ", la copia de tus calendarios (y se desconectarán tus cuentas)" : ""} y tus ajustes de este dispositivo. Tus calendarios de Google no cambian. No se puede deshacer.</p>
           <button class="pa-btn pa-btn--danger" onclick={borrar}><Icono n="trash-2" />Sí, borrar todo</button>
           <button class="pa-btn pa-btn--plain" onclick={() => (confirmando = false)}>Cancelar</button>
         {:else}
@@ -96,7 +181,7 @@
     </section>
     <section class="bloque">
       <h2>Acerca de</h2>
-      <p class="pa-muted">Pauta 0.1.0 · primera versión, paso 1. Calendarios, finanzas y asistente son de ejemplo.</p>
+      <p class="pa-muted">Pauta 0.2.0 · primera versión, paso 2: tus calendarios de Google en solo lectura. Finanzas y asistente siguen siendo de ejemplo.</p>
     </section>
   {/if}
 {/snippet}
@@ -111,4 +196,15 @@
   .acciones { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 8px; }
   p { margin: 8px 0 0; }
   .aviso-borrar { flex-basis: 100%; margin: 0; color: var(--text); }
+  .cuentas { display: flex; flex-direction: column; gap: 12px; }
+  .cuenta__cab { display: flex; align-items: center; gap: 10px; }
+  .cuenta__nombre { display: flex; flex-direction: column; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+  .cuenta__nombre b { font-weight: 600; }
+  .cuenta__estado { color: var(--text-2); font-size: 13px; }
+  .con-error { color: var(--attention); }
+  .cuenta__error { color: var(--danger); font-size: 13px; }
+  .calendarios { margin: 14px 0 4px; }
+  .renombrar { display: flex; flex: 1; gap: 8px; }
+  .renombrar .pa-field { flex: 1; min-width: 0; }
+  code { font-family: ui-monospace, monospace; font-size: 0.92em; }
 </style>

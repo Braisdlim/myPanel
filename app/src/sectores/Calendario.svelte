@@ -1,7 +1,7 @@
 <script>
-  import { app, ir } from "../lib/estado.svelte.js";
-  import { eventosDelDia, horasDelDia, cuenta, CUENTAS, conflictos } from "../lib/ejemplo.js";
-  import { sumarDias, sumarMeses, inicioSemana, inicioMes, diaSemana, desdeISO, larga, corta, mesAnio, rango, duracion, DIAS_LETRA, MESES_CORTOS, MESES, existe } from "../lib/fechas.js";
+  import { app, ir, actualizarTodo } from "../lib/estado.svelte.js";
+  import { eventosDelDia, horasDelDia, cuenta, cuentas, esReal, ventana, ultimaActualizacion } from "../lib/agenda.svelte.js";
+  import { sumarDias, sumarMeses, inicioSemana, inicioMes, diaSemana, desdeISO, larga, corta, mesAnio, rango, duracion, DIAS_LETRA, MESES_CORTOS, existe, haceCuanto } from "../lib/fechas.js";
   import Dos from "../componentes/Dos.svelte";
   import Rejilla from "../componentes/Rejilla.svelte";
   import Icono from "../componentes/Icono.svelte";
@@ -30,6 +30,20 @@
     return { iso, h: horasDelDia(iso, app.hoy) };
   })));
   const elegirDia = (d) => ir("calendario", "dia", d);
+
+  // Tus cuentas: estado de la última actualización
+  const cargando = $derived(app.cuentas.some((c) => app.sync[c.id]?.estado === "cargando"));
+  const conError = $derived(app.cuentas.filter((c) => app.sync[c.id]?.estado === "error"));
+  let errores = $state([]);
+  async function actualizar() { errores = await actualizarTodo(); }
+  const resumen = $derived.by(() => {
+    if (cargando) return "Actualizando…";
+    if (conError.length) return `${conError.map((c) => c.nombre).join(" y ")}: sin actualizar`;
+    const u = ultimaActualizacion();
+    app.ahora; // se refresca cada 30 s
+    return u ? `Actualizado ${haceCuanto(u)}` : "Sin actualizar todavía";
+  });
+  const v = $derived(ventana());
 </script>
 
 {#snippet agendaDia(d)}
@@ -52,7 +66,16 @@
 
 {#snippet principal()}
   <div class="cabecera barra">
-    <div><h1 class="titulo">{titulo}</h1><p>Calendarios de ejemplo de Gmail 1, Gmail 2 y Outlook <span class="etiqueta-ejemplo">ejemplo</span></p></div>
+    <div>
+      <h1 class="titulo">{titulo}</h1>
+      {#if esReal()}
+        <p class="estado" class:con-error={conError.length}>{cuentas().length === 1 ? cuentas()[0].nombre : `${cuentas().length} cuentas`} · {resumen}
+          <button class="pa-btn pa-btn--plain pa-btn--sm" onclick={actualizar} disabled={cargando}><Icono n="refresh-cw" tam={14} />Actualizar</button></p>
+        {#each errores as e}<p class="pa-faint error" role="alert">{e}</p>{/each}
+      {:else}
+        <p>Calendarios de ejemplo de Gmail 1, Gmail 2 y Outlook <span class="etiqueta-ejemplo">ejemplo</span> · <a class="enlace" href="#/ajustes/cuentas">conectar los tuyos</a></p>
+      {/if}
+    </div>
     <div class="controles">
       <div class="pa-seg" role="group" aria-label="Escala">
         {#each ESCALAS as [e, n]}<button aria-pressed={escala === e ? "true" : "false"} onclick={() => ir("calendario", e, fecha)}>{n}</button>{/each}
@@ -102,7 +125,7 @@
       {@render agendaDia(fecha)}
     {/if}
   {:else}
-    <p class="pa-faint">Horas comprometidas cada día: cuanto más intenso, más ocupado. Toca un día para abrirlo.</p>
+    <p class="pa-faint">Horas comprometidas cada día: cuanto más intenso, más ocupado. Toca un día para abrirlo.{#if v} Hay eventos guardados del {corta(v.desde)} al {corta(v.hasta)}.{/if}</p>
     <div class="pa-year" class:pa-year--vertical={app.movil} role="grid" aria-label="Año {anio}">
       {#if app.movil}
         <span></span>{#each MESES_CORTOS as m}<span class="pa-year__m">{m[0].toUpperCase()}</span>{/each}
@@ -132,20 +155,22 @@
     <h2 class="pa-insp__title">{elegido.titulo}</h2>
     <div class="pa-insp__meta">{corta(elegido.dia)}{elegido.todoElDia ? " · todo el día" : `, ${rango(elegido.inicio, elegido.fin)} · ${duracion(elegido.fin - elegido.inicio)}`}</div>
     <ul class="pa-insp__rows">
-      {#if elegido.cuenta}<li><span class="pa-dot pa-dot--{cuenta(elegido.cuenta).color}" style="margin: 4px;"></span><span>{cuenta(elegido.cuenta).nombre} · {cuenta(elegido.cuenta).proveedor}<small>{cuenta(elegido.cuenta).escritura ? "Con escritura activada" : "Solo lectura"}</small></span></li>{/if}
+      {#if elegido.cuenta}<li><span class="pa-dot pa-dot--{cuenta(elegido.cuenta).color}" style="margin: 4px;"></span><span>{cuenta(elegido.cuenta).nombre} · {cuenta(elegido.cuenta).proveedor}<small>{elegido.calendario && elegido.calendario !== cuenta(elegido.cuenta).correo ? `Calendario «${elegido.calendario}» · ` : ""}{cuenta(elegido.cuenta).escritura ? "Con escritura activada" : "Solo lectura"}</small></span></li>{/if}
+      {#if elegido.tambien?.length}<li><Icono n="users" /><span>También en {elegido.tambien.map((id) => cuenta(id).nombre).join(" y ")}<small>Es el mismo evento: se muestra una vez</small></span></li>{/if}
       {#if elegido.lugar}<li><Icono n="map-pin" /><span>{elegido.lugar}</span></li>{/if}
       {#if elegido.opcional}<li><Icono n="repeat" /><span>Cada viernes · opcional<small>{elegido.nota}</small></span></li>{/if}
-      {#if !elegido.ejemplo && !elegido.tarea && elegido.cuenta}<li><Icono n="info" /><span>Es un hecho real<small>Su calendario está por confirmar (P-001)</small></span></li>{/if}
+      {#if !esReal() && !elegido.ejemplo && !elegido.tarea && elegido.cuenta}<li><Icono n="info" /><span>Es un hecho real<small>Su calendario está por confirmar (P-001)</small></span></li>{/if}
     </ul>
     <div class="pa-insp__actions">
-      <button class="pa-btn pa-btn--sm" disabled title="Llegará al conectar tus cuentas">Mover</button>
-      {#if elegido.opcional}<button class="pa-btn pa-btn--sm" disabled title="Llegará al conectar tus cuentas">Saltar solo esta vez</button>{/if}
+      {#if elegido.enlace}<a class="pa-btn pa-btn--sm" href={elegido.enlace} target="_blank" rel="noopener noreferrer"><Icono n="external-link" tam={14} />Abrir en Google Calendar</a>{/if}
+      <button class="pa-btn pa-btn--sm" disabled title="Cambiar eventos llegará más adelante">Mover</button>
+      {#if elegido.opcional}<button class="pa-btn pa-btn--sm" disabled title="Cambiar eventos llegará más adelante">Saltar solo esta vez</button>{/if}
     </div>
-    <p class="pa-faint nota">Cambiar eventos llegará al conectar tus calendarios, siempre con confirmación y la cuenta de destino a la vista.</p>
+    <p class="pa-faint nota">{esReal() ? "Pauta lee tus calendarios sin poder cambiarlos. Cambiar eventos llegará más adelante" : "Cambiar eventos llegará al conectar tus calendarios"}, siempre con confirmación y la cuenta de destino a la vista.</p>
   {:else}
     <div class="pa-label">cuentas</div>
     <ul class="pa-insp__rows">
-      {#each CUENTAS as c}<li><span class="pa-dot pa-dot--{c.color}" style="margin: 4px;"></span><span>{c.nombre}<small>{c.proveedor} · {c.escritura ? "con escritura" : "solo lectura"} · ejemplo</small></span></li>{/each}
+      {#each cuentas() as c (c.id)}<li><span class="pa-dot pa-dot--{c.color}" style="margin: 4px;"></span><span class="nombre-cuenta">{c.nombre}<small>{c.proveedor} · {c.escritura ? "con escritura" : "solo lectura"}{esReal() ? ` · ${c.calendarios.filter((x) => x.activo).length} de ${c.calendarios.length} calendarios` : " · ejemplo"}</small></span></li>{/each}
     </ul>
     <p class="pa-faint nota">Elige un evento para ver su detalle.</p>
   {/if}
@@ -189,6 +214,12 @@
   .linea b, .pa-dayline__body b { font-weight: 500; }
   .pa-dayline__body { display: flex; flex-direction: column; }
   .nota { margin-top: 14px; font-size: 12.5px; }
+  .estado { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+  .estado.con-error { color: var(--attention); }
+  .error { margin: 4px 0 0; }
+  .enlace { color: var(--accent); text-underline-offset: 2px; }
+  .nombre-cuenta { min-width: 0; overflow-wrap: anywhere; }
+  a.pa-btn { text-decoration: none; }
   @media (max-width: 640px) {
     .mes { border: 0; }
     .mes__cab { border: 0; text-align: center; padding: 4px 0; }

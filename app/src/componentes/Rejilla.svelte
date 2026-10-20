@@ -1,7 +1,7 @@
 <script>
   // Rejilla de tiempo (día o semana) con el sistema de diseño: pa-tg y pa-ev.
   import { app } from "../lib/estado.svelte.js";
-  import { eventosDelDia, carriles, conflictos, cuenta } from "../lib/ejemplo.js";
+  import { eventosDelDia, carriles, conflictos, cuenta } from "../lib/agenda.svelte.js";
   import { DIAS_CORTOS, diaSemana, desdeISO, rango } from "../lib/fechas.js";
 
   let { dias, alElegir = () => {}, elegidoId = null, hora0 = 7, horas = 17, alto = 46 } = $props();

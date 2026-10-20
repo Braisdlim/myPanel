@@ -1,7 +1,7 @@
 <script>
   import { app, ir, SECTORES, nuevoProyecto } from "../lib/estado.svelte.js";
   import { LISTAS } from "../lib/tareas.js";
-  import { CUENTAS, conflictos, eventosDelDia } from "../lib/ejemplo.js";
+  import { cuentas, esReal, conflictos, eventosDelDia } from "../lib/agenda.svelte.js";
   import { sumarDias } from "../lib/fechas.js";
   import Icono from "./Icono.svelte";
 
@@ -46,11 +46,11 @@
     {/if}
   {/each}
 
-  <div class="pa-side__label">cuentas <span class="etiqueta-ejemplo">ejemplo</span></div>
-  {#each CUENTAS as c}
-    <div class="pa-side__account"><span class="pa-dot pa-dot--{c.color}"></span>{c.nombre}<span class="pa-side__count">{c.proveedor}</span></div>
+  <div class="pa-side__label">cuentas{#if !esReal()} <span class="etiqueta-ejemplo">ejemplo</span>{/if}</div>
+  {#each cuentas() as c (c.id)}
+    <div class="pa-side__account"><span class="pa-dot pa-dot--{c.color}"></span><span class="nombre-cuenta" title={c.correo}>{c.nombre}</span>{#if app.sync[c.id]?.estado === "error"}<span class="pa-side__count error">sin actualizar</span>{:else}<span class="pa-side__count">{c.proveedor}</span>{/if}</div>
   {/each}
-  <button class="pa-side__item tenue" onclick={() => ir("ajustes", "cuentas")}><Icono n="user-plus" />Añadir cuenta</button>
+  <button class="pa-side__item tenue" onclick={() => ir("ajustes", "cuentas")}><Icono n="user-plus" />{esReal() ? "Cuentas" : "Añadir cuenta"}</button>
 
   <button class="pa-side__item final" aria-current={r[0] === "ajustes" ? "page" : undefined} onclick={() => ir("ajustes")}><Icono n="settings" />Ajustes</button>
 </nav>
@@ -62,4 +62,6 @@
   .nuevo { padding: 2px 4px 2px 26px; }
   .nuevo .pa-field { height: 30px; font-size: 13px; }
   .pa-side__label { display: flex; align-items: center; gap: 6px; }
+  .nombre-cuenta { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .error { color: var(--attention); }
 </style>
