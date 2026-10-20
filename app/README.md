@@ -7,7 +7,7 @@ Astro 7.4.1 + Svelte 5.57.2, con el sistema de diseño de `../diseno/sistema/` (
 |---|---|
 | **Tareas** (Entrada, Hoy, Programadas, En cualquier momento, Algún día, Registro, proyectos, detalle con fecha, hora, duración, fecha límite, notas y pasos) | **Real**: se guardan en este dispositivo (IndexedDB) |
 | **Apuntar** (⌘K / Ctrl+K o ＋) con fechas en español sin IA; si algo es ambiguo, pregunta | **Real** (guarda tareas; los eventos de calendario llegarán al conectar cuentas) |
-| **Cuentas de Google** (Ajustes › Cuentas): conectar varias, elegir calendarios, actualizar, renombrar, desconectar | **Real, solo lectura** (D-049). Hace falta tu ID de cliente: [guía](../docs/guias/conectar-google-calendar.md) |
+| **Cuentas de Google** (Ajustes › Cuentas): conectar varias, elegir calendarios, actualizar, renombrar, desconectar | **Real, solo lectura** (D-049). El ID de cliente del proyecto va en `src/lib/google.js`; otro, en `app/.env` ([guía](../docs/guias/conectar-google-calendar.md)) |
 | **Hoy**: tiempo libre, eventos, tareas, lo siguiente, avisos, huecos | Real con tus tareas y, si conectas Google, con tus eventos |
 | **Calendario** (día, semana, mes, año) | Real con tus cuentas de Google; sin cuentas, ejemplo (Gmail 1, Gmail 2 y Outlook inventados alrededor de la fecha real) |
 | **Finanzas** | Ejemplo: tres fondos inventados |
@@ -20,7 +20,6 @@ Todo lo que no es real lleva la etiqueta «ejemplo». El ensayo de los viernes (
 ## Uso
 ```sh
 npm install
-cp .env.example .env # y pega tu ID de cliente de Google (no se sube; guía en docs/guias/)
 npm run dev          # http://localhost:4321
 npm run build && npx astro preview --port 4330
 npm test             # pruebas de fechas, analizador, tareas y Google Calendar (node --test)

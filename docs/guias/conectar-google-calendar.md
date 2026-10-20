@@ -58,10 +58,8 @@ Comprobado el 20-10-2026 con la guía oficial de Google (quickstart de JavaScrip
 6. Copia el **Client ID**, que termina en `.apps.googleusercontent.com`.
 
 ## 5. Ponerlo en Pauta
-En la carpeta `app/` del repositorio:
+El ID de `proyecto-pauta` ya va en `app/src/lib/google.js` (subido al repositorio el 20-10-2026 a petición tuya; es público y no lleva secreto). Solo si creas otro, ponlo en `app/.env` (`PUBLIC_GOOGLE_CLIENT_ID=…`), que manda sobre el del código y no se sube.
 ```sh
-cp .env.example .env        # .env no se sube al repositorio
-# abre .env y pega tu ID:  PUBLIC_GOOGLE_CLIENT_ID=1234…apps.googleusercontent.com
 npm install
 npm run dev                 # abre http://localhost:4321
 ```
@@ -86,7 +84,7 @@ Si `npm run dev` ya estaba en marcha, páralo y arráncalo otra vez para que lea
 ## Si algo falla
 | Lo que ves | Qué hacer |
 |---|---|
-| El botón «Conectar Google» está apagado | Falta `PUBLIC_GOOGLE_CLIENT_ID` en `app/.env`, o no reiniciaste `npm run dev`. |
+| El botón «Conectar Google» está apagado | No debería pasar: el ID va en el código. Si usas `app/.env`, reinicia `npm run dev`. |
 | Google dice `origin_mismatch` o `redirect_uri_mismatch` | El origen del paso 4 tiene que ser exactamente `http://localhost:4321`. Los cambios pueden tardar unos minutos. |
 | Google dice `access_denied` o que no tienes acceso | Esa cuenta no está en **Audience › Test users**. |
 | «El navegador bloqueó la ventana de Google» | Permite las ventanas emergentes para `localhost` y vuelve a pulsar. |

@@ -2,7 +2,10 @@
 // La biblioteca de Google da un token de acceso de corta duración; Pauta no guarda tokens en disco.
 import { aISO } from "./fechas.js";
 
-export const CLIENT_ID = import.meta.env?.PUBLIC_GOOGLE_CLIENT_ID ?? "";
+// ID de cliente del proyecto «proyecto-pauta» de Google Cloud. Es público por diseño (va en la página y no hay
+// secreto); el usuario pidió subirlo al repositorio el 20-10-2026 (D-040). PUBLIC_GOOGLE_CLIENT_ID en app/.env lo sustituye.
+const ID_DEL_PROYECTO = "1035846726614-g3k1ctssie46vend4ihglf5ujbgef7fr.apps.googleusercontent.com";
+export const CLIENT_ID = import.meta.env?.PUBLIC_GOOGLE_CLIENT_ID || ID_DEL_PROYECTO;
 export const PERMISOS = [
   "https://www.googleapis.com/auth/calendar.calendarlist.readonly", // la lista de tus calendarios
   "https://www.googleapis.com/auth/calendar.events.readonly", // ver los eventos, sin poder cambiarlos
