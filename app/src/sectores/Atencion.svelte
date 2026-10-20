@@ -44,12 +44,14 @@
         <span class="pa-alert__actions"><button class="pa-btn pa-btn--sm" onclick={() => aHoy(t)}>Hacer hoy</button></span>
       </div>
     {/each}
+    {#if caida.cambio < -0.03}
     <div class="pa-alert">
       <span class="pa-dot pa-dot--attention"></span>
       <span class="pa-alert__title">{caida.f.nombre}: {porcentaje(caida.cambio)} desde el máximo <span class="etiqueta-ejemplo">ejemplo</span></span>
       <span class="pa-alert__text">Máximo de los últimos 60 días el {corta(caida.desde)}. Es un aviso de ejemplo; las reglas las definirás tú.</span>
       <span class="pa-alert__actions"><button class="pa-btn pa-btn--sm" onclick={() => ir("finanzas", caida.f.id)}>Ver el fondo</button></span>
     </div>
+    {/if}
     {#if !choques.length && !atrasadas.length && !vencen.length}
       <p class="pa-faint">Nada más pendiente.</p>
     {/if}

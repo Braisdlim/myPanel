@@ -1,7 +1,7 @@
 <script>
   import { app, ir } from "../lib/estado.svelte.js";
   import { FONDOS, serie, euros, porcentaje } from "../lib/ejemplo.js";
-  import { sumarDias, corta, sumarMeses } from "../lib/fechas.js";
+  import { sumarDias, corta, cortaConAnio } from "../lib/fechas.js";
   import Dos from "../componentes/Dos.svelte";
   import Icono from "../componentes/Icono.svelte";
 
@@ -42,7 +42,7 @@
     <div class="pa-figure__value">{euros(fondo.vl, 4).replace(" €", "")} <span class="unidad">€ por participación</span></div>
     <div class="pa-figure__row">
       <span class="pa-delta pa-delta--solid {grafico.cambio >= 0 ? 'pa-delta--up' : 'pa-delta--down'}">{porcentaje(grafico.cambio)}</span>
-      <span class="pa-muted">desde el {corta(grafico.desde)}</span>
+      <span class="pa-muted">desde el {cortaConAnio(grafico.desde, app.hoy)}</span>
     </div>
     <div class="pa-figure__src">Valor liquidativo del {corta(fondo.fecha)} · los fondos publican con un día de retraso</div>
     <div class="pa-seg rangos" role="group" aria-label="Periodo">{#each RANGOS as [r]}<button aria-pressed={rango === r ? "true" : "false"} onclick={() => (rango = r)}>{r}</button>{/each}</div>
@@ -62,7 +62,7 @@
     <div class="cabecera"><div><h1>Mis fondos <span class="etiqueta-ejemplo">ejemplo</span></h1><p>Fondos inventados para ver cómo será. Tus datos llegarán en la fase de Finanzas.</p></div></div>
     <div class="pa-figure__label">patrimonio</div>
     <div class="pa-figure__value">{euros(total)}</div>
-    <div class="pa-figure__row"><span class="pa-delta {total >= aportado ? 'pa-delta--up' : 'pa-delta--down'}">{porcentaje(total / aportado - 1)}</span><span class="pa-muted">sobre {euros(aportado, 0)} aportados</span></div>
+    <div class="pa-figure__row"><span class="pa-delta pa-delta--solid {total >= aportado ? 'pa-delta--up' : 'pa-delta--down'}">{porcentaje(total / aportado - 1)}</span><span class="pa-muted">sobre {euros(aportado, 0)} aportados</span></div>
     <ul class="pa-list pa-list--lines lista">
       {#each datos as f}
         <li class="pa-row pa-row--hover">
@@ -95,7 +95,7 @@
   .rangos { margin: 18px 0 12px; }
   .datos { margin-top: 20px; }
   .lista { margin: 18px -12px 0; }
-  .fila { all: unset; display: flex; align-items: center; gap: 14px; flex: 1; cursor: pointer; }
+  .fila { all: unset; display: flex; align-items: center; gap: 14px; flex: 1; min-height: 44px; cursor: pointer; }
   .fila:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; border-radius: 4px; }
   .pa-figure__value { margin-top: 2px; }
 </style>

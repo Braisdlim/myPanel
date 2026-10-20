@@ -35,7 +35,14 @@ body { overflow: hidden; }
 .capa__dialogo { width: min(600px, calc(100vw - 32px)); }
 .hoja { position: fixed; inset: auto 0 0 0; z-index: 41; max-height: 92dvh; overflow: auto; }
 
+/* Ajustes del sistema que la app necesita (pendientes de pasar a diseno/sistema, P-040) */
+.pa-side__item[aria-current="page"] .pa-side__count { color: var(--text-2); }
+
 @media (max-width: 640px) {
+  /* Objetivos táctiles de al menos 44 px en el móvil */
+  .pa-seg button { height: 44px; line-height: 44px; }
+  .pa-chip { height: 44px; padding: 0 14px; }
+  .pa-btn--sm { min-height: 44px; }
   .app { grid-template-rows: minmax(0, 1fr) auto; }
   .app > .pa-toolbar, .app__body > .pa-sidebar, .app__body > .pa-inspector { display: none; }
   .app__body, .app__body--insp { grid-template-columns: minmax(0, 1fr); }

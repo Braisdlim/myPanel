@@ -112,7 +112,7 @@
     <div class="pa-label bloque">tu dinero hoy <span class="etiqueta-ejemplo">ejemplo</span></div>
     <button class="dinero" onclick={() => ir("finanzas")}>
       <span class="pa-figure__value">{euros(dinero.total)}</span>
-      <span class="pa-delta {dinero.dia >= 0 ? 'pa-delta--up' : 'pa-delta--down'}">{porcentaje(dinero.dia)}</span>
+      <span class="pa-delta pa-delta--solid {dinero.dia >= 0 ? 'pa-delta--up' : 'pa-delta--down'}">{porcentaje(dinero.dia)}</span>
       <span class="pa-figure__src">Valor del {corta(dinero.fecha)} · 3 fondos de ejemplo</span>
     </button>
 
@@ -142,8 +142,7 @@
   .opcional { background: transparent !important; box-shadow: inset 0 0 0 2px var(--cuenta-2); }
   .bloque { display: flex; align-items: center; gap: 6px; margin: 22px 0 8px; }
   .avisos { display: flex; flex-direction: column; gap: 8px; }
-  .aviso { all: unset; cursor: pointer; }
-  .aviso.pa-alert { display: grid; box-sizing: border-box; width: 100%; }
+  .aviso { box-sizing: border-box; width: 100%; border: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }
   .dinero { all: unset; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; cursor: pointer; }
   .dinero .pa-figure__value { font-size: 28px; line-height: 34px; }
   .dinero .pa-figure__src { flex-basis: 100%; margin-top: 0; }

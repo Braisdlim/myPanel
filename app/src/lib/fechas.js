@@ -69,6 +69,11 @@ export function corta(iso) {
   return `${DIAS_CORTOS[diaSemana(iso)]} ${d.getDate()} ${MESES_CORTOS[d.getMonth()]}`;
 }
 
+/** «vie 23 oct» si es del año de referencia; si no, «lun 20 oct 2025» */
+export function cortaConAnio(iso, referencia) {
+  return iso.slice(0, 4) === referencia.slice(0, 4) ? corta(iso) : `${corta(iso)} ${iso.slice(0, 4)}`;
+}
+
 /** «viernes, 23 de octubre» */
 export function larga(iso) {
   const d = desdeISO(iso);

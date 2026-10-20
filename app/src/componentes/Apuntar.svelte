@@ -103,7 +103,7 @@
   .entrada { position: relative; }
   .espejo, textarea { font: 400 17px/24px var(--font-sans); padding: 0; margin: 0; white-space: pre-wrap; word-break: break-word; }
   .espejo { color: transparent; }
-  .espejo :global(.pa-hl) { color: transparent; }
+  .espejo :global(.pa-hl) { color: transparent; padding: 0; border-radius: 2px; }
   textarea { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; outline: none; resize: none; background: transparent; color: var(--text); overflow: hidden; }
   textarea::placeholder { color: var(--text-3); }
   @media (max-width: 640px) {

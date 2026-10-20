@@ -1,5 +1,5 @@
 <script>
-  import { app, ir, nuevaTarea } from "../lib/estado.svelte.js";
+  import { app, ir, nuevaTarea, nuevoProyecto } from "../lib/estado.svelte.js";
   import { LISTAS, filtrar, porDia, contar } from "../lib/tareas.js";
   import { larga, distancia } from "../lib/fechas.js";
   import { analizar } from "../lib/analizador.js";
@@ -18,6 +18,14 @@
   let elegidaId = $state(null);
   const elegida = $derived(app.tareas.find((t) => t.id === elegidaId));
   let nueva = $state("");
+  let nuevoProy = $state("");
+  async function crearProyecto(e) {
+    e.preventDefault();
+    if (!nuevoProy.trim()) return;
+    const p = await nuevoProyecto(nuevoProy.trim());
+    nuevoProy = "";
+    ir("tareas", "p", p.id);
+  }
 
   const TEXTOS = {
     entrada: ["Lo que apuntas sin ordenar", "Aquí cae lo que apuntas sin fecha. Ordénalo cuando tengas un momento."],
@@ -65,9 +73,13 @@
       {#each app.proyectos as p}
         <li class="pa-row pa-row--hover"><button class="enlace" onclick={() => ir("tareas", "p", p.id)}><Icono n="circle" tam={20} /><span class="pa-row__main"><span class="pa-row__title">{p.nombre}</span></span><Icono n="chevron-right" /></button></li>
       {:else}
-        <li class="pa-row pa-faint">Aún no hay proyectos. Créalos desde la barra lateral en el ordenador.</li>
+        <li class="pa-row pa-faint">Aún no hay proyectos.</li>
       {/each}
     </ul>
+    <form class="nueva" onsubmit={crearProyecto}>
+      <Icono n="plus" />
+      <input class="pa-field" bind:value={nuevoProy} placeholder="Nuevo proyecto…" aria-label="Nuevo proyecto" />
+    </form>
   {:else}
     {#if app.movil}<button class="pa-btn pa-btn--plain volver" onclick={() => ir("tareas")}><Icono n="chevron-left" />Tareas</button>{/if}
     <div class="cabecera">
@@ -129,7 +141,7 @@
   .dia { font-weight: 600; font-size: 13px; color: var(--text); }
   .dia::first-letter { text-transform: uppercase; }
   .pa-section { justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
-  .enlace { all: unset; display: flex; align-items: center; gap: 14px; flex: 1; cursor: pointer; color: var(--text-2); }
+  .enlace { all: unset; display: flex; align-items: center; gap: 14px; flex: 1; min-height: 44px; cursor: pointer; color: var(--text-2); }
   .enlace .pa-row__title { color: var(--text); }
   .volver { margin: -6px 0 4px -8px; }
   .hoja-tarea { max-height: 88dvh; overflow: auto; }

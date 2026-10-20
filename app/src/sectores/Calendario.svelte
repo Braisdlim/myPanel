@@ -182,10 +182,10 @@
   .mas { font-size: 11px; color: var(--text-3); }
   .leyenda { margin-top: 10px; }
   .pa-year button.pa-year__c { border: 0; padding: 0; cursor: pointer; }
-  .dia-titulo { all: unset; display: block; margin: 16px 0 8px; font-weight: 600; font-size: 14px; color: var(--text-2); }
+  .dia-titulo { all: unset; display: flex; align-items: center; min-height: 44px; margin: 8px 0 0; font-weight: 600; font-size: 14px; color: var(--text-2); }
   .dia-titulo::first-letter { text-transform: uppercase; }
   .dia-titulo.hoy { color: var(--accent); }
-  .linea { all: unset; display: flex; flex-direction: column; cursor: pointer; padding-bottom: 14px; }
+  .linea { all: unset; display: flex; flex-direction: column; cursor: pointer; padding-bottom: 14px; min-height: 44px; box-sizing: border-box; }
   .linea b, .pa-dayline__body b { font-weight: 500; }
   .pa-dayline__body { display: flex; flex-direction: column; }
   .nota { margin-top: 14px; font-size: 12.5px; }
