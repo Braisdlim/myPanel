@@ -1,4 +1,4 @@
-# Traspaso de sesión: dónde estamos (20-10-2026)
+# Traspaso de sesión: dónde estamos (20-10-2026, actualizado tras la prueba real en Windows)
 
 Este documento sirve para continuar el trabajo en Claude Code en el ordenador del usuario (Windows) sin perder contexto. Resume la conversación en la nube del 18 al 20-10-2026 (sesión `session_0198Hqdxi7xdDqfq9pZ9jgNd`).
 
@@ -51,7 +51,7 @@ Sectores: Hoy, Calendario, Tareas, Compromisos flexibles (dentro de Calendario y
 |---|---|---|
 | Cuentas de correo | **Dos Gmail personales.** Todavía no se sabe en cuál se permitirá escribir (P-002). | Mensaje 2, D-015 |
 | Cuenta de trabajo | Microsoft de NTT DATA, con reuniones diarias. **Antes de conectarla hay que comprobar la política de la empresa**; mientras tanto, solo «ocupado» o nada (D-038, P-031). | Mensaje 20 |
-| Ensayo | **Viernes de 21:30 a 23:30**, recurrente y **opcional**: puede faltar alguna semana. Las excepciones se hacen **por ocurrencia**, nunca a la serie sin orden explícita. Falta saber en qué calendario está (P-001). | Mensajes 1 y 2 |
+| Ensayo | **Viernes de 21:30 a 23:30**, recurrente y **opcional**: puede faltar alguna semana. Las excepciones se hacen **por ocurrencia**, nunca a la serie sin orden explícita. **Está en `brais.dlim@gmail.com`**, en calendarios compartidos contigo («Glissandoo» ×2 y `bandadenoia@gmail.com`), y aparece repetido (P-001 resuelto el 20-10-2026, P-043). | Mensajes 1 y 2; prueba real |
 | Móvil | Honor 600 Pro con Google Play (MagicOS 10, Android 16). Navegador por confirmar, se supone Chrome (P-005). | Mensaje 2 |
 | Ordenadores | Windows (lo usa ahora). Mac: por confirmar si tiene uno personal (P-014). | Mensajes 20 y 41 |
 | Vacaciones | Se piden en el portal corporativo desde el PC de la empresa. Pauta solo apunta días libres (D-014). | Mensaje 2 |
@@ -99,7 +99,7 @@ El día de ejemplo de las maquetas es el **viernes 23-10-2026**. El 25-10-2026 e
 | Maquetas por sector, escritorio y móvil | `diseno/maquetas/{finanzas,hoy,calendario,tareas,asistente}/` (`*.dc.html`) | Finanzas y Hoy **aprobadas**; Calendario, Tareas y Asistente pendientes de revisión (P-027, P-028, P-033, P-038) |
 | Investigación de datos y sincronización, finanzas, voz y asistente de IA | `docs/producto/08`, `10`, `11`; `research/` | Hecho; D-041 propuesta, D-028 aplazada |
 | **App, paso 1**: carcasa, todos los sectores, tareas reales en IndexedDB, «Apuntar» con analizador de fechas propio | `app/` | Hecho (D-048) |
-| **App, paso 2**: Google Calendar en solo lectura, varias cuentas | `app/src/lib/google.js`, `calendario.js`, `agenda.svelte.js`, `sectores/Ajustes.svelte` | Hecho y probado con Google imitado (D-049). **Falta la prueba real** (P-041). |
+| **App, paso 2**: Google Calendar en solo lectura, varias cuentas | `app/src/lib/google.js`, `calendario.js`, `agenda.svelte.js`, `sectores/Ajustes.svelte` | Hecho y **probado con tus dos cuentas reales el 20-10-2026** (D-049, P-041). Faltan S-003 (27-10) y P-043. |
 
 ### Lienzos en claude.ai
 Son privados del usuario; se abren con su sesión de claude.ai. El código de los tableros está copiado en `diseno/maquetas/*/` (`canvas.json` + `*.dc.html`). Para editar un lienzo hace falta claude.ai, porque la herramienta de artefactos no existe en Claude Code local.
@@ -148,13 +148,16 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
   - que no haya errores de consola;
   - el recorrido completo con Google imitado.
 
+### Prueba real del 20-10-2026 (hecha en Windows)
+- Entorno: Node 24.20.0, npm 11.19.0, `npm test` 28 de 28, `npm run dev` en `http://localhost:4321`.
+- Conectadas las dos cuentas en solo lectura: `brais.dlim@gmail.com` (8 calendarios, 123 eventos) y `braisdlim.tw@gmail.com` (2 calendarios, 26 eventos). El correo se ve bien. Consola sin errores.
+- La ventana de Google obliga a permitir las ventanas emergentes de `localhost`.
+- El ensayo está en `brais.dlim@gmail.com`, en calendarios compartidos, y sale **tres veces** (P-043). Los calendarios compartidos quizá no admitan escritura (P-042).
+
 ### Lo siguiente inmediato
-1. **El usuario prueba en Windows la conexión real** de sus dos Gmail (`npm run dev` → `http://localhost:4321/#/ajustes/cuentas`). Después hay que:
-   - comprobar que el correo de cada cuenta se ve bien;
-   - averiguar en qué calendario está el ensayo (P-001);
-   - recoger cualquier error;
-   - y, en una semana, confirmar que no caduca a los 7 días (S-003).
-2. Con eso, dar por aceptada o corregir D-049.
+1. **El 27-10-2026**, confirmar que el permiso no caduca a los 7 días (S-003).
+2. Decidir qué hacer con los eventos repetidos (P-043) y aceptar o corregir D-049.
+3. Revisar las maquetas del Calendario (P-027, P-028) y pasar al paso 3, crear eventos (ver la hoja de ruta). Antes de ofrecer escribir en un calendario, comprobar su `accessRole`.
 
 ### Propuesta de hoja de ruta [P] (no aprobada; preséntala como recomendación)
 1. **Paso 3, crear eventos** desde «Apuntar», por ejemplo «dentista la semana que viene a las 10:30». Es lo que el usuario dijo querer (mensaje 37). Incluye:
