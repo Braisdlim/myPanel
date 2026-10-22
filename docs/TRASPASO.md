@@ -101,7 +101,7 @@ El día de ejemplo de las maquetas es el **viernes 23-10-2026**. El 25-10-2026 e
 | **App, paso 1**: carcasa, todos los sectores, tareas reales en IndexedDB, «Apuntar» con analizador de fechas propio | `app/` | Hecho (D-048) |
 | **App, paso 2**: Google Calendar en solo lectura, varias cuentas | `app/src/lib/google.js`, `calendario.js`, `agenda.svelte.js`, `sectores/Ajustes.svelte` | Hecho y **probado con tus dos cuentas reales el 20-10-2026** (D-049, P-041). Falta S-003 (27-10). |
 | **App, paso 3** (22-10-2026): eventos repetidos unidos (D-051) y crear eventos desde «Apuntar» con confirmación y relectura (D-050) | `calendario.js`, `google.js`, `estado.svelte.js`, `componentes/Apuntar.svelte`, `sectores/Ajustes.svelte`, `sectores/Calendario.svelte` | Hecho y **probado con la cuenta real el 22-10-2026**: «Dentista», mar 27-10, 10:30–11:30, creado en `brais.dlim@gmail.com` y comprobado en Google Calendar (P-044). Versión 0.3.0. |
-| **App, paso 3 bis** (22-10-2026): cambiar solo esta vez (D-052): «Mover esta vez», «Saltar esta vez» y «No voy esta vez» | `componentes/CambiarEvento.svelte`, `calendario.js` (huecos, claves, copia principal), `estado.svelte.js` | Probado con Google imitado; «No voy esta vez» probado con el ensayo real. **Falta mover o saltar algo real** (P-045). |
+| **App, paso 3 bis** (22-10-2026): cambiar solo esta vez (D-052): «Mover esta vez», «Saltar esta vez» y «No voy esta vez» | `componentes/CambiarEvento.svelte`, `calendario.js` (huecos, claves, copia principal), `estado.svelte.js` | Probado con Google imitado; con datos reales, «No voy esta vez» en el ensayo y «Mover» del «Dentista» al mié 28-10, 10:30–11:30, comprobado en Google (P-045). Falta «Saltar» con una serie real. |
 
 ### Lienzos en claude.ai
 Son privados del usuario; se abren con su sesión de claude.ai. El código de los tableros está copiado en `diseno/maquetas/*/` (`canvas.json` + `*.dc.html`). Para editar un lienzo hace falta claude.ai, porque la herramienta de artefactos no existe en Claude Code local.
@@ -162,7 +162,7 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
 - El ensayo está en `brais.dlim@gmail.com`, en calendarios compartidos, y sale **tres veces** (P-043). Los calendarios compartidos quizá no admitan escritura (P-042).
 
 ### Lo siguiente inmediato
-1. **Prueba real de mover o saltar (P-045)**, con un evento de un calendario del usuario y su confirmación.
+1. «Saltar esta vez» con una serie real del usuario, cuando la haya (P-045; mover ya probado).
 2. **El 27-10-2026**, confirmar que el permiso no caduca a los 7 días (S-003).
 3. Aceptar o corregir D-049 a D-052, y revisar las maquetas del Calendario (P-027, P-028).
 - Hecho el 22-10-2026: prueba real del paso 3 (P-044), con `brais.dlim@gmail.com` y «Crear eventos» activado; paso 3 bis programado (D-052).
