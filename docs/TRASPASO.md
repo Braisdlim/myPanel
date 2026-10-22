@@ -100,7 +100,7 @@ El día de ejemplo de las maquetas es el **viernes 23-10-2026**. El 25-10-2026 e
 | Investigación de datos y sincronización, finanzas, voz y asistente de IA | `docs/producto/08`, `10`, `11`; `research/` | Hecho; D-041 propuesta, D-028 aplazada |
 | **App, paso 1**: carcasa, todos los sectores, tareas reales en IndexedDB, «Apuntar» con analizador de fechas propio | `app/` | Hecho (D-048) |
 | **App, paso 2**: Google Calendar en solo lectura, varias cuentas | `app/src/lib/google.js`, `calendario.js`, `agenda.svelte.js`, `sectores/Ajustes.svelte` | Hecho y **probado con tus dos cuentas reales el 20-10-2026** (D-049, P-041). Falta S-003 (27-10). |
-| **App, paso 3** (22-10-2026): eventos repetidos unidos (D-051) y crear eventos desde «Apuntar» con confirmación y relectura (D-050) | `calendario.js`, `google.js`, `estado.svelte.js`, `componentes/Apuntar.svelte`, `sectores/Ajustes.svelte`, `sectores/Calendario.svelte` | Hecho y probado con Google imitado. **Falta la prueba real** (P-044). Versión 0.3.0. |
+| **App, paso 3** (22-10-2026): eventos repetidos unidos (D-051) y crear eventos desde «Apuntar» con confirmación y relectura (D-050) | `calendario.js`, `google.js`, `estado.svelte.js`, `componentes/Apuntar.svelte`, `sectores/Ajustes.svelte`, `sectores/Calendario.svelte` | Hecho y **probado con la cuenta real el 22-10-2026**: «Dentista», mar 27-10, 10:30–11:30, creado en `brais.dlim@gmail.com` y comprobado en Google Calendar (P-044). Versión 0.3.0. |
 
 ### Lienzos en claude.ai
 Son privados del usuario; se abren con su sesión de claude.ai. El código de los tableros está copiado en `diseno/maquetas/*/` (`canvas.json` + `*.dc.html`). Para editar un lienzo hace falta claude.ai, porque la herramienta de artefactos no existe en Claude Code local.
@@ -161,9 +161,10 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
 - El ensayo está en `brais.dlim@gmail.com`, en calendarios compartidos, y sale **tres veces** (P-043). Los calendarios compartidos quizá no admitan escritura (P-042).
 
 ### Lo siguiente inmediato
-1. **Prueba real del paso 3 (P-044)**, con el usuario: encender «Crear eventos» en una cuenta (su clic en la ventana de Google) y crear un evento de prueba confirmado por él.
-2. **El 27-10-2026**, confirmar que el permiso no caduca a los 7 días (S-003).
-3. Aceptar o corregir D-049, D-050 y D-051.
+1. **El 27-10-2026**, confirmar que el permiso no caduca a los 7 días (S-003).
+2. Aceptar o corregir D-049, D-050 y D-051.
+3. Paso 3 bis de la hoja de ruta.
+- Hecho el 22-10-2026: prueba real del paso 3 (P-044). `brais.dlim@gmail.com` tiene «Crear eventos» activado.
 
 ### Propuesta de hoja de ruta [P] (no aprobada; preséntala como recomendación)
 1. **Paso 3 bis:** «Saltar solo esta vez» (por ocurrencia, D-009) y mover eventos, solo en calendarios tuyos; para el ensayo, que está en calendarios compartidos, una marca local «No voy esta vez» que no escribe en Google. Revisar antes las maquetas del Calendario (P-027, P-028).
