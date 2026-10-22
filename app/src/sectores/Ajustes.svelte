@@ -1,7 +1,7 @@
 <script>
-  import { app, ir, cambiarAjuste, exportar, borrarTodo, avisar, conectarGoogle, actualizarCuenta, cambiarCalendario, renombrarCuenta, desconectarCuenta, tienePermiso } from "../lib/estado.svelte.js";
+  import { app, ir, cambiarAjuste, exportar, borrarTodo, avisar, conectarGoogle, actualizarCuenta, cambiarCalendario, renombrarCuenta, desconectarCuenta, tienePermiso, activarEscritura, desactivarEscritura, elegirCalendarioEscritura } from "../lib/estado.svelte.js";
   import { CUENTAS } from "../lib/ejemplo.js";
-  import { CLIENT_ID } from "../lib/google.js";
+  import { CLIENT_ID, calendariosPropios } from "../lib/google.js";
   import { haceCuanto } from "../lib/fechas.js";
   import Dos from "../componentes/Dos.svelte";
   import Icono from "../componentes/Icono.svelte";
@@ -39,6 +39,13 @@
     await cambiarCalendario(c, cal.id, !cal.activo);
     if (!cal.activo) await actualizar(c); // al encenderlo hay que traer sus eventos
   }
+  let pidiendo = $state(null); // id de la cuenta que espera a Google para crear eventos
+  async function alternarEscritura(c) {
+    if (c.escritura) { await desactivarEscritura(c); avisar(`Ya no se crean eventos en ${c.nombre}`); return; }
+    pidiendo = c.id;
+    await intentar(c, async () => { await activarEscritura(c); avisar(`Crear eventos activado en ${c.nombre}`); });
+    pidiendo = null;
+  }
   async function guardarNombre(e, c) { e.preventDefault(); await renombrarCuenta(c, nombreNuevo); renombrando = null; }
   async function desconectar(c) { const retirado = await desconectarCuenta(c); quitando = null; avisar(retirado ? `Desconectada y sin permiso: ${c.correo}` : `Desconectada: ${c.correo}`); }
   const numEventos = (c) => new Set((app.eventos[c.id] ?? []).map((e) => e.uid + e.calendarioId)).size;
@@ -73,6 +80,18 @@
         <li><Icono n="clock" /><span>Formato de 24 horas<small>«21:30–23:30»; si una hora es ambigua, Pauta pregunta</small></span></li>
       </ul>
     </section>
+    <section class="bloque">
+      <h2>Al apuntar algo con día y hora</h2>
+      <label class="campo-ajuste">
+        <span class="pa-faint">Dónde se guarda «dentista el martes a las 10:30»</span>
+        <select class="pa-field" value={app.ajustes.guardarEn} onchange={(e) => cambiarAjuste("guardarEn", e.currentTarget.value)}>
+          <option value="preguntar">Preguntar cada vez</option>
+          <option value="tarea">Como tarea en Pauta</option>
+          {#each app.cuentas.filter((c) => c.escritura) as c (c.id)}<option value={c.id}>Como evento en {c.nombre}</option>{/each}
+        </select>
+      </label>
+      <p class="pa-faint">{app.cuentas.some((c) => c.escritura) ? "Aunque elijas una cuenta, el evento solo se crea al pulsar «Crear en …», con la cuenta a la vista." : "Para crear eventos, actívalo en una cuenta en Ajustes › Cuentas."}</p>
+    </section>
   {:else if sec === "cuentas"}
     <section class="bloque">
       {#if app.cuentas.length}
@@ -89,7 +108,7 @@
                     <button class="pa-btn pa-btn--sm pa-btn--primary">Guardar</button>
                   </form>
                 {:else}
-                  <span class="cuenta__nombre"><b>{c.nombre}</b><span class="pa-faint">{c.nombre !== c.correo ? `${c.correo} · ` : ""}Google · solo lectura</span></span>
+                  <span class="cuenta__nombre"><b>{c.nombre}</b><span class="pa-faint">{c.nombre !== c.correo ? `${c.correo} · ` : ""}Google · {c.escritura ? "crea eventos" : "solo lectura"}</span></span>
                   <button class="pa-btn pa-btn--icon" aria-label="Cambiar el nombre de {c.correo}" title="Cambiar el nombre" onclick={() => { renombrando = c.id; nombreNuevo = c.nombre === c.correo ? "" : c.nombre; }}><Icono n="pencil" /></button>
                 {/if}
               </div>
@@ -105,6 +124,20 @@
                   <button class="pa-switch" role="switch" aria-checked={cal.activo ? "true" : "false"} aria-label="Mostrar {cal.nombre}" onclick={() => alternarCalendario(c, cal)}></button>
                 </div>
               {/each}
+
+              <div class="pa-label calendarios">escritura</div>
+              <div class="pa-toggle">
+                <span class="pa-toggle__text"><span class="pa-toggle__title">Crear eventos</span><span class="pa-toggle__meta">{pidiendo === c.id ? "Esperando el permiso de Google…" : c.escritura ? "Desde Apuntar, siempre con «Crear en …» y relectura" : "Pide a Google permiso para crear eventos en tus calendarios (no en los compartidos)"}</span></span>
+                <button class="pa-switch" role="switch" aria-checked={c.escritura ? "true" : "false"} aria-label="Crear eventos en {c.correo}" disabled={pidiendo === c.id} onclick={() => alternarEscritura(c)}></button>
+              </div>
+              {#if c.escritura && calendariosPropios(c).length > 1}
+                <label class="campo-ajuste">
+                  <span class="pa-faint">Calendario por defecto</span>
+                  <select class="pa-field" value={c.calendarioEscritura} onchange={(e) => elegirCalendarioEscritura(c, e.currentTarget.value)}>
+                    {#each calendariosPropios(c) as p (p.id)}<option value={p.id}>{p.principal ? `${p.nombre} (principal)` : p.nombre}</option>{/each}
+                  </select>
+                </label>
+              {/if}
 
               <div class="acciones">
                 <button class="pa-btn pa-btn--sm" onclick={() => actualizar(c)} disabled={app.sync[c.id]?.estado === "cargando"}><Icono n="refresh-cw" tam={14} />Actualizar</button>
@@ -138,7 +171,7 @@
         <p class="pa-muted">Para conectar Google falta un paso que se hace una vez: crear tu ID de cliente en Google Cloud y ponerlo en <code>app/.env</code>. La guía está en <code>docs/guias/conectar-google-calendar.md</code>.</p>
       {/if}
       <ul class="pa-insp__rows filas">
-        <li><Icono n="shield-check" /><span>Solo lectura<small>Pauta pide dos permisos: ver la lista de tus calendarios y ver sus eventos. No puede crear, cambiar ni borrar nada.</small></span></li>
+        <li><Icono n="shield-check" /><span>Lectura, y escribir solo si lo activas<small>Al conectar, Pauta pide ver la lista de tus calendarios y sus eventos. Crear eventos se activa por cuenta y pide un permiso aparte, solo para calendarios tuyos; cada evento se confirma con la cuenta a la vista y se comprueba releyéndolo. Pauta no cambia ni borra eventos.</small></span></li>
         <li><Icono n="lock" /><span>El permiso no se guarda<small>Dura una hora y vive solo en esta pestaña. Al recargar ves lo guardado; «Actualizar» lo vuelve a pedir.</small></span></li>
         <li><Icono n="triangle-alert" /><span>Aviso de app no verificada<small>Google lo muestra porque la app es tuya y no ha pasado su revisión. Puedes retirar el permiso cuando quieras en <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener noreferrer">tu cuenta de Google</a>.</small></span></li>
       </ul>
@@ -181,7 +214,7 @@
     </section>
     <section class="bloque">
       <h2>Acerca de</h2>
-      <p class="pa-muted">Pauta 0.2.0 · primera versión, paso 2: tus calendarios de Google en solo lectura. Finanzas y asistente siguen siendo de ejemplo.</p>
+      <p class="pa-muted">Pauta 0.3.0 · primera versión, paso 3: tus calendarios de Google, sin repetidos, y crear eventos desde Apuntar. Finanzas y asistente siguen siendo de ejemplo.</p>
     </section>
   {/if}
 {/snippet}
@@ -206,5 +239,7 @@
   .calendarios { margin: 14px 0 4px; }
   .renombrar { display: flex; flex: 1; gap: 8px; }
   .renombrar .pa-field { flex: 1; min-width: 0; }
+  .campo-ajuste { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+  .campo-ajuste .pa-field { max-width: 360px; }
   code { font-family: ui-monospace, monospace; font-size: 0.92em; }
 </style>

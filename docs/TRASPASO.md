@@ -86,7 +86,7 @@ El día de ejemplo de las maquetas es el **viernes 23-10-2026**. El 25-10-2026 e
 - **No quiere renovar cosas a mano** (por ejemplo, la caducidad de 7 días de Google) y prioriza la comodidad si el riesgo es bajo: el ID de cliente se subió al repositorio porque lo pidió.
 - `docs/DECISIONES.md` es el documento vivo. Hay que actualizarlo en cada decisión, supuesto, pendiente o fuente nueva, con fecha y cita literal del usuario cuando decide algo.
 
-## 4. Estado a 20-10-2026
+## 4. Estado a 22-10-2026
 
 ### Hecho
 | Pieza | Dónde | Estado |
@@ -99,7 +99,8 @@ El día de ejemplo de las maquetas es el **viernes 23-10-2026**. El 25-10-2026 e
 | Maquetas por sector, escritorio y móvil | `diseno/maquetas/{finanzas,hoy,calendario,tareas,asistente}/` (`*.dc.html`) | Finanzas y Hoy **aprobadas**; Calendario, Tareas y Asistente pendientes de revisión (P-027, P-028, P-033, P-038) |
 | Investigación de datos y sincronización, finanzas, voz y asistente de IA | `docs/producto/08`, `10`, `11`; `research/` | Hecho; D-041 propuesta, D-028 aplazada |
 | **App, paso 1**: carcasa, todos los sectores, tareas reales en IndexedDB, «Apuntar» con analizador de fechas propio | `app/` | Hecho (D-048) |
-| **App, paso 2**: Google Calendar en solo lectura, varias cuentas | `app/src/lib/google.js`, `calendario.js`, `agenda.svelte.js`, `sectores/Ajustes.svelte` | Hecho y **probado con tus dos cuentas reales el 20-10-2026** (D-049, P-041). Faltan S-003 (27-10) y P-043. |
+| **App, paso 2**: Google Calendar en solo lectura, varias cuentas | `app/src/lib/google.js`, `calendario.js`, `agenda.svelte.js`, `sectores/Ajustes.svelte` | Hecho y **probado con tus dos cuentas reales el 20-10-2026** (D-049, P-041). Falta S-003 (27-10). |
+| **App, paso 3** (22-10-2026): eventos repetidos unidos (D-051) y crear eventos desde «Apuntar» con confirmación y relectura (D-050) | `calendario.js`, `google.js`, `estado.svelte.js`, `componentes/Apuntar.svelte`, `sectores/Ajustes.svelte`, `sectores/Calendario.svelte` | Hecho y probado con Google imitado. **Falta la prueba real** (P-044). Versión 0.3.0. |
 
 ### Lienzos en claude.ai
 Son privados del usuario; se abren con su sesión de claude.ai. El código de los tableros está copiado en `diseno/maquetas/*/` (`canvas.json` + `*.dc.html`). Para editar un lienzo hace falta claude.ai, porque la herramienta de artefactos no existe en Claude Code local.
@@ -134,15 +135,20 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
   - Permisos: `calendar.calendarlist.readonly` y `calendar.events.readonly`.
   - El token vive solo en memoria y dura alrededor de 1 h; «Actualizar» lo pide de nuevo con `login_hint`.
   - Eventos de −60 a +180 días guardados en IndexedDB.
-  - Un mismo evento en dos cuentas se muestra una vez (`iCalUID`).
+  - Un mismo evento en dos cuentas se muestra una vez (`iCalUID`); y desde el paso 3 también las copias del mismo plan en varios calendarios (mismo día, hora de inicio y título equivalente, D-051).
   - Calendarios activables por cuenta; al desconectar se revoca el permiso si sigue vivo.
+- **Crear eventos (D-050):**
+  - Interruptor «Crear eventos» por cuenta en Ajustes › Cuentas, apagado por defecto; al encenderlo pide `calendar.events.owned` (solo calendarios tuyos). Calendario por defecto elegible.
+  - En Apuntar, algo con día y hora pregunta «¿Dónde lo guardo?» (tarea o evento en una cuenta); ajuste en Ajustes › General. Solo el botón «Crear en ‹cuenta›» escribe; Enter lleva al botón.
+  - Tras crear, relee el evento en Google, lo compara y lo añade a la copia local.
+  - Mover y «Saltar solo esta vez» siguen pendientes; los calendarios del ensayo son compartidos y no se pueden escribir.
 - **Proyecto de Google Cloud:**
   - Se llama `proyecto-pauta`, con la API de Calendar activada.
   - Está **In production sin verificar** (decisión del usuario, P-041).
   - ID de cliente en el código (`app/src/lib/google.js`, a petición del usuario); `app/.env` puede sustituirlo.
   - Origen autorizado: `http://localhost:4321`.
-  - No consta si el usuario añadió ya `calendar.events.owned` en *Data Access*; se le sugirió (P-042).
-- **Pruebas:** `npm test` lanza 28 unitarias; `npm run build:pruebas` + Playwright lanzan 99 (móvil 360 y 412, escritorio 1440, claro y oscuro). Comprueban:
+  - No consta si el usuario añadió ya `calendar.events.owned` en *Data Access*; se le sugirió (P-042). [?] Si no está, Google puede avisar de nuevo al pedirlo; se verá en P-044.
+- **Pruebas:** `npm test` lanza 36 unitarias; `npm run build:pruebas` + Playwright lanzan 102 (móvil 360 y 412, escritorio 1440, claro y oscuro). En Windows funciona con `npx playwright install chromium` (instalado el 22-10-2026), sin `PW_CHROMIUM`. Comprueban:
   - contraste de al menos 4,5:1;
   - objetivos táctiles de al menos 44 px en móvil;
   - que no haya errores de consola;
@@ -155,17 +161,12 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
 - El ensayo está en `brais.dlim@gmail.com`, en calendarios compartidos, y sale **tres veces** (P-043). Los calendarios compartidos quizá no admitan escritura (P-042).
 
 ### Lo siguiente inmediato
-1. **El 27-10-2026**, confirmar que el permiso no caduca a los 7 días (S-003).
-2. Decidir qué hacer con los eventos repetidos (P-043) y aceptar o corregir D-049.
-3. Revisar las maquetas del Calendario (P-027, P-028) y pasar al paso 3, crear eventos (ver la hoja de ruta). Antes de ofrecer escribir en un calendario, comprobar su `accessRole`.
+1. **Prueba real del paso 3 (P-044)**, con el usuario: encender «Crear eventos» en una cuenta (su clic en la ventana de Google) y crear un evento de prueba confirmado por él.
+2. **El 27-10-2026**, confirmar que el permiso no caduca a los 7 días (S-003).
+3. Aceptar o corregir D-049, D-050 y D-051.
 
 ### Propuesta de hoja de ruta [P] (no aprobada; preséntala como recomendación)
-1. **Paso 3, crear eventos** desde «Apuntar», por ejemplo «dentista la semana que viene a las 10:30». Es lo que el usuario dijo querer (mensaje 37). Incluye:
-   - el permiso `calendar.events.owned` (P-042), pedido por cuenta al activar la escritura (D-008, D-034);
-   - una tarjeta de confirmación con la cuenta de destino;
-   - relectura del evento creado;
-   - «Saltar solo esta vez» para el ensayo, por ocurrencia (D-009).
-   - Antes: investigar (skill) y revisar las maquetas del Calendario (P-027, P-028).
+1. **Paso 3 bis:** «Saltar solo esta vez» (por ocurrencia, D-009) y mover eventos, solo en calendarios tuyos; para el ensayo, que está en calendarios compartidos, una marca local «No voy esta vez» que no escribe en Google. Revisar antes las maquetas del Calendario (P-027, P-028).
 2. **Paso 4, app instalada en el escritorio (Tauri, Windows y Mac):**
    - permiso que se renueva solo (PKCE o el flujo de escritorio), sincronización en segundo plano y avisos;
    - SQLite local (D-041) y la cuestión P-034.

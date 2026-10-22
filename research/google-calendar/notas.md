@@ -70,3 +70,31 @@ Fecha: 20-10-2026. Etiquetas: [H] comprobado en la fuente oficial, [I] inferenci
   - Recargar sin llamar a Google, encender un calendario, desconectar con y sin permiso vivo, la vuelta a los datos de ejemplo y un error 503.
   - También capturas y revisión de contraste y tamaño táctil con cuentas reales.
 - No probado: la conexión con Google de verdad, que necesita tu ID de cliente (guía en `docs/guias/conectar-google-calendar.md`).
+
+## Paso 3: eventos repetidos y crear eventos (22-10-2026)
+
+### Fuentes consultadas el 22-10-2026
+- [H] `events.insert` (actualizada el 7-7-2026): `POST /calendars/{calendarId}/events`; `start` y `end` obligatorios; con `dateTime` hace falta el desfase **salvo que se indique `timeZone`**; todo el día con `date` y fin exclusivo. Admite, entre otros, `calendar.events.owned`. https://developers.google.com/workspace/calendar/api/v3/reference/events/insert
+- [H] Permisos de Calendar (3-9-2026): `calendar.events.owned` = «See, create, change, and delete events on Google calendars you own»; `calendar.events` = «View and edit events on all your calendars». https://developers.google.com/workspace/calendar/api/auth
+- [H] Modelo de token de la biblioteca de Google (26-5-2026): permiso incremental volviendo a pedir el token con más `scope`; el usuario puede aceptar permisos sueltos, así que hay que comprobarlos con `hasGrantedAllScopes()`; pedir el token desde un gesto del usuario. https://developers.google.com/identity/oauth2/web/guides/use-token-model
+- [H] Eventos recurrentes (17-9-2026): para cancelar una sola ocurrencia, se lee la instancia (`events.instances`), se pone `status: "cancelled"` y se guarda con PUT; la serie no cambia. Google desaconseja editar muchas instancias una a una. https://developers.google.com/workspace/calendar/api/guides/recurringevents
+- [H] Verificación de permisos sensibles (19-8-2026): no hace falta verificar si eres el único usuario o unos pocos conocidos, que pueden pasar por la pantalla de «app no verificada»; hay un tope de usuarios. Pone «leer eventos de Google Calendar» como ejemplo de permiso sensible. https://developers.google.com/identity/protocols/oauth2/production-readiness/sensitive-scope-verification
+
+### Alternativas para escribir
+| Opción | Qué permite | Encaje |
+|---|---|---|
+| `calendar.events.owned` | Crear, cambiar y borrar en calendarios tuyos | **Elegida**: lo justo. No toca los calendarios compartidos contigo (los del ensayo). |
+| `calendar.events` | Editar en todos tus calendarios, también los compartidos con permiso | Más amplio de lo necesario. |
+| `calendar.app.created` | Solo calendarios secundarios creados por la app | Obligaría a un calendario «Pauta» aparte; no se verían en el principal como pide el usuario. |
+
+### Eventos repetidos entre calendarios (P-043)
+- [H] Prueba real del 20-10-2026: el ensayo sale en tres calendarios compartidos con `iCalUID` distintos; la unión por `iCalUID` no basta.
+- [P] Regla elegida, en código y sin IA: mismo día, mismo tipo (con hora o todo el día), **la misma hora de inicio** y título equivalente: casi todas las palabras con significado del título más corto (≥ 75 %, sin tildes, signos ni palabras vacías) están en el otro. La hora de fin puede variar y se avisa («otro calendario dice hasta las 0:00»).
+- Si una copia está en un calendario tuyo, esa pasa a ser la principal (es la que podrás cambiar).
+- Se ve de dónde viene: «También en «Glissandoo» y «banda…»» en el detalle del evento.
+- Alternativas descartadas: unir solo por título (une planes de días distintos), por hora sin título (une planes distintos a la misma hora, p. ej., una cena y el ensayo), o con IA (innecesaria y contra D-002).
+
+### Pruebas (22-10-2026)
+- `app/pruebas/paso3.test.mjs`: 8 unitarias (títulos equivalentes, el caso real del ensayo, preferir el calendario tuyo, lo que no se une, festivos en dos idiomas, cuerpo del evento con medianoche y todo el día, relectura con cambio de hora, calendarios donde se puede escribir).
+- `app/pruebas/paso3.spec.js`: recorrido en móvil (360 y 412) y escritorio con Google imitado: el ensayo una vez; sin escritura, Apuntar guarda tareas; activar «Crear eventos» pide el permiso aparte; Apuntar pregunta dónde; Enter no crea; «Crear en …» crea, relee y lo muestra; sigue tras recargar. Contraste y táctil revisados.
+- No probado aún: crear un evento real en tu Google (necesita tu clic en la ventana de Google y tu confirmación).

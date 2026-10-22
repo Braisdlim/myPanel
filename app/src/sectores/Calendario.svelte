@@ -1,6 +1,7 @@
 <script>
   import { app, ir, actualizarTodo } from "../lib/estado.svelte.js";
   import { eventosDelDia, horasDelDia, cuenta, cuentas, esReal, ventana, ultimaActualizacion } from "../lib/agenda.svelte.js";
+  import { finesDistintos } from "../lib/calendario.js";
   import { sumarDias, sumarMeses, inicioSemana, inicioMes, diaSemana, desdeISO, larga, corta, mesAnio, rango, duracion, DIAS_LETRA, MESES_CORTOS, existe, haceCuanto } from "../lib/fechas.js";
   import Dos from "../componentes/Dos.svelte";
   import Rejilla from "../componentes/Rejilla.svelte";
@@ -156,7 +157,12 @@
     <div class="pa-insp__meta">{corta(elegido.dia)}{elegido.todoElDia ? " · todo el día" : `, ${rango(elegido.inicio, elegido.fin)} · ${duracion(elegido.fin - elegido.inicio)}`}</div>
     <ul class="pa-insp__rows">
       {#if elegido.cuenta}<li><span class="pa-dot pa-dot--{cuenta(elegido.cuenta).color}" style="margin: 4px;"></span><span>{cuenta(elegido.cuenta).nombre} · {cuenta(elegido.cuenta).proveedor}<small>{elegido.calendario && elegido.calendario !== cuenta(elegido.cuenta).correo ? `Calendario «${elegido.calendario}» · ` : ""}{cuenta(elegido.cuenta).escritura ? "Con escritura activada" : "Solo lectura"}</small></span></li>{/if}
-      {#if elegido.tambien?.length}<li><Icono n="users" /><span>También en {elegido.tambien.map((id) => cuenta(id).nombre).join(" y ")}<small>Es el mismo evento: se muestra una vez</small></span></li>{/if}
+      {#if elegido.fuentes?.length}
+        {@const otros = [...new Set(elegido.fuentes.map((f) => (f.cuenta !== elegido.cuenta ? `${cuenta(f.cuenta).nombre}${f.calendario && f.calendario !== cuenta(f.cuenta).correo ? ` («${f.calendario}»)` : ""}` : `«${f.calendario}»`)))]}
+        {@const fines = finesDistintos(elegido)}
+        <li><Icono n="layers" /><span>También en {otros.join(", ").replace(/, ([^,]*)$/, " y $1")}
+          <small>{elegido.unidoPor === "parecido" ? `Mismo título y hora en ${elegido.fuentes.length + 1} calendarios: Pauta lo muestra una vez` : "Es el mismo evento: se muestra una vez"}{fines.length ? ` · otro calendario dice hasta las ${fines.map((f) => (f >= 1440 ? "0:00" : `${Math.floor(f / 60)}:${String(f % 60).padStart(2, "0")}`)).join(" o ")}` : ""}</small></span></li>
+      {/if}
       {#if elegido.lugar}<li><Icono n="map-pin" /><span>{elegido.lugar}</span></li>{/if}
       {#if elegido.opcional}<li><Icono n="repeat" /><span>Cada viernes · opcional<small>{elegido.nota}</small></span></li>{/if}
       {#if !esReal() && !elegido.ejemplo && !elegido.tarea && elegido.cuenta}<li><Icono n="info" /><span>Es un hecho real<small>Su calendario está por confirmar (P-001)</small></span></li>{/if}
@@ -166,7 +172,7 @@
       <button class="pa-btn pa-btn--sm" disabled title="Cambiar eventos llegará más adelante">Mover</button>
       {#if elegido.opcional}<button class="pa-btn pa-btn--sm" disabled title="Cambiar eventos llegará más adelante">Saltar solo esta vez</button>{/if}
     </div>
-    <p class="pa-faint nota">{esReal() ? "Pauta lee tus calendarios sin poder cambiarlos. Cambiar eventos llegará más adelante" : "Cambiar eventos llegará al conectar tus calendarios"}, siempre con confirmación y la cuenta de destino a la vista.</p>
+    <p class="pa-faint nota">{esReal() ? "Crear eventos se hace desde Apuntar. Mover o saltar una vez llegará más adelante" : "Cambiar eventos llegará al conectar tus calendarios"}, siempre con confirmación y la cuenta de destino a la vista.</p>
   {:else}
     <div class="pa-label">cuentas</div>
     <ul class="pa-insp__rows">

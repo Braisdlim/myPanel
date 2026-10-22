@@ -2,7 +2,7 @@
 import { crearAlmacen } from "./almacen.js";
 import { hoyISO, minutosAhora, sumarDias } from "./fechas.js";
 import { crearTarea, crearProyecto, completar } from "./tareas.js";
-import { pedirToken, revocar, listarCalendarios, listarEventos, convertirEvento, colorLibre, TokenCaducado } from "./google.js";
+import { pedirToken, revocar, listarCalendarios, listarEventos, convertirEvento, colorLibre, TokenCaducado, cuerpoEvento, comprobarEvento, crearEvento, leerEvento, calendariosPropios } from "./google.js";
 
 export const SECTORES = [
   { id: "hoy", nombre: "Hoy", icono: "sun" },
@@ -107,10 +107,11 @@ export async function borrarTodo() {
 const tokens = new Map(); // solo en memoria: id de cuenta → { token, caduca }
 const VENTANA = [-60, 180]; // días de eventos que se guardan alrededor de hoy
 
+/** Un token vivo para la cuenta. Si la cuenta tiene la escritura activada, el token la incluye. */
 async function token(cuenta) {
   const t = tokens.get(cuenta.id);
-  if (t && t.caduca > Date.now()) return t.token;
-  const nuevo = await pedirToken({ correo: cuenta.correo });
+  if (t && t.caduca > Date.now() && (t.escritura || !cuenta.escritura)) return t.token;
+  const nuevo = await pedirToken({ correo: cuenta.correo, escritura: !!cuenta.escritura });
   tokens.set(cuenta.id, nuevo);
   return nuevo.token;
 }
@@ -172,6 +173,58 @@ export async function cambiarCalendario(cuenta, calendarioId, activo) {
   const c = app.cuentas.find((x) => x.id === cuenta.id);
   c.calendarios = c.calendarios.map((x) => (x.id === calendarioId ? { ...x, activo } : x));
   await almacen.guardar("cuentas", c);
+}
+
+// ---------- crear eventos (D-050) ----------
+
+/** Activa crear eventos en una cuenta: pide el permiso de Google (desde un clic). Empieza apagado (D-032, D-034). */
+export async function activarEscritura(cuenta) {
+  const c = app.cuentas.find((x) => x.id === cuenta.id);
+  const nuevo = await pedirToken({ correo: c.correo, escritura: true });
+  tokens.set(c.id, nuevo);
+  c.escritura = true;
+  c.calendarioEscritura ??= calendariosPropios(c)[0]?.id ?? c.correo;
+  await almacen.guardar("cuentas", $state.snapshot(c));
+}
+
+/** Deja de crear eventos en la cuenta. El permiso sigue en Google hasta que lo retires allí o desconectes la cuenta. */
+export async function desactivarEscritura(cuenta) {
+  const c = app.cuentas.find((x) => x.id === cuenta.id);
+  c.escritura = false;
+  const t = tokens.get(c.id);
+  if (t?.escritura) tokens.delete(c.id); // el siguiente token vuelve a ser solo de lectura
+  if (app.ajustes.guardarEn === c.id) await cambiarAjuste("guardarEn", "preguntar");
+  await almacen.guardar("cuentas", $state.snapshot(c));
+}
+
+export async function elegirCalendarioEscritura(cuenta, calendarioId) {
+  const c = app.cuentas.find((x) => x.id === cuenta.id);
+  c.calendarioEscritura = calendarioId;
+  await almacen.guardar("cuentas", $state.snapshot(c));
+}
+
+/**
+ * Crea el evento en Google, lo relee y lo compara con lo pedido. Llamar desde el clic de confirmación.
+ * @returns {{ enlace: string, diferencias: string[] }}
+ */
+export async function crearEventoEn(cuenta, calendarioId, datos) {
+  const c = app.cuentas.find((x) => x.id === cuenta.id);
+  if (!c?.escritura) throw new Error("Esta cuenta no tiene activado crear eventos.");
+  const cal = c.calendarios.find((x) => x.id === calendarioId);
+  if (!cal || !calendariosPropios(c).some((x) => x.id === calendarioId)) throw new Error("Solo se pueden crear eventos en calendarios tuyos.");
+  const cuerpo = cuerpoEvento(datos, Intl.DateTimeFormat().resolvedOptions().timeZone);
+  let tk = await token(c);
+  let creado;
+  try { creado = await crearEvento(tk, calendarioId, cuerpo); }
+  catch (e) { if (!(e instanceof TokenCaducado)) throw e; tokens.delete(c.id); tk = await token(c); creado = await crearEvento(tk, calendarioId, cuerpo); }
+  // Relectura: lo que cuenta es lo que Google tiene guardado, no lo que respondió al crear
+  const leido = await leerEvento(tk, calendarioId, creado.id);
+  const diferencias = comprobarEvento(cuerpo, leido);
+  const nuevos = convertirEvento(leido, cal, c.id);
+  app.eventos[c.id] = [...(app.eventos[c.id] ?? []).filter((e) => e.gid !== leido.id), ...nuevos];
+  const s = app.sync[c.id] ?? {};
+  await almacen.guardar("eventos", { id: c.id, actualizado: s.actualizado ?? new Date().toISOString(), desde: s.desde, hasta: s.hasta, eventos: $state.snapshot(app.eventos[c.id]) });
+  return { enlace: leido.htmlLink ?? "", diferencias };
 }
 
 export async function renombrarCuenta(cuenta, nombre) {
