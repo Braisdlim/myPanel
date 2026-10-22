@@ -28,6 +28,7 @@ export const app = $state({
   persistente: true,
   movil: false,
   apuntar: { abierto: false, texto: "" },
+  navegacion: { como: "inicio", n: 0 }, // cómo se llegó a la pantalla actual (D-056)
   cuentas: [], // cuentas conectadas de verdad (Google)
   eventos: {}, // id de cuenta → eventos guardados en el dispositivo
   sync: {}, // id de cuenta → { estado: "ok" | "cargando" | "error", mensaje, actualizado }
@@ -55,17 +56,42 @@ export async function iniciar() {
 }
 
 // ---------- ruta (#/sector/…) ----------
+// Historial como en una app nativa (D-056): «atrás» vuelve a la pantalla anterior, no a cada semana que pasaste.
+// - ir(): pantalla nueva o entrar en algo (un día desde el mes, un fondo, una sección de Ajustes): añade al historial.
+// - sustituir(): moverse dentro de la misma pantalla (fechas, escala, pestañas hermanas): reemplaza la entrada.
+// Cada pantalla recuerda dónde estabas desplazado; al volver con «atrás» o «adelante» se recupera.
+let origen = "inicio"; // "nueva" | "sustituir" | "historial" (atrás/adelante) | "inicio"
+let claveActual = location.hash;
+const posiciones = new Map(); // ruta → desplazamiento de .app__main
+
 function leerRuta() {
+  const principal = document.querySelector(".app__main");
+  if (principal) posiciones.set(claveActual, principal.scrollTop);
+  const como = origen;
+  origen = "historial"; // lo que no venga de ir() ni de sustituir() es atrás/adelante del navegador o de Android
+  claveActual = location.hash;
+  app.navegacion = { como, n: (app.navegacion?.n ?? 0) + 1 };
+  app.apuntar = { ...app.apuntar, abierto: false }; // una navegación cierra la captura
   const [ruta, consulta = ""] = location.hash.replace(/^#\/?/, "").split("?");
   // Acceso directo del icono instalado («Apuntar»): #/hoy?apuntar abre la captura y deja la ruta limpia
   if (/(^|&)apuntar\b/.test(consulta)) { app.apuntar = { abierto: true, texto: "" }; history.replaceState(null, "", `#/${ruta}`); }
   const partes = ruta.split("/").filter(Boolean).map(decodeURIComponent);
   app.ruta = partes.length && SECTORES.concat({ id: "ajustes" }).some((s) => s.id === partes[0]) ? partes : ["hoy"];
 }
+const hashDe = (partes) => "#/" + partes.map(encodeURIComponent).join("/");
 export function ir(...partes) {
-  const h = "#/" + partes.map(encodeURIComponent).join("/");
+  const h = hashDe(partes);
+  origen = "nueva";
   if (location.hash !== h) location.hash = h; else leerRuta();
 }
+export function sustituir(...partes) {
+  const h = hashDe(partes);
+  if (location.hash === h) return;
+  origen = "sustituir";
+  location.replace(h);
+}
+/** Dónde dejar el desplazamiento tras navegar: arriba si es nueva; donde estaba si vuelves con atrás/adelante. */
+export const desplazamientoGuardado = () => posiciones.get(location.hash) ?? 0;
 
 // ---------- tareas ----------
 export async function guardarTarea(t) {

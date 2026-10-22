@@ -173,6 +173,11 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
 - **Móvil:** Mes y Año llenan el alto; título que se encoge al desplazar (`App.svelte`); Calendario con cabecera compacta; Ajustes con índice; Hoy sin el panel del escritorio; prop `llenar` de `Dos.svelte` para pantallas a alto completo. Medir con `node pruebas/medir-movil.mjs` (con `astro preview --port 4330` en marcha).
 - Trampa: en el móvil, `.dos__main` no puede tener `overflow: auto` o los encabezados `sticky` no se pegan.
 
+### Navegación y accesibilidad (D-056, 22-10-2026)
+- `ir()` añade al historial; `sustituir()` reemplaza (fechas, escala, pestañas hermanas). Usa uno u otro según si es «entrar» o «moverse dentro».
+- Toda hoja o diálogo modal va con `componentes/Hoja.svelte` (se monta en `<body>`, deja la app `inert`, cierra con «atrás»/Esc, devuelve el foco). No hagas otro `.capa` a mano.
+- `pruebas/accesibilidad.spec.js` pasa axe-core por todas las pantallas; `pruebas/navegacion.spec.js`, el historial y el foco. Si añades una pantalla, añádela a la lista de rutas de las dos.
+
 ### Lo siguiente inmediato
 0. **P-046:** añadir `https://braisdlim.github.io` como origen en Google Cloud, instalar Pauta en el Honor y conectar las cuentas.
 1. «Saltar esta vez» con una serie real del usuario, cuando la haya (P-045; mover ya probado).

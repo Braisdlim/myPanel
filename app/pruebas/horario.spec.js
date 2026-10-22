@@ -64,7 +64,7 @@ test("horario de trabajo: se activa, respeta tus días libres y no tapa tus even
   await page.screenshot({ path: `capturas/${info.project.name}-horario-ajustes.png`, fullPage: true });
   expect(await revisar(page), "revisión de accesibilidad").toEqual([]);
 
-  const trabajoDe = (d) => (movil ? page.locator(".pa-dayline__body", { hasText: "Trabajo" }) : page.getByRole("button", { name: "Trabajo, 8:00–17:30" }));
+  const trabajoDe = (d) => (movil ? page.locator(".pa-dayline__body", { hasText: "Trabajo" }) : page.getByRole("button", { name: "trabajo, 8:00–17:30" }));
   // Lunes: trabajo, y el dentista sigue a la vista encima
   await page.goto(`/#/calendario/dia/${LUNES}`);
   await expect(trabajoDe(LUNES)).toHaveCount(1);

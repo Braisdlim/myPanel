@@ -4,6 +4,7 @@
   import { analizar, resolver } from "../lib/analizador.js";
   import { corta, rango, hora, duracion, distancia } from "../lib/fechas.js";
   import Icono from "./Icono.svelte";
+  import Hoja from "./Hoja.svelte";
 
   let { mod = "⌘" } = $props();
   let texto = $state(app.apuntar.texto ?? "");
@@ -75,7 +76,6 @@
     creando = false;
   }
   function teclaCampo(e) {
-    if (e.key === "Escape") return cerrar();
     if (e.key !== "Enter" || e.shiftKey) return;
     e.preventDefault();
     if (cuentaDestino && puedeGuardar) botonCrear?.focus(); // segundo Enter, sobre el botón, confirma
@@ -84,8 +84,8 @@
   function otro() { creado = null; texto = ""; campo?.focus(); }
 </script>
 
-<div class="capa" role="presentation" onclick={(e) => e.target === e.currentTarget && cerrar()}>
-  <form class="capa__dialogo pa-capture apuntar" role="dialog" aria-modal="true" aria-label="Apuntar" onsubmit={guardar}>
+<Hoja etiqueta="Apuntar" alCerrar={cerrar}>
+  <form class="pa-capture apuntar" onsubmit={guardar}>
     {#if app.movil}<div class="pa-sheet__grabber"></div>{/if}
     {#if creado}
       <div class="hecho" role="status">
@@ -107,7 +107,7 @@
     <div class="entrada">
       <div class="espejo" aria-hidden="true">{#each trozos as [t, m]}{#if m}<span class="pa-hl">{t}</span>{:else}{t}{/if}{/each}&#8203;</div>
       <textarea id="apuntar-campo" bind:this={campo} bind:value={texto} rows="1" placeholder="Dentista el martes a las 10:30…"
-        onkeydown={teclaCampo}></textarea>
+        onkeydown={teclaCampo} data-foco></textarea>
     </div>
 
     {#if texto.trim() && !pregunta}
@@ -186,7 +186,7 @@
     </div>
     {/if}
   </form>
-</div>
+</Hoja>
 
 <style>
   .apuntar { box-shadow: var(--shadow-menu); }

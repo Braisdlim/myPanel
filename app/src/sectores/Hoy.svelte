@@ -8,6 +8,7 @@
   import FilaTarea from "../componentes/FilaTarea.svelte";
   import DetalleTarea from "../componentes/DetalleTarea.svelte";
   import Icono from "../componentes/Icono.svelte";
+  import Hoja from "../componentes/Hoja.svelte";
 
   const FIN_DIA = 22 * 60;
   const eventos = $derived(eventosDelDia(app.hoy, app.hoy));
@@ -134,19 +135,18 @@
 <Dos {principal} {lateral} enMovil="oculto" />
 
 {#if app.movil && elegida}
-  <div class="capa" role="presentation" onclick={(e) => e.target === e.currentTarget && (elegidaId = null)}>
-    <section class="pa-sheet capa__dialogo" style="max-height: 88dvh; overflow: auto;" role="dialog" aria-modal="true" aria-label="Tarea">
-      <div class="pa-sheet__grabber"></div>
-      <DetalleTarea t={elegida} alCerrar={() => (elegidaId = null)} />
-    </section>
-  </div>
+  <Hoja etiqueta="Tarea" clase="pa-sheet" estilo="max-height: 88dvh; overflow: auto;" alCerrar={() => (elegidaId = null)}>
+    <div class="pa-sheet__grabber"></div>
+    <DetalleTarea t={elegida} alCerrar={() => (elegidaId = null)} />
+  </Hoja>
 {/if}
 
 <style>
   .fecha::first-letter { text-transform: uppercase; }
   .capacidad { margin-bottom: 8px; }
   .eventos .pa-row { min-height: 40px; }
-  .pasado { opacity: 0.55; }
+  .pasado .pa-row__title { color: var(--text-2); }
+  .pasado .pa-dot { opacity: 0.5; }
   .opcional { background: transparent !important; box-shadow: inset 0 0 0 2px var(--cuenta-2); }
   .trabajo { background: transparent !important; box-shadow: inset 0 0 0 2px var(--text-3); }
   .avisos-movil { margin: 12px 0 4px; }

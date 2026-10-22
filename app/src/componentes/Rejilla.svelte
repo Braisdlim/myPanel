@@ -33,13 +33,13 @@
     {#each porDia as c}
       <div class="pa-tg__col" style="height: calc({horas} * var(--hour-height));">
         <!-- El horario de trabajo va de fondo: no ocupa carril ni tapa tus eventos (D-054) -->
-        {#if c.trabajo}<button class="trabajo" style="top: calc({h(c.trabajo.inicio)} * var(--hour-height)); height: calc({h(c.trabajo.fin) - h(c.trabajo.inicio)} * var(--hour-height));" onclick={() => alElegir(c.trabajo)} aria-label="Trabajo, {rango(c.trabajo.inicio, c.trabajo.fin)}"><span>trabajo</span></button>{/if}
+        {#if c.trabajo}<button class="trabajo" style="top: calc({h(c.trabajo.inicio)} * var(--hour-height)); height: calc({h(c.trabajo.fin) - h(c.trabajo.inicio)} * var(--hour-height));" onclick={() => alElegir(c.trabajo)} aria-label="trabajo, {rango(c.trabajo.inicio, c.trabajo.fin)}"><span>trabajo</span></button>{/if}
         {#each c.conHora as e (e.id)}
           {@const l = c.lanes.get(e.id)}
           <button class="pa-ev {e.tarea ? 'pa-ev--task' : e.opcional || e.noVoy ? 'pa-ev--optional' : 'pa-ev--' + cuenta(e.cuenta).color}" class:pa-ev--conflict={c.choque.has(e.id)} class:elegido={e.id === elegidoId}
             style="--start: {h(e.inicio)}; --dur: {Math.max(0.42, h(e.fin) - h(e.inicio))}; --lane: {l.carril}; --lanes: {l.carriles};"
-            onclick={() => alElegir(e)} aria-label="{e.titulo}, {rango(e.inicio, e.fin)}{e.noVoy ? ", no vas esta vez" : ""}{e.tarea ? ', tarea' : ', ' + cuenta(e.cuenta).nombre}">
-            {e.titulo}<small>{rango(e.inicio, e.fin)}</small>
+            onclick={() => alElegir(e)} aria-label="{e.titulo} {rango(e.inicio, e.fin)}{e.noVoy ? ", no vas esta vez" : ""}{e.tarea ? ', tarea' : ', ' + cuenta(e.cuenta).nombre}">
+            {e.titulo} <small>{rango(e.inicio, e.fin)}</small>
           </button>
         {/each}
         {#if c.d === app.hoy && app.ahora > hora0 * 60}<div class="pa-tg__now" style="--at: {h(app.ahora)};"></div>{/if}

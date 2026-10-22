@@ -1,6 +1,6 @@
 <script>
-  import { onMount } from "svelte";
-  import { app, iniciar, ir, SECTORES } from "./lib/estado.svelte.js";
+  import { onMount, tick } from "svelte";
+  import { app, iniciar, ir, SECTORES, desplazamientoGuardado } from "./lib/estado.svelte.js";
   import { contar } from "./lib/tareas.js";
   import Icono from "./componentes/Icono.svelte";
   import Lateral from "./componentes/Lateral.svelte";
@@ -37,7 +37,6 @@
 
   function teclas(e) {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); app.apuntar.abierto = true; }
-    if (e.key === "Escape" && app.apuntar.abierto) app.apuntar.abierto = false;
   }
 
   const Vista = $derived(VISTAS[app.ruta[0]] ?? Hoy);
@@ -45,6 +44,23 @@
   let compacto = $state(false);
   const nombreVista = $derived(app.ruta[0] === "ajustes" ? "Ajustes" : SECTORES.find((s) => s.id === app.ruta[0])?.nombre ?? "Hoy");
   $effect(() => { app.ruta; compacto = false; });
+  $effect(() => { document.title = nombreVista === "Hoy" ? "Pauta" : `${nombreVista} · Pauta`; });
+
+  // Tras navegar (D-056): arriba si es una pantalla nueva; donde estabas si vuelves con atrás/adelante.
+  // El foco va al título de la pantalla, para que el lector de pantalla diga dónde estás (no en «inicio» ni al pasar fechas).
+  $effect(() => {
+    const { como, n } = app.navegacion;
+    if (!n || como === "inicio") return;
+    tick().then(() => requestAnimationFrame(() => {
+      const main = document.querySelector(".app__main");
+      if (!main) return;
+      if (como === "historial") main.scrollTop = desplazamientoGuardado();
+      else if (como === "nueva") main.scrollTop = 0;
+      if (como === "sustituir" || document.querySelector("body > .capa")) return;
+      const h1 = main.querySelector("h1");
+      if (h1) { h1.tabIndex = -1; h1.focus({ preventScroll: true }); }
+    }));
+  });
   const conteos = $derived(contar(app.tareas, app.hoy));
   const TABS = [["hoy", "Hoy", "sun"], ["calendario", "Calendario", "calendar"], null, ["tareas", "Tareas", "circle-check"], ["finanzas", "Finanzas", "trending-up"]];
 </script>
@@ -54,7 +70,7 @@
 <div class="app">
   <header class="pa-toolbar">
     <div class="marca"><span class="marca__icono" aria-hidden="true"><i></i><i></i><i></i></span>Pauta</div>
-    <button class="pa-search" onclick={() => (app.apuntar.abierto = true)} aria-label="Apuntar o buscar">
+    <button class="pa-search" onclick={() => (app.apuntar.abierto = true)} aria-keyshortcuts={esMac ? "Meta+K" : "Control+K"}>
       <Icono n="search" /><span>Apunta o busca… «llamar a la gestoría el lunes»</span><span class="pa-kbd">{mod}</span><span class="pa-kbd">K</span>
     </button>
     <button class="pa-btn pa-btn--icon" aria-label="Ajustes" onclick={() => ir("ajustes")}><Icono n="settings" /></button>

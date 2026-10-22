@@ -1,5 +1,5 @@
 <script>
-  import { app, ir, cambiarAjuste, exportar, borrarTodo, avisar, conectarGoogle, actualizarCuenta, cambiarCalendario, renombrarCuenta, desconectarCuenta, tienePermiso, activarEscritura, desactivarEscritura, elegirCalendarioEscritura } from "../lib/estado.svelte.js";
+  import { app, ir, sustituir, cambiarAjuste, exportar, borrarTodo, avisar, conectarGoogle, actualizarCuenta, cambiarCalendario, renombrarCuenta, desconectarCuenta, tienePermiso, activarEscritura, desactivarEscritura, elegirCalendarioEscritura } from "../lib/estado.svelte.js";
   import { CUENTAS } from "../lib/ejemplo.js";
   import { CLIENT_ID, calendariosPropios } from "../lib/google.js";
   import { haceCuanto, corta, sumarDias, DIAS, DIAS_LETRA } from "../lib/fechas.js";
@@ -80,9 +80,9 @@
     <div class="cabecera"><div><h1>{SECCIONES.find(([s]) => s === sec)[1]}</h1></div></div>
   {:else}
   <div class="cabecera"><div><h1>Ajustes</h1></div></div>
-  <div class="pestanas" role="tablist" aria-label="Secciones">
-    {#each SECCIONES as [s, n, i]}<button class="pa-chip" role="tab" aria-selected={sec === s} aria-pressed={sec === s ? "true" : "false"} onclick={() => ir("ajustes", s)}><Icono n={i} tam={14} />{n}</button>{/each}
-  </div>
+  <nav class="pestanas" aria-label="Secciones de Ajustes">
+    {#each SECCIONES as [s, n, i]}<button class="pa-chip" aria-current={sec === s ? "page" : undefined} aria-pressed={sec === s ? "true" : "false"} onclick={() => sustituir("ajustes", s)}><Icono n={i} tam={14} />{n}</button>{/each}
+  </nav>
   {/if}
 
   {#if sec === "general"}

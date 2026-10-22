@@ -1,12 +1,13 @@
 <script>
-  import { app, ir, actualizarTodo, sePuedeCambiar } from "../lib/estado.svelte.js";
+  import { app, ir, sustituir, actualizarTodo, sePuedeCambiar } from "../lib/estado.svelte.js";
   import { eventosDelDia, horasDelDia, cuenta, cuentas, esReal, ventana, ultimaActualizacion } from "../lib/agenda.svelte.js";
   import { finesDistintos } from "../lib/calendario.js";
   import CambiarEvento from "../componentes/CambiarEvento.svelte";
-  import { sumarDias, sumarMeses, inicioSemana, inicioMes, diaSemana, desdeISO, larga, corta, mesAnio, rango, duracion, DIAS_LETRA, MESES_CORTOS, existe, haceCuanto } from "../lib/fechas.js";
+  import { sumarDias, sumarMeses, inicioSemana, inicioMes, diaSemana, desdeISO, larga, corta, mesAnio, rango, duracion, DIAS_LETRA, MESES, MESES_CORTOS, existe, haceCuanto } from "../lib/fechas.js";
   import Dos from "../componentes/Dos.svelte";
   import Rejilla from "../componentes/Rejilla.svelte";
   import Icono from "../componentes/Icono.svelte";
+  import Hoja from "../componentes/Hoja.svelte";
 
   const ESCALAS = [["dia", "Día"], ["semana", "Semana"], ["mes", "Mes"], ["anio", "Año"]];
   const escala = $derived(ESCALAS.some(([e]) => e === app.ruta[1]) ? app.ruta[1] : app.movil ? "mes" : "semana");
@@ -16,7 +17,7 @@
   const titulo = $derived(escala === "dia" ? (app.movil ? corta(fecha) : larga(fecha)) : escala === "anio" ? fecha.slice(0, 4) : mesAnio(escala === "semana" ? inicioSemana(fecha) : fecha));
   function mover(n) {
     const f = escala === "dia" ? sumarDias(fecha, n) : escala === "semana" ? sumarDias(fecha, 7 * n) : escala === "mes" ? sumarMeses(fecha, n) : sumarMeses(fecha, 12 * n);
-    ir("calendario", escala, f);
+    sustituir("calendario", escala, f); // pasar fechas no llena el historial
   }
   const semana = $derived(Array.from({ length: 7 }, (_, i) => sumarDias(inicioSemana(fecha), i)));
   const celdasMes = $derived.by(() => { const ini = inicioSemana(inicioMes(fecha)); return Array.from({ length: 42 }, (_, i) => sumarDias(ini, i)); });
@@ -69,7 +70,7 @@
 {#snippet nav()}
   <div class="nav">
     <button class="pa-btn pa-btn--icon" aria-label="Anterior" onclick={() => mover(-1)}><Icono n="chevron-left" /></button>
-    <button class="pa-btn pa-btn--sm" onclick={() => ir("calendario", escala, app.hoy)}>Hoy</button>
+    <button class="pa-btn pa-btn--sm" onclick={() => sustituir("calendario", escala, app.hoy)}>Hoy</button>
     <button class="pa-btn pa-btn--icon" aria-label="Siguiente" onclick={() => mover(1)}><Icono n="chevron-right" /></button>
   </div>
 {/snippet}
@@ -89,7 +90,7 @@
     </div>
     <div class="controles">
       <div class="pa-seg" role="group" aria-label="Escala">
-        {#each ESCALAS as [e, n]}<button aria-pressed={escala === e ? "true" : "false"} onclick={() => ir("calendario", e, fecha)}>{n}</button>{/each}
+        {#each ESCALAS as [e, n]}<button aria-pressed={escala === e ? "true" : "false"} onclick={() => sustituir("calendario", e, fecha)}>{n}</button>{/each}
       </div>
       {#if !app.movil}{@render nav()}{/if}
     </div>
@@ -111,13 +112,13 @@
       <Rejilla dias={semana} alElegir={(e) => (elegido = e)} elegidoId={elegido?.id} />
     {/if}
   {:else if escala === "mes"}
-    <div class="mes" role="grid" aria-label={mesAnio(fecha)}>
-      {#each DIAS_LETRA as l}<span class="mes__cab" role="columnheader">{l}</span>{/each}
+    <div class="mes" role="group" aria-label={mesAnio(fecha)}>
+      {#each DIAS_LETRA as l}<span class="mes__cab" aria-hidden="true">{l}</span>{/each}
       {#each celdasMes as d}
         {@const evs = eventosDelDia(d, app.hoy).filter((e) => (!e.todoElDia || e.cuenta) && !e.trabajo)}
-        <button class="mes__dia" class:fuera={d.slice(5, 7) !== fecha.slice(5, 7)} class:es-hoy={d === app.hoy} class:elegido={app.movil && d === fecha} role="gridcell"
-          onclick={() => (app.movil ? ir("calendario", "mes", d) : elegirDia(d))} aria-label={larga(d)}>
-          <span class="num pa-num">{desdeISO(d).getDate()}</span>
+        <button class="mes__dia" class:fuera={d.slice(5, 7) !== fecha.slice(5, 7)} class:es-hoy={d === app.hoy} class:elegido={app.movil && d === fecha} aria-current={d === app.hoy ? "date" : undefined}
+          onclick={() => (app.movil ? sustituir("calendario", "mes", d) : elegirDia(d))}>
+          <span class="num pa-num">{desdeISO(d).getDate()}</span><span class="oculto-accesible">, {larga(d)}{evs.length ? `, ${evs.length} ${evs.length === 1 ? "plan" : "planes"}` : ""}</span>
           {#if app.movil}
             <span class="puntos">{#each evs.slice(0, 3) as e}<i style="background: var(--cuenta-{e.cuenta ? cuenta(e.cuenta).color.slice(1) : 1});"></i>{/each}</span>
           {:else}
@@ -135,14 +136,17 @@
     {/if}
   {:else}
     <p class="pa-faint explica">{app.movil ? "Horas con planes cada día. Toca un día para abrirlo." : "Horas comprometidas cada día: cuanto más intenso, más ocupado. Toca un día para abrirlo."}{#if v && !app.movil} Hay eventos guardados del {corta(v.desde)} al {corta(v.hasta)}.{/if}</p>
-    <div class="pa-year" class:pa-year--vertical={app.movil} role="grid" aria-label="Año {anio}">
+    <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+    <div class="pa-year" class:pa-year--vertical={app.movil} role="group" aria-label="Año {anio}" onclick={(e) => { const iso = e.target.closest?.("[data-iso]")?.dataset.iso; if (iso) elegirDia(iso); }}>
       {#if app.movil}
-        <span></span>{#each MESES_CORTOS as m}<span class="pa-year__m">{m[0].toUpperCase()}</span>{/each}
+        <!-- Las celdas miden menos de 24 px (WCAG 2.5.8): no son botones. Un toque en la rejilla abre ese día y cada
+             mes es un botón que abre su vista de mes, que es la alternativa accesible. -->
+        <span></span>{#each MESES_CORTOS as m, k}<button class="pa-year__m mes-boton" aria-label="Abrir {MESES[k]}" onclick={() => sustituir("calendario", "mes", `${anio}-${String(k + 1).padStart(2, "0")}-01`)}>{m[0].toUpperCase()}</button>{/each}
         {#each Array(31) as _, i}
-          <span class="pa-year__m">{i + 1}</span>
+          <span class="pa-year__m" aria-hidden="true">{i + 1}</span>
           {#each mapa as fila}
             {@const c = fila[i]}
-            {#if c}<button class="pa-year__c" data-h={nivel(c.h)} data-hoy={c.iso === app.hoy ? "" : undefined} aria-label="{larga(c.iso)}: {c.h.toLocaleString('es-ES', { maximumFractionDigits: 1 })} h" onclick={() => elegirDia(c.iso)}></button>{:else}<span class="pa-year__c" hidden></span>{/if}
+            {#if c}<span class="pa-year__c" data-iso={c.iso} data-h={nivel(c.h)} data-hoy={c.iso === app.hoy ? "" : undefined} aria-hidden="true"></span>{:else}<span class="pa-year__c" hidden></span>{/if}
           {/each}
         {/each}
       {:else}
@@ -200,13 +204,11 @@
 <Dos {principal} lateral={app.movil ? null : lateral} ancha={escala !== "anio"} llenar={app.movil && (escala === "mes" || escala === "anio")} />
 
 {#if app.movil && elegido}
-  <div class="capa" role="presentation" onclick={(e) => e.target === e.currentTarget && (elegido = null)}>
-    <section class="pa-sheet capa__dialogo" role="dialog" aria-modal="true" aria-label="Evento">
-      <div class="pa-sheet__grabber"></div>
-      {@render lateral()}
-      <button class="pa-btn" style="width: 100%; margin-top: 12px;" onclick={() => (elegido = null)}>Cerrar</button>
-    </section>
-  </div>
+  <Hoja etiqueta="Evento: {elegido.titulo}" clase="pa-sheet" estilo="max-height: 88dvh; overflow: auto;" alCerrar={() => (elegido = null)}>
+    <div class="pa-sheet__grabber"></div>
+    {@render lateral()}
+    <button class="pa-btn" style="width: 100%; margin-top: 12px;" onclick={() => (elegido = null)}>Cerrar</button>
+  </Hoja>
 {/if}
 
 <style>
@@ -231,6 +233,9 @@
   :global(.pa-dayline__node.nodo-trabajo) { background: transparent; box-shadow: inset 0 0 0 2px var(--text-3); }
   .leyenda { margin-top: 10px; }
   .pa-year button.pa-year__c { border: 0; padding: 0; cursor: pointer; }
+  .mes-boton { all: unset; min-height: 44px; display: grid; place-items: center; cursor: pointer; border-radius: var(--radius-xs); font-size: 12px; font-weight: 500; color: var(--text-2); }
+  .mes-boton:active { background: var(--hover); }
+  .mes-boton:focus-visible { outline: 2px solid var(--focus); }
   .dia-titulo { all: unset; position: sticky; top: 44px; z-index: 1; background: var(--bg); width: 100%; display: flex; align-items: center; min-height: 44px; margin: 8px 0 0; font-weight: 600; font-size: 14px; color: var(--text-2); }
   .dia-titulo::first-letter { text-transform: uppercase; }
   .dia-titulo.hoy { color: var(--accent); }

@@ -7,6 +7,7 @@
   import FilaTarea from "../componentes/FilaTarea.svelte";
   import DetalleTarea from "../componentes/DetalleTarea.svelte";
   import Icono from "../componentes/Icono.svelte";
+  import Hoja from "../componentes/Hoja.svelte";
 
   const r = $derived(app.ruta);
   const proyectoId = $derived(r[1] === "p" ? r[2] : null);
@@ -125,12 +126,10 @@
 <Dos {principal} lateral={app.movil ? null : lateral} />
 
 {#if app.movil && elegida}
-  <div class="capa" role="presentation" onclick={(e) => e.target === e.currentTarget && (elegidaId = null)}>
-    <section class="pa-sheet capa__dialogo hoja-tarea" role="dialog" aria-modal="true" aria-label="Tarea">
-      <div class="pa-sheet__grabber"></div>
-      <DetalleTarea t={elegida} alCerrar={() => (elegidaId = null)} />
-    </section>
-  </div>
+  <Hoja etiqueta="Tarea" clase="pa-sheet" estilo="max-height: 88dvh; overflow: auto;" alCerrar={() => (elegidaId = null)}>
+    <div class="pa-sheet__grabber"></div>
+    <DetalleTarea t={elegida} alCerrar={() => (elegidaId = null)} />
+  </Hoja>
 {/if}
 
 <style>
@@ -144,5 +143,5 @@
   .enlace { all: unset; display: flex; align-items: center; gap: 14px; flex: 1; min-height: 44px; cursor: pointer; color: var(--text-2); }
   .enlace .pa-row__title { color: var(--text); }
   .volver { margin: -6px 0 4px -8px; }
-  .hoja-tarea { max-height: 88dvh; overflow: auto; }
+
 </style>
