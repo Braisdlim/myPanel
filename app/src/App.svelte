@@ -6,6 +6,7 @@
   import Lateral from "./componentes/Lateral.svelte";
   import Apuntar from "./componentes/Apuntar.svelte";
   import Hoja from "./componentes/Hoja.svelte";
+  import { deslizar } from "./lib/deslizar.js";
   import Hoy from "./sectores/Hoy.svelte";
   import Calendario from "./sectores/Calendario.svelte";
   import Tareas from "./sectores/Tareas.svelte";
@@ -49,6 +50,19 @@
     ["D · S · M · A", "Calendario: día, semana, mes, año"], ["T", "Calendario: hoy"], ["← / →", "Calendario: anterior y siguiente"], ["?", "Ver estos atajos"]];
 
   const Vista = $derived(VISTAS[app.ruta[0]] ?? Hoy);
+
+  // Deslizar de lado para cambiar de sección en el móvil (petición del usuario, 22-10-2026), en el orden de la barra:
+  // Hoy ↔ Calendario ↔ Tareas ↔ Finanzas. Dentro del Calendario, la zona del calendario pasa fechas (.deslizable);
+  // su cabecera cambia de sección. Se apaga en Ajustes › General.
+  const ORDEN = ["hoy", "calendario", "tareas", "finanzas"];
+  const posicion = () => ORDEN.indexOf(app.ruta[0]);
+  const deslizarSecciones = {
+    activo: () => app.movil && app.ajustes.deslizarSecciones !== false && posicion() !== -1 && !app.apuntar.abierto,
+    ignorar: ".deslizable",
+    puede: (sentido) => { const i = posicion(); return i !== -1 && i + sentido >= 0 && i + sentido < ORDEN.length; },
+    alSiguiente: () => ir(ORDEN[posicion() + 1], { transicion: "ninguna" }),
+    alAnterior: () => ir(ORDEN[posicion() - 1], { transicion: "ninguna" }),
+  };
   // Título que se encoge al desplazar, como el título grande de iOS: al bajar no pierdes en qué pantalla estás
   let compacto = $state(false);
   const nombreVista = $derived(app.ruta[0] === "ajustes" ? "Ajustes" : SECTORES.find((s) => s.id === app.ruta[0])?.nombre ?? "Hoy");
@@ -85,7 +99,7 @@
 
   <div class="app__body">
     <Lateral {conteos} />
-    <main class="app__main" id="contenido" onscroll={(e) => (compacto = app.movil && e.currentTarget.scrollTop > 44)}>
+    <main class="app__main" id="contenido" onscroll={(e) => (compacto = app.movil && e.currentTarget.scrollTop > 44)} use:deslizar={deslizarSecciones}>
       {#if app.movil}<div class="compacto" class:visible={compacto} aria-hidden="true"><span>{nombreVista}</span></div>{/if}
       {#if app.cargado}
         <Vista />

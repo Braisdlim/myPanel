@@ -176,6 +176,7 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
 ### Navegación y accesibilidad (D-056, 22-10-2026)
 - `ir()` añade al historial; `sustituir()` reemplaza (fechas, escala, pestañas hermanas). Usa uno u otro según si es «entrar» o «moverse dentro».
 - Toda hoja o diálogo modal va con `componentes/Hoja.svelte` (se monta en `<body>`, deja la app `inert`, cierra con «atrás»/Esc, devuelve el foco). No hagas otro `.capa` a mano.
+- Deslizar entre secciones (D-058): acción `deslizar` sobre `.app__main` en `App.svelte` (orden de la barra; `ignorar: ".deslizable"` deja el Calendario pasando fechas). Ajuste `deslizarSecciones`.
 - Movimiento (D-057): transiciones en `estado.svelte.js` (`leerRuta`, tipo en `data-transicion` de `<html>`) y `estilos.css`; deslizar en `lib/deslizar.js`; salidas de hoja en `Hoja.svelte`. `sustituir(..., { transicion })` para pasar fechas. Las pruebas corren con «reducir movimiento» salvo `movimiento.spec.js`.
 - Trampa: en Git Bash, `node -e` con barras invertidas las pierde; para editar con scripts, usa un fichero `.cjs` o el editor.
 - `pruebas/accesibilidad.spec.js` pasa axe-core por todas las pantallas; `pruebas/navegacion.spec.js`, el historial y el foco. Si añades una pantalla, añádela a la lista de rutas de las dos.

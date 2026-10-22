@@ -105,6 +105,13 @@
       </ul>
     </section>
     <section class="bloque">
+      <h2>Gestos</h2>
+      <div class="pa-toggle">
+        <span class="pa-toggle__text"><span class="pa-toggle__title">Deslizar para cambiar de sección</span><span class="pa-toggle__meta">En el móvil, de lado entre Hoy, Calendario, Tareas y Finanzas. En el Calendario, deslizar sobre el calendario pasa fechas; sobre su cabecera, cambia de sección.</span></span>
+        <button class="pa-switch" role="switch" aria-checked={app.ajustes.deslizarSecciones !== false ? "true" : "false"} aria-label="Deslizar para cambiar de sección" onclick={() => cambiarAjuste("deslizarSecciones", app.ajustes.deslizarSecciones === false)}></button>
+      </div>
+    </section>
+    <section class="bloque">
       <h2>Horario de trabajo</h2>
       <div class="pa-toggle">
         <span class="pa-toggle__text"><span class="pa-toggle__title">Mostrar mi horario</span><span class="pa-toggle__meta">Un bloque «trabajo» en tu agenda que cuenta para tu tiempo libre, pero no como solape. Solo en Pauta.</span></span>

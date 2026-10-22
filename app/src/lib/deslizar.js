@@ -1,4 +1,5 @@
-// Deslizar de lado con el dedo para pasar de día, semana, mes o año (D-057), como en Calendario de Apple y Fantastical.
+// Deslizar de lado con el dedo (D-057): en Calendario pasa de día, semana, mes o año, como Calendario de Apple y Fantastical;
+// en la carcasa, de sección (Hoy ↔ Calendario ↔ Tareas ↔ Finanzas), como pidió el usuario.
 // - Solo con el dedo (en el escritorio están ‹ › y las flechas del teclado).
 // - Deja 24 px en cada borde para el gesto «atrás» de Android, y lo vertical para desplazar (touch-action: pan-y).
 // - El contenido sigue al dedo; al soltar lejos o rápido, sale hacia ese lado y el nuevo entra desde el otro.
@@ -11,8 +12,11 @@ const dosFotogramas = () => new Promise((ok) => requestAnimationFrame(() => requ
 
 export function deslizar(nodo, opciones) {
   let op = opciones;
+  // Opciones: alAnterior/alSiguiente; `activo()` (se puede apagar); `ignorar`: selector de zonas con su propio deslizar
+  // (el Calendario dentro de la pantalla); `puede(sentido)`: si hay algo a ese lado (si no, el contenido resiste y vuelve).
   let id = null, x0 = 0, y0 = 0, t0 = 0, dx = 0, horizontal = null, animacion = null;
-  nodo.style.touchAction = "pan-y";
+  nodo.style.touchAction = "pan-y pinch-zoom"; // lo vertical y el pellizco para ampliar siguen siendo del navegador
+  const puede = (sentido) => (op.puede ? op.puede(sentido) : true);
 
   const pintar = (x) => {
     nodo.style.transform = x ? `translateX(${x}px)` : "";
@@ -23,6 +27,8 @@ export function deslizar(nodo, opciones) {
     if (e.pointerType !== "touch" || id !== null) return;
     if (e.clientX < BORDE || e.clientX > innerWidth - BORDE) return; // el borde es del sistema («atrás»)
     if (e.target.closest?.("input, textarea, select, [data-sin-deslizar]")) return;
+    if (op.activo && !op.activo()) return;
+    if (op.ignorar && e.target.closest?.(op.ignorar)) return;
     animacion?.cancel();
     id = e.pointerId; x0 = e.clientX; y0 = e.clientY; t0 = performance.now(); dx = 0; horizontal = null;
   }
@@ -36,7 +42,8 @@ export function deslizar(nodo, opciones) {
       if (!horizontal) { id = null; return; } // es un desplazamiento vertical: no es nuestro
       nodo.setPointerCapture?.(id);
     }
-    dx = mx;
+    // Sin nada a ese lado (Finanzas → «siguiente»), el contenido se resiste: se mueve un tercio
+    dx = puede(mx < 0 ? 1 : -1) ? mx : mx / 3;
     pintar(dx);
   }
 
@@ -45,7 +52,7 @@ export function deslizar(nodo, opciones) {
     id = null;
     if (!horizontal) return;
     const velocidad = Math.abs(dx) / Math.max(1, performance.now() - t0); // px/ms
-    const pasa = Math.abs(dx) > nodo.clientWidth * 0.22 || (Math.abs(dx) > 40 && velocidad > 0.45);
+    const pasa = (Math.abs(dx) > nodo.clientWidth * 0.22 || (Math.abs(dx) > 40 && velocidad > 0.45)) && puede(dx < 0 ? 1 : -1);
     if (!pasa) {
       // No llega: vuelve a su sitio
       const desde = dx;

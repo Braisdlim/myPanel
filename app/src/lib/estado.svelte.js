@@ -16,7 +16,7 @@ export const SECTORES = [
   { id: "asistente", nombre: "Asistente", icono: "sparkles" },
 ];
 
-const AJUSTES_INICIALES = { id: "general", tema: "sistema", guardarEn: "preguntar", trabajo: { ...HORARIO_INICIAL } };
+const AJUSTES_INICIALES = { id: "general", tema: "sistema", guardarEn: "preguntar", trabajo: { ...HORARIO_INICIAL }, deslizarSecciones: true };
 
 export const app = $state({
   hoy: hoyISO(),
@@ -117,10 +117,13 @@ function leerRuta() {
   vt.finished.finally(() => { if (raiz.dataset.transicion === transicion) delete raiz.dataset.transicion; });
 }
 const hashDe = (partes) => "#/" + partes.map(encodeURIComponent).join("/");
+/** Pantalla nueva (añade al historial). Opcional al final: `{ transicion: "ninguna" }` si ya se animó con el dedo. */
 export function ir(...partes) {
+  const opciones = typeof partes.at(-1) === "object" ? partes.pop() : {};
   const h = hashDe(partes);
   origen = "nueva";
-  if (location.hash !== h) location.hash = h; else leerRuta();
+  proximaTransicion = opciones.transicion ?? null;
+  if (location.hash !== h) location.hash = h; else { proximaTransicion = null; leerRuta(); }
 }
 /** Moverse dentro de la misma pantalla. `transicion`: "siguiente" o "anterior" al pasar fechas; "ninguna" si ya se animó con el dedo. */
 export function sustituir(...partes) {

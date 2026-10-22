@@ -111,3 +111,49 @@ test("atajos de teclado: Ctrl+número, escalas, hoy, flechas y ? para verlos", a
   await page.keyboard.press("Control+3");
   await expect(page).toHaveURL(/#\/tareas$/);
 });
+
+test("deslizar de lado cambia de sección: Hoy → Calendario → Tareas, y vuelta; el calendario sigue pasando fechas", async ({ page }) => {
+  test.skip(!esMovil(page), "con el dedo, en el móvil");
+  const w = page.viewportSize().width;
+  const izquierda = (y) => deslizarDedo(page, [w * 0.8, y], [w * 0.15, y]);
+  const derecha = (y) => deslizarDedo(page, [w * 0.2, y], [w * 0.85, y]);
+  await page.goto("/#/hoy");
+  await page.waitForSelector(".app__main .vista");
+  await izquierda(300);
+  await expect(page).toHaveURL(/#\/calendario$/);
+  await page.waitForSelector(".deslizable");
+  await page.waitForTimeout(400);
+  // Sobre el calendario: pasa fechas y no cambia de sección
+  const zona = await page.locator(".deslizable").boundingBox();
+  await izquierda(zona.y + 80);
+  await expect(page).toHaveURL(/#\/calendario\/(mes|semana)\/\d{4}-/);
+  await page.waitForTimeout(400);
+  // Sobre la cabecera (el título): cambia de sección
+  const cabecera = await page.locator(".fila-titulo").boundingBox();
+  await izquierda(cabecera.y + cabecera.height / 2);
+  await expect(page).toHaveURL(/#\/tareas$/);
+  await page.waitForTimeout(400);
+  await derecha(300);
+  await expect(page).toHaveURL(/#\/calendario/);
+  await page.waitForTimeout(400);
+  // Atrás devuelve a la sección anterior, como con las pestañas
+  await page.goBack();
+  await expect(page).toHaveURL(/#\/tareas$/);
+});
+
+test("en los extremos no hay más secciones y con el ajuste apagado no se desliza", async ({ page }) => {
+  test.skip(!esMovil(page), "con el dedo, en el móvil");
+  const w = page.viewportSize().width;
+  await page.goto("/#/finanzas");
+  await page.waitForSelector(".app__main .vista");
+  await deslizarDedo(page, [w * 0.8, 300], [w * 0.15, 300]); // después de Finanzas no hay nada
+  await page.waitForTimeout(400);
+  await expect(page).toHaveURL(/#\/finanzas$/);
+  await page.goto("/#/ajustes/general");
+  await page.getByRole("switch", { name: "Deslizar para cambiar de sección" }).click();
+  await page.goto("/#/hoy");
+  await page.waitForSelector(".app__main .vista");
+  await deslizarDedo(page, [w * 0.8, 300], [w * 0.15, 300]);
+  await page.waitForTimeout(400);
+  await expect(page).toHaveURL(/#\/hoy$/);
+});
