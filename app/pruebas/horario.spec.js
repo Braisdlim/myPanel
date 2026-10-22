@@ -41,7 +41,7 @@ test("horario de trabajo: se activa, respeta tus días libres y no tapa tus even
     const cal = decodeURIComponent(url.pathname.split("/calendars/")[1].replace(/\/events$/, ""));
     return r.fulfill({ json: { items: EVENTOS[cal] ?? [] } });
   });
-  await page.emulateMedia({ colorScheme: "dark" });
+  await page.emulateMedia({ colorScheme: "dark", reducedMotion: "reduce" });
   const movil = (page.viewportSize()?.width ?? 1440) <= 640;
 
   await page.goto("/#/ajustes/cuentas");

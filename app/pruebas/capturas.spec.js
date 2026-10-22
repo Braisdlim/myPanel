@@ -14,7 +14,7 @@ for (const tema of TEMAS) {
       page.on("pageerror", (e) => errores.push(e.message));
       page.on("console", (m) => m.type() === "error" && errores.push(m.text()));
       // El tema por defecto es «del sistema»: se emula el del sistema (localStorage solo evita el parpadeo inicial)
-      await page.emulateMedia({ colorScheme: tema });
+      await page.emulateMedia({ colorScheme: tema, reducedMotion: "reduce" });
       await page.addInitScript((t) => localStorage.setItem("pauta-tema", t), tema);
       await page.goto(`/#/${ruta}`);
       await page.waitForSelector(".app__main .vista");

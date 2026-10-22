@@ -1,10 +1,11 @@
 <script>
   import { onMount, tick } from "svelte";
-  import { app, iniciar, ir, SECTORES, desplazamientoGuardado } from "./lib/estado.svelte.js";
+  import { app, iniciar, ir, SECTORES } from "./lib/estado.svelte.js";
   import { contar } from "./lib/tareas.js";
   import Icono from "./componentes/Icono.svelte";
   import Lateral from "./componentes/Lateral.svelte";
   import Apuntar from "./componentes/Apuntar.svelte";
+  import Hoja from "./componentes/Hoja.svelte";
   import Hoy from "./sectores/Hoy.svelte";
   import Calendario from "./sectores/Calendario.svelte";
   import Tareas from "./sectores/Tareas.svelte";
@@ -35,9 +36,17 @@
   }
   $effect(() => { app.ajustes.tema; aplicarTema(); });
 
+  // Atajos (diseno/sistema/README.md): ⌘/Ctrl+K apuntar, ⌘/Ctrl+1–4 sectores, ? atajos. Los de Calendario, en su pantalla.
+  const SECTOR_POR_NUMERO = ["hoy", "calendario", "tareas", "finanzas"];
+  let verAtajos = $state(false);
   function teclas(e) {
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); app.apuntar.abierto = true; }
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); app.apuntar.abierto = true; return; }
+    if ((e.metaKey || e.ctrlKey) && /^[1-4]$/.test(e.key)) { e.preventDefault(); ir(SECTOR_POR_NUMERO[Number(e.key) - 1]); return; }
+    const escribiendo = e.target.closest?.("input, textarea, select, [contenteditable]");
+    if (e.key === "?" && !escribiendo && !document.querySelector("body > .capa")) { e.preventDefault(); verAtajos = true; }
   }
+  const ATAJOS = [[`${mod} K`, "Apuntar o buscar"], [`${mod} 1–4`, "Hoy, Calendario, Tareas, Finanzas"], ["Alt ← / Alt →", "Atrás y adelante"], ["Esc", "Cerrar la hoja o el diálogo"],
+    ["D · S · M · A", "Calendario: día, semana, mes, año"], ["T", "Calendario: hoy"], ["← / →", "Calendario: anterior y siguiente"], ["?", "Ver estos atajos"]];
 
   const Vista = $derived(VISTAS[app.ruta[0]] ?? Hoy);
   // Título que se encoge al desplazar, como el título grande de iOS: al bajar no pierdes en qué pantalla estás
@@ -46,7 +55,7 @@
   $effect(() => { app.ruta; compacto = false; });
   $effect(() => { document.title = nombreVista === "Hoy" ? "Pauta" : `${nombreVista} · Pauta`; });
 
-  // Tras navegar (D-056): arriba si es una pantalla nueva; donde estabas si vuelves con atrás/adelante.
+  // Tras navegar (D-056; el desplazamiento lo coloca estado.svelte.js).
   // El foco va al título de la pantalla, para que el lector de pantalla diga dónde estás (no en «inicio» ni al pasar fechas).
   $effect(() => {
     const { como, n } = app.navegacion;
@@ -54,8 +63,6 @@
     tick().then(() => requestAnimationFrame(() => {
       const main = document.querySelector(".app__main");
       if (!main) return;
-      if (como === "historial") main.scrollTop = desplazamientoGuardado();
-      else if (como === "nueva") main.scrollTop = 0;
       if (como === "sustituir" || document.querySelector("body > .capa")) return;
       const h1 = main.querySelector("h1");
       if (h1) { h1.tabIndex = -1; h1.focus({ preventScroll: true }); }
@@ -101,6 +108,16 @@
   <Apuntar {mod} />
 {/if}
 
+{#if verAtajos}
+  <Hoja etiqueta="Atajos de teclado" alCerrar={() => (verAtajos = false)}>
+    <div class="pa-capture atajos">
+      <h2>Atajos de teclado</h2>
+      <dl>{#each ATAJOS as [k, d]}<div><dt><span class="pa-kbd">{k}</span></dt><dd>{d}</dd></div>{/each}</dl>
+      <div class="pa-capture__foot"><button class="pa-btn pa-btn--primary" onclick={() => (verAtajos = false)} data-foco>Cerrar</button></div>
+    </div>
+  </Hoja>
+{/if}
+
 {#if app.aviso}
   <div class="toast" role="status">{app.aviso}</div>
 {/if}
@@ -111,6 +128,11 @@
 
 <style>
   .movil-solo { display: none; }
+  .atajos h2 { margin: 0 0 12px; font-size: 16px; font-weight: 600; }
+  .atajos dl { margin: 0; display: grid; gap: 8px; }
+  .atajos dl div { display: grid; grid-template-columns: 150px 1fr; gap: 12px; align-items: center; }
+  .atajos dt, .atajos dd { margin: 0; }
+  .atajos dd { color: var(--text-2); }
   /* Barra con el título pequeño: altura cero en el flujo; aparece al desplazar */
   .compacto { position: sticky; top: 0; height: 0; z-index: 5; }
   .compacto span { display: flex; align-items: center; justify-content: center; height: 44px; background: var(--bg); border-bottom: 1px solid var(--line); font-size: 15px; font-weight: 600; opacity: 0; transform: translateY(-4px); transition: opacity 160ms ease, transform 160ms ease; pointer-events: none; }

@@ -1,4 +1,5 @@
 // Estado de la app (Svelte 5): ruta, fecha de hoy, tareas guardadas en el dispositivo y ajustes.
+import { tick } from "svelte";
 import { crearAlmacen } from "./almacen.js";
 import { hoyISO, minutosAhora, sumarDias } from "./fechas.js";
 import { crearTarea, crearProyecto, completar } from "./tareas.js";
@@ -63,20 +64,57 @@ export async function iniciar() {
 let origen = "inicio"; // "nueva" | "sustituir" | "historial" (atrás/adelante) | "inicio"
 let claveActual = location.hash;
 const posiciones = new Map(); // ruta → desplazamiento de .app__main
+// Pila propia del historial para saber si «atrás/adelante» va hacia atrás o hacia delante (el navegador no lo dice)
+let pila = [location.hash], indice = 0;
+let proximaTransicion = null; // la que pide quien navega: "siguiente" | "anterior" | "ninguna"
+
+/** Cómo se anima el cambio (D-057): entrar (desde la derecha), salir (hacia la derecha), fundido o pasar fechas. */
+function elegirTransicion(como, antes, despues) {
+  if (proximaTransicion) { const t = proximaTransicion; proximaTransicion = null; return t; }
+  const sector = (h) => h.replace(/^#\/?/, "").split(/[/?]/)[0] || "hoy";
+  const mismo = sector(antes) === sector(despues);
+  if (como === "nueva") return mismo ? "entrar" : "fundido";
+  if (como === "historial") {
+    if (pila[indice - 1] === despues) { indice--; return mismo ? "salir" : "fundido"; }
+    if (pila[indice + 1] === despues) { indice++; return mismo ? "entrar" : "fundido"; }
+    return "fundido";
+  }
+  if (como === "sustituir") return "fundido";
+  return "ninguna";
+}
 
 function leerRuta() {
   const principal = document.querySelector(".app__main");
   if (principal) posiciones.set(claveActual, principal.scrollTop);
   const como = origen;
   origen = "historial"; // lo que no venga de ir() ni de sustituir() es atrás/adelante del navegador o de Android
+  if (como === "nueva") { pila = [...pila.slice(0, indice + 1), location.hash]; indice = pila.length - 1; }
+  if (como === "sustituir") pila[indice] = location.hash;
+  const transicion = elegirTransicion(como, claveActual, location.hash);
   claveActual = location.hash;
-  app.navegacion = { como, n: (app.navegacion?.n ?? 0) + 1 };
-  app.apuntar = { ...app.apuntar, abierto: false }; // una navegación cierra la captura
-  const [ruta, consulta = ""] = location.hash.replace(/^#\/?/, "").split("?");
-  // Acceso directo del icono instalado («Apuntar»): #/hoy?apuntar abre la captura y deja la ruta limpia
-  if (/(^|&)apuntar\b/.test(consulta)) { app.apuntar = { abierto: true, texto: "" }; history.replaceState(null, "", `#/${ruta}`); }
-  const partes = ruta.split("/").filter(Boolean).map(decodeURIComponent);
-  app.ruta = partes.length && SECTORES.concat({ id: "ajustes" }).some((s) => s.id === partes[0]) ? partes : ["hoy"];
+
+  const aplicar = () => {
+    app.navegacion = { como, n: (app.navegacion?.n ?? 0) + 1 };
+    const [ruta, consulta = ""] = location.hash.replace(/^#\/?/, "").split("?");
+    // Acceso directo del icono instalado («Apuntar»): #/hoy?apuntar abre la captura y deja la ruta limpia
+    if (/(^|&)apuntar\b/.test(consulta)) { app.apuntar = { abierto: true, texto: "" }; history.replaceState(null, "", `#/${ruta}`); }
+    const partes = ruta.split("/").filter(Boolean).map(decodeURIComponent);
+    app.ruta = partes.length && SECTORES.concat({ id: "ajustes" }).some((s) => s.id === partes[0]) ? partes : ["hoy"];
+  };
+  // Tras pintar: arriba si es nueva; donde estabas si vuelves con atrás/adelante (antes de la foto de la transición)
+  const colocar = () => {
+    const main = document.querySelector(".app__main");
+    if (!main) return;
+    if (como === "historial") main.scrollTop = posiciones.get(location.hash) ?? 0;
+    else if (como === "nueva") main.scrollTop = 0;
+  };
+
+  const sinMovimiento = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!app.cargado || transicion === "ninguna" || sinMovimiento || !document.startViewTransition) { aplicar(); tick().then(colocar); return; }
+  const raiz = document.documentElement;
+  raiz.dataset.transicion = transicion;
+  const vt = document.startViewTransition(async () => { aplicar(); await tick(); colocar(); });
+  vt.finished.finally(() => { if (raiz.dataset.transicion === transicion) delete raiz.dataset.transicion; });
 }
 const hashDe = (partes) => "#/" + partes.map(encodeURIComponent).join("/");
 export function ir(...partes) {
@@ -84,14 +122,15 @@ export function ir(...partes) {
   origen = "nueva";
   if (location.hash !== h) location.hash = h; else leerRuta();
 }
+/** Moverse dentro de la misma pantalla. `transicion`: "siguiente" o "anterior" al pasar fechas; "ninguna" si ya se animó con el dedo. */
 export function sustituir(...partes) {
+  const opciones = typeof partes.at(-1) === "object" ? partes.pop() : {};
   const h = hashDe(partes);
   if (location.hash === h) return;
   origen = "sustituir";
+  proximaTransicion = opciones.transicion ?? null;
   location.replace(h);
 }
-/** Dónde dejar el desplazamiento tras navegar: arriba si es nueva; donde estaba si vuelves con atrás/adelante. */
-export const desplazamientoGuardado = () => posiciones.get(location.hash) ?? 0;
 
 // ---------- tareas ----------
 export async function guardarTarea(t) {

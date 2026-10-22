@@ -36,6 +36,10 @@
 
   $effect(() => { texto; elecciones = []; errorCrear = ""; });
   $effect(() => { campo?.focus(); });
+  // «Atrás» o ir a otra pantalla cierra la captura (en Android ya la cierra CloseWatcher; esto cubre el resto).
+  // Se compara con la dirección al abrir para no cerrarla si se abrió justo después de cambiar de pantalla.
+  const rutaAlAbrir = location.hash;
+  $effect(() => { app.navegacion.n; if (location.hash !== rutaAlAbrir) cerrar(); });
 
   // Texto con lo entendido resaltado
   const trozos = $derived.by(() => {

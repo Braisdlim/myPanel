@@ -61,6 +61,64 @@ body { overflow: hidden; }
   body:has(.capa) .toast { bottom: auto; top: calc(12px + env(safe-area-inset-top, 0px)); }
 }
 
-/* Foco en el título al cambiar de pantalla (D-056): invisible con ratón o dedo, visible con teclado */
+/* Foco en el título al cambiar de pantalla (D-056): solo para que el lector de pantalla diga dónde estás. El título no es
+   un control (tabindex="-1", fuera del orden de Tab), así que no lleva anillo: en el móvil salía al entrar en una pantalla. */
 h1[tabindex="-1"]:focus { outline: none; }
-h1[tabindex="-1"]:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; border-radius: var(--radius-xs); }
+
+/* ---------- Movimiento (D-057) ----------
+   Duraciones de la guía del sistema (diseno/sistema/README.md, «Estados y movimiento»): 140 ms al pulsar, 220 ms al abrir
+   una hoja, 320 ms al cambiar de vista, con salida suave. Pendiente de pasar a tokens.json (P-048).
+   Curvas: «salida suave» genérica y la de las hojas, parecida a la de iOS (arranca rápido y frena largo). */
+:root {
+  --mov-pulsar: 140ms;
+  --mov-hoja: 220ms;
+  --mov-vista: 320ms;
+  --curva-salida: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --curva-hoja: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Cambio de pantalla con View Transitions: solo se anima el contenido; barras y pestañas se quedan quietas */
+.app__main { view-transition-name: contenido; }
+::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+::view-transition-group(contenido) { animation-duration: var(--mov-vista); animation-timing-function: var(--curva-salida); }
+/* Pestañas: fundido corto (Material recomienda fundir, no deslizar, entre destinos de la barra) */
+html[data-transicion="fundido"]::view-transition-old(contenido) { animation: pa-fuera var(--mov-hoja) var(--curva-salida) both; }
+html[data-transicion="fundido"]::view-transition-new(contenido) { animation: pa-dentro var(--mov-hoja) var(--curva-salida) both; }
+/* Entrar en algo: llega desde la derecha; volver: al revés (como en el iPhone) */
+html[data-transicion="entrar"]::view-transition-old(contenido) { animation: pa-a-izquierda var(--mov-vista) var(--curva-salida) both; }
+html[data-transicion="entrar"]::view-transition-new(contenido) { animation: pa-desde-derecha var(--mov-vista) var(--curva-salida) both; }
+html[data-transicion="salir"]::view-transition-old(contenido) { animation: pa-a-derecha var(--mov-vista) var(--curva-salida) both; }
+html[data-transicion="salir"]::view-transition-new(contenido) { animation: pa-desde-izquierda var(--mov-vista) var(--curva-salida) both; }
+/* Pasar fechas con los botones ‹ ›: el mismo movimiento que al deslizar con el dedo */
+html[data-transicion="siguiente"]::view-transition-old(contenido) { animation: pa-a-izquierda var(--mov-hoja) var(--curva-salida) both; }
+html[data-transicion="siguiente"]::view-transition-new(contenido) { animation: pa-desde-derecha var(--mov-hoja) var(--curva-salida) both; }
+html[data-transicion="anterior"]::view-transition-old(contenido) { animation: pa-a-derecha var(--mov-hoja) var(--curva-salida) both; }
+html[data-transicion="anterior"]::view-transition-new(contenido) { animation: pa-desde-izquierda var(--mov-hoja) var(--curva-salida) both; }
+
+@keyframes pa-fuera { to { opacity: 0; } }
+@keyframes pa-dentro { from { opacity: 0; } }
+@keyframes pa-desde-derecha { from { opacity: 0; transform: translateX(28px); } }
+@keyframes pa-desde-izquierda { from { opacity: 0; transform: translateX(-28px); } }
+@keyframes pa-a-izquierda { to { opacity: 0; transform: translateX(-28px); } }
+@keyframes pa-a-derecha { to { opacity: 0; transform: translateX(28px); } }
+
+/* Hojas y diálogos: el fondo se oscurece y la hoja sube (móvil) o aparece (escritorio) */
+/* Solo el velo se funde (no la hoja): así el texto nunca baja de contraste mientras entra */
+.capa { animation: pa-velo var(--mov-hoja) var(--curva-salida) backwards; }
+@keyframes pa-velo { from { background-color: transparent; } }
+.capa__dialogo { animation: pa-dialogo var(--mov-hoja) var(--curva-hoja) backwards; }
+@keyframes pa-dialogo { from { opacity: 0; transform: translateY(8px) scale(0.98); } }
+@media (max-width: 640px) {
+  .capa__dialogo { animation: pa-sube var(--mov-vista) var(--curva-hoja) backwards; }
+  @keyframes pa-sube { from { transform: translateY(100%); } }
+}
+/* Al pulsar: un leve hundimiento */
+@media (hover: none) {
+  .pa-btn:active, .pa-chip:active, .pa-tab:active, .pa-tab--add:active { transform: scale(0.97); transition: transform var(--mov-pulsar) var(--curva-salida); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+  .capa, .capa__dialogo { animation: none !important; }
+  .pa-btn:active, .pa-chip:active, .pa-tab:active, .pa-tab--add:active { transform: none; }
+}

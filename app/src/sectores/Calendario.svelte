@@ -8,6 +8,7 @@
   import Rejilla from "../componentes/Rejilla.svelte";
   import Icono from "../componentes/Icono.svelte";
   import Hoja from "../componentes/Hoja.svelte";
+  import { deslizar } from "../lib/deslizar.js";
 
   const ESCALAS = [["dia", "Día"], ["semana", "Semana"], ["mes", "Mes"], ["anio", "Año"]];
   const escala = $derived(ESCALAS.some(([e]) => e === app.ruta[1]) ? app.ruta[1] : app.movil ? "mes" : "semana");
@@ -15,9 +16,22 @@
   let elegido = $state(null);
 
   const titulo = $derived(escala === "dia" ? (app.movil ? corta(fecha) : larga(fecha)) : escala === "anio" ? fecha.slice(0, 4) : mesAnio(escala === "semana" ? inicioSemana(fecha) : fecha));
-  function mover(n) {
+  // Pasar fechas no llena el historial. Con los botones se anima como al deslizar; con el dedo ya se animó (D-057).
+  function mover(n, conDedo = false) {
     const f = escala === "dia" ? sumarDias(fecha, n) : escala === "semana" ? sumarDias(fecha, 7 * n) : escala === "mes" ? sumarMeses(fecha, n) : sumarMeses(fecha, 12 * n);
-    sustituir("calendario", escala, f); // pasar fechas no llena el historial
+    sustituir("calendario", escala, f, { transicion: conDedo ? "ninguna" : n > 0 ? "siguiente" : "anterior" });
+  }
+  const irHoy = () => sustituir("calendario", escala, app.hoy, { transicion: app.hoy > fecha ? "siguiente" : app.hoy < fecha ? "anterior" : "ninguna" });
+
+  // Atajos del sistema de diseño (diseno/sistema/README.md): D S M A escalas, T hoy; y ← → para pasar fechas
+  function teclas(e) {
+    if (e.metaKey || e.ctrlKey || e.altKey || e.defaultPrevented) return;
+    if (e.target.closest?.("input, textarea, select, [contenteditable]") || document.querySelector("body > .capa")) return;
+    const escalaPorTecla = { d: "dia", s: "semana", m: "mes", a: "anio" }[e.key.toLowerCase()];
+    if (escalaPorTecla) { e.preventDefault(); sustituir("calendario", escalaPorTecla, fecha); }
+    else if (e.key.toLowerCase() === "t") { e.preventDefault(); irHoy(); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); mover(-1); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); mover(1); }
   }
   const semana = $derived(Array.from({ length: 7 }, (_, i) => sumarDias(inicioSemana(fecha), i)));
   const celdasMes = $derived.by(() => { const ini = inicioSemana(inicioMes(fecha)); return Array.from({ length: 42 }, (_, i) => sumarDias(ini, i)); });
@@ -67,11 +81,14 @@
   </ul>
 {/snippet}
 
-{#snippet nav()}
+{#snippet botonHoy()}<button class="pa-btn pa-btn--sm" onclick={irHoy} aria-keyshortcuts="T">Hoy</button>{/snippet}
+<!-- En el móvil, «Hoy» va junto a la escala para que el título del mes quepa entero; las flechas se quedan (son la
+     alternativa a deslizar con el dedo, WCAG 2.5.1) -->
+{#snippet nav(conHoy = true)}
   <div class="nav">
-    <button class="pa-btn pa-btn--icon" aria-label="Anterior" onclick={() => mover(-1)}><Icono n="chevron-left" /></button>
-    <button class="pa-btn pa-btn--sm" onclick={() => sustituir("calendario", escala, app.hoy)}>Hoy</button>
-    <button class="pa-btn pa-btn--icon" aria-label="Siguiente" onclick={() => mover(1)}><Icono n="chevron-right" /></button>
+    <button class="pa-btn pa-btn--icon" aria-label="Anterior" aria-keyshortcuts="ArrowLeft" onclick={() => mover(-1)}><Icono n="chevron-left" /></button>
+    {#if conHoy}{@render botonHoy()}{/if}
+    <button class="pa-btn pa-btn--icon" aria-label="Siguiente" aria-keyshortcuts="ArrowRight" onclick={() => mover(1)}><Icono n="chevron-right" /></button>
   </div>
 {/snippet}
 
@@ -79,7 +96,7 @@
   <!-- En el móvil, compacta: título y ‹ Hoy › en una fila, el estado en una línea y la escala debajo -->
   <div class="cabecera barra">
     <div class="cab-texto">
-      <div class="fila-titulo"><h1 class="titulo">{titulo}</h1>{#if app.movil}{@render nav()}{/if}</div>
+      <div class="fila-titulo"><h1 class="titulo">{titulo}</h1>{#if app.movil}{@render nav(false)}{/if}</div>
       {#if esReal()}
         <p class="estado" class:con-error={conError.length}><span class="estado__texto">{cuentas().length === 1 ? cuentas()[0].nombre : `${cuentas().length} cuentas`} · {resumen}</span>
           <button class="pa-btn pa-btn--plain pa-btn--sm" onclick={actualizar} disabled={cargando} aria-label="Actualizar"><Icono n="refresh-cw" tam={14} />{#if !app.movil}Actualizar{/if}</button></p>
@@ -92,10 +109,11 @@
       <div class="pa-seg" role="group" aria-label="Escala">
         {#each ESCALAS as [e, n]}<button aria-pressed={escala === e ? "true" : "false"} onclick={() => sustituir("calendario", e, fecha)}>{n}</button>{/each}
       </div>
-      {#if !app.movil}{@render nav()}{/if}
+      {#if app.movil}{@render botonHoy()}{:else}{@render nav()}{/if}
     </div>
   </div>
 
+  <div class="deslizable" use:deslizar={{ alAnterior: () => mover(-1, true), alSiguiente: () => mover(1, true) }}>
   {#if escala === "dia"}
     {#if app.movil}
       {@render agendaDia(fecha)}
@@ -160,6 +178,7 @@
     </div>
     <div class="pa-heatlegend leyenda">menos {#each [0, 1, 2, 3, 4] as k}<i style="background: var(--heat-{k});"></i>{/each} más</div>
   {/if}
+  </div>
 {/snippet}
 
 {#snippet lateral()}
@@ -200,6 +219,8 @@
     <p class="pa-faint nota">Elige un evento para ver su detalle.</p>
   {/if}
 {/snippet}
+
+<svelte:window onkeydown={teclas} />
 
 <Dos {principal} lateral={app.movil ? null : lateral} ancha={escala !== "anio"} llenar={app.movil && (escala === "mes" || escala === "anio")} />
 
@@ -249,15 +270,20 @@
   .enlace { color: var(--accent); text-underline-offset: 2px; }
   .nombre-cuenta { min-width: 0; overflow-wrap: anywhere; }
   a.pa-btn { text-decoration: none; }
+  .deslizable { display: flex; flex-direction: column; flex: 1; min-height: 0; }
   .fila-titulo { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
   .estado__texto { min-width: 0; }
   @media (max-width: 640px) {
-    .cabecera.barra { flex-direction: column; align-items: stretch; gap: 10px; margin-bottom: 10px; }
+    .cabecera.barra { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 10px; margin-bottom: 10px; }
     .cab-texto { min-width: 0; }
+    /* Una sola línea aunque el mes sea largo («Septiembre 2026»): la cabecera no salta al pasar de mes */
+    .fila-titulo .titulo { font-size: 24px; line-height: 30px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+    .fila-titulo .nav { flex: none; }
     .estado { flex-wrap: nowrap; margin-top: 2px; font-size: 13px; }
     .estado__texto { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .controles .pa-seg { width: 100%; }
-    .controles .pa-seg button { flex: 1; }
+    .controles { flex-wrap: nowrap; gap: 8px; }
+    .controles .pa-seg { flex: 1; min-width: 0; }
+    .controles .pa-seg button { flex: 1; padding: 0 6px; min-width: 0; }
     .lista-dia { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; margin-top: 8px; }
     .lista-dia .dia-titulo { top: 0; }
     .explica { margin: 0 0 6px; font-size: 13px; }

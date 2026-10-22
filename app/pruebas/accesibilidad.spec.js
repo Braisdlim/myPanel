@@ -13,7 +13,7 @@ async function analizar(page) {
 
 for (const tema of ["dark", "light"]) {
   test(`axe en todas las pantallas · ${tema}`, async ({ page }) => {
-    await page.emulateMedia({ colorScheme: tema });
+    await page.emulateMedia({ colorScheme: tema, reducedMotion: "reduce" });
     const fallos = [];
     for (const ruta of RUTAS) {
       await page.goto(`/#/${ruta}`);
@@ -25,7 +25,7 @@ for (const tema of ["dark", "light"]) {
 }
 
 test("axe con las hojas abiertas (Apuntar y un evento)", async ({ page }) => {
-  await page.emulateMedia({ colorScheme: "dark" });
+  await page.emulateMedia({ colorScheme: "dark", reducedMotion: "reduce" });
   const movil = (page.viewportSize()?.width ?? 1440) <= 640;
   await page.goto("/#/hoy");
   await page.waitForSelector(".app__main .vista");

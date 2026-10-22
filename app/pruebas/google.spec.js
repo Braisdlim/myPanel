@@ -57,7 +57,7 @@ test("conectar dos cuentas de Google, verlas juntas, recargar y desconectar", as
   page.on("pageerror", (e) => errores.push(e.message));
   page.on("console", (m) => m.type() === "error" && errores.push(m.text()));
   await imitarGoogle(page, llamadas);
-  await page.emulateMedia({ colorScheme: "dark" });
+  await page.emulateMedia({ colorScheme: "dark", reducedMotion: "reduce" });
 
   // 1. Conectar la primera cuenta
   await page.goto("/#/ajustes/cuentas");
@@ -103,7 +103,7 @@ test("conectar dos cuentas de Google, verlas juntas, recargar y desconectar", as
 
   // 7. Capturas y revisión con cuentas reales, en los dos temas
   for (const tema of ["dark", "light"]) {
-    await page.emulateMedia({ colorScheme: tema });
+    await page.emulateMedia({ colorScheme: tema, reducedMotion: "reduce" });
     for (const ruta of ["ajustes/cuentas", "hoy", "calendario/semana", `calendario/dia/${HOY}`]) {
       await page.goto(`/#/${ruta}`);
       await page.reload();

@@ -62,7 +62,7 @@ test("el ensayo en tres calendarios se ve una vez, y crear un evento con confirm
   page.on("pageerror", (e) => errores.push(e.message));
   page.on("console", (m) => m.type() === "error" && errores.push(m.text()));
   await imitarGoogle(page, creados);
-  await page.emulateMedia({ colorScheme: "dark" });
+  await page.emulateMedia({ colorScheme: "dark", reducedMotion: "reduce" });
   const movil = (page.viewportSize()?.width ?? 1440) <= 640;
 
   // Conectar: solo lectura, sin el permiso de escribir

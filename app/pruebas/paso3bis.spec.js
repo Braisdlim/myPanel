@@ -60,7 +60,7 @@ test("cambiar solo esta vez: no voy, saltar y mover, con confirmación y relectu
   page.on("pageerror", (e) => errores.push(e.message));
   page.on("console", (m) => m.type() === "error" && errores.push(m.text()));
   await imitarGoogle(page, eventos, cambios);
-  await page.emulateMedia({ colorScheme: "dark" });
+  await page.emulateMedia({ colorScheme: "dark", reducedMotion: "reduce" });
 
   await page.goto("/#/ajustes/cuentas");
   await page.getByRole("button", { name: "Conectar Google", exact: true }).click();
