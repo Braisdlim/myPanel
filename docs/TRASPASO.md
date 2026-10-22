@@ -161,7 +161,15 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
 - La ventana de Google obliga a permitir las ventanas emergentes de `localhost`.
 - El ensayo está en `brais.dlim@gmail.com`, en calendarios compartidos, y sale **tres veces** (P-043). Los calendarios compartidos quizá no admitan escritura (P-042).
 
+### Versión publicada (D-053, 22-10-2026)
+- Dirección: **https://braisdlim.github.io/myPanel/** (GitHub Pages, gratis). Se publica sola en cada push a la rama principal si pasan las pruebas (`.github/workflows/publicar.yml`; Pages con origen «GitHub Actions», activado con `gh api`).
+- Instalable en el móvil (manifiesto e iconos en `app/public/`; iconos generados con `app/scripts/iconos.mjs`). Sin *service worker*: necesita conexión.
+- Compilar como en GitHub: `PAUTA_SITE=https://braisdlim.github.io PAUTA_BASE=/myPanel npx astro build` (en Git Bash de Windows, con `MSYS_NO_PATHCONV=1` delante, o convierte `/myPanel` en una ruta de Windows).
+- Los datos de cada dispositivo van aparte: lo del móvil no se ve en el ordenador hasta la sincronización (D-041).
+- La web personal del usuario apuntaba a `braisdlim.me`, que no existe; se quitó el dominio (con su permiso) y vuelve a funcionar en `braisdlim.github.io`.
+
 ### Lo siguiente inmediato
+0. **P-046:** añadir `https://braisdlim.github.io` como origen en Google Cloud, instalar Pauta en el Honor y conectar las cuentas.
 1. «Saltar esta vez» con una serie real del usuario, cuando la haya (P-045; mover ya probado).
 2. **El 27-10-2026**, confirmar que el permiso no caduca a los 7 días (S-003).
 3. Aceptar o corregir D-049 a D-052, y revisar las maquetas del Calendario (P-027, P-028).
@@ -174,7 +182,7 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
    - permiso que se renueva solo (PKCE o el flujo de escritorio), sincronización en segundo plano y avisos;
    - SQLite local (D-041) y la cuestión P-034.
 3. **Móvil:**
-   - web instalable en el Honor (S-002), con un alojamiento (Cloudflare Pages, gratis) y su origen añadido en Google;
+   - ~~web instalable con alojamiento~~ Publicada en GitHub Pages (D-053); falta probarla en el Honor (P-046) y, si se quiere sin conexión, un *service worker*;
    - widget, más tarde (D-011, P-030).
 4. **Sistema de diseño:** pasar a `diseno/sistema` los arreglos de `app/src/estilos.css` y decidir 44 o 48 px (P-039, P-040).
 5. **Más adelante:**

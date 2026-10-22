@@ -12,6 +12,12 @@ import App from "../App.svelte";
     <meta name="color-scheme" content="dark light" />
     <title>Pauta</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <!-- Instalable en el móvil (D-053): manifiesto para Android y icono y título para la pantalla de inicio del iPhone -->
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="iconos/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Pauta" />
+    <meta name="theme-color" content="#0E0F13" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F4F4F6" media="(prefers-color-scheme: light)" />
     <script is:inline>
       // Tema antes de pintar para no parpadear: el guardado en el dispositivo o el del sistema.
       try { const t = localStorage.getItem("pauta-tema"); const osc = matchMedia("(prefers-color-scheme: dark)").matches;

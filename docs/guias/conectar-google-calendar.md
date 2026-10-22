@@ -52,7 +52,7 @@ Comprobado el 20-10-2026 con la guía oficial de Google (quickstart de JavaScrip
 1. Ve a **Google Auth platform › Clients › Create client**.
 2. En **Application type**, elige **Web application**.
 3. En **Name**, escribe `Pauta en este ordenador`. Solo lo ves tú.
-4. En **Authorized JavaScript origins › Add URI**, escribe exactamente `http://localhost:4321`. Sin barra final ni ruta.
+4. En **Authorized JavaScript origins › Add URI**, escribe exactamente `http://localhost:4321` (para usarla en el ordenador). Para la versión publicada (D-053) añade también `https://braisdlim.github.io`. Sin barra final ni ruta: el origen no lleva `/myPanel`.
    - Si también quieres probar la versión compilada, añade `http://localhost:4330`.
 5. Deja vacío **Authorized redirect URIs** y pulsa **Create**.
 6. Copia el **Client ID**, que termina en `.apps.googleusercontent.com`.
@@ -85,7 +85,7 @@ Si `npm run dev` ya estaba en marcha, páralo y arráncalo otra vez para que lea
 | Lo que ves | Qué hacer |
 |---|---|
 | El botón «Conectar Google» está apagado | No debería pasar: el ID va en el código. Si usas `app/.env`, reinicia `npm run dev`. |
-| Google dice `origin_mismatch` o `redirect_uri_mismatch` | El origen del paso 4 tiene que ser exactamente `http://localhost:4321`. Los cambios pueden tardar unos minutos. |
+| Google dice `origin_mismatch` o `redirect_uri_mismatch` | El origen del paso 4 tiene que ser exactamente `http://localhost:4321` en el ordenador o `https://braisdlim.github.io` en la versión publicada. Los cambios pueden tardar unos minutos. |
 | Google dice `access_denied` o que no tienes acceso | Esa cuenta no está en **Audience › Test users**. |
 | «El navegador bloqueó la ventana de Google» | Permite las ventanas emergentes para `localhost` y vuelve a pulsar. |
 | «Google Calendar respondió 403.» | La API no está activada (paso 2) o falta un permiso (paso 3). |

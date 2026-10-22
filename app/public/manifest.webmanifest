@@ -1,0 +1,23 @@
+{
+  "name": "Pauta",
+  "short_name": "Pauta",
+  "description": "Tu agenda, tareas y calendarios de varias cuentas en un sitio.",
+  "lang": "es",
+  "dir": "ltr",
+  "id": "./",
+  "start_url": "./#/hoy",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0E0F13",
+  "theme_color": "#0E0F13",
+  "icons": [
+    { "src": "iconos/pauta-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "iconos/pauta-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "iconos/pauta-adaptable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Apuntar", "short_name": "Apuntar", "url": "./#/hoy?apuntar", "icons": [{ "src": "iconos/pauta-192.png", "sizes": "192x192" }] },
+    { "name": "Calendario", "url": "./#/calendario", "icons": [{ "src": "iconos/pauta-192.png", "sizes": "192x192" }] }
+  ]
+}

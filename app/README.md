@@ -20,7 +20,7 @@ Todo lo que no es real lleva la etiqueta «ejemplo». El ensayo de los viernes (
 ## Uso
 ```sh
 npm install
-npm run dev          # http://localhost:4321
+npm run dev          # http://localhost:4321 (publicada: https://braisdlim.github.io/myPanel/, D-053)
 npm run build && npx astro preview --port 4330
 npm test             # pruebas de fechas, analizador, tareas, Google Calendar, paso 3 y 3 bis (node --test)
 npm run build:pruebas && npx playwright test   # revisión (contraste, táctil, consola) y recorridos con Google imitado; la primera vez: npx playwright install chromium

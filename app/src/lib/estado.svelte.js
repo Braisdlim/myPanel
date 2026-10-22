@@ -55,7 +55,10 @@ export async function iniciar() {
 
 // ---------- ruta (#/sector/…) ----------
 function leerRuta() {
-  const partes = location.hash.replace(/^#\/?/, "").split("/").filter(Boolean).map(decodeURIComponent);
+  const [ruta, consulta = ""] = location.hash.replace(/^#\/?/, "").split("?");
+  // Acceso directo del icono instalado («Apuntar»): #/hoy?apuntar abre la captura y deja la ruta limpia
+  if (/(^|&)apuntar\b/.test(consulta)) { app.apuntar = { abierto: true, texto: "" }; history.replaceState(null, "", `#/${ruta}`); }
+  const partes = ruta.split("/").filter(Boolean).map(decodeURIComponent);
   app.ruta = partes.length && SECTORES.concat({ id: "ajustes" }).some((s) => s.id === partes[0]) ? partes : ["hoy"];
 }
 export function ir(...partes) {
