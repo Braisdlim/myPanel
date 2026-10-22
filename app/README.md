@@ -1,4 +1,4 @@
-# Pauta — la app (primera versión, paso 3)
+# Pauta — la app (primera versión, paso 3 bis)
 
 Astro 7.4.1 + Svelte 5.57.2, con el sistema de diseño de `../diseno/sistema/` (importado, sin copias).
 
@@ -9,7 +9,7 @@ Astro 7.4.1 + Svelte 5.57.2, con el sistema de diseño de `../diseno/sistema/` (
 | **Apuntar** (⌘K / Ctrl+K o ＋) con fechas en español sin IA; si algo es ambiguo, pregunta | **Real**: guarda tareas o, si activas «Crear eventos» en una cuenta, crea el evento en Google tras pulsar «Crear en …» y lo relee (D-050) |
 | **Cuentas de Google** (Ajustes › Cuentas): conectar varias, elegir calendarios, actualizar, renombrar, desconectar y activar «Crear eventos» | **Real** (D-049, D-050); los eventos repetidos entre calendarios se ven una vez (D-051). El ID de cliente del proyecto va en `src/lib/google.js`; otro, en `app/.env` ([guía](../docs/guias/conectar-google-calendar.md)) |
 | **Hoy**: tiempo libre, eventos, tareas, lo siguiente, avisos, huecos | Real con tus tareas y, si conectas Google, con tus eventos |
-| **Calendario** (día, semana, mes, año) | Real con tus cuentas de Google; sin cuentas, ejemplo (Gmail 1, Gmail 2 y Outlook inventados alrededor de la fecha real) |
+| **Calendario** (día, semana, mes, año) | Real con tus cuentas de Google; en el detalle, «Mover esta vez», «Saltar esta vez» (calendarios tuyos) o «No voy esta vez» (solo en Pauta) (D-052); sin cuentas, ejemplo (Gmail 1, Gmail 2 y Outlook inventados alrededor de la fecha real) |
 | **Finanzas** | Ejemplo: tres fondos inventados |
 | **Pide atención** | Real con tus tareas (atrasadas, fechas límite) y los solapes entre tus cuentas; fondos de ejemplo |
 | **Asistente** | Maqueta sin conectar (D-047) |
@@ -22,7 +22,7 @@ Todo lo que no es real lleva la etiqueta «ejemplo». El ensayo de los viernes (
 npm install
 npm run dev          # http://localhost:4321
 npm run build && npx astro preview --port 4330
-npm test             # pruebas de fechas, analizador, tareas, Google Calendar y paso 3 (node --test)
+npm test             # pruebas de fechas, analizador, tareas, Google Calendar, paso 3 y 3 bis (node --test)
 npm run build:pruebas && npx playwright test   # revisión (contraste, táctil, consola) y recorridos con Google imitado; la primera vez: npx playwright install chromium
 ```
 `build:pruebas` compila con el ID de cliente falso de `.env.pruebas` para que el botón «Conectar Google» funcione contra las imitaciones de `pruebas/google.spec.js`; nunca llama a Google.

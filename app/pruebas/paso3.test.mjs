@@ -40,6 +40,18 @@ test("el ensayo real copiado en tres calendarios compartidos se ve una vez (P-04
   assert.deepEqual(ensayo.tambien, []); // todo en la misma cuenta
 });
 
+test("se muestra la copia con la hora de fin en la que coinciden más calendarios, aunque llegue después", () => {
+  const banda = cal("banda", "bandadenoia@gmail.com", "reader"), g1 = cal("g1", "Glissandoo", "reader"), g2 = cal("g2", "Glissandoo", "reader");
+  const evs = [
+    ...ev(banda, "c", "Ensayo General", "2026-10-23T21:30:00+02:00", "2026-10-24T00:00:00+02:00"), // llega primero (como en la prueba real)
+    ...ev(g1, "a", "Ensayo General | Banda de Música de Noia", "2026-10-23T21:30:00+02:00", "2026-10-23T23:30:00+02:00"),
+    ...ev(g2, "b", "Ensayo General | Banda de Música de Noia", "2026-10-23T21:30:00+02:00", "2026-10-23T23:30:00+02:00"),
+  ];
+  const [e] = indexar({ [YO]: evs }, [{ id: YO, calendarios: [banda, g1, g2] }]).get("2026-10-23");
+  assert.deepEqual([e.titulo, e.fin, e.calendarioId], ["Ensayo General | Banda de Música de Noia", H(23, 30), "g1"]);
+  assert.deepEqual(finesDistintos(e), [H(24)]);
+});
+
 test("si una copia está en un calendario tuyo, esa es la que se muestra", () => {
   const compartido = cal("banda@group", "Banda", "reader"), mio = cal(YO, YO, "owner", { principal: true });
   const cuentas = [{ id: YO, calendarios: [compartido, mio] }];

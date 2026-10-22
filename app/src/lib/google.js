@@ -71,7 +71,7 @@ async function llamar(token, ruta, params = {}, { metodo = "GET", cuerpo } = {})
   });
   if (r.status === 401) throw new TokenCaducado("El permiso ha caducado: pulsa «Actualizar».");
   if (r.status === 403 && metodo !== "GET") throw new Error("Google no deja escribir en ese calendario con este permiso. Solo se puede en calendarios tuyos.");
-  if (!r.ok) throw new Error(`Google Calendar respondió ${r.status}.`);
+  if (!r.ok) throw Object.assign(new Error(`Google Calendar respondió ${r.status}.`), { estado: r.status });
   return r.json();
 }
 
@@ -93,12 +93,28 @@ export function cuerpoEvento({ titulo, dia, inicio, fin, todoElDia }, zona) {
 export function comprobarEvento(pedido, leido) {
   const dif = [];
   if (!leido || leido.status === "cancelled") return ["El evento no aparece en Google."];
-  if ((leido.summary ?? "") !== pedido.summary) dif.push(`El título en Google es «${leido.summary ?? ""}».`);
+  if (pedido.summary !== undefined && (leido.summary ?? "") !== pedido.summary) dif.push(`El título en Google es «${leido.summary ?? ""}».`);
   const instante = (x) => (x?.date ? x.date : x?.dateTime ? new Date(x.dateTime).getTime() : null);
   const esperado = (x) => (x.date ? x.date : new Date(x.dateTime).getTime()); // la hora local de este dispositivo
   if (instante(leido.start) !== esperado(pedido.start)) dif.push("La hora de inicio en Google no es la pedida.");
   if (instante(leido.end) !== esperado(pedido.end)) dif.push("La hora de fin en Google no es la pedida.");
   return dif;
+}
+
+/** Solo las horas nuevas, para mover un evento o una ocurrencia (PATCH: lo demás no cambia). */
+export function cuerpoMover({ dia, inicio, fin }, zona) {
+  const { start, end } = cuerpoEvento({ titulo: "", dia, inicio, fin }, zona);
+  return { start, end };
+}
+
+const ruta = (calendarioId, id) => `/calendars/${encodeURIComponent(calendarioId)}/events/${encodeURIComponent(id)}`;
+// Sin avisos a invitados: Pauta no notifica a nadie (D-046)
+export const cambiarEvento = (token, calendarioId, id, cambios) => llamar(token, ruta(calendarioId, id), { sendUpdates: "none" }, { metodo: "PATCH", cuerpo: cambios });
+
+/** Lee un evento; si Google ya no lo tiene (404 o 410), devuelve uno cancelado en lugar de fallar. */
+export async function leerOCancelado(token, calendarioId, id) {
+  try { return await llamar(token, ruta(calendarioId, id)); }
+  catch (e) { if (e.estado === 404 || e.estado === 410) return { id, status: "cancelled" }; throw e; }
 }
 
 export const crearEvento = (token, calendarioId, cuerpo) => llamar(token, `/calendars/${encodeURIComponent(calendarioId)}/events`, {}, { metodo: "POST", cuerpo });
@@ -139,7 +155,7 @@ const minutos = (d) => d.getHours() * 60 + d.getMinutes();
 export function convertirEvento(ev, calendario, cuentaId) {
   if (ev.status === "cancelled") return [];
   if (ev.attendees?.some((a) => a.self && a.responseStatus === "declined")) return [];
-  const base = { cuenta: cuentaId, calendarioId: calendario.id, gid: ev.id, uid: ev.iCalUID ?? ev.id, titulo: ev.summary?.trim() || "(sin título)", lugar: ev.location ?? "", calendario: calendario.nombre, enlace: ev.htmlLink ?? "", ejemplo: false, opcional: false, todoElDia: false };
+  const base = { cuenta: cuentaId, calendarioId: calendario.id, gid: ev.id, serie: ev.recurringEventId ?? null, uid: ev.iCalUID ?? ev.id, titulo: ev.summary?.trim() || "(sin título)", lugar: ev.location ?? "", calendario: calendario.nombre, enlace: ev.htmlLink ?? "", ejemplo: false, opcional: false, todoElDia: false };
   const out = [];
   if (ev.start?.date) {
     // Todo el día: la fecha de fin es exclusiva

@@ -98,3 +98,23 @@ Fecha: 20-10-2026. Etiquetas: [H] comprobado en la fuente oficial, [I] inferenci
 - `app/pruebas/paso3.test.mjs`: 8 unitarias (títulos equivalentes, el caso real del ensayo, preferir el calendario tuyo, lo que no se une, festivos en dos idiomas, cuerpo del evento con medianoche y todo el día, relectura con cambio de hora, calendarios donde se puede escribir).
 - `app/pruebas/paso3.spec.js`: recorrido en móvil (360 y 412) y escritorio con Google imitado: el ensayo una vez; sin escritura, Apuntar guarda tareas; activar «Crear eventos» pide el permiso aparte; Apuntar pregunta dónde; Enter no crea; «Crear en …» crea, relee y lo muestra; sigue tras recargar. Contraste y táctil revisados.
 - No probado aún: crear un evento real en tu Google (necesita tu clic en la ventana de Google y tu confirmación).
+
+## Paso 3 bis: cambiar solo esta vez (22-10-2026)
+
+### Fuentes consultadas el 22-10-2026
+- [H] `events.patch` (1-7-2026): `PATCH /calendars/{calendarId}/events/{eventId}`; admite `calendar.events.owned`; los campos que no se envían no cambian; parámetro `sendUpdates` (`all`, `externalOnly`, `none`). https://developers.google.com/workspace/calendar/api/v3/reference/events/patch
+- [H] `events.get` (12-5-2026): admite `calendar.events.owned` y los de lectura. No dice si devuelve los eventos cancelados. https://developers.google.com/workspace/calendar/api/v3/reference/events/get
+- [H] Recurso Event (7-7-2026): `recurringEventId` es el id de la serie de una ocurrencia; `originalStartTime` identifica la ocurrencia aunque se mueva; «las excepciones canceladas de una serie no cancelada indican que esa ocurrencia ya no debe mostrarse». `events.list` solo devuelve cancelados con `showDeleted` o sincronización incremental. https://developers.google.com/workspace/calendar/api/v3/reference/events
+- [H] Eventos recurrentes (17-9-2026): cancelar una ocurrencia = poner `status: "cancelled"` en esa instancia; la serie no cambia (ya citado arriba).
+
+### Qué hace Pauta [P]
+- **Saltar esta vez** (solo series en calendarios tuyos con «Crear eventos»): `PATCH` de la ocurrencia con `{status: "cancelled"}` y `sendUpdates=none`. Relee la ocurrencia (cancelada o 404/410 cuenta como hecho, porque `events.get` no aclara qué devuelve) y la serie (debe seguir viva).
+- **Mover esta vez**: `PATCH` solo de `start` y `end` (hora local + zona del dispositivo) en la ocurrencia o el evento suelto. Relee y compara las horas; si es de una serie, comprueba que la serie sigue. Propone hasta 3 huecos libres de la misma duración (misma hora en días cercanos, luego otras horas del mismo día), como la maqueta `AndroidOcurrencia`, más «Otra hora…» con aviso si pisa algo.
+- **No voy esta vez** (cualquier evento que Pauta no puede cambiar, como el ensayo en calendarios compartidos): marca local por ocurrencia (`uid|día|hora`, y la de cada copia unida). No escribe en Google. Deja de contar en tiempo libre, huecos y solapes; se ve tachado y rayado. Se guarda en el dispositivo y se olvida a los 60 días.
+- «Cambiar toda la serie» no existe: la serie nunca se toca sin orden explícita (CLAUDE.md).
+- [I] Al probarlo con datos reales se vio que la copia elegida para mostrar el ensayo unido era la de `bandadenoia` (hasta las 0:00), que llegaba primero. Ahora se elige: calendario tuyo; si no, la hora de fin en la que coinciden más copias; y, entre copias parecidas, el título más completo.
+
+### Pruebas (22-10-2026)
+- `app/pruebas/paso3bis.test.mjs`: 8 unitarias (serie de una ocurrencia, huecos, otras horas, «Otra hora…», claves de «No voy», solapes, cuerpo de mover y relectura, ensayo unido).
+- `app/pruebas/paso3bis.spec.js`: recorrido en móvil y escritorio con Google imitado: «No voy esta vez» en un calendario compartido (sin escribir en Google, sigue tras recargar, «Sí voy»), aviso de activar «Crear eventos», «Saltar en …» y «Mover en …» con tarjeta y relectura; el `PATCH` lleva solo lo necesario y `sendUpdates=none`.
+- Con datos reales (Chrome, 22-10-2026): el ensayo del viernes 23 sale una vez (21:30–23:30, «Glissandoo», «3 calendarios», «otro calendario dice hasta las 0:00»); «No voy esta vez» y «Sí voy» funcionan (deshecho al terminar). Saltar y mover en Google real: sin probar (no hay series tuyas comprobadas; necesita tu confirmación).

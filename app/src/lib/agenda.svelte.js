@@ -1,6 +1,7 @@
 // La agenda que ven las pantallas: tus calendarios reales si has conectado alguna cuenta; si no, los de ejemplo.
 import { app } from "./estado.svelte.js";
-import { indexar, ordenar } from "./calendario.js";
+import { indexar, ordenar, clavesDe, bloquea } from "./calendario.js";
+export { bloquea };
 import * as ejemplo from "./ejemplo.js";
 import { sumarDias } from "./fechas.js";
 
@@ -18,7 +19,9 @@ export function eventosDelDia(dia, hoy) {
   if (!esReal()) return ejemplo.eventosDelDia(dia, hoy);
   // Los cambios de hora no vienen de ninguna cuenta: son avisos de Pauta y se quedan
   const avisos = ejemplo.eventosDelDia(dia, hoy).filter((e) => !e.cuenta);
-  return [...avisos, ...(indice.get(dia) ?? [])].sort(ordenar);
+  const marcados = new Set(app.noVoy);
+  const evs = (indice.get(dia) ?? []).map((e) => (clavesDe(e).some((k) => marcados.has(k)) ? { ...e, noVoy: true } : e));
+  return [...avisos, ...evs].sort(ordenar);
 }
 
 export function eventosEntre(desde, hasta, hoy) {
@@ -28,7 +31,7 @@ export function eventosEntre(desde, hasta, hoy) {
 }
 
 export function horasDelDia(dia, hoy) {
-  return eventosDelDia(dia, hoy).filter((e) => !e.todoElDia && !e.opcional).reduce((s, e) => s + (e.fin - e.inicio), 0) / 60;
+  return eventosDelDia(dia, hoy).filter(bloquea).reduce((s, e) => s + (e.fin - e.inicio), 0) / 60;
 }
 
 /** Desde cuándo y hasta cuándo hay eventos guardados (la ventana de la última actualización). */

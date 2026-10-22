@@ -50,5 +50,7 @@ body { overflow: hidden; }
   .cabecera h1 { font-size: 28px; line-height: 34px; }
   .capa { align-items: flex-end; padding-top: 0; }
   .capa__dialogo { width: 100%; }
-  .toast { bottom: calc(var(--tabbar-height) + 16px); }
+  .toast { bottom: calc(var(--tabbar-height) + 16px); max-width: calc(100vw - 32px); }
+  /* Con una hoja abierta, el aviso va arriba para no tapar sus botones */
+  body:has(.capa) .toast { bottom: auto; top: calc(12px + env(safe-area-inset-top, 0px)); }
 }

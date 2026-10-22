@@ -1,7 +1,7 @@
 <script>
   import { app, ir } from "../lib/estado.svelte.js";
   import { deHoy, minutosPlaneados } from "../lib/tareas.js";
-  import { eventosDelDia, conflictos, cuenta, esReal } from "../lib/agenda.svelte.js";
+  import { eventosDelDia, conflictos, cuenta, esReal, bloquea } from "../lib/agenda.svelte.js";
   import { FONDOS, serie, euros, porcentaje } from "../lib/ejemplo.js";
   import { larga, rango, hora, duracion, sumarDias, corta } from "../lib/fechas.js";
   import Dos from "../componentes/Dos.svelte";
@@ -13,13 +13,13 @@
   const eventos = $derived(eventosDelDia(app.hoy, app.hoy));
   const conHora = $derived(eventos.filter((e) => !e.todoElDia));
   const tareas = $derived(deHoy(app.tareas, app.hoy));
-  const siguiente = $derived(conHora.find((e) => e.fin > app.ahora && !e.opcional));
+  const siguiente = $derived(conHora.find((e) => e.fin > app.ahora && bloquea(e)));
   const manana = $derived(eventosDelDia(sumarDias(app.hoy, 1), app.hoy));
   const choques = $derived(conflictos([...eventos, ...manana]));
   const atrasadas = $derived(app.tareas.filter((t) => !t.hecha && t.cuando && t.cuando < app.hoy).length);
 
   // Capacidad: tiempo libre de ahora a las 22:00 descontando eventos y tareas con duración
-  const ocupado = $derived(conHora.filter((e) => !e.opcional && e.fin > app.ahora && e.inicio < FIN_DIA).reduce((s, e) => s + Math.min(e.fin, FIN_DIA) - Math.max(e.inicio, app.ahora), 0));
+  const ocupado = $derived(conHora.filter((e) => bloquea(e) && e.fin > app.ahora && e.inicio < FIN_DIA).reduce((s, e) => s + Math.min(e.fin, FIN_DIA) - Math.max(e.inicio, app.ahora), 0));
   const planeado = $derived(minutosPlaneados(app.tareas, app.hoy));
   const disponible = $derived(Math.max(0, FIN_DIA - app.ahora));
   const libre = $derived(Math.max(0, disponible - ocupado - planeado));
@@ -28,7 +28,7 @@
   // Huecos libres de al menos 30 min hasta las 22:00
   const huecos = $derived.by(() => {
     const out = []; let t = Math.max(app.ahora, 8 * 60);
-    for (const e of conHora.filter((e) => !e.opcional && e.fin > t).sort((a, b) => a.inicio - b.inicio)) {
+    for (const e of conHora.filter((e) => bloquea(e) && e.fin > t).sort((a, b) => a.inicio - b.inicio)) {
       if (e.inicio - t >= 30) out.push([t, e.inicio]);
       t = Math.max(t, e.fin);
     }
@@ -67,7 +67,7 @@
     {#each eventos as e (e.id)}
       <li class="pa-row" class:pasado={!e.todoElDia && e.fin <= app.ahora}>
         <span class="pa-dot {e.cuenta ? 'pa-dot--' + cuenta(e.cuenta).color : ''}" class:opcional={e.opcional}></span>
-        <span class="pa-row__main"><span class="pa-row__title">{e.titulo}{#if e.opcional}<span class="pa-faint"> · opcional</span>{/if}</span><span class="pa-row__meta">{e.cuenta ? cuenta(e.cuenta).nombre : "Aviso"}{e.calendario && e.calendario !== cuenta(e.cuenta).correo ? ` · ${e.calendario}` : ""}{e.lugar ? ` · ${e.lugar}` : ""}</span></span>
+        <span class="pa-row__main"><span class="pa-row__title"><span class:tachado={e.noVoy}>{e.titulo}</span>{#if e.noVoy}<span class="pa-faint"> · no vas esta vez</span>{:else if e.opcional}<span class="pa-faint"> · opcional</span>{/if}</span><span class="pa-row__meta">{e.cuenta ? cuenta(e.cuenta).nombre : "Aviso"}{e.calendario && e.calendario !== cuenta(e.cuenta).correo ? ` · ${e.calendario}` : ""}{e.lugar ? ` · ${e.lugar}` : ""}</span></span>
         <span class="pa-row__end">{e.todoElDia ? "todo el día" : rango(e.inicio, e.fin)}</span>
       </li>
     {:else}
@@ -141,6 +141,7 @@
   .eventos .pa-row { min-height: 40px; }
   .pasado { opacity: 0.55; }
   .opcional { background: transparent !important; box-shadow: inset 0 0 0 2px var(--cuenta-2); }
+  .tachado { text-decoration: line-through; color: var(--text-2); }
   .bloque { display: flex; align-items: center; gap: 6px; margin: 22px 0 8px; }
   .avisos { display: flex; flex-direction: column; gap: 8px; }
   .aviso { box-sizing: border-box; width: 100%; border: 0; font: inherit; color: inherit; text-align: left; cursor: pointer; }

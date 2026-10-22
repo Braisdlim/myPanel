@@ -1,7 +1,8 @@
 <script>
-  import { app, ir, actualizarTodo } from "../lib/estado.svelte.js";
+  import { app, ir, actualizarTodo, sePuedeCambiar } from "../lib/estado.svelte.js";
   import { eventosDelDia, horasDelDia, cuenta, cuentas, esReal, ventana, ultimaActualizacion } from "../lib/agenda.svelte.js";
   import { finesDistintos } from "../lib/calendario.js";
+  import CambiarEvento from "../componentes/CambiarEvento.svelte";
   import { sumarDias, sumarMeses, inicioSemana, inicioMes, diaSemana, desdeISO, larga, corta, mesAnio, rango, duracion, DIAS_LETRA, MESES_CORTOS, existe, haceCuanto } from "../lib/fechas.js";
   import Dos from "../componentes/Dos.svelte";
   import Rejilla from "../componentes/Rejilla.svelte";
@@ -54,8 +55,8 @@
     {#each evs as e (e.id)}
       <li>
         <span class="pa-dayline__time">{e.todoElDia ? "día" : `${Math.floor(e.inicio / 60)}:${String(e.inicio % 60).padStart(2, "0")}`}</span>
-        <span class="pa-dayline__rail"><span class="pa-dayline__node {e.opcional ? 'pa-dayline__node--optional' : e.cuenta ? 'pa-dayline__node--' + cuenta(e.cuenta).color : ''}"></span></span>
-        <button class="pa-dayline__body linea" onclick={() => (elegido = e)}><b>{e.titulo}</b><span class="pa-faint">{e.todoElDia ? "todo el día" : rango(e.inicio, e.fin)} · {e.cuenta ? cuenta(e.cuenta).nombre : "aviso"}{e.opcional ? " · opcional" : ""}</span></button>
+        <span class="pa-dayline__rail"><span class="pa-dayline__node {e.opcional || e.noVoy ? 'pa-dayline__node--optional' : e.cuenta ? 'pa-dayline__node--' + cuenta(e.cuenta).color : ''}"></span></span>
+        <button class="pa-dayline__body linea" onclick={() => (elegido = e)}><b>{e.titulo}</b><span class="pa-faint">{e.todoElDia ? "todo el día" : rango(e.inicio, e.fin)} · {e.cuenta ? cuenta(e.cuenta).nombre : "aviso"}{e.noVoy ? " · no vas esta vez" : e.opcional ? " · opcional" : ""}</span></button>
       </li>
     {/each}
     {#each ts as t (t.id)}
@@ -115,7 +116,7 @@
           {#if app.movil}
             <span class="puntos">{#each evs.slice(0, 3) as e}<i style="background: var(--cuenta-{e.cuenta ? cuenta(e.cuenta).color.slice(1) : 1});"></i>{/each}</span>
           {:else}
-            {#each evs.slice(0, 3) as e}<span class="mes__ev" class:opcional={e.opcional}><i style="background: var(--cuenta-{e.cuenta ? cuenta(e.cuenta).color.slice(1) : 1});"></i>{e.todoElDia ? "" : `${Math.floor(e.inicio / 60)}:${String(e.inicio % 60).padStart(2, "0")} `}{e.titulo}</span>{/each}
+            {#each evs.slice(0, 3) as e}<span class="mes__ev" class:opcional={e.opcional || e.noVoy} class:tachado={e.noVoy}><i style="background: var(--cuenta-{e.cuenta ? cuenta(e.cuenta).color.slice(1) : 1});"></i>{e.todoElDia ? "" : `${Math.floor(e.inicio / 60)}:${String(e.inicio % 60).padStart(2, "0")} `}{e.titulo}</span>{/each}
             {#if evs.length > 3}<span class="mas">y {evs.length - 3} más</span>{/if}
           {/if}
         </button>
@@ -152,27 +153,33 @@
 
 {#snippet lateral()}
   {#if elegido}
-    <div class="pa-label">{elegido.tarea ? "tarea" : "evento"}{elegido.ejemplo ? " de ejemplo" : ""}</div>
-    <h2 class="pa-insp__title">{elegido.titulo}</h2>
+    {@const vivo = eventosDelDia(elegido.dia, app.hoy).find((e) => e.id === elegido.id) ?? null}
+    {@const ev = vivo ?? elegido}
+    <div class="pa-label">{ev.tarea ? "tarea" : "evento"}{ev.ejemplo ? " de ejemplo" : ""}{!vivo && !ev.tarea && !ev.ejemplo ? " · ya no está aquí" : ""}</div>
+    <h2 class="pa-insp__title" class:tachado={ev.noVoy || !vivo}>{ev.titulo}</h2>
     <div class="pa-insp__meta">{corta(elegido.dia)}{elegido.todoElDia ? " · todo el día" : `, ${rango(elegido.inicio, elegido.fin)} · ${duracion(elegido.fin - elegido.inicio)}`}</div>
     <ul class="pa-insp__rows">
-      {#if elegido.cuenta}<li><span class="pa-dot pa-dot--{cuenta(elegido.cuenta).color}" style="margin: 4px;"></span><span>{cuenta(elegido.cuenta).nombre} · {cuenta(elegido.cuenta).proveedor}<small>{elegido.calendario && elegido.calendario !== cuenta(elegido.cuenta).correo ? `Calendario «${elegido.calendario}» · ` : ""}{cuenta(elegido.cuenta).escritura ? "Con escritura activada" : "Solo lectura"}</small></span></li>{/if}
+      {#if elegido.cuenta}<li><span class="pa-dot pa-dot--{cuenta(elegido.cuenta).color}" style="margin: 4px;"></span><span>{cuenta(elegido.cuenta).nombre} · {cuenta(elegido.cuenta).proveedor}<small>{elegido.calendario && elegido.calendario !== cuenta(elegido.cuenta).correo ? `Calendario «${elegido.calendario}» · ` : ""}{sePuedeCambiar(elegido) ? "Pauta puede cambiarlo, siempre con tu confirmación" : "Solo lectura"}</small></span></li>{/if}
       {#if elegido.fuentes?.length}
         {@const otros = [...new Set(elegido.fuentes.map((f) => (f.cuenta !== elegido.cuenta ? `${cuenta(f.cuenta).nombre}${f.calendario && f.calendario !== cuenta(f.cuenta).correo ? ` («${f.calendario}»)` : ""}` : `«${f.calendario}»`)))]}
         {@const fines = finesDistintos(elegido)}
         <li><Icono n="layers" /><span>También en {otros.join(", ").replace(/, ([^,]*)$/, " y $1")}
-          <small>{elegido.unidoPor === "parecido" ? `Mismo título y hora en ${elegido.fuentes.length + 1} calendarios: Pauta lo muestra una vez` : "Es el mismo evento: se muestra una vez"}{fines.length ? ` · otro calendario dice hasta las ${fines.map((f) => (f >= 1440 ? "0:00" : `${Math.floor(f / 60)}:${String(f % 60).padStart(2, "0")}`)).join(" o ")}` : ""}</small></span></li>
+          <small>{elegido.unidoPor === "parecido" ? `Mismo título y hora en ${new Set([elegido.calendarioId, ...elegido.fuentes.map((f) => f.calendarioId)]).size} calendarios: Pauta lo muestra una vez` : "Es el mismo evento: se muestra una vez"}{fines.length ? ` · otro calendario dice hasta las ${fines.map((f) => (f >= 1440 ? "0:00" : `${Math.floor(f / 60)}:${String(f % 60).padStart(2, "0")}`)).join(" o ")}` : ""}</small></span></li>
       {/if}
       {#if elegido.lugar}<li><Icono n="map-pin" /><span>{elegido.lugar}</span></li>{/if}
+      {#if elegido.serie}<li><Icono n="repeat" /><span>Se repite<small>Lo que cambies aquí es solo de esta vez</small></span></li>{/if}
       {#if elegido.opcional}<li><Icono n="repeat" /><span>Cada viernes · opcional<small>{elegido.nota}</small></span></li>{/if}
       {#if !esReal() && !elegido.ejemplo && !elegido.tarea && elegido.cuenta}<li><Icono n="info" /><span>Es un hecho real<small>Su calendario está por confirmar (P-001)</small></span></li>{/if}
     </ul>
-    <div class="pa-insp__actions">
-      {#if elegido.enlace}<a class="pa-btn pa-btn--sm" href={elegido.enlace} target="_blank" rel="noopener noreferrer"><Icono n="external-link" tam={14} />Abrir en Google Calendar</a>{/if}
-      <button class="pa-btn pa-btn--sm" disabled title="Cambiar eventos llegará más adelante">Mover</button>
-      {#if elegido.opcional}<button class="pa-btn pa-btn--sm" disabled title="Cambiar eventos llegará más adelante">Saltar solo esta vez</button>{/if}
-    </div>
-    <p class="pa-faint nota">{esReal() ? "Crear eventos se hace desde Apuntar. Mover o saltar una vez llegará más adelante" : "Cambiar eventos llegará al conectar tus calendarios"}, siempre con confirmación y la cuenta de destino a la vista.</p>
+    {#if esReal()}
+      <CambiarEvento evento={vivo} />
+    {:else}
+      <div class="pa-insp__actions">
+        <button class="pa-btn pa-btn--sm" disabled title="Al conectar tus calendarios">Mover esta vez</button>
+        {#if elegido.opcional}<button class="pa-btn pa-btn--sm" disabled title="Al conectar tus calendarios">Saltar esta vez</button>{/if}
+      </div>
+      <p class="pa-faint nota">Cambiar eventos llegará al conectar tus calendarios, siempre con confirmación y la cuenta de destino a la vista.</p>
+    {/if}
   {:else}
     <div class="pa-label">cuentas</div>
     <ul class="pa-insp__rows">
@@ -211,6 +218,7 @@
   .mes__ev i, .puntos i { width: 6px; height: 6px; border-radius: 50%; flex: none; display: inline-block; }
   .mes__ev.opcional i { background: transparent !important; box-shadow: inset 0 0 0 1.5px var(--cuenta-2); }
   .mas { font-size: 11px; color: var(--text-3); }
+  .tachado { text-decoration: line-through; }
   .leyenda { margin-top: 10px; }
   .pa-year button.pa-year__c { border: 0; padding: 0; cursor: pointer; }
   .dia-titulo { all: unset; display: flex; align-items: center; min-height: 44px; margin: 8px 0 0; font-weight: 600; font-size: 14px; color: var(--text-2); }

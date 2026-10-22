@@ -33,9 +33,9 @@
       <div class="pa-tg__col" style="height: calc({horas} * var(--hour-height));">
         {#each c.conHora as e (e.id)}
           {@const l = c.lanes.get(e.id)}
-          <button class="pa-ev {e.tarea ? 'pa-ev--task' : e.opcional ? 'pa-ev--optional' : 'pa-ev--' + cuenta(e.cuenta).color}" class:pa-ev--conflict={c.choque.has(e.id)} class:elegido={e.id === elegidoId}
+          <button class="pa-ev {e.tarea ? 'pa-ev--task' : e.opcional || e.noVoy ? 'pa-ev--optional' : 'pa-ev--' + cuenta(e.cuenta).color}" class:pa-ev--conflict={c.choque.has(e.id)} class:elegido={e.id === elegidoId}
             style="--start: {h(e.inicio)}; --dur: {Math.max(0.42, h(e.fin) - h(e.inicio))}; --lane: {l.carril}; --lanes: {l.carriles};"
-            onclick={() => alElegir(e)} aria-label="{e.titulo}, {rango(e.inicio, e.fin)}{e.tarea ? ', tarea' : ', ' + cuenta(e.cuenta).nombre}">
+            onclick={() => alElegir(e)} aria-label="{e.titulo}, {rango(e.inicio, e.fin)}{e.noVoy ? ", no vas esta vez" : ""}{e.tarea ? ', tarea' : ', ' + cuenta(e.cuenta).nombre}">
             {e.titulo}<small>{rango(e.inicio, e.fin)}</small>
           </button>
         {/each}

@@ -214,7 +214,7 @@
     </section>
     <section class="bloque">
       <h2>Acerca de</h2>
-      <p class="pa-muted">Pauta 0.3.0 · primera versión, paso 3: tus calendarios de Google, sin repetidos, y crear eventos desde Apuntar. Finanzas y asistente siguen siendo de ejemplo.</p>
+      <p class="pa-muted">Pauta 0.3.0 · primera versión, paso 3 bis: tus calendarios de Google sin repetidos, crear eventos desde Apuntar y cambiar solo esta vez. Finanzas y asistente siguen siendo de ejemplo.</p>
     </section>
   {/if}
 {/snippet}

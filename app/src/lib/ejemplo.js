@@ -68,7 +68,7 @@ export function conflictos(evs) {
   const conHora = evs.filter((e) => !e.todoElDia);
   for (let i = 0; i < conHora.length; i++) for (let j = i + 1; j < conHora.length; j++) {
     const a = conHora[i], b = conHora[j];
-    if (a.dia === b.dia && a.cuenta !== b.cuenta && a.inicio < b.fin && b.inicio < a.fin && !a.opcional && !b.opcional) r.push([a, b]);
+    if (a.dia === b.dia && a.cuenta !== b.cuenta && a.inicio < b.fin && b.inicio < a.fin && !a.opcional && !b.opcional && !a.noVoy && !b.noVoy) r.push([a, b]);
   }
   return r;
 }

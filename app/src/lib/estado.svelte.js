@@ -2,7 +2,8 @@
 import { crearAlmacen } from "./almacen.js";
 import { hoyISO, minutosAhora, sumarDias } from "./fechas.js";
 import { crearTarea, crearProyecto, completar } from "./tareas.js";
-import { pedirToken, revocar, listarCalendarios, listarEventos, convertirEvento, colorLibre, TokenCaducado, cuerpoEvento, comprobarEvento, crearEvento, leerEvento, calendariosPropios } from "./google.js";
+import { pedirToken, revocar, listarCalendarios, listarEventos, convertirEvento, colorLibre, TokenCaducado, cuerpoEvento, comprobarEvento, crearEvento, leerEvento, calendariosPropios, cuerpoMover, cambiarEvento, leerOCancelado } from "./google.js";
+import { clavesDe, claveOcurrencia } from "./calendario.js";
 
 export const SECTORES = [
   { id: "hoy", nombre: "Hoy", icono: "sun" },
@@ -29,6 +30,7 @@ export const app = $state({
   cuentas: [], // cuentas conectadas de verdad (Google)
   eventos: {}, // id de cuenta → eventos guardados en el dispositivo
   sync: {}, // id de cuenta → { estado: "ok" | "cargando" | "error", mensaje, actualizado }
+  noVoy: [], // claves de ocurrencias marcadas «No voy esta vez» (solo en Pauta; no se escribe en Google)
   aviso: null,
 });
 
@@ -44,6 +46,7 @@ export async function iniciar() {
   app.tareas = tareas;
   app.proyectos = proyectos.sort((a, b) => a.orden - b.orden);
   app.ajustes = { ...AJUSTES_INICIALES, ...(ajustes.find((a) => a.id === "general") ?? {}) };
+  app.noVoy = ajustes.find((a) => a.id === "noVoy")?.claves ?? [];
   app.cargado = true;
   leerRuta();
   addEventListener("hashchange", leerRuta);
@@ -100,7 +103,7 @@ export async function borrarTodo() {
   tokens.clear();
   await almacen.vaciar();
   app.tareas = []; app.proyectos = []; app.ajustes = { ...AJUSTES_INICIALES };
-  app.cuentas = []; app.eventos = {}; app.sync = {};
+  app.cuentas = []; app.eventos = {}; app.sync = {}; app.noVoy = [];
 }
 
 // ---------- cuentas de Google (solo lectura) ----------
@@ -225,6 +228,80 @@ export async function crearEventoEn(cuenta, calendarioId, datos) {
   const s = app.sync[c.id] ?? {};
   await almacen.guardar("eventos", { id: c.id, actualizado: s.actualizado ?? new Date().toISOString(), desde: s.desde, hasta: s.hasta, eventos: $state.snapshot(app.eventos[c.id]) });
   return { enlace: leido.htmlLink ?? "", diferencias };
+}
+
+// ---------- cambiar una vez (paso 3 bis, D-052) ----------
+
+/** «No voy esta vez»: solo en Pauta, por ocurrencia. No toca Google (sirve también en calendarios compartidos). */
+export async function marcarNoVoy(evento, noVoy) {
+  const claves = clavesDe(evento);
+  const limite = sumarDias(app.hoy, -60); // se olvidan las de hace más de 60 días
+  const vigentes = app.noVoy.filter((k) => !claves.includes(k) && k.split("|").at(-2) >= limite);
+  app.noVoy = noVoy ? [...vigentes, claveOcurrencia(evento)] : vigentes;
+  await almacen.guardar("ajustes", { id: "noVoy", claves: $state.snapshot(app.noVoy) });
+}
+
+/** ¿Se puede cambiar en Google? Calendario tuyo, con «Crear eventos» activado en la cuenta. */
+export function sePuedeCambiar(evento) {
+  const c = app.cuentas.find((x) => x.id === evento.cuenta);
+  return !!c?.escritura && !!evento.gid && calendariosPropios(c).some((x) => x.id === evento.calendarioId);
+}
+
+async function conToken(c, f) {
+  try { return await f(await token(c)); }
+  catch (e) { if (!(e instanceof TokenCaducado)) throw e; tokens.delete(c.id); return f(await token(c)); }
+}
+
+async function guardarEventosDe(c) {
+  const s = app.sync[c.id] ?? {};
+  await almacen.guardar("eventos", { id: c.id, actualizado: s.actualizado ?? new Date().toISOString(), desde: s.desde, hasta: s.hasta, eventos: $state.snapshot(app.eventos[c.id]) });
+}
+
+/**
+ * «Saltar esta vez»: cancela en Google solo esta ocurrencia (una excepción), relee que ya no está y que la serie
+ * sigue. Llamar desde el clic de confirmación. @returns {string[]} diferencias (vacío = comprobado)
+ */
+export async function saltarEnGoogle(evento) {
+  if (!sePuedeCambiar(evento) || !evento.serie) throw new Error("Solo se puede saltar una ocurrencia de una serie en un calendario tuyo.");
+  const c = app.cuentas.find((x) => x.id === evento.cuenta);
+  return conToken(c, async (tk) => {
+    await cambiarEvento(tk, evento.calendarioId, evento.gid, { status: "cancelled" });
+    const ocurrencia = await leerOCancelado(tk, evento.calendarioId, evento.gid);
+    const serie = await leerOCancelado(tk, evento.calendarioId, evento.serie);
+    const dif = [];
+    if (ocurrencia.status !== "cancelled") dif.push("La ocurrencia sigue en Google.");
+    if (serie.status === "cancelled") dif.push("¡La serie ya no aparece en Google! Revísala en Google Calendar.");
+    if (ocurrencia.status === "cancelled") {
+      app.eventos[c.id] = (app.eventos[c.id] ?? []).filter((e) => e.gid !== evento.gid);
+      await guardarEventosDe(c);
+    }
+    return dif;
+  });
+}
+
+/**
+ * «Mover esta vez»: cambia en Google solo la hora de este evento (si es de una serie, solo esta ocurrencia),
+ * relee y compara. Llamar desde el clic de confirmación. @returns {string[]} diferencias
+ */
+export async function moverEnGoogle(evento, { dia, inicio, fin }) {
+  if (!sePuedeCambiar(evento)) throw new Error("Solo se pueden mover eventos de calendarios tuyos.");
+  const c = app.cuentas.find((x) => x.id === evento.cuenta);
+  const cal = c.calendarios.find((x) => x.id === evento.calendarioId);
+  const cambios = cuerpoMover({ dia, inicio, fin }, Intl.DateTimeFormat().resolvedOptions().timeZone);
+  return conToken(c, async (tk) => {
+    await cambiarEvento(tk, evento.calendarioId, evento.gid, cambios);
+    const leido = await leerOCancelado(tk, evento.calendarioId, evento.gid);
+    const dif = comprobarEvento(cambios, leido);
+    if (evento.serie) {
+      const serie = await leerOCancelado(tk, evento.calendarioId, evento.serie);
+      if (serie.status === "cancelled") dif.push("¡La serie ya no aparece en Google! Revísala en Google Calendar.");
+    }
+    if (leido.status !== "cancelled") {
+      app.eventos[c.id] = [...(app.eventos[c.id] ?? []).filter((e) => e.gid !== evento.gid), ...convertirEvento(leido, cal, c.id)];
+      await guardarEventosDe(c);
+    }
+    return dif;
+  });
 }
 
 export async function renombrarCuenta(cuenta, nombre) {
