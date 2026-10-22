@@ -13,7 +13,7 @@
   const fecha = $derived(/^\d{4}-\d{2}-\d{2}$/.test(app.ruta[2] ?? "") ? app.ruta[2] : app.hoy);
   let elegido = $state(null);
 
-  const titulo = $derived(escala === "dia" ? larga(fecha) : escala === "anio" ? fecha.slice(0, 4) : mesAnio(escala === "semana" ? inicioSemana(fecha) : fecha));
+  const titulo = $derived(escala === "dia" ? (app.movil ? corta(fecha) : larga(fecha)) : escala === "anio" ? fecha.slice(0, 4) : mesAnio(escala === "semana" ? inicioSemana(fecha) : fecha));
   function mover(n) {
     const f = escala === "dia" ? sumarDias(fecha, n) : escala === "semana" ? sumarDias(fecha, 7 * n) : escala === "mes" ? sumarMeses(fecha, n) : sumarMeses(fecha, 12 * n);
     ir("calendario", escala, f);
@@ -55,8 +55,8 @@
     {#each evs as e (e.id)}
       <li>
         <span class="pa-dayline__time">{e.todoElDia ? "día" : `${Math.floor(e.inicio / 60)}:${String(e.inicio % 60).padStart(2, "0")}`}</span>
-        <span class="pa-dayline__rail"><span class="pa-dayline__node {e.opcional || e.noVoy ? 'pa-dayline__node--optional' : e.cuenta ? 'pa-dayline__node--' + cuenta(e.cuenta).color : ''}"></span></span>
-        <button class="pa-dayline__body linea" onclick={() => (elegido = e)}><b>{e.titulo}</b><span class="pa-faint">{e.todoElDia ? "todo el día" : rango(e.inicio, e.fin)} · {e.cuenta ? cuenta(e.cuenta).nombre : "aviso"}{e.noVoy ? " · no vas esta vez" : e.opcional ? " · opcional" : ""}</span></button>
+        <span class="pa-dayline__rail"><span class="pa-dayline__node {e.trabajo ? 'nodo-trabajo' : e.opcional || e.noVoy ? 'pa-dayline__node--optional' : e.cuenta ? 'pa-dayline__node--' + cuenta(e.cuenta).color : ''}"></span></span>
+        <button class="pa-dayline__body linea" onclick={() => (elegido = e)}><b>{e.titulo}</b><span class="pa-faint">{e.todoElDia ? "todo el día" : rango(e.inicio, e.fin)} · {e.trabajo ? "tu horario" : e.cuenta ? cuenta(e.cuenta).nombre : "aviso"}{e.noVoy ? " · no vas esta vez" : e.opcional ? " · opcional" : ""}</span></button>
       </li>
     {/each}
     {#each ts as t (t.id)}
@@ -66,27 +66,32 @@
   </ul>
 {/snippet}
 
+{#snippet nav()}
+  <div class="nav">
+    <button class="pa-btn pa-btn--icon" aria-label="Anterior" onclick={() => mover(-1)}><Icono n="chevron-left" /></button>
+    <button class="pa-btn pa-btn--sm" onclick={() => ir("calendario", escala, app.hoy)}>Hoy</button>
+    <button class="pa-btn pa-btn--icon" aria-label="Siguiente" onclick={() => mover(1)}><Icono n="chevron-right" /></button>
+  </div>
+{/snippet}
+
 {#snippet principal()}
+  <!-- En el móvil, compacta: título y ‹ Hoy › en una fila, el estado en una línea y la escala debajo -->
   <div class="cabecera barra">
-    <div>
-      <h1 class="titulo">{titulo}</h1>
+    <div class="cab-texto">
+      <div class="fila-titulo"><h1 class="titulo">{titulo}</h1>{#if app.movil}{@render nav()}{/if}</div>
       {#if esReal()}
-        <p class="estado" class:con-error={conError.length}>{cuentas().length === 1 ? cuentas()[0].nombre : `${cuentas().length} cuentas`} · {resumen}
-          <button class="pa-btn pa-btn--plain pa-btn--sm" onclick={actualizar} disabled={cargando}><Icono n="refresh-cw" tam={14} />Actualizar</button></p>
+        <p class="estado" class:con-error={conError.length}><span class="estado__texto">{cuentas().length === 1 ? cuentas()[0].nombre : `${cuentas().length} cuentas`} · {resumen}</span>
+          <button class="pa-btn pa-btn--plain pa-btn--sm" onclick={actualizar} disabled={cargando} aria-label="Actualizar"><Icono n="refresh-cw" tam={14} />{#if !app.movil}Actualizar{/if}</button></p>
         {#each errores as e}<p class="pa-faint error" role="alert">{e}</p>{/each}
       {:else}
-        <p>Calendarios de ejemplo de Gmail 1, Gmail 2 y Outlook <span class="etiqueta-ejemplo">ejemplo</span> · <a class="enlace" href="#/ajustes/cuentas">conectar los tuyos</a></p>
+        <p class="estado"><span class="estado__texto">{app.movil ? "Calendarios" : "Calendarios de ejemplo de Gmail 1, Gmail 2 y Outlook"} <span class="etiqueta-ejemplo">ejemplo</span></span> · <a class="enlace" href="#/ajustes/cuentas">conectar los tuyos</a></p>
       {/if}
     </div>
     <div class="controles">
       <div class="pa-seg" role="group" aria-label="Escala">
         {#each ESCALAS as [e, n]}<button aria-pressed={escala === e ? "true" : "false"} onclick={() => ir("calendario", e, fecha)}>{n}</button>{/each}
       </div>
-      <div class="nav">
-        <button class="pa-btn pa-btn--icon" aria-label="Anterior" onclick={() => mover(-1)}><Icono n="chevron-left" /></button>
-        <button class="pa-btn pa-btn--sm" onclick={() => ir("calendario", escala, app.hoy)}>Hoy</button>
-        <button class="pa-btn pa-btn--icon" aria-label="Siguiente" onclick={() => mover(1)}><Icono n="chevron-right" /></button>
-      </div>
+      {#if !app.movil}{@render nav()}{/if}
     </div>
   </div>
 
@@ -109,7 +114,7 @@
     <div class="mes" role="grid" aria-label={mesAnio(fecha)}>
       {#each DIAS_LETRA as l}<span class="mes__cab" role="columnheader">{l}</span>{/each}
       {#each celdasMes as d}
-        {@const evs = eventosDelDia(d, app.hoy).filter((e) => !e.todoElDia || e.cuenta)}
+        {@const evs = eventosDelDia(d, app.hoy).filter((e) => (!e.todoElDia || e.cuenta) && !e.trabajo)}
         <button class="mes__dia" class:fuera={d.slice(5, 7) !== fecha.slice(5, 7)} class:es-hoy={d === app.hoy} class:elegido={app.movil && d === fecha} role="gridcell"
           onclick={() => (app.movil ? ir("calendario", "mes", d) : elegirDia(d))} aria-label={larga(d)}>
           <span class="num pa-num">{desdeISO(d).getDate()}</span>
@@ -123,11 +128,13 @@
       {/each}
     </div>
     {#if app.movil}
-      <div class="dia-titulo hoy">{larga(fecha)}</div>
-      {@render agendaDia(fecha)}
+      <div class="lista-dia">
+        <div class="dia-titulo hoy">{larga(fecha)}</div>
+        {@render agendaDia(fecha)}
+      </div>
     {/if}
   {:else}
-    <p class="pa-faint">Horas comprometidas cada día: cuanto más intenso, más ocupado. Toca un día para abrirlo.{#if v} Hay eventos guardados del {corta(v.desde)} al {corta(v.hasta)}.{/if}</p>
+    <p class="pa-faint explica">{app.movil ? "Horas con planes cada día. Toca un día para abrirlo." : "Horas comprometidas cada día: cuanto más intenso, más ocupado. Toca un día para abrirlo."}{#if v && !app.movil} Hay eventos guardados del {corta(v.desde)} al {corta(v.hasta)}.{/if}</p>
     <div class="pa-year" class:pa-year--vertical={app.movil} role="grid" aria-label="Año {anio}">
       {#if app.movil}
         <span></span>{#each MESES_CORTOS as m}<span class="pa-year__m">{m[0].toUpperCase()}</span>{/each}
@@ -166,6 +173,7 @@
         <li><Icono n="layers" /><span>También en {otros.join(", ").replace(/, ([^,]*)$/, " y $1")}
           <small>{elegido.unidoPor === "parecido" ? `Mismo título y hora en ${new Set([elegido.calendarioId, ...elegido.fuentes.map((f) => f.calendarioId)]).size} calendarios: Pauta lo muestra una vez` : "Es el mismo evento: se muestra una vez"}{fines.length ? ` · otro calendario dice hasta las ${fines.map((f) => (f >= 1440 ? "0:00" : `${Math.floor(f / 60)}:${String(f % 60).padStart(2, "0")}`)).join(" o ")}` : ""}</small></span></li>
       {/if}
+      {#if elegido.trabajo}<li><Icono n="clock" /><span>Tu horario de trabajo<small>Solo en Pauta: no se escribe en Google ni cuenta como solape. <a class="enlace" href="#/ajustes/general">Cambiarlo en Ajustes</a></small></span></li>{/if}
       {#if elegido.lugar}<li><Icono n="map-pin" /><span>{elegido.lugar}</span></li>{/if}
       {#if elegido.serie}<li><Icono n="repeat" /><span>Se repite<small>Lo que cambies aquí es solo de esta vez</small></span></li>{/if}
       {#if elegido.opcional}<li><Icono n="repeat" /><span>Cada viernes · opcional<small>{elegido.nota}</small></span></li>{/if}
@@ -189,7 +197,7 @@
   {/if}
 {/snippet}
 
-<Dos {principal} lateral={app.movil ? null : lateral} ancha={escala !== "anio"} />
+<Dos {principal} lateral={app.movil ? null : lateral} ancha={escala !== "anio"} llenar={app.movil && (escala === "mes" || escala === "anio")} />
 
 {#if app.movil && elegido}
   <div class="capa" role="presentation" onclick={(e) => e.target === e.currentTarget && (elegido = null)}>
@@ -219,9 +227,11 @@
   .mes__ev.opcional i { background: transparent !important; box-shadow: inset 0 0 0 1.5px var(--cuenta-2); }
   .mas { font-size: 11px; color: var(--text-3); }
   .tachado { text-decoration: line-through; }
+  /* Trabajo: punto hueco neutro (ni cuenta ni «opcional») */
+  :global(.pa-dayline__node.nodo-trabajo) { background: transparent; box-shadow: inset 0 0 0 2px var(--text-3); }
   .leyenda { margin-top: 10px; }
   .pa-year button.pa-year__c { border: 0; padding: 0; cursor: pointer; }
-  .dia-titulo { all: unset; display: flex; align-items: center; min-height: 44px; margin: 8px 0 0; font-weight: 600; font-size: 14px; color: var(--text-2); }
+  .dia-titulo { all: unset; position: sticky; top: 44px; z-index: 1; background: var(--bg); width: 100%; display: flex; align-items: center; min-height: 44px; margin: 8px 0 0; font-weight: 600; font-size: 14px; color: var(--text-2); }
   .dia-titulo::first-letter { text-transform: uppercase; }
   .dia-titulo.hoy { color: var(--accent); }
   .linea { all: unset; display: flex; flex-direction: column; cursor: pointer; padding-bottom: 14px; min-height: 44px; box-sizing: border-box; }
@@ -234,7 +244,21 @@
   .enlace { color: var(--accent); text-underline-offset: 2px; }
   .nombre-cuenta { min-width: 0; overflow-wrap: anywhere; }
   a.pa-btn { text-decoration: none; }
+  .fila-titulo { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .estado__texto { min-width: 0; }
   @media (max-width: 640px) {
+    .cabecera.barra { flex-direction: column; align-items: stretch; gap: 10px; margin-bottom: 10px; }
+    .cab-texto { min-width: 0; }
+    .estado { flex-wrap: nowrap; margin-top: 2px; font-size: 13px; }
+    .estado__texto { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .controles .pa-seg { width: 100%; }
+    .controles .pa-seg button { flex: 1; }
+    .lista-dia { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; margin-top: 8px; }
+    .lista-dia .dia-titulo { top: 0; }
+    .explica { margin: 0 0 6px; font-size: 13px; }
+    .pa-year--vertical { flex: 1; min-height: 0; grid-template-rows: auto repeat(31, minmax(0, 1fr)); }
+    .pa-year--vertical .pa-year__c { height: auto; min-height: 0; }
+    .leyenda { margin-top: 6px; }
     .mes { border: 0; }
     .mes__cab { border: 0; text-align: center; padding: 4px 0; }
     .mes__dia { min-height: 46px; border: 0; align-items: center; justify-content: center; gap: 3px; padding: 2px; border-radius: 12px; }

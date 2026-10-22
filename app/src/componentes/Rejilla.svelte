@@ -9,9 +9,10 @@
     const evs = eventosDelDia(d, app.hoy);
     const tareas = app.tareas.filter((t) => !t.hecha && t.cuando === d && t.inicio !== null && t.inicio !== undefined)
       .map((t) => ({ id: "t" + t.id, titulo: t.titulo, inicio: t.inicio, fin: t.inicio + (t.duracionMin ?? 30), tarea: true, dia: d }));
-    const conHora = [...evs.filter((e) => !e.todoElDia), ...tareas];
+    const conHora = [...evs.filter((e) => !e.todoElDia && !e.trabajo), ...tareas];
+    const trabajo = evs.find((e) => e.trabajo) ?? null;
     const choque = new Set(conflictos(evs).flat().map((e) => e.id));
-    return { d, todoElDia: evs.filter((e) => e.todoElDia), conHora, lanes: carriles(conHora), choque };
+    return { d, todoElDia: evs.filter((e) => e.todoElDia), conHora, trabajo, lanes: carriles(conHora), choque };
   }));
   const h = (m) => Math.max(0, (m - hora0 * 60) / 60);
 </script>
@@ -31,6 +32,8 @@
     <div class="pa-tg__hours">{#each Array(horas) as _, i}<div class="pa-tg__hour">{i ? `${hora0 + i}:00` : ""}</div>{/each}</div>
     {#each porDia as c}
       <div class="pa-tg__col" style="height: calc({horas} * var(--hour-height));">
+        <!-- El horario de trabajo va de fondo: no ocupa carril ni tapa tus eventos (D-054) -->
+        {#if c.trabajo}<button class="trabajo" style="top: calc({h(c.trabajo.inicio)} * var(--hour-height)); height: calc({h(c.trabajo.fin) - h(c.trabajo.inicio)} * var(--hour-height));" onclick={() => alElegir(c.trabajo)} aria-label="Trabajo, {rango(c.trabajo.inicio, c.trabajo.fin)}"><span>trabajo</span></button>{/if}
         {#each c.conHora as e (e.id)}
           {@const l = c.lanes.get(e.id)}
           <button class="pa-ev {e.tarea ? 'pa-ev--task' : e.opcional || e.noVoy ? 'pa-ev--optional' : 'pa-ev--' + cuenta(e.cuenta).color}" class:pa-ev--conflict={c.choque.has(e.id)} class:elegido={e.id === elegidoId}
@@ -52,5 +55,7 @@
   .todo { min-height: 28px; padding: 3px; border-bottom: 1px solid var(--line); border-left: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: var(--text-3); align-items: stretch; justify-content: center; }
   .pa-tg__corner.todo { border-left: 0; text-align: right; padding-right: 6px; line-height: 12px; }
   .chip-dia { padding: 2px 6px; border-radius: var(--radius-xs); background: var(--cuenta-1-soft); color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .trabajo { position: absolute; left: 0; right: 0; border: 0; padding: 0; background: var(--hover); border-left: 2px solid var(--line-strong); cursor: pointer; text-align: left; font: inherit; }
+  .trabajo span { display: block; padding: 3px 6px; font-size: 11px; color: var(--text-2); }
   .chip-dia.aviso { background: var(--hover); color: var(--text-2); }
 </style>

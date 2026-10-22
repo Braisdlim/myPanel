@@ -41,6 +41,10 @@
   }
 
   const Vista = $derived(VISTAS[app.ruta[0]] ?? Hoy);
+  // Título que se encoge al desplazar, como el título grande de iOS: al bajar no pierdes en qué pantalla estás
+  let compacto = $state(false);
+  const nombreVista = $derived(app.ruta[0] === "ajustes" ? "Ajustes" : SECTORES.find((s) => s.id === app.ruta[0])?.nombre ?? "Hoy");
+  $effect(() => { app.ruta; compacto = false; });
   const conteos = $derived(contar(app.tareas, app.hoy));
   const TABS = [["hoy", "Hoy", "sun"], ["calendario", "Calendario", "calendar"], null, ["tareas", "Tareas", "circle-check"], ["finanzas", "Finanzas", "trending-up"]];
 </script>
@@ -58,7 +62,8 @@
 
   <div class="app__body">
     <Lateral {conteos} />
-    <main class="app__main" id="contenido">
+    <main class="app__main" id="contenido" onscroll={(e) => (compacto = app.movil && e.currentTarget.scrollTop > 44)}>
+      {#if app.movil}<div class="compacto" class:visible={compacto} aria-hidden="true"><span>{nombreVista}</span></div>{/if}
       {#if app.cargado}
         <Vista />
       {/if}
@@ -90,5 +95,10 @@
 
 <style>
   .movil-solo { display: none; }
+  /* Barra con el título pequeño: altura cero en el flujo; aparece al desplazar */
+  .compacto { position: sticky; top: 0; height: 0; z-index: 5; }
+  .compacto span { display: flex; align-items: center; justify-content: center; height: 44px; background: var(--bg); border-bottom: 1px solid var(--line); font-size: 15px; font-weight: 600; opacity: 0; transform: translateY(-4px); transition: opacity 160ms ease, transform 160ms ease; pointer-events: none; }
+  .compacto.visible span { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .compacto span { transition: none; } }
   @media (max-width: 640px) { .movil-solo { display: grid; } }
 </style>

@@ -2,12 +2,16 @@
   import { app, ir, cambiarAjuste, exportar, borrarTodo, avisar, conectarGoogle, actualizarCuenta, cambiarCalendario, renombrarCuenta, desconectarCuenta, tienePermiso, activarEscritura, desactivarEscritura, elegirCalendarioEscritura } from "../lib/estado.svelte.js";
   import { CUENTAS } from "../lib/ejemplo.js";
   import { CLIENT_ID, calendariosPropios } from "../lib/google.js";
-  import { haceCuanto } from "../lib/fechas.js";
+  import { haceCuanto, corta, sumarDias, DIAS, DIAS_LETRA } from "../lib/fechas.js";
+  import { diasLibres } from "../lib/agenda.svelte.js";
   import Dos from "../componentes/Dos.svelte";
   import Icono from "../componentes/Icono.svelte";
 
   const SECCIONES = [["general", "General", "settings"], ["cuentas", "Cuentas", "user"], ["avisos", "Avisos", "bell"], ["asistente", "Asistente", "sparkles"], ["privacidad", "Privacidad y datos", "lock"]];
   const sec = $derived(SECCIONES.some(([s]) => s === app.ruta[1]) ? app.ruta[1] : "general");
+  // En el móvil, como Ajustes de iOS: primero el índice de secciones y, al tocar una, la sección con «‹ Ajustes»
+  const indice = $derived(app.movil && !SECCIONES.some(([s]) => s === app.ruta[1]));
+  const DESCRIPCION = { general: "Tema, idioma, calendario y horario", cuentas: "Google y lo que Pauta puede hacer", avisos: "Solapes y fechas límite", asistente: "Aún no funciona", privacidad: "Copia y borrado de tus datos" };
 
   function descargar() {
     const url = URL.createObjectURL(new Blob([exportar()], { type: "application/json" }));
@@ -51,15 +55,35 @@
   const numEventos = (c) => new Set((app.eventos[c.id] ?? []).map((e) => e.uid + e.calendarioId)).size;
   const estado = (c) => { const s = app.sync[c.id]; app.ahora; return !s ? "Sin actualizar todavía" : s.estado === "cargando" ? "Actualizando…" : s.actualizado ? `Actualizado ${haceCuanto(s.actualizado)}` : "Sin actualizar todavía"; };
 
+  // ---------- horario de trabajo (D-054) ----------
+  const t = $derived(app.ajustes.trabajo);
+  const horario = (cambios) => cambiarAjuste("trabajo", { ...$state.snapshot(app.ajustes.trabajo), ...cambios });
+  const hhmm = (m) => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`;
+  const minutos = (v) => { const [h, m] = v.split(":").map(Number); return h * 60 + m; };
+  const libres = $derived(t.activo && app.cuentas.length ? diasLibres(app.hoy, sumarDias(app.hoy, 120)) : []);
+
   let confirmando = $state(false);
   async function borrar() { await borrarTodo(); confirmando = false; avisar("Datos borrados de este dispositivo"); }
 </script>
 
 {#snippet principal()}
+  {#if indice}
+    <div class="cabecera"><div><h1>Ajustes</h1></div></div>
+    <ul class="pa-list pa-list--lines indice">
+      {#each SECCIONES as [s, n, i]}
+        <li><button class="pa-row fila-indice" onclick={() => ir("ajustes", s)}><Icono n={i} /><span class="pa-row__main"><span class="pa-row__title">{n}</span><span class="pa-row__meta">{DESCRIPCION[s]}</span></span><Icono n="chevron-right" /></button></li>
+      {/each}
+    </ul>
+  {:else}
+  {#if app.movil}
+    <button class="pa-btn pa-btn--plain volver" onclick={() => ir("ajustes")}><Icono n="chevron-left" />Ajustes</button>
+    <div class="cabecera"><div><h1>{SECCIONES.find(([s]) => s === sec)[1]}</h1></div></div>
+  {:else}
   <div class="cabecera"><div><h1>Ajustes</h1></div></div>
   <div class="pestanas" role="tablist" aria-label="Secciones">
     {#each SECCIONES as [s, n, i]}<button class="pa-chip" role="tab" aria-selected={sec === s} aria-pressed={sec === s ? "true" : "false"} onclick={() => ir("ajustes", s)}><Icono n={i} tam={14} />{n}</button>{/each}
   </div>
+  {/if}
 
   {#if sec === "general"}
     <section class="bloque">
@@ -79,6 +103,35 @@
         <li><Icono n="calendar" /><span>La semana empieza el lunes<small>Zona horaria: la de este dispositivo ({Intl.DateTimeFormat().resolvedOptions().timeZone})</small></span></li>
         <li><Icono n="clock" /><span>Formato de 24 horas<small>«21:30–23:30»; si una hora es ambigua, Pauta pregunta</small></span></li>
       </ul>
+    </section>
+    <section class="bloque">
+      <h2>Horario de trabajo</h2>
+      <div class="pa-toggle">
+        <span class="pa-toggle__text"><span class="pa-toggle__title">Mostrar mi horario</span><span class="pa-toggle__meta">Un bloque «trabajo» en tu agenda que cuenta para tu tiempo libre, pero no como solape. Solo en Pauta.</span></span>
+        <button class="pa-switch" role="switch" aria-checked={t.activo ? "true" : "false"} aria-label="Mostrar mi horario de trabajo" onclick={() => horario({ activo: !t.activo })}></button>
+      </div>
+      {#if t.activo}
+        <div class="dias" role="group" aria-label="Días de trabajo">
+          {#each DIAS_LETRA as l, i}<button class="pa-chip" aria-pressed={t.dias.includes(i) ? "true" : "false"} aria-label={DIAS[i]} onclick={() => horario({ dias: t.dias.includes(i) ? t.dias.filter((x) => x !== i) : [...t.dias, i].sort() })}>{l}</button>{/each}
+        </div>
+        <div class="horas">
+          <label>Entrada<input class="pa-field" type="time" step="900" value={hhmm(t.inicio)} onchange={(e) => e.currentTarget.value && horario({ inicio: minutos(e.currentTarget.value) })} /></label>
+          <label>Salida<input class="pa-field" type="time" step="900" value={hhmm(t.fin)} onchange={(e) => e.currentTarget.value && horario({ fin: minutos(e.currentTarget.value) })} /></label>
+        </div>
+        {#if t.fin <= t.inicio}<p class="cuenta__error" role="alert">La salida tiene que ser después de la entrada.</p>{/if}
+        <label class="campo-ajuste">
+          <span class="pa-faint">Días libres: eventos de todo el día de tus calendarios con estas palabras (separadas por comas)</span>
+          <input class="pa-field" value={t.palabras} onchange={(e) => horario({ palabras: e.currentTarget.value })} />
+        </label>
+        <p class="pa-faint">Los festivos de Google no cuentan: mezclan días que no son fiesta (Nochebuena, San Valentín…). Marca tus días libres en tu calendario, como ya haces con «Festivo (No trabajo)» y «Vacaciones».</p>
+        {#if app.cuentas.length}
+          <div class="pa-label calendarios">próximos días libres</div>
+          <ul class="pa-insp__rows filas">
+            {#each libres.slice(0, 5) as l (l.dia)}<li><Icono n="sun" /><span>{corta(l.dia)}<small>{l.motivo}{l.calendario ? ` · ${l.calendario}` : ""}</small></span></li>
+            {:else}<li><Icono n="info" /><span>Ninguno en los próximos 120 días<small>Si falta alguno, revisa las palabras o cómo se llama en tu calendario.</small></span></li>{/each}
+          </ul>
+        {/if}
+      {/if}
     </section>
     <section class="bloque">
       <h2>Al apuntar algo con día y hora</h2>
@@ -217,11 +270,17 @@
       <p class="pa-muted">Pauta 0.3.0 · primera versión, paso 3 bis: tus calendarios de Google sin repetidos, crear eventos desde Apuntar y cambiar solo esta vez. Finanzas y asistente siguen siendo de ejemplo.</p>
     </section>
   {/if}
+  {/if}
 {/snippet}
 
 <Dos {principal} />
 
 <style>
+  .indice { margin-top: 4px; }
+  .fila-indice { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 12px; width: 100%; min-height: 60px; cursor: pointer; }
+  .fila-indice:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+  .fila-indice :global(svg:last-child) { color: var(--text-3); }
+  .volver { margin: -6px 0 2px -10px; }
   .pestanas { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
   .bloque { margin-bottom: 26px; max-width: 640px; }
   h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 16px; line-height: 22px; font-weight: 600; }
@@ -240,6 +299,10 @@
   .renombrar { display: flex; flex: 1; gap: 8px; }
   .renombrar .pa-field { flex: 1; min-width: 0; }
   .campo-ajuste { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+  .dias { display: flex; gap: 6px; margin-top: 12px; flex-wrap: wrap; }
+  .dias .pa-chip { min-width: 44px; justify-content: center; }
+  .horas { display: flex; gap: 12px; margin-top: 12px; }
+  .horas label { display: flex; flex-direction: column; gap: 6px; flex: 1; max-width: 174px; font-size: 13px; color: var(--text-2); }
   .campo-ajuste .pa-field { max-width: 360px; }
   code { font-family: ui-monospace, monospace; font-size: 0.92em; }
 </style>

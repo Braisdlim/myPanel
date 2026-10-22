@@ -4,6 +4,7 @@ import { hoyISO, minutosAhora, sumarDias } from "./fechas.js";
 import { crearTarea, crearProyecto, completar } from "./tareas.js";
 import { pedirToken, revocar, listarCalendarios, listarEventos, convertirEvento, colorLibre, TokenCaducado, cuerpoEvento, comprobarEvento, crearEvento, leerEvento, calendariosPropios, cuerpoMover, cambiarEvento, leerOCancelado } from "./google.js";
 import { clavesDe, claveOcurrencia } from "./calendario.js";
+import { HORARIO_INICIAL } from "./horario.js";
 
 export const SECTORES = [
   { id: "hoy", nombre: "Hoy", icono: "sun" },
@@ -14,7 +15,7 @@ export const SECTORES = [
   { id: "asistente", nombre: "Asistente", icono: "sparkles" },
 ];
 
-const AJUSTES_INICIALES = { id: "general", tema: "sistema", guardarEn: "preguntar" };
+const AJUSTES_INICIALES = { id: "general", tema: "sistema", guardarEn: "preguntar", trabajo: { ...HORARIO_INICIAL } };
 
 export const app = $state({
   hoy: hoyISO(),

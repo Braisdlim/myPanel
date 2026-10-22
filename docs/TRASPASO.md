@@ -168,6 +168,11 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
 - Los datos de cada dispositivo van aparte: lo del móvil no se ve en el ordenador hasta la sincronización (D-041).
 - La web personal del usuario apuntaba a `braisdlim.me`, que no existe; se quitó el dominio (con su permiso) y vuelve a funcionar en `braisdlim.github.io`.
 
+### Uso diario (D-054 y D-055, 22-10-2026)
+- **Horario de trabajo** en Ajustes › General (`app/src/lib/horario.js`): bloque «Trabajo» solo en Pauta; días libres = eventos de todo el día de tus calendarios con «vacaciones», «festivo», «no trabajo» o «día libre». Los festivos de Google no cuentan. Hay que encenderlo en cada dispositivo (los ajustes son locales).
+- **Móvil:** Mes y Año llenan el alto; título que se encoge al desplazar (`App.svelte`); Calendario con cabecera compacta; Ajustes con índice; Hoy sin el panel del escritorio; prop `llenar` de `Dos.svelte` para pantallas a alto completo. Medir con `node pruebas/medir-movil.mjs` (con `astro preview --port 4330` en marcha).
+- Trampa: en el móvil, `.dos__main` no puede tener `overflow: auto` o los encabezados `sticky` no se pegan.
+
 ### Lo siguiente inmediato
 0. **P-046:** añadir `https://braisdlim.github.io` como origen en Google Cloud, instalar Pauta en el Honor y conectar las cuentas.
 1. «Saltar esta vez» con una serie real del usuario, cuando la haya (P-045; mover ya probado).

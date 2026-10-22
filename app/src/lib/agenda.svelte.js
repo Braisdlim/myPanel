@@ -4,6 +4,7 @@ import { indexar, ordenar, clavesDe, bloquea } from "./calendario.js";
 export { bloquea };
 import * as ejemplo from "./ejemplo.js";
 import { sumarDias } from "./fechas.js";
+import { bloqueTrabajo, proximosLibres } from "./horario.js";
 
 export { conflictos, carriles } from "./ejemplo.js";
 
@@ -15,14 +16,29 @@ export const esReal = () => app.cuentas.length > 0;
 export const cuentas = () => (esReal() ? app.cuentas : ejemplo.CUENTAS);
 export const cuenta = (id) => cuentas().find((c) => c.id === id) ?? { id, nombre: "Cuenta desconectada", proveedor: "", color: "c4", escritura: false };
 
-export function eventosDelDia(dia, hoy) {
+/** ¿Es un calendario tuyo? (para el horario: solo tus eventos de todo el día marcan días libres) */
+const propios = $derived(new Set(app.cuentas.flatMap((c) => c.calendarios.filter((x) => x.rol === "owner" || x.principal).map((x) => x.id))));
+export const esPropio = (id) => propios.has(id);
+
+/** Eventos de un día tal como vienen de las cuentas (o de ejemplo), sin el horario de trabajo. */
+function eventosDeCuentas(dia, hoy) {
   if (!esReal()) return ejemplo.eventosDelDia(dia, hoy);
   // Los cambios de hora no vienen de ninguna cuenta: son avisos de Pauta y se quedan
   const avisos = ejemplo.eventosDelDia(dia, hoy).filter((e) => !e.cuenta);
   const marcados = new Set(app.noVoy);
   const evs = (indice.get(dia) ?? []).map((e) => (clavesDe(e).some((k) => marcados.has(k)) ? { ...e, noVoy: true } : e));
-  return [...avisos, ...evs].sort(ordenar);
+  return [...avisos, ...evs];
 }
+
+/** Lo que ven las pantallas: los eventos del día y, si lo tienes activado, tu bloque de trabajo (D-054). */
+export function eventosDelDia(dia, hoy) {
+  const evs = eventosDeCuentas(dia, hoy);
+  const trabajo = bloqueTrabajo(dia, app.ajustes.trabajo, evs, esPropio);
+  return (trabajo ? [...evs, trabajo] : evs).sort(ordenar);
+}
+
+/** Días libres que se acercan (para comprobar en Ajustes que Pauta los reconoce). */
+export const diasLibres = (desde, hasta) => proximosLibres(desde, hasta, { ...app.ajustes.trabajo }, (d) => eventosDeCuentas(d, app.hoy), esPropio, sumarDias);
 
 export function eventosEntre(desde, hasta, hoy) {
   const out = [];
@@ -31,7 +47,7 @@ export function eventosEntre(desde, hasta, hoy) {
 }
 
 export function horasDelDia(dia, hoy) {
-  return eventosDelDia(dia, hoy).filter(bloquea).reduce((s, e) => s + (e.fin - e.inicio), 0) / 60;
+  return eventosDelDia(dia, hoy).filter((e) => bloquea(e) && !e.trabajo).reduce((s, e) => s + (e.fin - e.inicio), 0) / 60;
 }
 
 /** Desde cuándo y hasta cuándo hay eventos guardados (la ventana de la última actualización). */

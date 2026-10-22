@@ -1,6 +1,12 @@
 /* Estilos de la app que no son componentes del sistema: la carcasa a pantalla completa y piezas de pantalla.
    Solo variables de tokens.css (diseno/sistema); ningún color suelto. */
 html, body { height: 100%; }
+/* Tacto (Web Interface Guidelines de Vercel, 5-10-2026): sin retardo de doble toque, sin el recuadro azul de Android
+   (los controles ya tienen estado activo) y sin que el desplazamiento de una lista arrastre a la página. */
+html { -webkit-tap-highlight-color: transparent; }
+button, a, input, select, textarea, [role="button"] { touch-action: manipulation; }
+.app__main, .capa, .pa-sheet, .hoja { overscroll-behavior: contain; }
+select.pa-field { background-color: var(--surface); color: var(--text); }
 body { overflow: hidden; }
 #app, .app { height: 100dvh; }
 

@@ -1,9 +1,10 @@
 <script>
   // Contenido + inspector a la derecha en el escritorio. En el móvil el inspector va debajo o se oculta.
-  let { principal, lateral = null, enMovil = "debajo", ancha = false } = $props();
+  // llenar: en el móvil la vista ocupa justo el alto de la pantalla y cada parte decide qué se desplaza (sin scroll de página)
+  let { principal, lateral = null, enMovil = "debajo", ancha = false, llenar = false } = $props();
 </script>
 
-<div class="dos" class:sin-lateral={!lateral}>
+<div class="dos" class:sin-lateral={!lateral} class:llenar>
   <div class="dos__main"><div class="vista" class:vista--ancha={ancha}>{@render principal()}</div></div>
   {#if lateral}
     <aside class="pa-inspector dos__lat" class:oculto-movil={enMovil === "oculto"} aria-label="Detalle">{@render lateral()}</aside>
@@ -17,7 +18,13 @@
   .dos__lat { width: auto; overflow: auto; }
   @media (max-width: 640px) {
     .dos { display: block; height: auto; overflow: visible; }
+    /* Sin contenedor de desplazamiento intermedio: así los encabezados «sticky» se pegan a la pantalla */
+    .dos__main { overflow: visible; }
     .dos__lat { border-left: 0; border-top: 1px solid var(--line); padding: 16px; }
     .oculto-movil { display: none; }
+    .dos.llenar { height: 100%; display: flex; flex-direction: column; }
+    .llenar .dos__main { flex: 1; min-height: 0; overflow: hidden; }
+    .llenar .vista { height: 100%; display: flex; flex-direction: column; padding-bottom: 8px; }
+    .llenar .dos__lat { display: none; }
   }
 </style>

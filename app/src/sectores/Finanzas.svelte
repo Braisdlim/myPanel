@@ -59,7 +59,7 @@
       <div><dt>participaciones</dt><dd>{fondo.participaciones.toLocaleString("es-ES")}</dd></div>
     </dl>
   {:else}
-    <div class="cabecera"><div><h1>Mis fondos <span class="etiqueta-ejemplo">ejemplo</span></h1><p>Fondos inventados para ver cómo será. Tus datos llegarán en la fase de Finanzas.</p></div></div>
+    <div class="cabecera"><div><h1>Mis fondos <span class="etiqueta-ejemplo">ejemplo</span></h1><p>{app.movil ? "Fondos inventados, para ver cómo será." : "Fondos inventados para ver cómo será. Tus datos llegarán en la fase de Finanzas."}</p></div></div>
     <div class="pa-figure__label">patrimonio</div>
     <div class="pa-figure__value">{euros(total)}</div>
     <div class="pa-figure__row"><span class="pa-delta pa-delta--solid {total >= aportado ? 'pa-delta--up' : 'pa-delta--down'}">{porcentaje(total / aportado - 1)}</span><span class="pa-muted">sobre {euros(aportado, 0)} aportados</span></div>
@@ -87,7 +87,7 @@
   </ul>
 {/snippet}
 
-<Dos {principal} {lateral} />
+<Dos {principal} {lateral} enMovil="oculto" />
 
 <style>
   .volver { margin: -6px 0 4px -8px; }
@@ -96,6 +96,11 @@
   .datos { margin-top: 20px; }
   .lista { margin: 18px -12px 0; }
   .fila { all: unset; display: flex; align-items: center; gap: 14px; flex: 1; min-height: 44px; cursor: pointer; }
+  .fila { min-width: 0; }
+  .fila .pa-row__main { min-width: 0; }
+  .fila .pa-row__title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fila .pa-delta { flex: none; }
+  @media (max-width: 380px) { .fila .pa-spark { display: none; } }
   .fila:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; border-radius: 4px; }
   .pa-figure__value { margin-top: 2px; }
 </style>

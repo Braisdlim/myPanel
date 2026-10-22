@@ -13,7 +13,8 @@
   const eventos = $derived(eventosDelDia(app.hoy, app.hoy));
   const conHora = $derived(eventos.filter((e) => !e.todoElDia));
   const tareas = $derived(deHoy(app.tareas, app.hoy));
-  const siguiente = $derived(conHora.find((e) => e.fin > app.ahora && bloquea(e)));
+  const siguiente = $derived(conHora.find((e) => e.fin > app.ahora && bloquea(e) && !e.trabajo));
+  const conTrabajo = $derived(conHora.some((e) => e.trabajo));
   const manana = $derived(eventosDelDia(sumarDias(app.hoy, 1), app.hoy));
   const choques = $derived(conflictos([...eventos, ...manana]));
   const atrasadas = $derived(app.tareas.filter((t) => !t.hecha && t.cuando && t.cuando < app.hoy).length);
@@ -57,17 +58,19 @@
 
   <section class="pa-card capacidad" aria-label="Tiempo libre">
     <div class="pa-capacity" class:pa-capacity--over={libre === 0 && disponible > 0}>
-      <div class="pa-capacity__nums"><span>{disponible ? `Te quedan ${duracion(libre)} libres hasta las 22:00` : "El día ya ha terminado"}</span><span>{duracion(ocupado)} de eventos · {duracion(planeado)} de tareas</span></div>
+      <div class="pa-capacity__nums"><span>{disponible ? `Te quedan ${duracion(libre)} libres hasta las 22:00` : "El día ya ha terminado"}</span><span>{duracion(ocupado)} de {conTrabajo ? "trabajo y eventos" : "eventos"} · {duracion(planeado)} de tareas</span></div>
       <div class="pa-capacity__bar"><span class="pa-capacity__fill" style="--p: {pct}%"></span></div>
     </div>
   </section>
+
+  {#if app.movil && (choques.length || atrasadas)}<div class="avisos-movil">{@render avisos()}</div>{/if}
 
   <div class="pa-section"><Icono n="calendar" /><span class="pa-label">eventos de hoy</span>{#if !esReal()}<span class="etiqueta-ejemplo">ejemplo</span>{/if}</div>
   <ul class="pa-list eventos">
     {#each eventos as e (e.id)}
       <li class="pa-row" class:pasado={!e.todoElDia && e.fin <= app.ahora}>
-        <span class="pa-dot {e.cuenta ? 'pa-dot--' + cuenta(e.cuenta).color : ''}" class:opcional={e.opcional}></span>
-        <span class="pa-row__main"><span class="pa-row__title"><span class:tachado={e.noVoy}>{e.titulo}</span>{#if e.noVoy}<span class="pa-faint"> · no vas esta vez</span>{:else if e.opcional}<span class="pa-faint"> · opcional</span>{/if}</span><span class="pa-row__meta">{e.cuenta ? cuenta(e.cuenta).nombre : "Aviso"}{e.calendario && e.calendario !== cuenta(e.cuenta).correo ? ` · ${e.calendario}` : ""}{e.lugar ? ` · ${e.lugar}` : ""}</span></span>
+        <span class="pa-dot {e.cuenta ? 'pa-dot--' + cuenta(e.cuenta).color : ''}" class:opcional={e.opcional} class:trabajo={e.trabajo}></span>
+        <span class="pa-row__main"><span class="pa-row__title"><span class:tachado={e.noVoy}>{e.titulo}</span>{#if e.noVoy}<span class="pa-faint"> · no vas esta vez</span>{:else if e.opcional}<span class="pa-faint"> · opcional</span>{/if}</span><span class="pa-row__meta">{e.trabajo ? "Tu horario de trabajo" : e.cuenta ? cuenta(e.cuenta).nombre : "Aviso"}{e.calendario && e.calendario !== cuenta(e.cuenta).correo ? ` · ${e.calendario}` : ""}{e.lugar ? ` · ${e.lugar}` : ""}</span></span>
         <span class="pa-row__end">{e.todoElDia ? "todo el día" : rango(e.inicio, e.fin)}</span>
       </li>
     {:else}
@@ -79,8 +82,24 @@
   {#if tareas.length}
     <ul class="pa-list">{#each tareas as t (t.id)}<FilaTarea {t} mostrarDia={t.cuando !== app.hoy} seleccionada={t.id === elegidaId} alElegir={(x) => (elegidaId = x.id)} />{/each}</ul>
   {:else}
-    <div class="vacio"><b>Sin tareas para hoy</b>Apunta algo con «hoy» o mueve una tarea a hoy desde Tareas.<br /><button class="pa-btn pa-btn--sm boton-apuntar" onclick={() => (app.apuntar = { abierto: true, texto: "", contexto: null })}><Icono n="plus" />Apuntar</button></div>
+    <div class="sin-tareas"><span class="pa-faint">Sin tareas para hoy.</span><button class="pa-btn pa-btn--sm pa-btn--plain" onclick={() => (app.apuntar = { abierto: true, texto: "", contexto: null })}><Icono n="plus" />Apuntar</button></div>
   {/if}
+{/snippet}
+
+{#snippet avisos()}
+  <div class="avisos">
+    {#each choques.slice(0, 2) as [a, b]}
+      <button class="pa-alert aviso" onclick={() => ir("atencion")}>
+        <span class="pa-dot pa-dot--danger"></span><span class="pa-alert__title">{a.dia === app.hoy ? "Hoy" : "Mañana"} se solapan dos planes</span>
+        <span class="pa-alert__text">{a.titulo} ({cuenta(a.cuenta).nombre}) y {b.titulo} ({cuenta(b.cuenta).nombre}), {rango(Math.max(a.inicio, b.inicio), Math.min(a.fin, b.fin))}</span>
+        <span class="pa-alert__src">{esReal() ? "Tus calendarios" : "Calendarios de ejemplo"}</span>
+      </button>
+    {/each}
+    {#if atrasadas}
+      <button class="pa-alert aviso" onclick={() => ir("tareas", "hoy")}><span class="pa-dot pa-dot--attention"></span><span class="pa-alert__title">{atrasadas === 1 ? "Una tarea atrasada" : `${atrasadas} tareas atrasadas`}</span><span class="pa-alert__text">Siguen en Hoy hasta que las hagas o les cambies la fecha.</span></button>
+    {/if}
+    {#if !choques.length && !atrasadas}<p class="pa-faint">Nada urgente.</p>{/if}
+  </div>
 {/snippet}
 
 {#snippet lateral()}
@@ -96,19 +115,7 @@
     {/if}
 
     <div class="pa-label bloque">pide atención</div>
-    <div class="avisos">
-      {#each choques.slice(0, 2) as [a, b]}
-        <button class="pa-alert aviso" onclick={() => ir("atencion")}>
-          <span class="pa-dot pa-dot--danger"></span><span class="pa-alert__title">{a.dia === app.hoy ? "Hoy" : "Mañana"} se solapan dos planes</span>
-          <span class="pa-alert__text">{a.titulo} ({cuenta(a.cuenta).nombre}) y {b.titulo} ({cuenta(b.cuenta).nombre}), {rango(Math.max(a.inicio, b.inicio), Math.min(a.fin, b.fin))}</span>
-          <span class="pa-alert__src">{esReal() ? "Tus calendarios" : "Calendarios de ejemplo"}</span>
-        </button>
-      {/each}
-      {#if atrasadas}
-        <button class="pa-alert aviso" onclick={() => ir("tareas", "hoy")}><span class="pa-dot pa-dot--attention"></span><span class="pa-alert__title">{atrasadas === 1 ? "Una tarea atrasada" : `${atrasadas} tareas atrasadas`}</span><span class="pa-alert__text">Siguen en Hoy hasta que las hagas o les cambies la fecha.</span></button>
-      {/if}
-      {#if !choques.length && !atrasadas}<p class="pa-faint">Nada urgente.</p>{/if}
-    </div>
+    {@render avisos()}
 
     <div class="pa-label bloque">tu dinero hoy <span class="etiqueta-ejemplo">ejemplo</span></div>
     <button class="dinero" onclick={() => ir("finanzas")}>
@@ -124,7 +131,7 @@
   {/if}
 {/snippet}
 
-<Dos {principal} {lateral} />
+<Dos {principal} {lateral} enMovil="oculto" />
 
 {#if app.movil && elegida}
   <div class="capa" role="presentation" onclick={(e) => e.target === e.currentTarget && (elegidaId = null)}>
@@ -141,6 +148,10 @@
   .eventos .pa-row { min-height: 40px; }
   .pasado { opacity: 0.55; }
   .opcional { background: transparent !important; box-shadow: inset 0 0 0 2px var(--cuenta-2); }
+  .trabajo { background: transparent !important; box-shadow: inset 0 0 0 2px var(--text-3); }
+  .avisos-movil { margin: 12px 0 4px; }
+  @media (max-width: 640px) { .capacidad .pa-capacity__nums { flex-direction: column; gap: 2px; } }
+  .sin-tareas { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; }
   .tachado { text-decoration: line-through; color: var(--text-2); }
   .bloque { display: flex; align-items: center; gap: 6px; margin: 22px 0 8px; }
   .avisos { display: flex; flex-direction: column; gap: 8px; }
