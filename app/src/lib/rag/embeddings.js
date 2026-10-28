@@ -2,8 +2,8 @@
 // en q8) con Transformers.js. El modelo se descarga una vez de Hugging Face y queda en la caché del navegador.
 // En la app corre dentro de un Web Worker (vectores.worker.js); en el banco de evaluación, en Node.
 
-export const MODELO = "Xenova/multilingual-e5-small";
-export const TAMANO_MB = 118;
+import { MODELO } from "./modelo.js";
+export { MODELO };
 
 /**
  * @param {{ cacheDir?: string, progreso?: (p) => void }} opciones

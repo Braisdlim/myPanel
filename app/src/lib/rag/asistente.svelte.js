@@ -8,7 +8,7 @@ import { crearMotor } from "./motor.js";
 import { respuestaSinModelo, mensajes as mensajesModelo, validarCitas } from "./respuesta.js";
 import { preguntarModelo, proveedor } from "./proveedores.js";
 import { datosDemo, CUENTAS_DEMO } from "./demo.js";
-import { MODELO } from "./embeddings.js";
+import { MODELO } from "./modelo.js";
 
 export const asis = $state({
   mensajes: [], // { id, de: "tu"|"pauta", texto, ... }

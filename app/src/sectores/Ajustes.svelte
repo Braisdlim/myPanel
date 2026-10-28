@@ -68,7 +68,7 @@
   // Asistente (D-061 a D-063)
   import { PROVEEDORES, proveedor } from "../lib/rag/proveedores.js";
   import { asis, ponerClave, olvidarClaves, activarVectores, desactivarVectores, usaDemo } from "../lib/rag/asistente.svelte.js";
-  import { TAMANO_MB } from "../lib/rag/embeddings.js";
+  import { TAMANO_MB } from "../lib/rag/modelo.js";
   let recordarClave = $state(false);
   let dato = $state(""), notaTitulo = $state(""), notaTexto = $state("");
   async function subir(e) {
