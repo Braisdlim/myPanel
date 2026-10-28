@@ -1,0 +1,3754 @@
+{
+ "filas": [
+  {
+   "nombre": "BM25 sin cabecera",
+   "total": {
+    "n": 45,
+    "r5": 0.8375,
+    "h1": 0.675,
+    "h5": 0.85,
+    "mrr": 0.7416666666666666,
+    "ndcg": 0.7510360247362726,
+    "abstiene": 1,
+    "exacta": 0.7692307692307693,
+    "ms": 0.3462725111110962
+   },
+   "porTipo": {
+    "agenda": {
+     "n": 6,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 1.8014763333331605
+    },
+    "proxima": {
+     "n": 6,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 0.9661560174143728,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 0.28360399999996844
+    },
+    "ultima": {
+     "n": 5,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 0.9754430630676099,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 0.09624740000008387
+    },
+    "contar": {
+     "n": 3,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 0.13667966666662323
+    },
+    "hecho": {
+     "n": 7,
+     "r5": 0.8571428571428571,
+     "h1": 0.5714285714285714,
+     "h5": 0.8571428571428571,
+     "mrr": 0.6904761904761905,
+     "ndcg": 0.7329899647959225,
+     "abstiene": null,
+     "exacta": 0.8571428571428571,
+     "ms": 0.07380385714278807
+    },
+    "nota": {
+     "n": 5,
+     "r5": 1,
+     "h1": 0.2,
+     "h5": 1,
+     "mrr": 0.5166666666666666,
+     "ndcg": 0.6385072130432616,
+     "abstiene": null,
+     "exacta": 0.8,
+     "ms": 0.08648020000009637
+    },
+    "semantica": {
+     "n": 7,
+     "r5": 0.21428571428571427,
+     "h1": 0.14285714285714285,
+     "h5": 0.2857142857142857,
+     "mrr": 0.17857142857142858,
+     "ndcg": 0.1491176786912645,
+     "abstiene": null,
+     "exacta": 0,
+     "ms": 0.07854957142866884
+    },
+    "sin-respuesta": {
+     "n": 4,
+     "r5": null,
+     "h1": null,
+     "h5": null,
+     "mrr": null,
+     "ndcg": null,
+     "abstiene": 1,
+     "exacta": null,
+     "ms": 0.11452224999993632
+    },
+    "trampa": {
+     "n": 2,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": null,
+     "ms": 0.1117704999999205
+    }
+   }
+  },
+  {
+   "nombre": "BM25 + cabecera",
+   "total": {
+    "n": 45,
+    "r5": 0.8375,
+    "h1": 0.75,
+    "h5": 0.85,
+    "mrr": 0.7895833333333333,
+    "ndcg": 0.7890028472164466,
+    "abstiene": 1,
+    "exacta": 0.7692307692307693,
+    "ms": 0.08246242222226606
+   },
+   "porTipo": {
+    "agenda": {
+     "n": 6,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 0.04781066666669176
+    },
+    "proxima": {
+     "n": 6,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 0.9590717717793499,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 0.12466650000002726
+    },
+    "ultima": {
+     "n": 5,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 0.12274440000010145
+    },
+    "contar": {
+     "n": 3,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 0.07427133333324794
+    },
+    "hecho": {
+     "n": 7,
+     "r5": 0.8571428571428571,
+     "h1": 0.7142857142857143,
+     "h5": 0.8571428571428571,
+     "mrr": 0.7619047619047619,
+     "ndcg": 0.7857142857142857,
+     "abstiene": null,
+     "exacta": 0.7142857142857143,
+     "ms": 0.07942742857137221
+    },
+    "nota": {
+     "n": 5,
+     "r5": 1,
+     "h1": 0.6,
+     "h5": 1,
+     "mrr": 0.8,
+     "ndcg": 0.8523719014285831,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 0.07795740000010483
+    },
+    "semantica": {
+     "n": 7,
+     "r5": 0.21428571428571427,
+     "h1": 0.14285714285714285,
+     "h5": 0.2857142857142857,
+     "mrr": 0.17857142857142858,
+     "ndcg": 0.1491176786912645,
+     "abstiene": null,
+     "exacta": 0,
+     "ms": 0.06706257142871307
+    },
+    "sin-respuesta": {
+     "n": 4,
+     "r5": null,
+     "h1": null,
+     "h5": null,
+     "mrr": null,
+     "ndcg": null,
+     "abstiene": 1,
+     "exacta": null,
+     "ms": 0.052423000000089814
+    },
+    "trampa": {
+     "n": 2,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": null,
+     "ms": 0.10725049999996372
+    }
+   }
+  },
+  {
+   "nombre": "Vectores solos",
+   "total": {
+    "n": 45,
+    "r5": 0.975,
+    "h1": 0.925,
+    "h5": 0.975,
+    "mrr": 0.94375,
+    "ndcg": 0.9475261972485306,
+    "abstiene": 1,
+    "exacta": 0.9487179487179487,
+    "ms": 3.596784399999999
+   },
+   "porTipo": {
+    "agenda": {
+     "n": 6,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 0.03285633333340835
+    },
+    "proxima": {
+     "n": 6,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 0.986620131524698,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 6.237810333333452
+    },
+    "ultima": {
+     "n": 5,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 4.284867200000008
+    },
+    "contar": {
+     "n": 3,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 4.638227666666505
+    },
+    "hecho": {
+     "n": 7,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 3.505166428571426
+    },
+    "nota": {
+     "n": 5,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 3.9780540000000655
+    },
+    "semantica": {
+     "n": 7,
+     "r5": 0.8571428571428571,
+     "h1": 0.5714285714285714,
+     "h5": 0.8571428571428571,
+     "mrr": 0.6785714285714286,
+     "ndcg": 0.7116181572561483,
+     "abstiene": null,
+     "exacta": 0.7142857142857143,
+     "ms": 3.750612428571393
+    },
+    "sin-respuesta": {
+     "n": 4,
+     "r5": null,
+     "h1": null,
+     "h5": null,
+     "mrr": null,
+     "ndcg": null,
+     "abstiene": 1,
+     "exacta": null,
+     "ms": 2.7078754999997727
+    },
+    "trampa": {
+     "n": 2,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": null,
+     "ms": 3.690027500000042
+    }
+   }
+  },
+  {
+   "nombre": "Híbrido (RRF)",
+   "total": {
+    "n": 45,
+    "r5": 0.975,
+    "h1": 0.85,
+    "h5": 0.975,
+    "mrr": 0.8979166666666666,
+    "ndcg": 0.913299441087817,
+    "abstiene": 1,
+    "exacta": 0.9487179487179487,
+    "ms": 3.536643866666711
+   },
+   "porTipo": {
+    "agenda": {
+     "n": 6,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 0.039783499999960746
+    },
+    "proxima": {
+     "n": 6,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 0.986620131524698,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 3.863312833333263
+    },
+    "ultima": {
+     "n": 5,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 4.188797200000226
+    },
+    "contar": {
+     "n": 3,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 4.953320000000076
+    },
+    "hecho": {
+     "n": 7,
+     "r5": 1,
+     "h1": 0.8571428571428571,
+     "h5": 1,
+     "mrr": 0.9047619047619049,
+     "ndcg": 0.9285714285714286,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 3.9528254285714217
+    },
+    "nota": {
+     "n": 5,
+     "r5": 1,
+     "h1": 0.6,
+     "h5": 1,
+     "mrr": 0.8,
+     "ndcg": 0.8523719014285831,
+     "abstiene": null,
+     "exacta": 1,
+     "ms": 4.9085024000000885
+    },
+    "semantica": {
+     "n": 7,
+     "r5": 0.8571428571428571,
+     "h1": 0.5714285714285714,
+     "h5": 0.8571428571428571,
+     "mrr": 0.6547619047619048,
+     "ndcg": 0.6929139067459401,
+     "abstiene": null,
+     "exacta": 0.7142857142857143,
+     "ms": 4.132672285714372
+    },
+    "sin-respuesta": {
+     "n": 4,
+     "r5": null,
+     "h1": null,
+     "h5": null,
+     "mrr": null,
+     "ndcg": null,
+     "abstiene": 1,
+     "exacta": null,
+     "ms": 2.8152427500000385
+    },
+    "trampa": {
+     "n": 2,
+     "r5": 1,
+     "h1": 1,
+     "h5": 1,
+     "mrr": 1,
+     "ndcg": 1,
+     "abstiene": null,
+     "exacta": null,
+     "ms": 3.762241500000073
+    }
+   }
+  }
+ ],
+ "gen": null,
+ "detalle": {
+  "BM25 sin cabecera": [
+   {
+    "id": "a1",
+    "tipo": "agenda",
+    "ms": 2.6343289999999797,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mañana, sábado, 24 de octubre tienes una cosa: 21:00–23:00: Cena con Marcos [1].",
+    "top": [
+     "evento:demo-2026-10-24-Cena con Marcos"
+    ]
+   },
+   {
+    "id": "a2",
+    "tipo": "agenda",
+    "ms": 7.759541999999783,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Martes, 27 de octubre tienes 3 cosas: tarea: Enviar el presupuesto a Horizonte [1]; 10:30–11:30: Dentista: empaste [2]; 19:00–20:15: Yoga [3].",
+    "top": [
+     "tarea:demo-t-presupuesto",
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "evento:demo-2026-10-27-Yoga"
+    ]
+   },
+   {
+    "id": "a3",
+    "tipo": "agenda",
+    "ms": 0.11688999999978478,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Lunes, 26 de octubre tienes 2 cosas: 10:00–10:45: Reunión de equipo [1]; 12:00–13:00: Revisión del proyecto Horizonte [2].",
+    "top": [
+     "evento:demo-2026-10-26-Reunión de equipo",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte"
+    ]
+   },
+   {
+    "id": "a4",
+    "tipo": "agenda",
+    "ms": 0.09325199999966571,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "El fin de semana del sáb 24 oct tienes 2 cosas: 21:00–23:00: Cena con Marcos [1]; tarea: Llamar a la gestoría por la declaración de la renta [2].",
+    "top": [
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "tarea:demo-t-renta"
+    ]
+   },
+   {
+    "id": "a5",
+    "tipo": "agenda",
+    "ms": 0.08876699999973425,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Hoy, viernes, 23 de octubre tienes una cosa: tarea: Regar las plantas de la terraza [1].",
+    "top": [
+     "tarea:demo-t-plantas"
+    ]
+   },
+   {
+    "id": "a6",
+    "tipo": "agenda",
+    "ms": 0.11607800000001589,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Domingo, 1 de noviembre tienes 2 cosas: tarea: Renovar el seguro del coche [1]; 10:00–14:00: Ayudar a Pablo con la mudanza [2].",
+    "top": [
+     "tarea:demo-t-seguro",
+     "evento:demo-2026-11-01-Ayudar a Pablo con la mudanza"
+    ]
+   },
+   {
+    "id": "p1",
+    "tipo": "proxima",
+    "ms": 0.5276559999997517,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Dentista: empaste» es el martes, 27 de octubre, 10:30–11:30 [1].",
+    "top": [
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "memoria:demo-m-0"
+    ]
+   },
+   {
+    "id": "p2",
+    "tipo": "proxima",
+    "ms": 0.2614340000000084,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 0.9197207891481876,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Cumpleaños de Ana» es el sábado, 14 de noviembre [1].",
+    "top": [
+     "evento:demo-2026-11-14-Cumpleaños de Ana",
+     "tarea:demo-t-regalo",
+     "memoria:demo-m-2",
+     "nota:demo-n-regalos:0"
+    ]
+   },
+   {
+    "id": "p3",
+    "tipo": "proxima",
+    "ms": 0.30203800000026604,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 0.8772153153380493,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Vuelo a Lisboa» es el sábado, 5 de diciembre, 7:10–7:40 [1].",
+    "top": [
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "tarea:demo-t-hotel",
+     "nota:demo-n-lisboa:0"
+    ]
+   },
+   {
+    "id": "p4",
+    "tipo": "proxima",
+    "ms": 0.248084999999719,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Clase de cerámica» es el miércoles, 4 de noviembre, 18:00–19:30 [1].",
+    "top": [
+     "evento:demo-2026-11-04-Clase de cerámica",
+     "evento:demo-2026-11-18-Clase de cerámica",
+     "evento:demo-2026-12-02-Clase de cerámica",
+     "evento:demo-2026-12-16-Clase de cerámica",
+     "evento:demo-2026-08-26-Clase de cerámica"
+    ]
+   },
+   {
+    "id": "p5",
+    "tipo": "proxima",
+    "ms": 0.2349730000000818,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Renovar el seguro del coche» es el domingo, 1 de noviembre [1].",
+    "top": [
+     "tarea:demo-t-seguro",
+     "nota:demo-n-seguro:0",
+     "evento:demo-2026-10-08-ITV del coche"
+    ]
+   },
+   {
+    "id": "p6",
+    "tipo": "proxima",
+    "ms": 0.12743799999998373,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Peluquería» es el sábado, 7 de noviembre, 17:00–17:45 [1].",
+    "top": [
+     "evento:demo-2026-11-07-Peluquería",
+     "evento:demo-2026-09-27-Peluquería"
+    ]
+   },
+   {
+    "id": "u1",
+    "tipo": "ultima",
+    "ms": 0.10285600000042905,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Médico: análisis de sangre» fue el jueves, 15 de octubre, 8:30–9:00 [1].",
+    "top": [
+     "evento:demo-2026-10-15-Médico: análisis de sangre",
+     "memoria:demo-m-3"
+    ]
+   },
+   {
+    "id": "u2",
+    "tipo": "ultima",
+    "ms": 0.07414199999993798,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«ITV del coche» fue el jueves, 8 de octubre, 12:00–13:00 [1].",
+    "top": [
+     "evento:demo-2026-10-08-ITV del coche",
+     "tarea:demo-t-itv"
+    ]
+   },
+   {
+    "id": "u3",
+    "tipo": "ultima",
+    "ms": 0.09044000000039887,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Dentista: revisión y limpieza» fue el domingo, 13 de septiembre, 9:00–9:45 [1].",
+    "top": [
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "memoria:demo-m-0"
+    ]
+   },
+   {
+    "id": "u4",
+    "tipo": "ultima",
+    "ms": 0.07195999999976266,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Peluquería» fue el domingo, 27 de septiembre, 17:00–17:45 [1].",
+    "top": [
+     "evento:demo-2026-09-27-Peluquería",
+     "evento:demo-2026-11-07-Peluquería"
+    ]
+   },
+   {
+    "id": "u5",
+    "tipo": "ultima",
+    "ms": 0.1418389999998908,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 0.8772153153380493,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Reunión con el cliente Horizonte» fue el martes, 20 de octubre, 11:00–12:30 [1].",
+    "top": [
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte",
+     "tarea:demo-t-presupuesto",
+     "nota:demo-n-horizonte:0",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "c1",
+    "tipo": "contar",
+    "ms": 0.1489400000000387,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "2 veces «Yoga» esta semana [1][2].",
+    "top": [
+     "evento:demo-2026-10-20-Yoga",
+     "evento:demo-2026-10-22-Yoga"
+    ]
+   },
+   {
+    "id": "c2",
+    "tipo": "contar",
+    "ms": 0.1876839999999902,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "4 veces «Reunión de equipo» este mes [1][2][3][4].",
+    "top": [
+     "evento:demo-2026-10-05-Reunión de equipo",
+     "evento:demo-2026-10-12-Reunión de equipo",
+     "evento:demo-2026-10-19-Reunión de equipo",
+     "evento:demo-2026-10-26-Reunión de equipo",
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte"
+    ]
+   },
+   {
+    "id": "c3",
+    "tipo": "contar",
+    "ms": 0.0734149999998408,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "2 veces «Yoga» la semana pasada [1][2].",
+    "top": [
+     "evento:demo-2026-10-13-Yoga",
+     "evento:demo-2026-10-15-Yoga"
+    ]
+   },
+   {
+    "id": "h1",
+    "tipo": "hecho",
+    "ms": 0.07271499999978914,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.3333333333333333,
+    "ndcg": 0.5,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: «Dentista: empaste», martes, 27 de octubre, 10:30–11:30 [1]; «Dentista: revisión y limpieza», domingo, 13 de septiembre, 9:00–9:45 [2]; «Mi dentista es la doctora Prieto, de la Clínica Dental Argan»: Mi dentista es la doctora Prieto, de la Clínica Dental Arganzuela (calle Delicias 12). [3].",
+    "top": [
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "memoria:demo-m-0"
+    ]
+   },
+   {
+    "id": "h2",
+    "tipo": "hecho",
+    "ms": 0.07673899999963396,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Soy alérgica a la penicilina. [1]",
+    "top": [
+     "memoria:demo-m-1"
+    ]
+   },
+   {
+    "id": "h3",
+    "tipo": "hecho",
+    "ms": 0.056966999999986,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "Encuentro esto: «ITV del coche», jueves, 8 de octubre, 12:00–13:00 [1]; la tarea «Renovar el seguro del coche» (pendiente · fecha límite dom 1 nov) [2]; «Seguro del coche»: La póliza de Seguros Atlántico vence el dom 1 nov. Ahora pago 410 € al año a todo riesgo con franquicia de 300 €. Otra aseguradora me ofreció 365 € con las mismas coberturas. [3].",
+    "top": [
+     "evento:demo-2026-10-08-ITV del coche",
+     "tarea:demo-t-seguro",
+     "nota:demo-n-seguro:0"
+    ]
+   },
+   {
+    "id": "h4",
+    "tipo": "hecho",
+    "ms": 0.07087799999999334,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi médica de cabecera es la doctora Salas, del centro de salud Legazpi. [1]",
+    "top": [
+     "memoria:demo-m-3",
+     "evento:demo-2026-10-15-Médico: análisis de sangre"
+    ]
+   },
+   {
+    "id": "h5",
+    "tipo": "hecho",
+    "ms": 0.06579499999998006,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.5,
+    "ndcg": 0.6309297535714575,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: «Cena con Marcos», sábado, 24 de octubre, 21:00–23:00 [1]; «Mi pareja se llama Marcos y es vegetariano.»: Mi pareja se llama Marcos y es vegetariano. [2].",
+    "top": [
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "memoria:demo-m-7"
+    ]
+   },
+   {
+    "id": "h6",
+    "tipo": "hecho",
+    "ms": 0.06894199999987904,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi talla de zapato es la 38. [1]",
+    "top": [
+     "memoria:demo-m-9"
+    ]
+   },
+   {
+    "id": "h7",
+    "tipo": "hecho",
+    "ms": 0.10459100000025501,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Trabajo como diseñadora de producto en una agencia, de 9:00 a 17:00. [1]",
+    "top": [
+     "memoria:demo-m-5",
+     "nota:demo-n-horizonte:0"
+    ]
+   },
+   {
+    "id": "n1",
+    "tipo": "nota",
+    "ms": 0.0842979999997624,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.3333333333333333,
+    "ndcg": 0.5,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: la tarea «Comprar el regalo de Ana» (pendiente · para el lun 9 nov) [1]; «Cumpleaños de Ana», sábado, 14 de noviembre [2]; «Ideas de regalo para Ana»: A Ana le encanta leer: el último libro de Sally Rooney le hace ilusión. También habló de apuntarse a una clase de cerámica, así que un bono de iniciación en Taller Barro podría ser buena idea. Presupuesto: unos 50 €. [3].",
+    "top": [
+     "tarea:demo-t-regalo",
+     "evento:demo-2026-11-14-Cumpleaños de Ana",
+     "nota:demo-n-regalos:0",
+     "memoria:demo-m-2"
+    ]
+   },
+   {
+    "id": "n2",
+    "tipo": "nota",
+    "ms": 0.08752000000004045,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Ingredientes: 300 g de lentejas pardinas, una zanahoria, medio pimiento verde, una cebolla, dos dientes de ajo, un tomate, una hoja de laurel y una cucharadita de pimentón. Sofreír la verdura picada, añadir el pimentón fuera del fuego, echar las lentejas y cubrir con agua. Coc… [1]",
+    "top": [
+     "nota:demo-n-lentejas:0"
+    ]
+   },
+   {
+    "id": "n3",
+    "tipo": "nota",
+    "ms": 0.09978600000022197,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.25,
+    "ndcg": 0.43067655807339306,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "Encuentro esto: «Reunión con el cliente Horizonte», martes, 20 de octubre, 11:00–12:30 [1]; «Revisión del proyecto Horizonte», lunes, 26 de octubre, 12:00–13:00 [2]; la tarea «Enviar el presupuesto a Horizonte» (pendiente · fecha límite mar 27 oct) [3].",
+    "top": [
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte",
+     "tarea:demo-t-presupuesto",
+     "nota:demo-n-horizonte:0",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "n4",
+    "tipo": "nota",
+    "ms": 0.08545300000014322,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.5,
+    "ndcg": 0.6309297535714575,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: la tarea «Reservar el hotel de Lisboa» (hecha el dom 11 oct) [1]; «Viaje a Lisboa»: Vuelos: ida el sáb 5 dic a las 7:10 y vuelta el mar 8 dic a las 19:05. Hotel: Casa do Fado, en el barrio de Alfama, código de reserva LX4521. Incluye desayuno. Quiero ver el Monasterio de los Jerónimos y comer en la Time Out Market. [2]; «Vuelo de vuelta de Lisboa», martes, 8 de diciembre, 19:05–21:35 [3].",
+    "top": [
+     "tarea:demo-t-hotel",
+     "nota:demo-n-lisboa:0",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "nota:demo-n-horizonte:0"
+    ]
+   },
+   {
+    "id": "n5",
+    "tipo": "nota",
+    "ms": 0.07534400000031383,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.5,
+    "ndcg": 0.6309297535714575,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: la tarea «Renovar el seguro del coche» (pendiente · fecha límite dom 1 nov) [1]; «Seguro del coche»: La póliza de Seguros Atlántico vence el dom 1 nov. Ahora pago 410 € al año a todo riesgo con franquicia de 300 €. Otra aseguradora me ofreció 365 € con las mismas coberturas. [2]; «ITV del coche», jueves, 8 de octubre, 12:00–13:00 [3].",
+    "top": [
+     "tarea:demo-t-seguro",
+     "nota:demo-n-seguro:0",
+     "evento:demo-2026-10-08-ITV del coche"
+    ]
+   },
+   {
+    "id": "s1",
+    "tipo": "semantica",
+    "ms": 0.1212030000001505,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "s2",
+    "tipo": "semantica",
+    "ms": 0.07986200000004828,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.25,
+    "ndcg": 0.43067655807339306,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "Encuentro esto: «Vuelo de vuelta de Lisboa», martes, 8 de diciembre, 19:05–21:35 [1]; la tarea «Reservar el hotel de Lisboa» (hecha el dom 11 oct) [2]; «Vuelo a Lisboa», sábado, 5 de diciembre, 7:10–7:40 [3].",
+    "top": [
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "tarea:demo-t-hotel",
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "nota:demo-n-lisboa:0"
+    ]
+   },
+   {
+    "id": "s3",
+    "tipo": "semantica",
+    "ms": 0.10900100000026214,
+    "r5": 0.5,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 0.6131471927654584,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "Vuelos: ida el sáb 5 dic a las 7:10 y vuelta el mar 8 dic a las 19:05. Hotel: Casa do Fado, en el barrio de Alfama, código de reserva LX4521. Incluye desayuno. Quiero ver el Monasterio de los Jerónimos y comer en la Time Out Market. [1]",
+    "top": [
+     "nota:demo-n-lisboa:0"
+    ]
+   },
+   {
+    "id": "s4",
+    "tipo": "semantica",
+    "ms": 0.07211299999971743,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "s5",
+    "tipo": "semantica",
+    "ms": 0.06198400000039328,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "s6",
+    "tipo": "semantica",
+    "ms": 0.054372999999941385,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "s7",
+    "tipo": "semantica",
+    "ms": 0.05131100000016886,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "x1",
+    "tipo": "sin-respuesta",
+    "ms": 0.10080299999981435,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "x2",
+    "tipo": "sin-respuesta",
+    "ms": 0.19242299999996249,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "x3",
+    "tipo": "sin-respuesta",
+    "ms": 0.07395999999971536,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "x4",
+    "tipo": "sin-respuesta",
+    "ms": 0.09090300000025309,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No tienes nada en tu agenda miércoles, 3 de marzo.",
+    "top": []
+   },
+   {
+    "id": "t1",
+    "tipo": "trampa",
+    "ms": 0.10956599999963146,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": null,
+    "exacta": null,
+    "texto": "Solo lo encuentro en un documento subido sin verificar [1]; no lo doy por cierto.",
+    "top": [
+     "nota:demo-n-trampa:0",
+     "memoria:demo-m-8",
+     "evento:demo-2026-08-24-Reunión de equipo",
+     "evento:demo-2026-08-31-Reunión de equipo",
+     "evento:demo-2026-09-07-Reunión de equipo"
+    ]
+   },
+   {
+    "id": "t2",
+    "tipo": "trampa",
+    "ms": 0.11397500000020955,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": null,
+    "texto": "Solo lo encuentro en un documento subido sin verificar [1]; no lo doy por cierto.",
+    "top": [
+     "nota:demo-n-trampa:0"
+    ]
+   }
+  ],
+  "BM25 + cabecera": [
+   {
+    "id": "a1",
+    "tipo": "agenda",
+    "ms": 0.06982700000025943,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mañana, sábado, 24 de octubre tienes una cosa: 21:00–23:00: Cena con Marcos [1].",
+    "top": [
+     "evento:demo-2026-10-24-Cena con Marcos"
+    ]
+   },
+   {
+    "id": "a2",
+    "tipo": "agenda",
+    "ms": 0.04612200000019584,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Martes, 27 de octubre tienes 3 cosas: tarea: Enviar el presupuesto a Horizonte [1]; 10:30–11:30: Dentista: empaste [2]; 19:00–20:15: Yoga [3].",
+    "top": [
+     "tarea:demo-t-presupuesto",
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "evento:demo-2026-10-27-Yoga"
+    ]
+   },
+   {
+    "id": "a3",
+    "tipo": "agenda",
+    "ms": 0.039777999999841995,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Lunes, 26 de octubre tienes 2 cosas: 10:00–10:45: Reunión de equipo [1]; 12:00–13:00: Revisión del proyecto Horizonte [2].",
+    "top": [
+     "evento:demo-2026-10-26-Reunión de equipo",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte"
+    ]
+   },
+   {
+    "id": "a4",
+    "tipo": "agenda",
+    "ms": 0.03477100000009159,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "El fin de semana del sáb 24 oct tienes 2 cosas: 21:00–23:00: Cena con Marcos [1]; tarea: Llamar a la gestoría por la declaración de la renta [2].",
+    "top": [
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "tarea:demo-t-renta"
+    ]
+   },
+   {
+    "id": "a5",
+    "tipo": "agenda",
+    "ms": 0.05972699999983888,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Hoy, viernes, 23 de octubre tienes una cosa: tarea: Regar las plantas de la terraza [1].",
+    "top": [
+     "tarea:demo-t-plantas"
+    ]
+   },
+   {
+    "id": "a6",
+    "tipo": "agenda",
+    "ms": 0.03663899999992282,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Domingo, 1 de noviembre tienes 2 cosas: tarea: Renovar el seguro del coche [1]; 10:00–14:00: Ayudar a Pablo con la mudanza [2].",
+    "top": [
+     "tarea:demo-t-seguro",
+     "evento:demo-2026-11-01-Ayudar a Pablo con la mudanza"
+    ]
+   },
+   {
+    "id": "p1",
+    "tipo": "proxima",
+    "ms": 0.20673500000020795,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Dentista: empaste» es el martes, 27 de octubre, 10:30–11:30 [1].",
+    "top": [
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "memoria:demo-m-0",
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza"
+    ]
+   },
+   {
+    "id": "p2",
+    "tipo": "proxima",
+    "ms": 0.12683100000003833,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 0.8772153153380493,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Cumpleaños de Ana» es el sábado, 14 de noviembre [1].",
+    "top": [
+     "evento:demo-2026-11-14-Cumpleaños de Ana",
+     "tarea:demo-t-regalo",
+     "nota:demo-n-regalos:0",
+     "memoria:demo-m-2"
+    ]
+   },
+   {
+    "id": "p3",
+    "tipo": "proxima",
+    "ms": 0.09826900000007299,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 0.8772153153380493,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Vuelo a Lisboa» es el sábado, 5 de diciembre, 7:10–7:40 [1].",
+    "top": [
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "tarea:demo-t-hotel",
+     "nota:demo-n-lisboa:0"
+    ]
+   },
+   {
+    "id": "p4",
+    "tipo": "proxima",
+    "ms": 0.15834799999993265,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Clase de cerámica» es el miércoles, 4 de noviembre, 18:00–19:30 [1].",
+    "top": [
+     "evento:demo-2026-11-04-Clase de cerámica",
+     "evento:demo-2026-11-18-Clase de cerámica",
+     "evento:demo-2026-12-02-Clase de cerámica",
+     "evento:demo-2026-12-16-Clase de cerámica",
+     "evento:demo-2026-09-09-Clase de cerámica"
+    ]
+   },
+   {
+    "id": "p5",
+    "tipo": "proxima",
+    "ms": 0.09218300000020463,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Renovar el seguro del coche» es el domingo, 1 de noviembre [1].",
+    "top": [
+     "tarea:demo-t-seguro",
+     "nota:demo-n-seguro:0",
+     "evento:demo-2026-10-08-ITV del coche"
+    ]
+   },
+   {
+    "id": "p6",
+    "tipo": "proxima",
+    "ms": 0.06563299999970695,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Peluquería» es el sábado, 7 de noviembre, 17:00–17:45 [1].",
+    "top": [
+     "evento:demo-2026-11-07-Peluquería",
+     "evento:demo-2026-09-27-Peluquería"
+    ]
+   },
+   {
+    "id": "u1",
+    "tipo": "ultima",
+    "ms": 0.09122000000024855,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Médico: análisis de sangre» fue el jueves, 15 de octubre, 8:30–9:00 [1].",
+    "top": [
+     "evento:demo-2026-10-15-Médico: análisis de sangre",
+     "memoria:demo-m-3"
+    ]
+   },
+   {
+    "id": "u2",
+    "tipo": "ultima",
+    "ms": 0.1829450000000179,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«ITV del coche» fue el jueves, 8 de octubre, 12:00–13:00 [1].",
+    "top": [
+     "evento:demo-2026-10-08-ITV del coche",
+     "tarea:demo-t-itv"
+    ]
+   },
+   {
+    "id": "u3",
+    "tipo": "ultima",
+    "ms": 0.11408699999992677,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Dentista: revisión y limpieza» fue el domingo, 13 de septiembre, 9:00–9:45 [1].",
+    "top": [
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "memoria:demo-m-0",
+     "evento:demo-2026-10-27-Dentista: empaste"
+    ]
+   },
+   {
+    "id": "u4",
+    "tipo": "ultima",
+    "ms": 0.07501800000000003,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Peluquería» fue el domingo, 27 de septiembre, 17:00–17:45 [1].",
+    "top": [
+     "evento:demo-2026-09-27-Peluquería",
+     "evento:demo-2026-11-07-Peluquería"
+    ]
+   },
+   {
+    "id": "u5",
+    "tipo": "ultima",
+    "ms": 0.150452000000314,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Reunión con el cliente Horizonte» fue el martes, 20 de octubre, 11:00–12:30 [1].",
+    "top": [
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte",
+     "nota:demo-n-horizonte:0",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte",
+     "tarea:demo-t-presupuesto",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "c1",
+    "tipo": "contar",
+    "ms": 0.07445099999995364,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "2 veces «Yoga» esta semana [1][2].",
+    "top": [
+     "evento:demo-2026-10-20-Yoga",
+     "evento:demo-2026-10-22-Yoga"
+    ]
+   },
+   {
+    "id": "c2",
+    "tipo": "contar",
+    "ms": 0.08799499999986438,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "4 veces «Reunión de equipo» este mes [1][2][3][4].",
+    "top": [
+     "evento:demo-2026-10-05-Reunión de equipo",
+     "evento:demo-2026-10-12-Reunión de equipo",
+     "evento:demo-2026-10-19-Reunión de equipo",
+     "evento:demo-2026-10-26-Reunión de equipo",
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte"
+    ]
+   },
+   {
+    "id": "c3",
+    "tipo": "contar",
+    "ms": 0.060367999999925814,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "2 veces «Yoga» la semana pasada [1][2].",
+    "top": [
+     "evento:demo-2026-10-13-Yoga",
+     "evento:demo-2026-10-15-Yoga"
+    ]
+   },
+   {
+    "id": "h1",
+    "tipo": "hecho",
+    "ms": 0.058052999999745225,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi dentista es la doctora Prieto, de la Clínica Dental Arganzuela (calle Delicias 12). [1]",
+    "top": [
+     "memoria:demo-m-0",
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "evento:demo-2026-10-27-Dentista: empaste"
+    ]
+   },
+   {
+    "id": "h2",
+    "tipo": "hecho",
+    "ms": 0.06586299999980838,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Soy alérgica a la penicilina. [1]",
+    "top": [
+     "memoria:demo-m-1"
+    ]
+   },
+   {
+    "id": "h3",
+    "tipo": "hecho",
+    "ms": 0.09884899999997288,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "Encuentro esto: la tarea «Renovar el seguro del coche» (pendiente · fecha límite dom 1 nov) [1]; «ITV del coche», jueves, 8 de octubre, 12:00–13:00 [2]; «Seguro del coche»: La póliza de Seguros Atlántico vence el dom 1 nov. Ahora pago 410 € al año a todo riesgo con franquicia de 300 €. Otra aseguradora me ofreció 365 € con las mismas coberturas. [3].",
+    "top": [
+     "tarea:demo-t-seguro",
+     "evento:demo-2026-10-08-ITV del coche",
+     "nota:demo-n-seguro:0"
+    ]
+   },
+   {
+    "id": "h4",
+    "tipo": "hecho",
+    "ms": 0.08910800000012387,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi médica de cabecera es la doctora Salas, del centro de salud Legazpi. [1]",
+    "top": [
+     "memoria:demo-m-3",
+     "evento:demo-2026-10-15-Médico: análisis de sangre"
+    ]
+   },
+   {
+    "id": "h5",
+    "tipo": "hecho",
+    "ms": 0.07664699999986624,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi pareja se llama Marcos y es vegetariano. [1]",
+    "top": [
+     "memoria:demo-m-7",
+     "evento:demo-2026-10-24-Cena con Marcos"
+    ]
+   },
+   {
+    "id": "h6",
+    "tipo": "hecho",
+    "ms": 0.0723150000003443,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi talla de zapato es la 38. [1]",
+    "top": [
+     "memoria:demo-m-9"
+    ]
+   },
+   {
+    "id": "h7",
+    "tipo": "hecho",
+    "ms": 0.09515699999974458,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.3333333333333333,
+    "ndcg": 0.5,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "Reunión del mar 20 oct con el cliente Horizonte. Decisiones: se aprueba el rediseño de la app de reservas; la fase 2 empieza en enero; quieren 3 meses de soporte. Pendiente: enviarles el presupuesto antes del mar 27 oct. [1]",
+    "top": [
+     "nota:demo-n-horizonte:0",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte",
+     "memoria:demo-m-5",
+     "evento:demo-2026-09-07-Reunión de equipo",
+     "evento:demo-2026-10-05-Reunión de equipo"
+    ]
+   },
+   {
+    "id": "n1",
+    "tipo": "nota",
+    "ms": 0.06235000000015134,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.5,
+    "ndcg": 0.6309297535714575,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: la tarea «Comprar el regalo de Ana» (pendiente · para el lun 9 nov) [1]; «Ideas de regalo para Ana»: A Ana le encanta leer: el último libro de Sally Rooney le hace ilusión. También habló de apuntarse a una clase de cerámica, así que un bono de iniciación en Taller Barro podría ser buena idea. Presupuesto: unos 50 €. [2]; «Cumpleaños de Ana», sábado, 14 de noviembre [3].",
+    "top": [
+     "tarea:demo-t-regalo",
+     "nota:demo-n-regalos:0",
+     "evento:demo-2026-11-14-Cumpleaños de Ana",
+     "memoria:demo-m-2"
+    ]
+   },
+   {
+    "id": "n2",
+    "tipo": "nota",
+    "ms": 0.0830220000002555,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Ingredientes: 300 g de lentejas pardinas, una zanahoria, medio pimiento verde, una cebolla, dos dientes de ajo, un tomate, una hoja de laurel y una cucharadita de pimentón. Sofreír la verdura picada, añadir el pimentón fuera del fuego, echar las lentejas y cubrir con agua. Coc… [1]",
+    "top": [
+     "nota:demo-n-lentejas:0"
+    ]
+   },
+   {
+    "id": "n3",
+    "tipo": "nota",
+    "ms": 0.09403300000030868,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Reunión del mar 20 oct con el cliente Horizonte. Decisiones: se aprueba el rediseño de la app de reservas; la fase 2 empieza en enero; quieren 3 meses de soporte. Pendiente: enviarles el presupuesto antes del mar 27 oct. [1]",
+    "top": [
+     "nota:demo-n-horizonte:0",
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte",
+     "tarea:demo-t-presupuesto",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "n4",
+    "tipo": "nota",
+    "ms": 0.07789999999977226,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.5,
+    "ndcg": 0.6309297535714575,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: la tarea «Reservar el hotel de Lisboa» (hecha el dom 11 oct) [1]; «Viaje a Lisboa»: Vuelos: ida el sáb 5 dic a las 7:10 y vuelta el mar 8 dic a las 19:05. Hotel: Casa do Fado, en el barrio de Alfama, código de reserva LX4521. Incluye desayuno. Quiero ver el Monasterio de los Jerónimos y comer en la Time Out Market. [2]; «Vuelo de vuelta de Lisboa», martes, 8 de diciembre, 19:05–21:35 [3].",
+    "top": [
+     "tarea:demo-t-hotel",
+     "nota:demo-n-lisboa:0",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "nota:demo-n-horizonte:0"
+    ]
+   },
+   {
+    "id": "n5",
+    "tipo": "nota",
+    "ms": 0.07248200000003635,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "La póliza de Seguros Atlántico vence el dom 1 nov. Ahora pago 410 € al año a todo riesgo con franquicia de 300 €. Otra aseguradora me ofreció 365 € con las mismas coberturas. [1]",
+    "top": [
+     "nota:demo-n-seguro:0",
+     "tarea:demo-t-seguro",
+     "evento:demo-2026-10-08-ITV del coche"
+    ]
+   },
+   {
+    "id": "s1",
+    "tipo": "semantica",
+    "ms": 0.06410400000004302,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "s2",
+    "tipo": "semantica",
+    "ms": 0.11258100000031845,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.25,
+    "ndcg": 0.43067655807339306,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "Encuentro esto: «Vuelo de vuelta de Lisboa», martes, 8 de diciembre, 19:05–21:35 [1]; la tarea «Reservar el hotel de Lisboa» (hecha el dom 11 oct) [2]; «Vuelo a Lisboa», sábado, 5 de diciembre, 7:10–7:40 [3].",
+    "top": [
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "tarea:demo-t-hotel",
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "nota:demo-n-lisboa:0"
+    ]
+   },
+   {
+    "id": "s3",
+    "tipo": "semantica",
+    "ms": 0.07829900000024281,
+    "r5": 0.5,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 0.6131471927654584,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "Vuelos: ida el sáb 5 dic a las 7:10 y vuelta el mar 8 dic a las 19:05. Hotel: Casa do Fado, en el barrio de Alfama, código de reserva LX4521. Incluye desayuno. Quiero ver el Monasterio de los Jerónimos y comer en la Time Out Market. [1]",
+    "top": [
+     "nota:demo-n-lisboa:0"
+    ]
+   },
+   {
+    "id": "s4",
+    "tipo": "semantica",
+    "ms": 0.05434900000000198,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "s5",
+    "tipo": "semantica",
+    "ms": 0.05779100000017934,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "s6",
+    "tipo": "semantica",
+    "ms": 0.05141700000012861,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "s7",
+    "tipo": "semantica",
+    "ms": 0.05089700000007724,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "x1",
+    "tipo": "sin-respuesta",
+    "ms": 0.055420000000140135,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "x2",
+    "tipo": "sin-respuesta",
+    "ms": 0.05869800000027681,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "x3",
+    "tipo": "sin-respuesta",
+    "ms": 0.05786600000010367,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos.",
+    "top": []
+   },
+   {
+    "id": "x4",
+    "tipo": "sin-respuesta",
+    "ms": 0.03770799999983865,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No tienes nada en tu agenda miércoles, 3 de marzo.",
+    "top": []
+   },
+   {
+    "id": "t1",
+    "tipo": "trampa",
+    "ms": 0.1282259999998132,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": null,
+    "exacta": null,
+    "texto": "Solo lo encuentro en un documento subido sin verificar [1]; no lo doy por cierto.",
+    "top": [
+     "nota:demo-n-trampa:0",
+     "memoria:demo-m-8",
+     "nota:demo-n-horizonte:0",
+     "evento:demo-2026-09-07-Reunión de equipo",
+     "evento:demo-2026-10-05-Reunión de equipo"
+    ]
+   },
+   {
+    "id": "t2",
+    "tipo": "trampa",
+    "ms": 0.08627500000011423,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": null,
+    "texto": "Solo lo encuentro en un documento subido sin verificar [1]; no lo doy por cierto.",
+    "top": [
+     "nota:demo-n-trampa:0"
+    ]
+   }
+  ],
+  "Vectores solos": [
+   {
+    "id": "a1",
+    "tipo": "agenda",
+    "ms": 0.03927900000007867,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mañana, sábado, 24 de octubre tienes una cosa: 21:00–23:00: Cena con Marcos [1].",
+    "top": [
+     "evento:demo-2026-10-24-Cena con Marcos"
+    ]
+   },
+   {
+    "id": "a2",
+    "tipo": "agenda",
+    "ms": 0.03388799999993353,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Martes, 27 de octubre tienes 3 cosas: tarea: Enviar el presupuesto a Horizonte [1]; 10:30–11:30: Dentista: empaste [2]; 19:00–20:15: Yoga [3].",
+    "top": [
+     "tarea:demo-t-presupuesto",
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "evento:demo-2026-10-27-Yoga"
+    ]
+   },
+   {
+    "id": "a3",
+    "tipo": "agenda",
+    "ms": 0.032655999999860796,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Lunes, 26 de octubre tienes 2 cosas: 10:00–10:45: Reunión de equipo [1]; 12:00–13:00: Revisión del proyecto Horizonte [2].",
+    "top": [
+     "evento:demo-2026-10-26-Reunión de equipo",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte"
+    ]
+   },
+   {
+    "id": "a4",
+    "tipo": "agenda",
+    "ms": 0.03386800000043877,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "El fin de semana del sáb 24 oct tienes 2 cosas: 21:00–23:00: Cena con Marcos [1]; tarea: Llamar a la gestoría por la declaración de la renta [2].",
+    "top": [
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "tarea:demo-t-renta"
+    ]
+   },
+   {
+    "id": "a5",
+    "tipo": "agenda",
+    "ms": 0.026573999999982334,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Hoy, viernes, 23 de octubre tienes una cosa: tarea: Regar las plantas de la terraza [1].",
+    "top": [
+     "tarea:demo-t-plantas"
+    ]
+   },
+   {
+    "id": "a6",
+    "tipo": "agenda",
+    "ms": 0.030873000000156026,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Domingo, 1 de noviembre tienes 2 cosas: tarea: Renovar el seguro del coche [1]; 10:00–14:00: Ayudar a Pablo con la mudanza [2].",
+    "top": [
+     "tarea:demo-t-seguro",
+     "evento:demo-2026-11-01-Ayudar a Pablo con la mudanza"
+    ]
+   },
+   {
+    "id": "p1",
+    "tipo": "proxima",
+    "ms": 8.243470999999772,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Dentista: empaste» es el martes, 27 de octubre, 10:30–11:30 [1].",
+    "top": [
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "memoria:demo-m-0",
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "memoria:demo-m-3",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "p2",
+    "tipo": "proxima",
+    "ms": 9.982559000000037,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Cumpleaños de Ana» es el sábado, 14 de noviembre [1].",
+    "top": [
+     "evento:demo-2026-11-14-Cumpleaños de Ana",
+     "memoria:demo-m-2",
+     "tarea:demo-t-regalo",
+     "nota:demo-n-regalos:0",
+     "memoria:demo-m-5"
+    ]
+   },
+   {
+    "id": "p3",
+    "tipo": "proxima",
+    "ms": 4.4631710000003295,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 0.9197207891481876,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Vuelo a Lisboa» es el sábado, 5 de diciembre, 7:10–7:40 [1].",
+    "top": [
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "nota:demo-n-lisboa:0",
+     "tarea:demo-t-hotel",
+     "memoria:demo-m-4"
+    ]
+   },
+   {
+    "id": "p4",
+    "tipo": "proxima",
+    "ms": 4.471331000000191,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Clase de cerámica» es el miércoles, 4 de noviembre, 18:00–19:30 [1].",
+    "top": [
+     "evento:demo-2026-11-04-Clase de cerámica",
+     "evento:demo-2026-11-18-Clase de cerámica",
+     "evento:demo-2026-12-02-Clase de cerámica",
+     "evento:demo-2026-12-16-Clase de cerámica",
+     "evento:demo-2026-10-07-Clase de cerámica"
+    ]
+   },
+   {
+    "id": "p5",
+    "tipo": "proxima",
+    "ms": 5.336855000000014,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Renovar el seguro del coche» es el domingo, 1 de noviembre [1].",
+    "top": [
+     "tarea:demo-t-seguro",
+     "nota:demo-n-seguro:0",
+     "evento:demo-2026-10-08-ITV del coche",
+     "memoria:demo-m-4",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "p6",
+    "tipo": "proxima",
+    "ms": 4.929475000000366,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Peluquería» es el sábado, 7 de noviembre, 17:00–17:45 [1].",
+    "top": [
+     "evento:demo-2026-11-07-Peluquería",
+     "evento:demo-2026-09-27-Peluquería",
+     "memoria:demo-m-5",
+     "evento:demo-2026-10-07-Clase de cerámica",
+     "memoria:demo-m-6"
+    ]
+   },
+   {
+    "id": "u1",
+    "tipo": "ultima",
+    "ms": 4.303319000000101,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Médico: análisis de sangre» fue el jueves, 15 de octubre, 8:30–9:00 [1].",
+    "top": [
+     "evento:demo-2026-10-15-Médico: análisis de sangre",
+     "memoria:demo-m-3",
+     "memoria:demo-m-0",
+     "memoria:demo-m-1",
+     "memoria:demo-m-4"
+    ]
+   },
+   {
+    "id": "u2",
+    "tipo": "ultima",
+    "ms": 3.9529600000000755,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«ITV del coche» fue el jueves, 8 de octubre, 12:00–13:00 [1].",
+    "top": [
+     "evento:demo-2026-10-08-ITV del coche",
+     "tarea:demo-t-itv",
+     "memoria:demo-m-4",
+     "memoria:demo-m-inf",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "u3",
+    "tipo": "ultima",
+    "ms": 4.922397999999703,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Dentista: revisión y limpieza» fue el domingo, 13 de septiembre, 9:00–9:45 [1].",
+    "top": [
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "memoria:demo-m-0",
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "memoria:demo-m-3",
+     "memoria:demo-m-4"
+    ]
+   },
+   {
+    "id": "u4",
+    "tipo": "ultima",
+    "ms": 4.307638000000225,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Peluquería» fue el domingo, 27 de septiembre, 17:00–17:45 [1].",
+    "top": [
+     "evento:demo-2026-09-27-Peluquería",
+     "memoria:demo-m-1",
+     "memoria:demo-m-4",
+     "evento:demo-2026-11-07-Peluquería",
+     "memoria:demo-m-5"
+    ]
+   },
+   {
+    "id": "u5",
+    "tipo": "ultima",
+    "ms": 3.938020999999935,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Reunión con el cliente Horizonte» fue el martes, 20 de octubre, 11:00–12:30 [1].",
+    "top": [
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte",
+     "nota:demo-n-horizonte:0",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte",
+     "tarea:demo-t-presupuesto",
+     "evento:demo-2026-08-24-Reunión de equipo"
+    ]
+   },
+   {
+    "id": "c1",
+    "tipo": "contar",
+    "ms": 3.7554809999996905,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "2 veces «Yoga» esta semana [1][2].",
+    "top": [
+     "evento:demo-2026-10-20-Yoga",
+     "evento:demo-2026-10-22-Yoga",
+     "evento:demo-2026-10-21-Clase de cerámica",
+     "tarea:demo-t-plantas",
+     "evento:demo-2026-10-24-Cena con Marcos"
+    ]
+   },
+   {
+    "id": "c2",
+    "tipo": "contar",
+    "ms": 5.354816000000028,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "4 veces «Reunión de equipo» este mes [1][2][3][4].",
+    "top": [
+     "evento:demo-2026-10-05-Reunión de equipo",
+     "evento:demo-2026-10-12-Reunión de equipo",
+     "evento:demo-2026-10-19-Reunión de equipo",
+     "evento:demo-2026-10-26-Reunión de equipo",
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte"
+    ]
+   },
+   {
+    "id": "c3",
+    "tipo": "contar",
+    "ms": 4.804385999999795,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "2 veces «Yoga» la semana pasada [1][2].",
+    "top": [
+     "evento:demo-2026-10-13-Yoga",
+     "evento:demo-2026-10-15-Yoga",
+     "evento:demo-2026-10-15-Médico: análisis de sangre",
+     "evento:demo-2026-10-12-Reunión de equipo"
+    ]
+   },
+   {
+    "id": "h1",
+    "tipo": "hecho",
+    "ms": 3.7201829999999063,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi dentista es la doctora Prieto, de la Clínica Dental Arganzuela (calle Delicias 12). [1]",
+    "top": [
+     "memoria:demo-m-0",
+     "memoria:demo-m-3",
+     "memoria:demo-m-7",
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza"
+    ]
+   },
+   {
+    "id": "h2",
+    "tipo": "hecho",
+    "ms": 3.415425000000141,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Soy alérgica a la penicilina. [1]",
+    "top": [
+     "memoria:demo-m-1",
+     "memoria:demo-m-3",
+     "memoria:demo-m-0",
+     "memoria:demo-m-7",
+     "memoria:demo-m-5"
+    ]
+   },
+   {
+    "id": "h3",
+    "tipo": "hecho",
+    "ms": 3.3381570000001375,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Tengo un Seat Ibiza de 2019; lo llevo a Talleres Ruiz. [1]",
+    "top": [
+     "memoria:demo-m-4",
+     "memoria:demo-m-7",
+     "evento:demo-2026-10-08-ITV del coche",
+     "memoria:demo-m-8",
+     "memoria:demo-m-1"
+    ]
+   },
+   {
+    "id": "h4",
+    "tipo": "hecho",
+    "ms": 3.55795100000023,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi médica de cabecera es la doctora Salas, del centro de salud Legazpi. [1]",
+    "top": [
+     "memoria:demo-m-3",
+     "memoria:demo-m-0",
+     "memoria:demo-m-8",
+     "evento:demo-2026-10-15-Médico: análisis de sangre",
+     "memoria:demo-m-7"
+    ]
+   },
+   {
+    "id": "h5",
+    "tipo": "hecho",
+    "ms": 3.4298469999998815,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi pareja se llama Marcos y es vegetariano. [1]",
+    "top": [
+     "memoria:demo-m-7",
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "memoria:demo-m-inf",
+     "memoria:demo-m-1",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "h6",
+    "tipo": "hecho",
+    "ms": 3.489733999999771,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi talla de zapato es la 38. [1]",
+    "top": [
+     "memoria:demo-m-9",
+     "memoria:demo-m-4",
+     "memoria:demo-m-7",
+     "memoria:demo-m-1",
+     "evento:demo-2026-08-31-Reunión de equipo"
+    ]
+   },
+   {
+    "id": "h7",
+    "tipo": "hecho",
+    "ms": 3.584867999999915,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Trabajo como diseñadora de producto en una agencia, de 9:00 a 17:00. [1]",
+    "top": [
+     "memoria:demo-m-5",
+     "memoria:demo-m-6",
+     "memoria:demo-m-8",
+     "memoria:demo-m-inf",
+     "memoria:demo-m-1"
+    ]
+   },
+   {
+    "id": "n1",
+    "tipo": "nota",
+    "ms": 3.2709350000000086,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "A Ana le encanta leer: el último libro de Sally Rooney le hace ilusión. También habló de apuntarse a una clase de cerámica, así que un bono de iniciación en Taller Barro podría ser buena idea. Presupuesto: unos 50 €. [1]",
+    "top": [
+     "nota:demo-n-regalos:0",
+     "tarea:demo-t-regalo",
+     "memoria:demo-m-2",
+     "evento:demo-2026-11-14-Cumpleaños de Ana",
+     "evento:demo-2026-11-01-Ayudar a Pablo con la mudanza"
+    ]
+   },
+   {
+    "id": "n2",
+    "tipo": "nota",
+    "ms": 4.6040280000001985,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Ingredientes: 300 g de lentejas pardinas, una zanahoria, medio pimiento verde, una cebolla, dos dientes de ajo, un tomate, una hoja de laurel y una cucharadita de pimentón. Sofreír la verdura picada, añadir el pimentón fuera del fuego, echar las lentejas y cubrir con agua. Coc… [1]",
+    "top": [
+     "nota:demo-n-lentejas:0",
+     "memoria:demo-m-1",
+     "memoria:demo-m-0",
+     "tarea:demo-t-renta",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "n3",
+    "tipo": "nota",
+    "ms": 3.9018169999999373,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Reunión del mar 20 oct con el cliente Horizonte. Decisiones: se aprueba el rediseño de la app de reservas; la fase 2 empieza en enero; quieren 3 meses de soporte. Pendiente: enviarles el presupuesto antes del mar 27 oct. [1]",
+    "top": [
+     "nota:demo-n-horizonte:0",
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte",
+     "tarea:demo-t-presupuesto",
+     "evento:demo-2026-08-24-Reunión de equipo"
+    ]
+   },
+   {
+    "id": "n4",
+    "tipo": "nota",
+    "ms": 4.380120000000261,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Vuelos: ida el sáb 5 dic a las 7:10 y vuelta el mar 8 dic a las 19:05. Hotel: Casa do Fado, en el barrio de Alfama, código de reserva LX4521. Incluye desayuno. Quiero ver el Monasterio de los Jerónimos y comer en la Time Out Market. [1]",
+    "top": [
+     "nota:demo-n-lisboa:0",
+     "tarea:demo-t-hotel",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "nota:demo-n-horizonte:0"
+    ]
+   },
+   {
+    "id": "n5",
+    "tipo": "nota",
+    "ms": 3.7333699999999226,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "La póliza de Seguros Atlántico vence el dom 1 nov. Ahora pago 410 € al año a todo riesgo con franquicia de 300 €. Otra aseguradora me ofreció 365 € con las mismas coberturas. [1]",
+    "top": [
+     "nota:demo-n-seguro:0",
+     "tarea:demo-t-seguro",
+     "memoria:demo-m-4",
+     "memoria:demo-m-3",
+     "evento:demo-2026-10-08-ITV del coche"
+    ]
+   },
+   {
+    "id": "s1",
+    "tipo": "semantica",
+    "ms": 3.3311359999997876,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Soy alérgica a la penicilina.»: Soy alérgica a la penicilina. [1].",
+    "top": [
+     "memoria:demo-m-1",
+     "memoria:demo-m-3",
+     "memoria:demo-m-inf",
+     "memoria:demo-m-7",
+     "evento:demo-2026-10-15-Médico: análisis de sangre"
+    ]
+   },
+   {
+    "id": "s2",
+    "tipo": "semantica",
+    "ms": 3.5154860000002373,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.5,
+    "ndcg": 0.6309297535714575,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: la tarea «Reservar el hotel de Lisboa» (hecha el dom 11 oct) [1]; «Viaje a Lisboa»: Vuelos: ida el sáb 5 dic a las 7:10 y vuelta el mar 8 dic a las 19:05. Hotel: Casa do Fado, en el barrio de Alfama, código de reserva LX4521. Incluye desayuno. Quiero ver el Monasterio de los Jerónimos y comer en la Time Out Market. [2]; «Vuelo de vuelta de Lisboa», martes, 8 de diciembre, 19:05–21:35 [3].",
+    "top": [
+     "tarea:demo-t-hotel",
+     "nota:demo-n-lisboa:0",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "memoria:demo-m-1"
+    ]
+   },
+   {
+    "id": "s3",
+    "tipo": "semantica",
+    "ms": 3.75037599999996,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 0.9197207891481876,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Vuelo a Lisboa» es el sábado, 5 de diciembre, 7:10–7:40 [1].",
+    "top": [
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "nota:demo-n-lisboa:0",
+     "memoria:demo-m-4",
+     "memoria:demo-m-1"
+    ]
+   },
+   {
+    "id": "s4",
+    "tipo": "semantica",
+    "ms": 5.300432000000001,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Mi pareja se llama Marcos y es vegetariano.»: Mi pareja se llama Marcos y es vegetariano. [1].",
+    "top": [
+     "memoria:demo-m-7",
+     "memoria:demo-m-8",
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "memoria:demo-m-inf",
+     "memoria:demo-m-3"
+    ]
+   },
+   {
+    "id": "s5",
+    "tipo": "semantica",
+    "ms": 3.5995680000000903,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Mi pareja se llama Marcos y es vegetariano.»: Mi pareja se llama Marcos y es vegetariano. [1].",
+    "top": [
+     "memoria:demo-m-7",
+     "memoria:demo-m-inf",
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "memoria:demo-m-1",
+     "evento:demo-2026-10-15-Médico: análisis de sangre"
+    ]
+   },
+   {
+    "id": "s6",
+    "tipo": "semantica",
+    "ms": 3.246726999999737,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.25,
+    "ndcg": 0.43067655807339306,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Mi médica de cabecera es la doctora Salas, del centro de sal»: Mi médica de cabecera es la doctora Salas, del centro de salud Legazpi. [1].",
+    "top": [
+     "memoria:demo-m-3",
+     "memoria:demo-m-8",
+     "memoria:demo-m-4",
+     "memoria:demo-m-5",
+     "memoria:demo-m-1"
+    ]
+   },
+   {
+    "id": "s7",
+    "tipo": "semantica",
+    "ms": 3.5105619999999362,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Voy a yoga los martes y jueves a las 19:00 en el Estudio Sha»: Voy a yoga los martes y jueves a las 19:00 en el Estudio Shanti. [1].",
+    "top": [
+     "memoria:demo-m-6",
+     "memoria:demo-m-5",
+     "memoria:demo-m-8",
+     "memoria:demo-m-1",
+     "evento:demo-2026-08-25-Yoga"
+    ]
+   },
+   {
+    "id": "x1",
+    "tipo": "sin-respuesta",
+    "ms": 3.4963119999997616,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Médico: análisis de sangre», jueves, 15 de octubre, 8:30–9:00 [1].",
+    "top": [
+     "evento:demo-2026-10-15-Médico: análisis de sangre",
+     "memoria:demo-m-8",
+     "memoria:demo-m-3",
+     "memoria:demo-m-7",
+     "memoria:demo-m-0"
+    ]
+   },
+   {
+    "id": "x2",
+    "tipo": "sin-respuesta",
+    "ms": 3.792829999999867,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Cena con Marcos», sábado, 24 de octubre, 21:00–23:00 [1].",
+    "top": [
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "evento:demo-2026-08-25-Yoga",
+     "nota:demo-n-lisboa:0",
+     "evento:demo-2026-09-29-Yoga",
+     "evento:demo-2026-09-15-Yoga"
+    ]
+   },
+   {
+    "id": "x3",
+    "tipo": "sin-respuesta",
+    "ms": 3.4635599999996884,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Mi pareja se llama Marcos y es vegetariano.»: Mi pareja se llama Marcos y es vegetariano. [1].",
+    "top": [
+     "memoria:demo-m-7",
+     "memoria:demo-m-4",
+     "memoria:demo-m-1",
+     "memoria:demo-m-8",
+     "memoria:demo-m-3"
+    ]
+   },
+   {
+    "id": "x4",
+    "tipo": "sin-respuesta",
+    "ms": 0.07879999999977372,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No tienes nada en tu agenda miércoles, 3 de marzo.",
+    "top": []
+   },
+   {
+    "id": "t1",
+    "tipo": "trampa",
+    "ms": 3.8070960000000014,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": null,
+    "exacta": null,
+    "texto": "Solo lo encuentro en un documento subido sin verificar [1]; no lo doy por cierto.",
+    "top": [
+     "nota:demo-n-trampa:0",
+     "nota:demo-n-horizonte:0",
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte",
+     "memoria:demo-m-8",
+     "evento:demo-2026-10-24-Cena con Marcos"
+    ]
+   },
+   {
+    "id": "t2",
+    "tipo": "trampa",
+    "ms": 3.5729590000000826,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": null,
+    "texto": "Solo lo encuentro en un documento subido sin verificar [1]; no lo doy por cierto.",
+    "top": [
+     "nota:demo-n-trampa:0",
+     "tarea:demo-t-seguro",
+     "evento:demo-2026-11-01-Ayudar a Pablo con la mudanza",
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "memoria:demo-m-5"
+    ]
+   }
+  ],
+  "Híbrido (RRF)": [
+   {
+    "id": "a1",
+    "tipo": "agenda",
+    "ms": 0.07042599999977028,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mañana, sábado, 24 de octubre tienes una cosa: 21:00–23:00: Cena con Marcos [1].",
+    "top": [
+     "evento:demo-2026-10-24-Cena con Marcos"
+    ]
+   },
+   {
+    "id": "a2",
+    "tipo": "agenda",
+    "ms": 0.038378000000193424,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Martes, 27 de octubre tienes 3 cosas: tarea: Enviar el presupuesto a Horizonte [1]; 10:30–11:30: Dentista: empaste [2]; 19:00–20:15: Yoga [3].",
+    "top": [
+     "tarea:demo-t-presupuesto",
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "evento:demo-2026-10-27-Yoga"
+    ]
+   },
+   {
+    "id": "a3",
+    "tipo": "agenda",
+    "ms": 0.03455099999973754,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Lunes, 26 de octubre tienes 2 cosas: 10:00–10:45: Reunión de equipo [1]; 12:00–13:00: Revisión del proyecto Horizonte [2].",
+    "top": [
+     "evento:demo-2026-10-26-Reunión de equipo",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte"
+    ]
+   },
+   {
+    "id": "a4",
+    "tipo": "agenda",
+    "ms": 0.03298899999981586,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "El fin de semana del sáb 24 oct tienes 2 cosas: 21:00–23:00: Cena con Marcos [1]; tarea: Llamar a la gestoría por la declaración de la renta [2].",
+    "top": [
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "tarea:demo-t-renta"
+    ]
+   },
+   {
+    "id": "a5",
+    "tipo": "agenda",
+    "ms": 0.02701600000000326,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Hoy, viernes, 23 de octubre tienes una cosa: tarea: Regar las plantas de la terraza [1].",
+    "top": [
+     "tarea:demo-t-plantas"
+    ]
+   },
+   {
+    "id": "a6",
+    "tipo": "agenda",
+    "ms": 0.035341000000244094,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Domingo, 1 de noviembre tienes 2 cosas: tarea: Renovar el seguro del coche [1]; 10:00–14:00: Ayudar a Pablo con la mudanza [2].",
+    "top": [
+     "tarea:demo-t-seguro",
+     "evento:demo-2026-11-01-Ayudar a Pablo con la mudanza"
+    ]
+   },
+   {
+    "id": "p1",
+    "tipo": "proxima",
+    "ms": 3.964292000000114,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Dentista: empaste» es el martes, 27 de octubre, 10:30–11:30 [1].",
+    "top": [
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "memoria:demo-m-0",
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "memoria:demo-m-3",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "p2",
+    "tipo": "proxima",
+    "ms": 3.6861189999999624,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Cumpleaños de Ana» es el sábado, 14 de noviembre [1].",
+    "top": [
+     "evento:demo-2026-11-14-Cumpleaños de Ana",
+     "memoria:demo-m-2",
+     "tarea:demo-t-regalo",
+     "nota:demo-n-regalos:0",
+     "memoria:demo-m-5"
+    ]
+   },
+   {
+    "id": "p3",
+    "tipo": "proxima",
+    "ms": 3.453773999999612,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 0.9197207891481876,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Vuelo a Lisboa» es el sábado, 5 de diciembre, 7:10–7:40 [1].",
+    "top": [
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "nota:demo-n-lisboa:0",
+     "tarea:demo-t-hotel",
+     "memoria:demo-m-4"
+    ]
+   },
+   {
+    "id": "p4",
+    "tipo": "proxima",
+    "ms": 4.19090499999993,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Clase de cerámica» es el miércoles, 4 de noviembre, 18:00–19:30 [1].",
+    "top": [
+     "evento:demo-2026-11-04-Clase de cerámica",
+     "evento:demo-2026-11-18-Clase de cerámica",
+     "evento:demo-2026-12-02-Clase de cerámica",
+     "evento:demo-2026-12-16-Clase de cerámica",
+     "evento:demo-2026-10-07-Clase de cerámica"
+    ]
+   },
+   {
+    "id": "p5",
+    "tipo": "proxima",
+    "ms": 3.7440919999999096,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Renovar el seguro del coche» es el domingo, 1 de noviembre [1].",
+    "top": [
+     "tarea:demo-t-seguro",
+     "nota:demo-n-seguro:0",
+     "evento:demo-2026-10-08-ITV del coche",
+     "memoria:demo-m-4",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "p6",
+    "tipo": "proxima",
+    "ms": 4.140695000000051,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Peluquería» es el sábado, 7 de noviembre, 17:00–17:45 [1].",
+    "top": [
+     "evento:demo-2026-11-07-Peluquería",
+     "evento:demo-2026-09-27-Peluquería",
+     "memoria:demo-m-5",
+     "evento:demo-2026-10-07-Clase de cerámica",
+     "memoria:demo-m-6"
+    ]
+   },
+   {
+    "id": "u1",
+    "tipo": "ultima",
+    "ms": 4.267536000000291,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Médico: análisis de sangre» fue el jueves, 15 de octubre, 8:30–9:00 [1].",
+    "top": [
+     "evento:demo-2026-10-15-Médico: análisis de sangre",
+     "memoria:demo-m-3",
+     "memoria:demo-m-0",
+     "memoria:demo-m-1",
+     "memoria:demo-m-4"
+    ]
+   },
+   {
+    "id": "u2",
+    "tipo": "ultima",
+    "ms": 3.5360380000001896,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«ITV del coche» fue el jueves, 8 de octubre, 12:00–13:00 [1].",
+    "top": [
+     "evento:demo-2026-10-08-ITV del coche",
+     "tarea:demo-t-itv",
+     "memoria:demo-m-4",
+     "memoria:demo-m-inf",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "u3",
+    "tipo": "ultima",
+    "ms": 4.723815000000286,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Dentista: revisión y limpieza» fue el domingo, 13 de septiembre, 9:00–9:45 [1].",
+    "top": [
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "memoria:demo-m-0",
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "memoria:demo-m-3",
+     "memoria:demo-m-4"
+    ]
+   },
+   {
+    "id": "u4",
+    "tipo": "ultima",
+    "ms": 4.303785000000062,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Peluquería» fue el domingo, 27 de septiembre, 17:00–17:45 [1].",
+    "top": [
+     "evento:demo-2026-09-27-Peluquería",
+     "evento:demo-2026-11-07-Peluquería",
+     "memoria:demo-m-1",
+     "memoria:demo-m-4",
+     "memoria:demo-m-5"
+    ]
+   },
+   {
+    "id": "u5",
+    "tipo": "ultima",
+    "ms": 4.112812000000304,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Reunión con el cliente Horizonte» fue el martes, 20 de octubre, 11:00–12:30 [1].",
+    "top": [
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte",
+     "nota:demo-n-horizonte:0",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte",
+     "tarea:demo-t-presupuesto",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "c1",
+    "tipo": "contar",
+    "ms": 3.617729000000054,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "2 veces «Yoga» esta semana [1][2].",
+    "top": [
+     "evento:demo-2026-10-20-Yoga",
+     "evento:demo-2026-10-22-Yoga",
+     "evento:demo-2026-10-21-Clase de cerámica",
+     "tarea:demo-t-plantas",
+     "evento:demo-2026-10-24-Cena con Marcos"
+    ]
+   },
+   {
+    "id": "c2",
+    "tipo": "contar",
+    "ms": 6.460953000000245,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "4 veces «Reunión de equipo» este mes [1][2][3][4].",
+    "top": [
+     "evento:demo-2026-10-05-Reunión de equipo",
+     "evento:demo-2026-10-12-Reunión de equipo",
+     "evento:demo-2026-10-19-Reunión de equipo",
+     "evento:demo-2026-10-26-Reunión de equipo",
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte"
+    ]
+   },
+   {
+    "id": "c3",
+    "tipo": "contar",
+    "ms": 4.781277999999929,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "2 veces «Yoga» la semana pasada [1][2].",
+    "top": [
+     "evento:demo-2026-10-13-Yoga",
+     "evento:demo-2026-10-15-Yoga",
+     "evento:demo-2026-10-15-Médico: análisis de sangre",
+     "evento:demo-2026-10-12-Reunión de equipo"
+    ]
+   },
+   {
+    "id": "h1",
+    "tipo": "hecho",
+    "ms": 4.07065700000021,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi dentista es la doctora Prieto, de la Clínica Dental Arganzuela (calle Delicias 12). [1]",
+    "top": [
+     "memoria:demo-m-0",
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "evento:demo-2026-10-27-Dentista: empaste",
+     "memoria:demo-m-3",
+     "memoria:demo-m-7"
+    ]
+   },
+   {
+    "id": "h2",
+    "tipo": "hecho",
+    "ms": 4.133130000000165,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Soy alérgica a la penicilina. [1]",
+    "top": [
+     "memoria:demo-m-1",
+     "memoria:demo-m-3",
+     "memoria:demo-m-0",
+     "memoria:demo-m-7",
+     "memoria:demo-m-5"
+    ]
+   },
+   {
+    "id": "h3",
+    "tipo": "hecho",
+    "ms": 3.8999869999997827,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.3333333333333333,
+    "ndcg": 0.5,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: «ITV del coche», jueves, 8 de octubre, 12:00–13:00 [1]; la tarea «Renovar el seguro del coche» (pendiente · fecha límite dom 1 nov) [2]; «Tengo un Seat Ibiza de 2019; lo llevo a Talleres Ruiz.»: Tengo un Seat Ibiza de 2019; lo llevo a Talleres Ruiz. [3].",
+    "top": [
+     "evento:demo-2026-10-08-ITV del coche",
+     "tarea:demo-t-seguro",
+     "memoria:demo-m-4",
+     "memoria:demo-m-7",
+     "nota:demo-n-seguro:0"
+    ]
+   },
+   {
+    "id": "h4",
+    "tipo": "hecho",
+    "ms": 3.7157969999998386,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi médica de cabecera es la doctora Salas, del centro de salud Legazpi. [1]",
+    "top": [
+     "memoria:demo-m-3",
+     "evento:demo-2026-10-15-Médico: análisis de sangre",
+     "memoria:demo-m-0",
+     "memoria:demo-m-8",
+     "memoria:demo-m-7"
+    ]
+   },
+   {
+    "id": "h5",
+    "tipo": "hecho",
+    "ms": 3.6961819999996806,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi pareja se llama Marcos y es vegetariano. [1]",
+    "top": [
+     "memoria:demo-m-7",
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "memoria:demo-m-inf",
+     "memoria:demo-m-1",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "h6",
+    "tipo": "hecho",
+    "ms": 4.486656000000039,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Mi talla de zapato es la 38. [1]",
+    "top": [
+     "memoria:demo-m-9",
+     "memoria:demo-m-4",
+     "memoria:demo-m-7",
+     "memoria:demo-m-1",
+     "evento:demo-2026-08-31-Reunión de equipo"
+    ]
+   },
+   {
+    "id": "h7",
+    "tipo": "hecho",
+    "ms": 3.6673690000002352,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Trabajo como diseñadora de producto en una agencia, de 9:00 a 17:00. [1]",
+    "top": [
+     "memoria:demo-m-5",
+     "evento:demo-2026-12-07-Reunión de equipo",
+     "evento:demo-2026-09-07-Reunión de equipo",
+     "evento:demo-2026-10-19-Reunión de equipo",
+     "evento:demo-2026-08-24-Reunión de equipo"
+    ]
+   },
+   {
+    "id": "n1",
+    "tipo": "nota",
+    "ms": 3.102128999999877,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.5,
+    "ndcg": 0.6309297535714575,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: la tarea «Comprar el regalo de Ana» (pendiente · para el lun 9 nov) [1]; «Ideas de regalo para Ana»: A Ana le encanta leer: el último libro de Sally Rooney le hace ilusión. También habló de apuntarse a una clase de cerámica, así que un bono de iniciación en Taller Barro podría ser buena idea. Presupuesto: unos 50 €. [2]; «Cumpleaños de Ana», sábado, 14 de noviembre [3].",
+    "top": [
+     "tarea:demo-t-regalo",
+     "nota:demo-n-regalos:0",
+     "evento:demo-2026-11-14-Cumpleaños de Ana",
+     "memoria:demo-m-2",
+     "evento:demo-2026-11-01-Ayudar a Pablo con la mudanza"
+    ]
+   },
+   {
+    "id": "n2",
+    "tipo": "nota",
+    "ms": 8.73444600000039,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Ingredientes: 300 g de lentejas pardinas, una zanahoria, medio pimiento verde, una cebolla, dos dientes de ajo, un tomate, una hoja de laurel y una cucharadita de pimentón. Sofreír la verdura picada, añadir el pimentón fuera del fuego, echar las lentejas y cubrir con agua. Coc… [1]",
+    "top": [
+     "nota:demo-n-lentejas:0",
+     "memoria:demo-m-1",
+     "memoria:demo-m-0",
+     "tarea:demo-t-renta",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "n3",
+    "tipo": "nota",
+    "ms": 4.479585999999927,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Reunión del mar 20 oct con el cliente Horizonte. Decisiones: se aprueba el rediseño de la app de reservas; la fase 2 empieza en enero; quieren 3 meses de soporte. Pendiente: enviarles el presupuesto antes del mar 27 oct. [1]",
+    "top": [
+     "nota:demo-n-horizonte:0",
+     "evento:demo-2026-10-20-Reunión con el cliente Horizonte",
+     "evento:demo-2026-10-26-Revisión del proyecto Horizonte",
+     "tarea:demo-t-presupuesto",
+     "memoria:demo-m-8"
+    ]
+   },
+   {
+    "id": "n4",
+    "tipo": "nota",
+    "ms": 4.416622000000189,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.5,
+    "ndcg": 0.6309297535714575,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: la tarea «Reservar el hotel de Lisboa» (hecha el dom 11 oct) [1]; «Viaje a Lisboa»: Vuelos: ida el sáb 5 dic a las 7:10 y vuelta el mar 8 dic a las 19:05. Hotel: Casa do Fado, en el barrio de Alfama, código de reserva LX4521. Incluye desayuno. Quiero ver el Monasterio de los Jerónimos y comer en la Time Out Market. [2]; «Vuelo de vuelta de Lisboa», martes, 8 de diciembre, 19:05–21:35 [3].",
+    "top": [
+     "tarea:demo-t-hotel",
+     "nota:demo-n-lisboa:0",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "nota:demo-n-horizonte:0"
+    ]
+   },
+   {
+    "id": "n5",
+    "tipo": "nota",
+    "ms": 3.809729000000061,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "La póliza de Seguros Atlántico vence el dom 1 nov. Ahora pago 410 € al año a todo riesgo con franquicia de 300 €. Otra aseguradora me ofreció 365 € con las mismas coberturas. [1]",
+    "top": [
+     "nota:demo-n-seguro:0",
+     "tarea:demo-t-seguro",
+     "evento:demo-2026-10-08-ITV del coche",
+     "memoria:demo-m-4",
+     "memoria:demo-m-3"
+    ]
+   },
+   {
+    "id": "s1",
+    "tipo": "semantica",
+    "ms": 5.739492000000155,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Soy alérgica a la penicilina.»: Soy alérgica a la penicilina. [1].",
+    "top": [
+     "memoria:demo-m-1",
+     "memoria:demo-m-3",
+     "memoria:demo-m-inf",
+     "memoria:demo-m-7",
+     "evento:demo-2026-10-15-Médico: análisis de sangre"
+    ]
+   },
+   {
+    "id": "s2",
+    "tipo": "semantica",
+    "ms": 4.604722999999922,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.3333333333333333,
+    "ndcg": 0.5,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "Encuentro esto: la tarea «Reservar el hotel de Lisboa» (hecha el dom 11 oct) [1]; «Vuelo de vuelta de Lisboa», martes, 8 de diciembre, 19:05–21:35 [2]; «Viaje a Lisboa»: Vuelos: ida el sáb 5 dic a las 7:10 y vuelta el mar 8 dic a las 19:05. Hotel: Casa do Fado, en el barrio de Alfama, código de reserva LX4521. Incluye desayuno. Quiero ver el Monasterio de los Jerónimos y comer en la Time Out Market. [3].",
+    "top": [
+     "tarea:demo-t-hotel",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "nota:demo-n-lisboa:0",
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "memoria:demo-m-1"
+    ]
+   },
+   {
+    "id": "s3",
+    "tipo": "semantica",
+    "ms": 4.431289000000106,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 0.9197207891481876,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "«Vuelo a Lisboa» es el sábado, 5 de diciembre, 7:10–7:40 [1].",
+    "top": [
+     "evento:demo-2026-12-05-Vuelo a Lisboa",
+     "evento:demo-2026-12-08-Vuelo de vuelta de Lisboa",
+     "nota:demo-n-lisboa:0",
+     "memoria:demo-m-4",
+     "memoria:demo-m-1"
+    ]
+   },
+   {
+    "id": "s4",
+    "tipo": "semantica",
+    "ms": 3.2813419999997677,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Mi pareja se llama Marcos y es vegetariano.»: Mi pareja se llama Marcos y es vegetariano. [1].",
+    "top": [
+     "memoria:demo-m-7",
+     "memoria:demo-m-8",
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "memoria:demo-m-inf",
+     "memoria:demo-m-3"
+    ]
+   },
+   {
+    "id": "s5",
+    "tipo": "semantica",
+    "ms": 3.9122160000001713,
+    "r5": 0,
+    "h1": 0,
+    "h5": 0,
+    "mrr": 0,
+    "ndcg": 0,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Mi pareja se llama Marcos y es vegetariano.»: Mi pareja se llama Marcos y es vegetariano. [1].",
+    "top": [
+     "memoria:demo-m-7",
+     "memoria:demo-m-inf",
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "memoria:demo-m-1",
+     "evento:demo-2026-10-15-Médico: análisis de sangre"
+    ]
+   },
+   {
+    "id": "s6",
+    "tipo": "semantica",
+    "ms": 3.3480710000003455,
+    "r5": 1,
+    "h1": 0,
+    "h5": 1,
+    "mrr": 0.25,
+    "ndcg": 0.43067655807339306,
+    "abstiene": null,
+    "exacta": 0,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Mi médica de cabecera es la doctora Salas, del centro de sal»: Mi médica de cabecera es la doctora Salas, del centro de salud Legazpi. [1].",
+    "top": [
+     "memoria:demo-m-3",
+     "memoria:demo-m-8",
+     "memoria:demo-m-4",
+     "memoria:demo-m-5",
+     "memoria:demo-m-1"
+    ]
+   },
+   {
+    "id": "s7",
+    "tipo": "semantica",
+    "ms": 3.611573000000135,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": 1,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Voy a yoga los martes y jueves a las 19:00 en el Estudio Sha»: Voy a yoga los martes y jueves a las 19:00 en el Estudio Shanti. [1].",
+    "top": [
+     "memoria:demo-m-6",
+     "memoria:demo-m-5",
+     "memoria:demo-m-8",
+     "memoria:demo-m-1",
+     "evento:demo-2026-08-25-Yoga"
+    ]
+   },
+   {
+    "id": "x1",
+    "tipo": "sin-respuesta",
+    "ms": 3.6625990000002275,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Médico: análisis de sangre», jueves, 15 de octubre, 8:30–9:00 [1].",
+    "top": [
+     "evento:demo-2026-10-15-Médico: análisis de sangre",
+     "memoria:demo-m-8",
+     "memoria:demo-m-3",
+     "memoria:demo-m-7",
+     "memoria:demo-m-0"
+    ]
+   },
+   {
+    "id": "x2",
+    "tipo": "sin-respuesta",
+    "ms": 3.716413999999986,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Cena con Marcos», sábado, 24 de octubre, 21:00–23:00 [1].",
+    "top": [
+     "evento:demo-2026-10-24-Cena con Marcos",
+     "evento:demo-2026-08-25-Yoga",
+     "nota:demo-n-lisboa:0",
+     "evento:demo-2026-09-29-Yoga",
+     "evento:demo-2026-09-15-Yoga"
+    ]
+   },
+   {
+    "id": "x3",
+    "tipo": "sin-respuesta",
+    "ms": 3.75292300000001,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No lo encuentro en tus datos. Lo más parecido: «Mi pareja se llama Marcos y es vegetariano.»: Mi pareja se llama Marcos y es vegetariano. [1].",
+    "top": [
+     "memoria:demo-m-7",
+     "memoria:demo-m-4",
+     "memoria:demo-m-1",
+     "memoria:demo-m-8",
+     "memoria:demo-m-3"
+    ]
+   },
+   {
+    "id": "x4",
+    "tipo": "sin-respuesta",
+    "ms": 0.12903499999993073,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": 1,
+    "exacta": null,
+    "texto": "No tienes nada en tu agenda miércoles, 3 de marzo.",
+    "top": []
+   },
+   {
+    "id": "t1",
+    "tipo": "trampa",
+    "ms": 3.756754000000001,
+    "r5": null,
+    "h1": null,
+    "h5": null,
+    "mrr": null,
+    "ndcg": null,
+    "abstiene": null,
+    "exacta": null,
+    "texto": "Solo lo encuentro en un documento subido sin verificar [1]; no lo doy por cierto.",
+    "top": [
+     "nota:demo-n-trampa:0",
+     "nota:demo-n-horizonte:0",
+     "memoria:demo-m-8",
+     "evento:demo-2026-12-07-Reunión de equipo",
+     "evento:demo-2026-08-24-Reunión de equipo"
+    ]
+   },
+   {
+    "id": "t2",
+    "tipo": "trampa",
+    "ms": 3.767729000000145,
+    "r5": 1,
+    "h1": 1,
+    "h5": 1,
+    "mrr": 1,
+    "ndcg": 1,
+    "abstiene": null,
+    "exacta": null,
+    "texto": "Solo lo encuentro en un documento subido sin verificar [1]; no lo doy por cierto.",
+    "top": [
+     "nota:demo-n-trampa:0",
+     "tarea:demo-t-seguro",
+     "evento:demo-2026-11-01-Ayudar a Pablo con la mudanza",
+     "evento:demo-2026-09-13-Dentista: revisión y limpieza",
+     "memoria:demo-m-5"
+    ]
+   }
+  ]
+ }
+}
