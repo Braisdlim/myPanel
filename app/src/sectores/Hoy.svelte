@@ -1,5 +1,5 @@
 <script>
-  import { app, ir } from "../lib/estado.svelte.js";
+  import { app, ir, FINANZAS_VISIBLE } from "../lib/estado.svelte.js";
   import { deHoy, minutosPlaneados } from "../lib/tareas.js";
   import { eventosDelDia, conflictos, cuenta, esReal, bloquea } from "../lib/agenda.svelte.js";
   import { FONDOS, serie, euros, porcentaje } from "../lib/ejemplo.js";
@@ -118,12 +118,14 @@
     <div class="pa-label bloque">pide atención</div>
     {@render avisos()}
 
+    {#if FINANZAS_VISIBLE}
     <div class="pa-label bloque">tu dinero hoy <span class="etiqueta-ejemplo">ejemplo</span></div>
     <button class="dinero" onclick={() => ir("finanzas")}>
       <span class="pa-figure__value">{euros(dinero.total)}</span>
       <span class="pa-delta pa-delta--solid {dinero.dia >= 0 ? 'pa-delta--up' : 'pa-delta--down'}">{porcentaje(dinero.dia)}</span>
       <span class="pa-figure__src">Valor del {corta(dinero.fecha)} · 3 fondos de ejemplo</span>
     </button>
+    {/if}
 
     <div class="pa-label bloque">huecos libres</div>
     <ul class="pa-insp__rows">

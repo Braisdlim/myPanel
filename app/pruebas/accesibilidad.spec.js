@@ -4,7 +4,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 const RUTAS = ["hoy", "calendario/dia", "calendario/semana", "calendario/mes", "calendario/anio", "tareas", "tareas/entrada", "tareas/programadas",
-  "finanzas", "finanzas/mundial", "atencion", "asistente", "ajustes", "ajustes/general", "ajustes/cuentas", "ajustes/privacidad"];
+  "atencion", "asistente", "ajustes", "ajustes/general", "ajustes/cuentas", "ajustes/privacidad"];
 
 async function analizar(page) {
   const r = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"]).analyze();

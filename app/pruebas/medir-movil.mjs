@@ -7,7 +7,7 @@ const BASE = process.env.BASE ?? "http://localhost:4330";
 // Alto útil aproximado [I]: Honor 600 Pro (412 de ancho) en Chrome con la barra de direcciones y como app instalada;
 // un Android estrecho; iPhone 15 en Safari con barras y como app de pantalla de inicio.
 const TAMANOS = [["honor-chrome", 412, 800], ["honor-app", 412, 870], ["estrecho", 360, 700], ["iphone-safari", 390, 664], ["iphone-app", 390, 800]];
-const RUTAS = (process.env.RUTAS ?? "hoy,calendario/dia,calendario/semana,calendario/mes,calendario/anio,tareas,tareas/entrada,tareas/programadas,finanzas,finanzas/mundial,atencion,asistente,ajustes/general,ajustes/cuentas,ajustes/privacidad").split(",");
+const RUTAS = (process.env.RUTAS ?? "hoy,calendario/dia,calendario/semana,calendario/mes,calendario/anio,tareas,tareas/entrada,tareas/programadas,atencion,asistente,ajustes/general,ajustes/cuentas,ajustes/privacidad").split(",");
 
 const navegador = await chromium.launch();
 const filas = [];

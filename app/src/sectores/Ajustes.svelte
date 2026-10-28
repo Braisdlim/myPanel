@@ -1,5 +1,5 @@
 <script>
-  import { app, ir, sustituir, cambiarAjuste, exportar, borrarTodo, avisar, conectarGoogle, actualizarCuenta, cambiarCalendario, renombrarCuenta, desconectarCuenta, tienePermiso, activarEscritura, desactivarEscritura, elegirCalendarioEscritura } from "../lib/estado.svelte.js";
+  import { app, ir, sustituir, FINANZAS_VISIBLE, cambiarAjuste, exportar, borrarTodo, avisar, conectarGoogle, actualizarCuenta, cambiarCalendario, renombrarCuenta, desconectarCuenta, tienePermiso, activarEscritura, desactivarEscritura, elegirCalendarioEscritura } from "../lib/estado.svelte.js";
   import { CUENTAS } from "../lib/ejemplo.js";
   import { CLIENT_ID, calendariosPropios } from "../lib/google.js";
   import { haceCuanto, corta, sumarDias, DIAS, DIAS_LETRA } from "../lib/fechas.js";
@@ -107,7 +107,7 @@
     <section class="bloque">
       <h2>Gestos</h2>
       <div class="pa-toggle">
-        <span class="pa-toggle__text"><span class="pa-toggle__title">Deslizar para cambiar de sección</span><span class="pa-toggle__meta">En el móvil, de lado entre Hoy, Calendario, Tareas y Finanzas. En el Calendario, deslizar sobre el calendario pasa fechas; sobre su cabecera, cambia de sección.</span></span>
+        <span class="pa-toggle__text"><span class="pa-toggle__title">Deslizar para cambiar de sección</span><span class="pa-toggle__meta">En el móvil, de lado entre Hoy, Calendario, Tareas y {FINANZAS_VISIBLE ? "Finanzas" : "Asistente"}. En el Calendario, deslizar sobre el calendario pasa fechas; sobre su cabecera, cambia de sección.</span></span>
         <button class="pa-switch" role="switch" aria-checked={app.ajustes.deslizarSecciones !== false ? "true" : "false"} aria-label="Deslizar para cambiar de sección" onclick={() => cambiarAjuste("deslizarSecciones", app.ajustes.deslizarSecciones === false)}></button>
       </div>
     </section>

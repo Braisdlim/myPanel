@@ -1,5 +1,5 @@
 <script>
-  import { app, ir, guardarTarea } from "../lib/estado.svelte.js";
+  import { app, ir, guardarTarea, FINANZAS_VISIBLE } from "../lib/estado.svelte.js";
   import { eventosEntre, conflictos, cuenta, esReal } from "../lib/agenda.svelte.js";
   import { FONDOS, serie, porcentaje } from "../lib/ejemplo.js";
   import { sumarDias, corta, distancia, rango } from "../lib/fechas.js";
@@ -45,7 +45,7 @@
         <span class="pa-alert__actions"><button class="pa-btn pa-btn--sm" onclick={() => aHoy(t)}>Hacer hoy</button></span>
       </div>
     {/each}
-    {#if caida.cambio < -0.03}
+    {#if FINANZAS_VISIBLE && caida.cambio < -0.03}
     <div class="pa-alert">
       <span class="pa-dot pa-dot--attention"></span>
       <span class="pa-alert__title">{caida.f.nombre}: {porcentaje(caida.cambio)} desde el máximo <span class="etiqueta-ejemplo">ejemplo</span></span>

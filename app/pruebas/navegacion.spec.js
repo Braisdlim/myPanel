@@ -85,3 +85,11 @@ test("año en el móvil: tocar la rejilla abre ese día y cada mes es un botón 
   await page.getByRole("button", { name: "Abrir marzo" }).click();
   await expect(page).toHaveURL(/#\/calendario\/mes\/\d{4}-03-01$/);
 });
+
+test("Finanzas está escondida (D-059): no sale en la navegación y su ruta lleva a Hoy", async ({ page }) => {
+  await page.goto("/#/finanzas");
+  await page.waitForSelector(".app__main .vista");
+  await expect(page.locator(".app__main h1").first()).toHaveText("Hoy");
+  await expect(page.locator(".pa-tab, .pa-side__item", { hasText: "Finanzas" })).toHaveCount(0);
+  await expect(page.getByText("tu dinero hoy")).toHaveCount(0);
+});

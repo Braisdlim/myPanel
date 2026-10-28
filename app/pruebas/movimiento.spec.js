@@ -26,7 +26,7 @@ async function deslizarDedo(page, [x0, y0], [x1, y1], pasos = 8) {
 
 test("cada navegación lleva su transición: pestañas funden, entrar y volver se deslizan, fechas pasan de lado", async ({ page }) => {
   await espiarTransiciones(page);
-  await page.goto("/#/finanzas");
+  await page.goto("/#/asistente");
   await page.waitForSelector(".app__main .vista");
   if (esMovil(page)) await page.locator(".pa-tab", { hasText: "Calendario" }).click();
   else await page.locator(".pa-side__item", { hasText: "Calendario" }).click();
@@ -34,9 +34,10 @@ test("cada navegación lleva su transición: pestañas funden, entrar y volver s
   await page.waitForTimeout(400);
   await page.getByRole("button", { name: "Anterior" }).click();
   await page.waitForTimeout(400);
-  await page.goto("/#/finanzas");
-  await page.waitForSelector(".fila");
-  await page.locator(".fila").first().click(); // entrar en un fondo
+  await page.getByRole("button", { name: "Año", exact: true }).click(); // cambiar de escala: se funde
+  await page.waitForSelector(".pa-year__c[data-hoy]");
+  await page.waitForTimeout(400);
+  await page.locator(".pa-year__c[data-hoy]").click(); // entrar en un día desde el año
   await page.waitForTimeout(400);
   await page.goBack();
   await expect.poll(() => transiciones(page)).toEqual(["fundido", "siguiente", "anterior", "fundido", "entrar", "salir"]);
@@ -144,11 +145,11 @@ test("deslizar de lado cambia de sección: Hoy → Calendario → Tareas, y vuel
 test("en los extremos no hay más secciones y con el ajuste apagado no se desliza", async ({ page }) => {
   test.skip(!esMovil(page), "con el dedo, en el móvil");
   const w = page.viewportSize().width;
-  await page.goto("/#/finanzas");
+  await page.goto("/#/asistente");
   await page.waitForSelector(".app__main .vista");
-  await deslizarDedo(page, [w * 0.8, 300], [w * 0.15, 300]); // después de Finanzas no hay nada
+  await deslizarDedo(page, [w * 0.8, 300], [w * 0.15, 300]); // después del Asistente (el último, D-059) no hay nada
   await page.waitForTimeout(400);
-  await expect(page).toHaveURL(/#\/finanzas$/);
+  await expect(page).toHaveURL(/#\/asistente$/);
   await page.goto("/#/ajustes/general");
   await page.getByRole("switch", { name: "Deslizar para cambiar de sección" }).click();
   await page.goto("/#/hoy");

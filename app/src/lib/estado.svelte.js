@@ -7,6 +7,10 @@ import { pedirToken, revocar, listarCalendarios, listarEventos, convertirEvento,
 import { clavesDe, claveOcurrencia } from "./calendario.js";
 import { HORARIO_INICIAL } from "./horario.js";
 
+// Finanzas está escondida (D-059, 28-10-2026: «no está ni configurada ni me parece que me vaya a ser útil a corto plazo»).
+// Su código, maquetas e investigación se quedan; con true vuelve a la barra, la lateral, Hoy y Pide atención.
+export const FINANZAS_VISIBLE = false;
+
 export const SECTORES = [
   { id: "hoy", nombre: "Hoy", icono: "sun" },
   { id: "calendario", nombre: "Calendario", icono: "calendar" },
@@ -14,7 +18,7 @@ export const SECTORES = [
   { id: "finanzas", nombre: "Finanzas", icono: "trending-up" },
   { id: "atencion", nombre: "Pide atención", icono: "bell" },
   { id: "asistente", nombre: "Asistente", icono: "sparkles" },
-];
+].filter((s) => s.id !== "finanzas" || FINANZAS_VISIBLE);
 
 const AJUSTES_INICIALES = { id: "general", tema: "sistema", guardarEn: "preguntar", trabajo: { ...HORARIO_INICIAL }, deslizarSecciones: true };
 

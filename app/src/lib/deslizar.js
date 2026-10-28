@@ -1,5 +1,5 @@
 // Deslizar de lado con el dedo (D-057): en Calendario pasa de día, semana, mes o año, como Calendario de Apple y Fantastical;
-// en la carcasa, de sección (Hoy ↔ Calendario ↔ Tareas ↔ Finanzas), como pidió el usuario.
+// en la carcasa, de sección (Hoy ↔ Calendario ↔ Tareas ↔ Finanzas o Asistente, D-059), como pidió el usuario.
 // - Solo con el dedo (en el escritorio están ‹ › y las flechas del teclado).
 // - Deja 24 px en cada borde para el gesto «atrás» de Android, y lo vertical para desplazar (touch-action: pan-y).
 // - El contenido sigue al dedo; al soltar lejos o rápido, sale hacia ese lado y el nuevo entra desde el otro.
@@ -42,7 +42,7 @@ export function deslizar(nodo, opciones) {
       if (!horizontal) { id = null; return; } // es un desplazamiento vertical: no es nuestro
       nodo.setPointerCapture?.(id);
     }
-    // Sin nada a ese lado (Finanzas → «siguiente»), el contenido se resiste: se mueve un tercio
+    // Sin nada a ese lado (el último → «siguiente»), el contenido se resiste: se mueve un tercio
     dx = puede(mx < 0 ? 1 : -1) ? mx : mx / 3;
     pintar(dx);
   }

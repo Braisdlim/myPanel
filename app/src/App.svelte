@@ -1,6 +1,6 @@
 <script>
   import { onMount, tick } from "svelte";
-  import { app, iniciar, ir, SECTORES } from "./lib/estado.svelte.js";
+  import { app, iniciar, ir, SECTORES, FINANZAS_VISIBLE } from "./lib/estado.svelte.js";
   import { contar } from "./lib/tareas.js";
   import Icono from "./componentes/Icono.svelte";
   import Lateral from "./componentes/Lateral.svelte";
@@ -38,7 +38,9 @@
   $effect(() => { app.ajustes.tema; aplicarTema(); });
 
   // Atajos (diseno/sistema/README.md): ⌘/Ctrl+K apuntar, ⌘/Ctrl+1–4 sectores, ? atajos. Los de Calendario, en su pantalla.
-  const SECTOR_POR_NUMERO = ["hoy", "calendario", "tareas", "finanzas"];
+  // El cuarto sitio es Finanzas si está visible; si no, el Asistente (D-059)
+  const CUARTO = FINANZAS_VISIBLE ? ["finanzas", "Finanzas", "trending-up"] : ["asistente", "Asistente", "sparkles"];
+  const SECTOR_POR_NUMERO = ["hoy", "calendario", "tareas", CUARTO[0]];
   let verAtajos = $state(false);
   function teclas(e) {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); app.apuntar.abierto = true; return; }
@@ -46,7 +48,7 @@
     const escribiendo = e.target.closest?.("input, textarea, select, [contenteditable]");
     if (e.key === "?" && !escribiendo && !document.querySelector("body > .capa")) { e.preventDefault(); verAtajos = true; }
   }
-  const ATAJOS = [[`${mod} K`, "Apuntar o buscar"], [`${mod} 1–4`, "Hoy, Calendario, Tareas, Finanzas"], ["Alt ← / Alt →", "Atrás y adelante"], ["Esc", "Cerrar la hoja o el diálogo"],
+  const ATAJOS = [[`${mod} K`, "Apuntar o buscar"], [`${mod} 1–4`, `Hoy, Calendario, Tareas, ${CUARTO[1]}`], ["Alt ← / Alt →", "Atrás y adelante"], ["Esc", "Cerrar la hoja o el diálogo"],
     ["D · S · M · A", "Calendario: día, semana, mes, año"], ["T", "Calendario: hoy"], ["← / →", "Calendario: anterior y siguiente"], ["?", "Ver estos atajos"]];
 
   const Vista = $derived(VISTAS[app.ruta[0]] ?? Hoy);
@@ -54,7 +56,7 @@
   // Deslizar de lado para cambiar de sección en el móvil (petición del usuario, 22-10-2026), en el orden de la barra:
   // Hoy ↔ Calendario ↔ Tareas ↔ Finanzas. Dentro del Calendario, la zona del calendario pasa fechas (.deslizable);
   // su cabecera cambia de sección. Se apaga en Ajustes › General.
-  const ORDEN = ["hoy", "calendario", "tareas", "finanzas"];
+  const ORDEN = SECTOR_POR_NUMERO;
   const posicion = () => ORDEN.indexOf(app.ruta[0]);
   const deslizarSecciones = {
     activo: () => app.movil && app.ajustes.deslizarSecciones !== false && posicion() !== -1 && !app.apuntar.abierto,
@@ -83,7 +85,7 @@
     }));
   });
   const conteos = $derived(contar(app.tareas, app.hoy));
-  const TABS = [["hoy", "Hoy", "sun"], ["calendario", "Calendario", "calendar"], null, ["tareas", "Tareas", "circle-check"], ["finanzas", "Finanzas", "trending-up"]];
+  const TABS = [["hoy", "Hoy", "sun"], ["calendario", "Calendario", "calendar"], null, ["tareas", "Tareas", "circle-check"], CUARTO];
 </script>
 
 <svelte:window onkeydown={teclas} />

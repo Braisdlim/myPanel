@@ -4,7 +4,7 @@ import { test, expect } from "@playwright/test";
 import { revisar } from "./revisar.js";
 
 const RUTAS = ["hoy", "calendario/dia", "calendario/semana", "calendario/mes", "calendario/anio", "tareas", "tareas/entrada", "tareas/programadas",
-  "finanzas", "finanzas/mundial", "atencion", "asistente", "ajustes/general", "ajustes/cuentas", "ajustes/privacidad"];
+  "atencion", "asistente", "ajustes/general", "ajustes/cuentas", "ajustes/privacidad"];
 const TEMAS = (process.env.THEMES ?? "dark,light").split(",");
 
 for (const tema of TEMAS) {
