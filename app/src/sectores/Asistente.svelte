@@ -145,7 +145,7 @@
 
   <form class="escribir" onsubmit={enviar}>
     <div class="caja">
-      <textarea bind:this={campo} bind:value={texto} rows="1" placeholder="Pregunta algo… «¿qué tengo el viernes?»" aria-label="Pregunta" onkeydown={teclas}></textarea>
+      <textarea bind:this={campo} bind:value={texto} rows="1" placeholder={app.movil ? "Pregunta algo…" : "Pregunta algo… «¿qué tengo el viernes?»"} aria-label="Pregunta" onkeydown={teclas}></textarea>
       <button class="enviar" aria-label="Preguntar" disabled={!texto.trim() || asis.ocupado}><Icono n="arrow-up" tam={18} /></button>
     </div>
     <p class="pa-faint nota">Responde {prov.id === "ninguno" ? "el código, sin IA" : `${prov.nombre}`} · las conversaciones no se guardan · <a href="#/ajustes/asistente">Ajustes</a></p>
