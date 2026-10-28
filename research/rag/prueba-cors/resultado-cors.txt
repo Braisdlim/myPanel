@@ -1,0 +1,58 @@
+Fecha: 2026-10-28T21:27:44Z
+=== OPTIONS https://api.groq.com/openai/v1/chat/completions
+HTTP/2 204 
+access-control-allow-headers: authorization,content-type
+access-control-allow-methods: GET,HEAD,PUT,PATCH,POST,DELETE
+access-control-allow-origin: *
+vary: Origin,Access-Control-Request-Method,Access-Control-Request-Headers
+=== POST (clave falsa) https://api.groq.com/openai/v1/chat/completions
+HTTP/2 401 
+access-control-allow-origin: *
+=== OPTIONS https://openrouter.ai/api/v1/chat/completions
+HTTP/2 204 
+access-control-allow-origin: *
+vary: Access-Control-Request-Headers
+access-control-allow-headers: Authorization,User-Agent,X-Api-Key,X-CSRF-Token,X-Requested-With,Accept,Accept-Version,Content-Length,Content-Encoding,Content-MD5,Content-Type,Date,X-Api-Version,HTTP-Referer,X-Windowai-Title,X-Openrouter-Title,X-Title,X-Openrouter-Categories,X-Openrouter-App-Visibility,X-Session-Id,X-Stainless-Lang,X-Stainless-Package-Version,X-Stainless-OS,X-Stainless-Arch,X-Stainless-Runtime,X-Stainless-Runtime-Version,X-Stainless-Retry-Count,X-Stainless-Timeout,X-Stainless-Helper-Method,Protection-Key,Idempotency-Key,traceparent,tracestate,b3
+access-control-allow-methods: GET,OPTIONS,PATCH,DELETE,POST,PUT
+access-control-expose-headers: X-Generation-Id,X-Provider-Name,request-id,cf-ray
+=== POST (clave falsa) https://openrouter.ai/api/v1/chat/completions
+HTTP/2 401 
+access-control-allow-origin: *
+=== OPTIONS https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
+HTTP/2 200 
+access-control-allow-origin: https://ejemplo.github.io
+access-control-allow-methods: DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT
+access-control-allow-headers: authorization,content-type
+access-control-max-age: 3600
+=== POST (clave falsa) https://generativelanguage.googleapis.com/v1beta/openai/chat/completions
+HTTP/2 400 
+access-control-allow-origin: https://ejemplo.github.io
+=== OPTIONS https://api.cloudflare.com/client/v4/accounts/0123456789abcdef0123456789abcdef/ai/v1/chat/completions
+HTTP/2 405 
+=== POST (clave falsa) https://api.cloudflare.com/client/v4/accounts/0123456789abcdef0123456789abcdef/ai/v1/chat/completions
+HTTP/2 401 
+=== OPTIONS https://api.mistral.ai/v1/chat/completions
+HTTP/2 200 
+access-control-allow-origin: *
+access-control-allow-headers: Authorization,Content-Type,User-Agent,Cache-Control,Keep-Alive,X-Mistral-User-Agent,X-External-Organization-Id,X-External-Workspace-Id
+access-control-allow-methods: GET,HEAD,PUT,PATCH,POST,OPTIONS,DELETE
+access-control-max-age: 3600
+=== POST (clave falsa) https://api.mistral.ai/v1/chat/completions
+HTTP/2 401 
+access-control-allow-origin: *
+=== OPTIONS https://api.cerebras.ai/v1/chat/completions
+HTTP/2 200 
+access-control-allow-origin: *
+access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+access-control-max-age: 600
+access-control-allow-headers: authorization,content-type
+=== POST (clave falsa) https://api.cerebras.ai/v1/chat/completions
+HTTP/2 401 
+=== OPTIONS https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions
+HTTP/2 200 
+access-control-allow-origin: *
+access-control-allow-headers: *
+access-control-allow-methods: GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,TRACE,CONNECT
+=== POST (clave falsa) https://oai.endpoints.kepler.ai.cloud.ovh.net/v1/chat/completions
+HTTP/2 403 
+access-control-allow-origin: *

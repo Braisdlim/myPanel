@@ -3,3 +3,7 @@ docs/referencias/*/img/
 # Datos financieros reales: nunca al repositorio
 research/finanzas-import/privado/
 *.ofx
+
+# Pruebas de investigación: dependencias y modelos descargados
+research/**/node_modules/
+research/**/.cache-modelos/

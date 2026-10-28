@@ -1,0 +1,175 @@
+# Resultado de la prueba de embeddings (research/rag/prueba-embeddings)
+# Máquina: contenedor Linux en la nube, 4 núcleos, v22.22.0, @huggingface/transformers 4.3.2 (backend onnxruntime-node 1.30.0, CPU).
+# Textos inventados para la prueba. Tiempos de carga: segunda ejecución, modelo ya en caché de disco.
+
+## 1. Primera ejecución (con descarga desde huggingface.co): tiempos de carga
+=== onnx-community/granite-embedding-97m-multilingual-r2-ONNX (dtype q8) ===
+Carga del modelo (incluye descarga si no está en caché): 3945 ms
+=== Xenova/multilingual-e5-small (dtype q8) ===
+Carga del modelo (incluye descarga si no está en caché): 2871 ms
+=== Xenova/paraphrase-multilingual-MiniLM-L12-v2 (dtype q8) ===
+Carga del modelo (incluye descarga si no está en caché): 2616 ms
+=== onnx-community/embeddinggemma-300m-ONNX (dtype q4) ===
+Carga del modelo (incluye descarga si no está en caché): 4002 ms
+
+## 2. Ranking top-3 (modelo en caché)
+Node v22.22.0 · 2026-10-28T21:35:39.626Z
+
+=== onnx-community/granite-embedding-97m-multilingual-r2-ONNX (dtype q8) ===
+Dimensión: 384
+Carga del modelo (incluye descarga si no está en caché): 1369 ms
+Embeber 20 frases (un lote): 159 ms; 5 consultas: 30 ms
+«¿cuándo tengo que ir al odontólogo?»
+   1. 0.827  Reunión con el dentista el martes a las 10:00
+   2. 0.789  Pedir cita con el médico de cabecera por el dolor de espalda
+   3. 0.745  Revisar el seguro del coche que vence en noviembre
+«trámites con la administración»
+   1. 0.750  Renovar el DNI en la comisaría
+   2. 0.744  Preparar la declaración de la renta
+   3. 0.733  Entregar el informe trimestral al jefe
+«cosas del coche»
+   1. 0.813  Llevar el coche al taller para cambiar el aceite
+   2. 0.788  Revisar el seguro del coche que vence en noviembre
+   3. 0.772  Cita en la peluquería el sábado por la mañana
+«tocar música»
+   1. 0.715  Llamar a mamá por su cumpleaños
+   2. 0.709  Llevar el coche al taller para cambiar el aceite
+   3. 0.706  Vuelo a Santiago el 12 de diciembre a las 7:40
+«viajes en avión»
+   1. 0.741  Vuelo a Santiago el 12 de diciembre a las 7:40
+   2. 0.735  Recoger el paquete de Correos antes del jueves
+   3. 0.721  Revisar el seguro del coche que vence en noviembre
+
+=== Xenova/multilingual-e5-small (dtype q8) ===
+Dimensión: 384
+Carga del modelo (incluye descarga si no está en caché): 1123 ms
+Embeber 20 frases (un lote): 236 ms; 5 consultas: 80 ms
+«¿cuándo tengo que ir al odontólogo?»
+   1. 0.852  Reunión con el dentista el martes a las 10:00
+   2. 0.849  Pedir cita con el médico de cabecera por el dolor de espalda
+   3. 0.836  Mandar el currículum a la oferta de desarrollador frontend
+«trámites con la administración»
+   1. 0.849  Preparar la declaración de la renta
+   2. 0.841  Entregar el informe trimestral al jefe
+   3. 0.840  Pedir cita con el médico de cabecera por el dolor de espalda
+«cosas del coche»
+   1. 0.861  Llevar el coche al taller para cambiar el aceite
+   2. 0.855  Revisar el seguro del coche que vence en noviembre
+   3. 0.834  Recoger el paquete de Correos antes del jueves
+«tocar música»
+   1. 0.847  Ensayo con la banda el viernes por la noche
+   2. 0.839  Comprar un regalo de Navidad para mi hermana
+   3. 0.837  Regar las plantas del balcón
+«viajes en avión»
+   1. 0.851  Vuelo a Santiago el 12 de diciembre a las 7:40
+   2. 0.827  Recoger el paquete de Correos antes del jueves
+   3. 0.827  Revisar el seguro del coche que vence en noviembre
+
+=== Xenova/paraphrase-multilingual-MiniLM-L12-v2 (dtype q8) ===
+Dimensión: 384
+Carga del modelo (incluye descarga si no está en caché): 2505 ms
+Embeber 20 frases (un lote): 255 ms; 5 consultas: 69 ms
+«¿cuándo tengo que ir al odontólogo?»
+   1. 0.434  Pedir cita con el médico de cabecera por el dolor de espalda
+   2. 0.433  Reunión con el dentista el martes a las 10:00
+   3. 0.372  Cita en la peluquería el sábado por la mañana
+«trámites con la administración»
+   1. 0.509  Entregar el informe trimestral al jefe
+   2. 0.481  Renovar el DNI en la comisaría
+   3. 0.470  Preparar la declaración de la renta
+«cosas del coche»
+   1. 0.575  Llevar el coche al taller para cambiar el aceite
+   2. 0.543  Revisar el seguro del coche que vence en noviembre
+   3. 0.298  Regar las plantas del balcón
+«tocar música»
+   1. 0.624  Ensayo con la banda el viernes por la noche
+   2. 0.253  Mandar el currículum a la oferta de desarrollador frontend
+   3. 0.231  Cita en la peluquería el sábado por la mañana
+«viajes en avión»
+   1. 0.323  Vuelo a Santiago el 12 de diciembre a las 7:40
+   2. 0.243  Recoger el paquete de Correos antes del jueves
+   3. 0.194  Estudiar para el examen de inglés B2
+
+=== onnx-community/embeddinggemma-300m-ONNX (dtype q4) ===
+Dimensión: 768
+Carga del modelo (incluye descarga si no está en caché): 1975 ms
+Embeber 20 frases (un lote): 1650 ms; 5 consultas: 409 ms
+«¿cuándo tengo que ir al odontólogo?»
+   1. 0.479  Reunión con el dentista el martes a las 10:00
+   2. 0.269  Pedir cita con el médico de cabecera por el dolor de espalda
+   3. 0.215  Ir al gimnasio lunes, miércoles y viernes
+«trámites con la administración»
+   1. 0.206  Renovar el DNI en la comisaría
+   2. 0.176  Preparar la declaración de la renta
+   3. 0.165  Recoger el paquete de Correos antes del jueves
+«cosas del coche»
+   1. 0.367  Llevar el coche al taller para cambiar el aceite
+   2. 0.286  Revisar el seguro del coche que vence en noviembre
+   3. 0.205  Recoger el paquete de Correos antes del jueves
+«tocar música»
+   1. 0.293  Ensayo con la banda el viernes por la noche
+   2. 0.173  Ir al gimnasio lunes, miércoles y viernes
+   3. 0.148  Llevar el coche al taller para cambiar el aceite
+«viajes en avión»
+   1. 0.337  Vuelo a Santiago el 12 de diciembre a las 7:40
+   2. 0.150  Ir al gimnasio lunes, miércoles y viernes
+   3. 0.134  Recoger el paquete de Correos antes del jueves
+
+## 3. Granite 97M R2 en fp32 (para descartar la cuantización)
+Node v22.22.0 · 2026-10-28T21:35:50.447Z
+
+=== onnx-community/granite-embedding-97m-multilingual-r2-ONNX (dtype fp32) ===
+Dimensión: 384
+Carga del modelo (incluye descarga si no está en caché): 2407 ms
+Embeber 20 frases (un lote): 380 ms; 5 consultas: 97 ms
+«¿cuándo tengo que ir al odontólogo?»
+   1. 0.876  Reunión con el dentista el martes a las 10:00
+   2. 0.830  Pedir cita con el médico de cabecera por el dolor de espalda
+   3. 0.785  Revisar el seguro del coche que vence en noviembre
+«trámites con la administración»
+   1. 0.798  Preparar la declaración de la renta
+   2. 0.790  Entregar el informe trimestral al jefe
+   3. 0.789  Renovar el DNI en la comisaría
+«cosas del coche»
+   1. 0.825  Llevar el coche al taller para cambiar el aceite
+   2. 0.798  Revisar el seguro del coche que vence en noviembre
+   3. 0.771  Llamar a mamá por su cumpleaños
+«tocar música»
+   1. 0.765  Llevar el coche al taller para cambiar el aceite
+   2. 0.759  Ensayo con la banda el viernes por la noche
+   3. 0.748  Llamar a mamá por su cumpleaños
+«viajes en avión»
+   1. 0.781  Recoger el paquete de Correos antes del jueves
+   2. 0.767  Ir al gimnasio lunes, miércoles y viernes
+   3. 0.767  Revisar el seguro del coche que vence en noviembre
+
+## 4. Coseno por fuerza bruta (vectores aleatorios normalizados)
+dim 384 · 1000 vectores · 1.5 MB · top-10 en 0.72 ms
+dim 384 · 5000 vectores · 7.7 MB · top-10 en 3.96 ms
+dim 384 · 10000 vectores · 15.4 MB · top-10 en 12.73 ms
+dim 768 · 1000 vectores · 3.1 MB · top-10 en 1.54 ms
+dim 768 · 5000 vectores · 15.4 MB · top-10 en 8.16 ms
+dim 768 · 10000 vectores · 30.7 MB · top-10 en 13.78 ms
+
+## 5. BM25 propio + stemmer Snowball (@orama/stemmers) + fusión RRF con multilingual-e5-small
+Tokens de ejemplo: [ 'revis', 'factur', 'pag', 'cit', 'medic' ]
+«dentista»
+   BM25:     Reunión con el dentista el martes a las 10:00
+   Semántica: Reunión con el dentista el martes a las 10:00 | Renovar el DNI en la comisaría | Pedir cita con el médico de cabecera por el dolor de espalda
+   Híbrido:  Reunión con el dentista el martes a las 10:00 | Renovar el DNI en la comisaría | Pedir cita con el médico de cabecera por el dolor de espalda
+«pagar facturas»
+   BM25:     Pagar la factura de la luz antes del día 5
+   Semántica: Pagar la factura de la luz antes del día 5 | Preparar la declaración de la renta | Recoger el paquete de Correos antes del jueves
+   Híbrido:  Pagar la factura de la luz antes del día 5 | Preparar la declaración de la renta | Recoger el paquete de Correos antes del jueves
+«citas»
+   BM25:     Cita en la peluquería el sábado por la mañana | Pedir cita con el médico de cabecera por el dolor de espalda
+   Semántica: Pedir cita con el médico de cabecera por el dolor de espalda | Cita en la peluquería el sábado por la mañana | Renovar el DNI en la comisaría
+   Híbrido:  Cita en la peluquería el sábado por la mañana | Pedir cita con el médico de cabecera por el dolor de espalda | Renovar el DNI en la comisaría
+«tocar música»
+   BM25:     (nada)
+   Semántica: Ensayo con la banda el viernes por la noche | Regar las plantas del balcón | Comprar un regalo de Navidad para mi hermana
+   Híbrido:  Ensayo con la banda el viernes por la noche | Regar las plantas del balcón | Comprar un regalo de Navidad para mi hermana
+«viajes en avión»
+   BM25:     (nada)
+   Semántica: Vuelo a Santiago el 12 de diciembre a las 7:40 | Recoger el paquete de Correos antes del jueves | Revisar el seguro del coche que vence en noviembre
+   Híbrido:  Vuelo a Santiago el 12 de diciembre a las 7:40 | Recoger el paquete de Correos antes del jueves | Revisar el seguro del coche que vence en noviembre
