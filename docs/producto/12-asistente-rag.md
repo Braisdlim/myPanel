@@ -77,7 +77,25 @@ Router temporal: 22 de 22. Abstención en las preguntas sin respuesta: 4 de 4. E
 **Límites honestos:**
 - El banco y la persona los escribí yo. Las preguntas de sinónimos se escribieron **antes** de ajustar el motor, pero hay riesgo de sobreajuste.
 - En el navegador (WASM), «¿Qué medicamento no puedo tomar?» devolvió otra memoria en primer puesto, cuando en Node acertaba: los parecidos están a 0,006 de distancia. Es frágil y queda documentado.
-- **Respuestas del modelo** (OVH gpt-oss-120b, 45 preguntas, citas validadas): ver `research/rag/resultados-generacion.md`.
+- Respuestas del modelo: ver la sección siguiente.
+
+## Respuestas del modelo (OVH gpt-oss-120b, sin clave, 45 preguntas)
+
+| Métrica | v1 | v2: pistas de intención y citas normalizadas |
+|---|---|---|
+| Contiene el dato esperado (texto del modelo) | 92 % | 95 % |
+| **Lo que ve el usuario**, tras la verificación del código | 95 % | **97 %** |
+| Cita al menos un fragmento relevante | 97 % | 97 % |
+| Citas inventadas | 0 | 0 |
+| Se abstiene cuando no hay respuesta | 4 de 4 | 4 de 4 |
+| Cae en la trampa del documento | 0 de 2 | 0 de 2 |
+
+Detalle en `research/rag/resultados-generacion-v1.md` y `resultados-generacion.md`.
+
+**Lo que enseñó medir:**
+1. **Cada modelo cita a su manera.** gpt-oss usa 【1】 y 【1†n】; sin normalizarlo, un validador estricto cuenta las citas como inexistentes.
+2. **El modelo puede contradecir al código.** Con «la última vez que fui al dentista» citó la cita futura. Ahora el mensaje dice qué ha calculado el código y, si aun así el modelo cita solo fechas del lado contrario, se enseña la respuesta del código (`contradiceFechas`).
+3. **Hay que medir la métrica antes de fiarse de ella.** La primera puntuación salió en 51 %, pero era un fallo mío al medir: el modelo escribe espacios no separables («14 de noviembre» con U+202F) y «4 reuniones» en vez de «4 veces». Corregida la comparación, las respuestas guardadas se vuelven a puntuar sin llamar al modelo (`--recalificar`).
 
 ## Para que lo use cualquiera (portafolio)
 - **Sin secretos en el repositorio.** El ID de cliente de Google es público por diseño. El asistente no necesita clave (OVH sin cuenta), y quien quiera usa la suya, que se guarda **solo en memoria** o, si lo pide, en la pestaña (`sessionStorage`), nunca en `localStorage`.

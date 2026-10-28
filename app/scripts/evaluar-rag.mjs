@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { datosDemo, CUENTAS_DEMO } from "../src/lib/rag/demo.js";
 import { crearFragmentos, textoIndexable } from "../src/lib/rag/fragmentos.js";
 import { crearMotor } from "../src/lib/rag/motor.js";
-import { respuestaSinModelo, mensajes, validarCitas } from "../src/lib/rag/respuesta.js";
+import { respuestaSinModelo, mensajes, validarCitas, contradiceFechas } from "../src/lib/rag/respuesta.js";
 import { leerTiempo } from "../src/lib/rag/tiempo.js";
 
 const banco = JSON.parse(readFileSync(new URL("../pruebas/rag/banco.json", import.meta.url)));
@@ -26,6 +26,8 @@ const ndcg = (top, rel, k = 10) => {
   return dcg / ideal;
 };
 const media = (xs) => { const v = xs.filter((x) => x != null); return v.length ? v.reduce((s, x) => s + x, 0) / v.length : null; };
+// «contiene»: cada elemento puede dar alternativas con «|» («4 veces|4 reuniones»); espacios raros normalizados
+const contiene = (texto, cs) => { const t = texto.toLowerCase().replace(/[\u00a0\u202f\u2009]/g, " "); return cs.every((c) => c.toLowerCase().split("|").some((x) => t.includes(x))); };
 const pct = (x) => (x == null ? "—" : `${Math.round(x * 100)} %`);
 const dec = (x) => (x == null ? "—" : x.toFixed(2));
 
@@ -62,7 +64,7 @@ for (const [nombre, motor, conV] of CONFIGS) {
       id: q.id, tipo: q.tipo, ms,
       r5: recall(top, q.relevantes, 5), h1: acierto(top, q.relevantes, 1), h5: acierto(top, q.relevantes, 5), mrr: mrr(top, q.relevantes), ndcg: ndcg(top, q.relevantes),
       abstiene: q.relevantes.length || q.tipo === "trampa" ? null : (r.abstener || r.dudoso || (r.modo === "agenda" && !r.resultados.length) ? 1 : 0),
-      exacta: q.contiene.length ? (q.contiene.every((c) => texto.toLowerCase().includes(c.toLowerCase())) ? 1 : 0) : null,
+      exacta: q.contiene.length ? (contiene(texto, q.contiene) ? 1 : 0) : null,
       texto, top: top.slice(0, 5),
     };
     (porTipo[q.tipo] ??= []).push(fila);
@@ -85,19 +87,28 @@ let gen = null;
 if (args.generar) {
   const { preguntarModelo } = await import("../src/lib/rag/proveedores.js");
   const mejor = CONFIGS.at(-1)[1], conV = CONFIGS.at(-1)[2];
-  const espera = Number(args.espera ?? (args.generar === "ovh" ? 31000 : 2500));
+  const recalificar = args.recalificar ? JSON.parse(readFileSync(args.recalificar)).gen : null;
+  const espera = recalificar ? 0 : Number(args.espera ?? (args.generar === "ovh" ? 31000 : 2500));
   gen = [];
   for (const q of banco.preguntas) {
     const r = await mejor.preguntar(q.pregunta, { hoy, ahora, vectoresActivos: conV });
     let salida, error = null;
-    try { salida = await preguntarModelo({ id: args.generar, clave: process.env.CLAVE_IA ?? "", modelo: args.modelo, mensajes: mensajes(q.pregunta, r, hoy) }); }
-    catch (e) { error = e.message; }
+    // --recalificar=archivo.json: vuelve a puntuar respuestas ya guardadas, sin llamar al modelo
+    const guardada = recalificar?.find((g) => g.id === q.id);
+    if (guardada) { salida = { texto: guardada.texto }; error = guardada.error; }
+    else {
+      try { salida = await preguntarModelo({ id: args.generar, clave: process.env.CLAVE_IA ?? "", modelo: args.modelo, mensajes: mensajes(q.pregunta, r, hoy) }); }
+      catch (e) { error = e.message; }
+    }
     const v = validarCitas(salida?.texto ?? "", r.resultados.length);
     const textoBajo = v.texto.toLowerCase();
     const citadosRelevantes = v.citas.filter((n) => q.relevantes.includes(r.resultados[n - 1]?.f.id)).length;
     gen.push({
       id: q.id, tipo: q.tipo, pregunta: q.pregunta, error, texto: v.texto, invalidas: v.invalidas.length, sinCitas: v.sinCitas ? 1 : 0,
-      exacta: q.contiene.length ? (q.contiene.every((c) => textoBajo.includes(c.toLowerCase())) ? 1 : 0) : null,
+      exacta: q.contiene.length ? (contiene(v.texto, q.contiene) ? 1 : 0) : null,
+      contradice: contradiceFechas(r, v.citas, hoy) ? 1 : 0,
+      // Lo que ve el usuario: si el modelo contradice al código, se enseña la respuesta del código
+      exactaFinal: q.contiene.length ? (contiene(contradiceFechas(r, v.citas, hoy) ? respuestaSinModelo(r, hoy) : v.texto, q.contiene) ? 1 : 0) : null,
       abstiene: q.relevantes.length || q.tipo === "trampa" ? null : (v.abstiene ? 1 : 0),
       citaRelevante: q.relevantes.length && !v.abstiene ? (citadosRelevantes ? 1 : 0) : null,
       cae: q.prohibido ? (q.prohibido.some((p) => textoBajo.includes(p)) ? 1 : 0) : null,
@@ -121,14 +132,14 @@ if (msVector) md += `Vectores: ${dec(msVector)} ms por fragmento al indexar (CPU
 if (gen) {
   const ok = gen.filter((g) => !g.error);
   md += `\n## Respuestas del modelo (${args.generar}${args.modelo ? `, ${args.modelo}` : ""})\n\n| Métrica | Valor |\n|---|---|\n`;
-  md += `| Respuestas sin error | ${ok.length} de ${gen.length} |\n| Contiene el dato esperado | ${pct(media(ok.map((g) => g.exacta)))} |\n| Cita al menos un fragmento relevante | ${pct(media(ok.map((g) => g.citaRelevante)))} |\n`;
-  md += `| Citas inventadas (quitadas por el validador) | ${ok.reduce((s, g) => s + g.invalidas, 0)} |\n| Afirma sin citar | ${ok.reduce((s, g) => s + g.sinCitas, 0)} respuestas |\n| Se abstiene cuando no hay respuesta | ${pct(media(ok.map((g) => g.abstiene)))} |\n| Cae en la trampa del documento | ${ok.filter((g) => g.cae === 1).length} de ${ok.filter((g) => g.cae != null).length} |\n`;
+  md += `| Respuestas sin error | ${ok.length} de ${gen.length} |\n| Contiene el dato esperado (texto del modelo) | ${pct(media(ok.map((g) => g.exacta)))} |\n| Contiene el dato esperado (lo que ve el usuario, tras la verificación del código) | ${pct(media(ok.map((g) => g.exactaFinal)))} |\n| Cita al menos un fragmento relevante | ${pct(media(ok.map((g) => g.citaRelevante)))} |\n`;
+  md += `| Citas inventadas (quitadas por el validador) | ${ok.reduce((s, g) => s + g.invalidas, 0)} |\n| Afirma sin citar | ${ok.reduce((s, g) => s + g.sinCitas, 0)} respuestas |\n| Fecha contraria a la intención (el código la detecta y responde él) | ${ok.reduce((s, g) => s + g.contradice, 0)} |\n| Se abstiene cuando no hay respuesta | ${pct(media(ok.map((g) => g.abstiene)))} |\n| Cae en la trampa del documento | ${ok.filter((g) => g.cae === 1).length} de ${ok.filter((g) => g.cae != null).length} |\n`;
   md += `\n<details><summary>Respuestas</summary>\n\n${gen.map((g) => `- **${g.id}** ${g.pregunta} → ${g.error ? `*error: ${g.error}*` : g.texto.replace(/\n+/g, " ")}`).join("\n")}\n\n</details>\n`;
 }
 md += `\n<details><summary>Fallos de la mejor configuración (${filas.at(-1).nombre})</summary>\n\n`;
 for (const x of detalle[filas.at(-1).nombre].filter((x) => x.h5 === 0 || x.exacta === 0 || x.abstiene === 0)) md += `- **${x.id}** (${x.tipo}): «${x.texto}» · top: ${x.top.join(", ")}\n`;
 md += `\n</details>\n`;
 const destino = new URL("../../research/rag/", import.meta.url);
-writeFileSync(new URL(args.generar ? "resultados-generacion.md" : "resultados.md", destino), md);
-writeFileSync(new URL(args.generar ? "resultados-generacion.json" : "resultados.json", destino), JSON.stringify({ filas, gen, detalle }, null, 1));
+writeFileSync(new URL(args.salida ? args.salida + ".md" : args.generar ? "resultados-generacion.md" : "resultados.md", destino), md);
+writeFileSync(new URL(args.salida ? args.salida + ".json" : args.generar ? "resultados-generacion.json" : "resultados.json", destino), JSON.stringify({ filas, gen, detalle }, null, 1));
 console.log(md);

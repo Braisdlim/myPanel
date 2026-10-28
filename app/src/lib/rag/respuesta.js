@@ -67,7 +67,7 @@ export function mensajes(pregunta, r, hoy) {
 export function validarCitas(texto, n) {
   const invalidas = [];
   // Algunos modelos citan a su manera: 【1】, 【1†fragmento】, [1†n] o [1, 2] → [1], [1][2]
-  const normal = (texto ?? "").replace(/【\s*(\d+)[^】]*】/g, "[$1]").replace(/\[(\d+)†[^\]]*\]/g, "[$1]")
+  const normal = (texto ?? "").replace(/[\u00a0\u202f\u2009]/g, " ").replace(/\[n(\d+)\]/gi, "[$1]").replace(/【\s*(\d+)[^】]*】/g, "[$1]").replace(/\[(\d+)†[^\]]*\]/g, "[$1]")
     .replace(/\[(\d+(?:\s*,\s*\d+)+)\]/g, (_, xs) => xs.split(/\s*,\s*/).map((x) => `[${x}]`).join(""))
     .replace(/\*\*(.+?)\*\*/g, "$1");
   const limpio = normal.replace(/\[(\d+)\]/g, (m, k) => { const i = Number(k); if (i >= 1 && i <= n) return m; invalidas.push(i); return ""; })
@@ -80,3 +80,14 @@ export function validarCitas(texto, n) {
 /** Partes del texto para pintar: [{ texto } | { cita: n }]. */
 export const trocearCitas = (texto) => texto.split(/(\[\d+\])/).filter(Boolean).map((p) => (/^\[\d+\]$/.test(p) ? { cita: Number(p.slice(1, -1)) } : { texto: p }));
 
+
+/**
+ * ¿La respuesta del modelo contradice lo que calculó el código? Para «la última vez» solo cita fechas futuras,
+ * o para «la próxima» solo pasadas. Si es así, se enseña la respuesta del código.
+ */
+export function contradiceFechas(r, citas, hoy) {
+  if (r.ruta.intencion !== "ultima" && r.ruta.intencion !== "proxima") return false;
+  const fechas = citas.map((n) => r.resultados[n - 1]?.f.fecha).filter(Boolean);
+  if (!fechas.length) return false;
+  return r.ruta.intencion === "ultima" ? fechas.every((f) => f > hoy) : fechas.every((f) => f < hoy);
+}

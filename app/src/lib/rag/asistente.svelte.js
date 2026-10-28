@@ -5,7 +5,7 @@ import { eventosEntre, cuenta as cuentaReal, esReal } from "../agenda.svelte.js"
 import { sumarDias } from "../fechas.js";
 import { crearFragmentos, textoIndexable } from "./fragmentos.js";
 import { crearMotor } from "./motor.js";
-import { respuestaSinModelo, mensajes as mensajesModelo, validarCitas } from "./respuesta.js";
+import { respuestaSinModelo, mensajes as mensajesModelo, validarCitas, contradiceFechas } from "./respuesta.js";
 import { preguntarModelo, proveedor } from "./proveedores.js";
 import { datosDemo, CUENTAS_DEMO } from "./demo.js";
 import { MODELO } from "./modelo.js";
@@ -126,6 +126,7 @@ export async function preguntar(texto, { forzarEnvio = false } = {}) {
       const salida = await preguntarModelo({ id: p.id, clave: asis.claves[p.id] ?? "", modelo: conf.modelo, mensajes: mensajesModelo(texto, r, app.hoy), signal: ctl.signal });
       const v = validarCitas(salida.texto, r.resultados.length);
       if (!v.texto) throw new Error("El modelo no respondió nada.");
+      if (contradiceFechas(r, v.citas, app.hoy)) throw new Error(`${p.nombre.replace(/ \(.*/, "")} se equivocó de fecha (${r.ruta.intencion === "ultima" ? "dio una futura" : "dio una pasada"}).`);
       Object.assign(m, { estado: "listo", texto: v.texto, redacta: "modelo", proveedor: p.nombre, modelo: salida.modelo,
         aviso: v.invalidas.length ? `Quité ${v.invalidas.length === 1 ? "una cita que no existía" : `${v.invalidas.length} citas que no existían`}.` : v.sinCitas ? "El modelo no citó ninguna fuente: tómalo con cuidado." : null });
     } catch (e) {

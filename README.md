@@ -24,7 +24,7 @@ Hecho con Astro 7 y Svelte 5, como web estática en GitHub Pages; los datos se g
 | Vectores solos | 93 % | 98 % | 0,94 | 95 % |
 | **Híbrido (RRF)** | 85 % | **98 %** | 0,90 | **95 %** |
 
-El router temporal acierta 22 de 22. El asistente se abstiene en las 4 preguntas sin respuesta y no repite el documento trampa. Qué significa cada cifra y sus límites: [docs/producto/12-asistente-rag.md](docs/producto/12-asistente-rag.md).
+El router temporal acierta 22 de 22. El asistente se abstiene en las 4 preguntas sin respuesta y no repite el documento trampa. Con el modelo gratuito (OVH gpt-oss-120b), el **97 %** de lo que ve el usuario contiene el dato correcto, con 0 citas inventadas. Qué significa cada cifra y sus límites: [docs/producto/12-asistente-rag.md](docs/producto/12-asistente-rag.md).
 
 ## Usarla y desarrollar
 ```sh
