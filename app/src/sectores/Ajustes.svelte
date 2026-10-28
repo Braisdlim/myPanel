@@ -1,5 +1,5 @@
 <script>
-  import { app, ir, sustituir, FINANZAS_VISIBLE, cambiarAjuste, exportar, borrarTodo, avisar, conectarGoogle, actualizarCuenta, cambiarCalendario, renombrarCuenta, desconectarCuenta, tienePermiso, activarEscritura, desactivarEscritura, elegirCalendarioEscritura } from "../lib/estado.svelte.js";
+  import { app, ir, sustituir, FINANZAS_VISIBLE, cambiarAsistente, guardarDato, borrarDato, guardarNota, borrarNota, cambiarAjuste, exportar, borrarTodo, avisar, conectarGoogle, actualizarCuenta, cambiarCalendario, renombrarCuenta, desconectarCuenta, tienePermiso, activarEscritura, desactivarEscritura, elegirCalendarioEscritura } from "../lib/estado.svelte.js";
   import { CUENTAS } from "../lib/ejemplo.js";
   import { CLIENT_ID, calendariosPropios } from "../lib/google.js";
   import { haceCuanto, corta, sumarDias, DIAS, DIAS_LETRA } from "../lib/fechas.js";
@@ -11,7 +11,7 @@
   const sec = $derived(SECCIONES.some(([s]) => s === app.ruta[1]) ? app.ruta[1] : "general");
   // En el móvil, como Ajustes de iOS: primero el índice de secciones y, al tocar una, la sección con «‹ Ajustes»
   const indice = $derived(app.movil && !SECCIONES.some(([s]) => s === app.ruta[1]));
-  const DESCRIPCION = { general: "Tema, idioma, calendario y horario", cuentas: "Google y lo que Pauta puede hacer", avisos: "Solapes y fechas límite", asistente: "Aún no funciona", privacidad: "Copia y borrado de tus datos" };
+  const DESCRIPCION = { general: "Tema, idioma, calendario y horario", cuentas: "Google y lo que Pauta puede hacer", avisos: "Solapes y fechas límite", asistente: "Datos, modelo y lo que sé de ti", privacidad: "Copia y borrado de tus datos" };
 
   function descargar() {
     const url = URL.createObjectURL(new Blob([exportar()], { type: "application/json" }));
@@ -64,6 +64,21 @@
 
   let confirmando = $state(false);
   async function borrar() { await borrarTodo(); confirmando = false; avisar("Datos borrados de este dispositivo"); }
+
+  // Asistente (D-061 a D-063)
+  import { PROVEEDORES, proveedor } from "../lib/rag/proveedores.js";
+  import { asis, ponerClave, olvidarClaves, activarVectores, desactivarVectores, usaDemo } from "../lib/rag/asistente.svelte.js";
+  import { TAMANO_MB } from "../lib/rag/embeddings.js";
+  let recordarClave = $state(false);
+  let dato = $state(""), notaTitulo = $state(""), notaTexto = $state("");
+  async function subir(e) {
+    const archivo = e.currentTarget.files?.[0];
+    if (!archivo) return;
+    if (archivo.size > 500_000) { avisar("El archivo es demasiado grande (máx. 500 KB)"); return; }
+    await guardarNota({ titulo: archivo.name.replace(/\.(txt|md)$/i, ""), texto: await archivo.text(), subida: true });
+    e.currentTarget.value = "";
+    avisar(`Subido: ${archivo.name}`);
+  }
 </script>
 
 {#snippet principal()}
@@ -247,11 +262,83 @@
     </section>
   {:else if sec === "asistente"}
     <section class="bloque">
-      <h2>Asistente <span class="etiqueta-ejemplo">maqueta</span></h2>
-      <p class="pa-muted">El asistente está aplazado a una versión posterior. Estas opciones se ven como serán, pero no hacen nada.</p>
-      {#each [["Dónde piensa", "Cloudflare Workers AI (gratis) · OVH de respaldo"], ["Qué puede leer", "Correo y archivos de cada cuenta, en solo lectura"], ["Qué puede hacer", "Solo proponer eventos y tareas; tú confirmas"], ["Botón de micrófono propio", "Apagado: usa el micrófono del teclado"], ["Guardar conversaciones", "Apagado"]] as [t, m]}
-        <div class="pa-toggle"><span class="pa-toggle__text"><span class="pa-toggle__title">{t}</span><span class="pa-toggle__meta">{m}</span></span><button class="pa-switch" role="switch" aria-checked="false" aria-label={t} disabled></button></div>
-      {/each}
+      <h2>Con qué datos responde</h2>
+      <div class="pa-seg" role="group" aria-label="Datos del asistente">
+        {#each [["auto", "Automático"], ["mios", "Los míos"], ["demo", "Ejemplo"]] as [v, n]}<button aria-pressed={app.ajustes.asistente.datos === v ? "true" : "false"} onclick={() => cambiarAsistente("datos", v)}>{n}</button>{/each}
+      </div>
+      <p class="pa-faint">{usaDemo() ? "Ahora usa a Lucía, una persona inventada, para que se pueda probar sin conectar nada." : "Ahora usa tus calendarios, tus tareas, lo que sé de ti y tus notas, en este dispositivo."} «Automático» usa los tuyos en cuanto tienes alguno.</p>
+    </section>
+    <section class="bloque">
+      <h2>Quién redacta la respuesta</h2>
+      <label class="campo">Proveedor
+        <select class="pa-field" value={app.ajustes.asistente.proveedor} onchange={(e) => cambiarAsistente("proveedor", e.currentTarget.value)}>
+          {#each PROVEEDORES as p}<option value={p.id}>{p.nombre}</option>{/each}
+        </select>
+      </label>
+      <p class="pa-faint">{proveedor(app.ajustes.asistente.proveedor).detalle}</p>
+      {#if proveedor(app.ajustes.asistente.proveedor).url}
+        <label class="campo">Modelo<input class="pa-field" value={app.ajustes.asistente.modelo} placeholder={proveedor(app.ajustes.asistente.proveedor).modelo} onchange={(e) => cambiarAsistente("modelo", e.currentTarget.value.trim())} /></label>
+      {/if}
+      {#if proveedor(app.ajustes.asistente.proveedor).clave}
+        <label class="campo">Tu clave
+          <input class="pa-field" type="password" autocomplete="off" value={asis.claves[app.ajustes.asistente.proveedor] ?? ""} placeholder="Se guarda solo en memoria" onchange={(e) => ponerClave(app.ajustes.asistente.proveedor, e.currentTarget.value, recordarClave)} />
+        </label>
+        <label class="casilla"><input type="checkbox" bind:checked={recordarClave} onchange={() => ponerClave(app.ajustes.asistente.proveedor, asis.claves[app.ajustes.asistente.proveedor] ?? "", recordarClave)} /> Recordarla mientras esta pestaña siga abierta</label>
+        <div class="acciones"><button class="pa-btn pa-btn--plain pa-btn--sm" onclick={olvidarClaves}>Olvidar las claves</button></div>
+      {/if}
+      <ul class="pa-insp__rows filas">
+        <li><Icono n="lock" /><span>Qué sale del dispositivo<small>Solo los fragmentos encontrados para cada pregunta, y con tus datos te lo pregunta la primera vez{app.ajustes.asistente.avisoEnvio ? " (ya diste permiso)" : ""}. La búsqueda y tus datos se quedan aquí.</small></span></li>
+        <li><Icono n="message-square-text" /><span>Las conversaciones no se guardan<small>Al recargar la página empiezan de cero</small></span></li>
+      </ul>
+      {#if app.ajustes.asistente.avisoEnvio}<div class="acciones"><button class="pa-btn pa-btn--plain pa-btn--sm" onclick={() => cambiarAsistente("avisoEnvio", false)}>Volver a preguntarme antes de enviar</button></div>{/if}
+    </section>
+    <section class="bloque">
+      <h2>Búsqueda por significado</h2>
+      <div class="pa-toggle">
+        <span class="pa-toggle__text"><span class="pa-toggle__title">Entender sinónimos</span><span class="pa-toggle__meta">«¿Qué medicamento no puedo tomar?» encuentra «alérgica a la penicilina». Descarga una vez un modelo de unos {TAMANO_MB} MB (multilingual-e5-small) y calcula en tu dispositivo.</span></span>
+        <button class="pa-switch" role="switch" aria-checked={app.ajustes.asistente.vectores ? "true" : "false"} aria-label="Entender sinónimos" onclick={() => (app.ajustes.asistente.vectores ? desactivarVectores() : activarVectores())}></button>
+      </div>
+      {#if asis.vectores.estado === "descargando" || asis.vectores.estado === "indexando"}
+        <p class="pa-faint">{asis.vectores.estado === "descargando" ? "Descargando el modelo" : "Calculando vectores"}… {asis.vectores.progreso} %</p>
+      {:else if asis.vectores.estado === "error"}
+        <p class="error-asistente">No se pudo: {asis.vectores.mensaje}</p>
+      {:else if asis.vectores.estado === "listo"}
+        <p class="pa-faint">Listo: {asis.vectores.mensaje}.</p>
+      {/if}
+    </section>
+    <section class="bloque">
+      <h2>Lo que sé de ti</h2>
+      <p class="pa-muted">Datos que escribes tú y el asistente da por ciertos. Nada se aprende a escondidas.</p>
+      <ul class="pa-list pa-list--lines">
+        {#each app.memoria as d (d.id)}
+          <li class="pa-row"><Icono n="user" /><span class="pa-row__main"><span class="pa-row__title">{d.texto}</span></span><button class="pa-btn pa-btn--icon" aria-label="Borrar «{d.texto}»" onclick={() => borrarDato(d)}><Icono n="trash-2" /></button></li>
+        {:else}
+          <li class="pa-row pa-faint">Aún nada. Por ejemplo: «Mi dentista es la doctora Prieto».</li>
+        {/each}
+      </ul>
+      <form class="fila-nueva" onsubmit={async (e) => { e.preventDefault(); if (await guardarDato(dato)) dato = ""; }}>
+        <input class="pa-field" bind:value={dato} placeholder="Un dato sobre ti" aria-label="Nuevo dato sobre ti" />
+        <button class="pa-btn" disabled={!dato.trim()}>Guardar</button>
+      </form>
+    </section>
+    <section class="bloque">
+      <h2>Notas y documentos</h2>
+      <p class="pa-muted">Textos que el asistente puede consultar. Los documentos subidos se marcan «no verificados»: pueden traer instrucciones escondidas y no se dan por ciertos.</p>
+      <ul class="pa-list pa-list--lines">
+        {#each app.notas as n (n.id)}
+          <li class="pa-row"><Icono n={n.subida ? "upload" : "file-text"} /><span class="pa-row__main"><span class="pa-row__title">{n.titulo}</span><span class="pa-row__meta">{n.subida ? "Documento subido · no verificado" : "Nota"} · {n.texto.split(/\s+/).filter(Boolean).length} palabras</span></span><button class="pa-btn pa-btn--icon" aria-label="Borrar «{n.titulo}»" onclick={() => borrarNota(n)}><Icono n="trash-2" /></button></li>
+        {:else}
+          <li class="pa-row pa-faint">Aún no hay notas.</li>
+        {/each}
+      </ul>
+      <form class="nota-nueva" onsubmit={async (e) => { e.preventDefault(); if (notaTexto.trim()) { await guardarNota({ titulo: notaTitulo, texto: notaTexto }); notaTitulo = ""; notaTexto = ""; } }}>
+        <input class="pa-field" bind:value={notaTitulo} placeholder="Título" aria-label="Título de la nota" />
+        <textarea class="pa-field" rows="4" bind:value={notaTexto} placeholder="Texto de la nota" aria-label="Texto de la nota"></textarea>
+        <div class="acciones">
+          <button class="pa-btn" disabled={!notaTexto.trim()}><Icono n="plus" />Guardar nota</button>
+          <label class="pa-btn subir"><Icono n="upload" />Subir .txt o .md<input type="file" accept=".txt,.md,text/plain,text/markdown" onchange={subir} /></label>
+        </div>
+      </form>
     </section>
   {:else}
     <section class="bloque">
@@ -274,7 +361,7 @@
     </section>
     <section class="bloque">
       <h2>Acerca de</h2>
-      <p class="pa-muted">Pauta 0.3.0 · primera versión, paso 3 bis: tus calendarios de Google sin repetidos, crear eventos desde Apuntar y cambiar solo esta vez. Finanzas y asistente siguen siendo de ejemplo.</p>
+      <p class="pa-muted">Pauta 0.4.0 · primera versión, paso 4: tus calendarios de Google, crear eventos desde Apuntar, cambiar solo esta vez y tus calendarios de Google sin repetidos, crear eventos desde Apuntar y cambiar solo esta vez. Asistente con RAG: busca en tus datos y cita cada fuente. Finanzas, escondida.</p>
     </section>
   {/if}
   {/if}
@@ -290,6 +377,17 @@
   .volver { margin: -6px 0 2px -10px; }
   .pestanas { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
   .bloque { margin-bottom: 26px; max-width: 640px; }
+  .campo { display: flex; flex-direction: column; gap: 6px; margin: 12px 0 4px; font-size: 13px; color: var(--text-2); }
+  .casilla { display: flex; align-items: center; gap: 8px; min-height: 36px; font-size: 13px; color: var(--text-2); }
+  .fila-nueva { display: flex; gap: 8px; margin-top: 10px; }
+  .fila-nueva .pa-field { flex: 1; min-width: 0; }
+  .nota-nueva { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+  .nota-nueva textarea { height: auto; padding: 8px 10px; resize: vertical; font: inherit; }
+  .subir { position: relative; cursor: pointer; }
+  .subir input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .subir:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .error-asistente { color: var(--danger); font-size: 13px; }
+  @media (max-width: 640px) { .casilla { min-height: 44px; } }
   h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 16px; line-height: 22px; font-weight: 600; }
   .filas { margin-top: 0; }
   .acciones { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 8px; }

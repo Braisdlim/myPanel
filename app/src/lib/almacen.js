@@ -2,8 +2,8 @@
 // Si IndexedDB no está disponible (navegación privada estricta), guarda en memoria y lo dice (`persistente = false`).
 
 const NOMBRE = "pauta";
-const VERSION = 2; // 2: cuentas conectadas y copia local de sus eventos
-const COLECCIONES = ["tareas", "proyectos", "ajustes", "cuentas", "eventos"];
+const VERSION = 3; // 2: cuentas conectadas y copia local de sus eventos · 3: asistente (lo que sé de ti, notas y vectores)
+const COLECCIONES = ["tareas", "proyectos", "ajustes", "cuentas", "eventos", "memoria", "notas", "vectores"];
 
 function abrir() {
   return new Promise((ok, mal) => {

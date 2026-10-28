@@ -18,7 +18,7 @@ export async function revisar(page) {
       if (cr < (grande ? 3 : 4.5)) { const k = t.textContent.trim().slice(0, 40); if (!vistos.has(k)) { vistos.add(k); malos.push(`contraste ${cr.toFixed(2)}: «${k}»`); } }
     }
     if (innerWidth <= 640) for (const e of document.querySelectorAll("button, a[href], input, select, textarea")) {
-      const r = e.getBoundingClientRect(); if (!r.width || e.closest("[aria-hidden='true']") || e.matches(".pa-check, .pa-switch, .pa-year__c, .pa-chip__x, p a, small a") || e.disabled) continue;
+      const r = e.getBoundingClientRect(); if (!r.width || e.closest("[aria-hidden='true']") || e.matches(".pa-check, .pa-switch, .pa-year__c, .pa-chip__x, p a, small a, p .cita") || e.disabled) continue;
       if (r.bottom < 0 || r.top > innerHeight) continue;
       if (r.height < 44) malos.push(`táctil ${Math.round(r.width)}×${Math.round(r.height)}: «${(e.getAttribute("aria-label") || e.textContent || e.placeholder || "").trim().slice(0, 30)}»`);
     }

@@ -1,6 +1,6 @@
 // Estado de la app (Svelte 5): ruta, fecha de hoy, tareas guardadas en el dispositivo y ajustes.
 import { tick } from "svelte";
-import { crearAlmacen } from "./almacen.js";
+import { crearAlmacen, nuevoId } from "./almacen.js";
 import { hoyISO, minutosAhora, sumarDias } from "./fechas.js";
 import { crearTarea, crearProyecto, completar } from "./tareas.js";
 import { pedirToken, revocar, listarCalendarios, listarEventos, convertirEvento, colorLibre, TokenCaducado, cuerpoEvento, comprobarEvento, crearEvento, leerEvento, calendariosPropios, cuerpoMover, cambiarEvento, leerOCancelado } from "./google.js";
@@ -20,7 +20,9 @@ export const SECTORES = [
   { id: "asistente", nombre: "Asistente", icono: "sparkles" },
 ].filter((s) => s.id !== "finanzas" || FINANZAS_VISIBLE);
 
-const AJUSTES_INICIALES = { id: "general", tema: "sistema", guardarEn: "preguntar", trabajo: { ...HORARIO_INICIAL }, deslizarSecciones: true };
+// Asistente (D-061 a D-063): quién redacta, qué datos usa («auto»: los tuyos si tienes alguno; si no, la persona de ejemplo)
+export const ASISTENTE_INICIAL = { proveedor: "ovh", modelo: "", datos: "auto", vectores: false, avisoEnvio: false };
+const AJUSTES_INICIALES = { id: "general", tema: "sistema", guardarEn: "preguntar", trabajo: { ...HORARIO_INICIAL }, deslizarSecciones: true, asistente: { ...ASISTENTE_INICIAL } };
 
 export const app = $state({
   hoy: hoyISO(),
@@ -38,6 +40,8 @@ export const app = $state({
   eventos: {}, // id de cuenta → eventos guardados en el dispositivo
   sync: {}, // id de cuenta → { estado: "ok" | "cargando" | "error", mensaje, actualizado }
   noVoy: [], // claves de ocurrencias marcadas «No voy esta vez» (solo en Pauta; no se escribe en Google)
+  memoria: [], // «Lo que sé de ti»: datos que confirmas tú (D-061)
+  notas: [], // notas y documentos de texto para el asistente
   aviso: null,
 });
 
@@ -46,13 +50,16 @@ let almacen;
 export async function iniciar() {
   almacen = await crearAlmacen();
   app.persistente = almacen.persistente;
-  const [tareas, proyectos, ajustes, cuentas, eventos] = await Promise.all(["tareas", "proyectos", "ajustes", "cuentas", "eventos"].map((c) => almacen.todos(c)));
+  const [tareas, proyectos, ajustes, cuentas, eventos, memoria, notas] = await Promise.all(["tareas", "proyectos", "ajustes", "cuentas", "eventos", "memoria", "notas"].map((c) => almacen.todos(c)));
+  app.memoria = memoria.sort((a, b) => a.creado.localeCompare(b.creado));
+  app.notas = notas.sort((a, b) => a.creado.localeCompare(b.creado));
   app.cuentas = cuentas.sort((a, b) => a.conectada.localeCompare(b.conectada));
   app.eventos = Object.fromEntries(eventos.map((e) => [e.id, e.eventos]));
   app.sync = Object.fromEntries(eventos.map((e) => [e.id, { estado: "ok", mensaje: "", actualizado: e.actualizado, desde: e.desde, hasta: e.hasta }]));
   app.tareas = tareas;
   app.proyectos = proyectos.sort((a, b) => a.orden - b.orden);
   app.ajustes = { ...AJUSTES_INICIALES, ...(ajustes.find((a) => a.id === "general") ?? {}) };
+  app.ajustes.asistente = { ...ASISTENTE_INICIAL, ...(app.ajustes.asistente ?? {}) };
   app.noVoy = ajustes.find((a) => a.id === "noVoy")?.claves ?? [];
   app.cargado = true;
   leerRuta();
@@ -179,8 +186,39 @@ export async function borrarTodo() {
   tokens.clear();
   await almacen.vaciar();
   app.tareas = []; app.proyectos = []; app.ajustes = { ...AJUSTES_INICIALES };
-  app.cuentas = []; app.eventos = {}; app.sync = {}; app.noVoy = [];
+  app.cuentas = []; app.eventos = {}; app.sync = {}; app.noVoy = []; app.memoria = []; app.notas = [];
 }
+
+// ---------- asistente: lo que sé de ti y notas (D-061) ----------
+export async function guardarDato(texto) {
+  const d = { id: nuevoId(), texto: texto.trim(), estado: "confirmado", creado: new Date().toISOString() };
+  if (!d.texto) return null;
+  app.memoria.push(d);
+  await almacen.guardar("memoria", d);
+  return d;
+}
+export async function borrarDato(d) {
+  app.memoria = app.memoria.filter((x) => x.id !== d.id);
+  await almacen.borrar("memoria", d.id);
+}
+/** Nota escrita o documento de texto subido (los subidos se marcan «no verificados»: pueden traer instrucciones escondidas). */
+export async function guardarNota({ titulo, texto, subida = false }) {
+  const n = { id: nuevoId(), titulo: titulo.trim() || "Sin título", texto, subida, creado: new Date().toISOString() };
+  app.notas.push(n);
+  await almacen.guardar("notas", n);
+  return n;
+}
+export async function borrarNota(n) {
+  app.notas = app.notas.filter((x) => x.id !== n.id);
+  await almacen.borrar("notas", n.id);
+}
+export async function cambiarAsistente(clave, valor) {
+  app.ajustes.asistente = { ...app.ajustes.asistente, [clave]: valor };
+  await almacen.guardar("ajustes", { ...app.ajustes });
+}
+/** Vectores guardados en el dispositivo (para no volver a calcularlos): id → Float32Array. */
+export async function leerVectores() { return almacen.todos("vectores"); }
+export async function guardarVectores(lista) { for (const v of lista) await almacen.guardar("vectores", v); }
 
 // ---------- cuentas de Google (solo lectura) ----------
 const tokens = new Map(); // solo en memoria: id de cuenta → { token, caduca }
