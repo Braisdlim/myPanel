@@ -91,7 +91,7 @@ Fecha: 20-10-2026. Etiquetas: [H] comprobado en la fuente oficial, [I] inferenci
 - [H] Prueba real del 20-10-2026: el ensayo sale en tres calendarios compartidos con `iCalUID` distintos; la unión por `iCalUID` no basta.
 - [P] Regla elegida, en código y sin IA: mismo día, mismo tipo (con hora o todo el día), **la misma hora de inicio** y título equivalente: casi todas las palabras con significado del título más corto (≥ 75 %, sin tildes, signos ni palabras vacías) están en el otro. La hora de fin puede variar y se avisa («otro calendario dice hasta las 0:00»).
 - Si una copia está en un calendario tuyo, esa pasa a ser la principal (es la que podrás cambiar).
-- Se ve de dónde viene: «También en «Glissandoo» y «banda…»» en el detalle del evento.
+- Se ve de dónde viene: «También en «Agenda de la banda» y «banda…»» en el detalle del evento.
 - Alternativas descartadas: unir solo por título (une planes de días distintos), por hora sin título (une planes distintos a la misma hora, p. ej., una cena y el ensayo), o con IA (innecesaria y contra D-002).
 
 ### Pruebas (22-10-2026)
@@ -112,9 +112,9 @@ Fecha: 20-10-2026. Etiquetas: [H] comprobado en la fuente oficial, [I] inferenci
 - **Mover esta vez**: `PATCH` solo de `start` y `end` (hora local + zona del dispositivo) en la ocurrencia o el evento suelto. Relee y compara las horas; si es de una serie, comprueba que la serie sigue. Propone hasta 3 huecos libres de la misma duración (misma hora en días cercanos, luego otras horas del mismo día), como la maqueta `AndroidOcurrencia`, más «Otra hora…» con aviso si pisa algo.
 - **No voy esta vez** (cualquier evento que Pauta no puede cambiar, como el ensayo en calendarios compartidos): marca local por ocurrencia (`uid|día|hora`, y la de cada copia unida). No escribe en Google. Deja de contar en tiempo libre, huecos y solapes; se ve tachado y rayado. Se guarda en el dispositivo y se olvida a los 60 días.
 - «Cambiar toda la serie» no existe: la serie nunca se toca sin orden explícita (CLAUDE.md).
-- [I] Al probarlo con datos reales se vio que la copia elegida para mostrar el ensayo unido era la de `bandadenoia` (hasta las 0:00), que llegaba primero. Ahora se elige: calendario tuyo; si no, la hora de fin en la que coinciden más copias; y, entre copias parecidas, el título más completo.
+- [I] Al probarlo con datos reales se vio que la copia elegida para mostrar el ensayo unido era la de `banda` (hasta las 0:00), que llegaba primero. Ahora se elige: calendario tuyo; si no, la hora de fin en la que coinciden más copias; y, entre copias parecidas, el título más completo.
 
 ### Pruebas (22-10-2026)
 - `app/pruebas/paso3bis.test.mjs`: 8 unitarias (serie de una ocurrencia, huecos, otras horas, «Otra hora…», claves de «No voy», solapes, cuerpo de mover y relectura, ensayo unido).
 - `app/pruebas/paso3bis.spec.js`: recorrido en móvil y escritorio con Google imitado: «No voy esta vez» en un calendario compartido (sin escribir en Google, sigue tras recargar, «Sí voy»), aviso de activar «Crear eventos», «Saltar en …» y «Mover en …» con tarjeta y relectura; el `PATCH` lleva solo lo necesario y `sendUpdates=none`.
-- Con datos reales (Chrome, 22-10-2026): el ensayo del viernes 23 sale una vez (21:30–23:30, «Glissandoo», «3 calendarios», «otro calendario dice hasta las 0:00»); «No voy esta vez» y «Sí voy» funcionan (deshecho al terminar). Saltar y mover en Google real: sin probar (no hay series tuyas comprobadas; necesita tu confirmación).
+- Con datos reales (Chrome, 22-10-2026): el ensayo del viernes 23 sale una vez (21:30–23:30, «Agenda de la banda», «3 calendarios», «otro calendario dice hasta las 0:00»); «No voy esta vez» y «Sí voy» funcionan (deshecho al terminar). Saltar y mover en Google real: sin probar (no hay series tuyas comprobadas; necesita tu confirmación).

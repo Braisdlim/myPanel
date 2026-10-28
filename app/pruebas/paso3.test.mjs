@@ -12,7 +12,7 @@ const ev = (c, id, titulo, ini, fin, extra = {}) =>
   convertirEvento({ id, iCalUID: `${id}@google.com`, summary: titulo, start: { dateTime: ini }, end: { dateTime: fin }, ...extra }, c, YO);
 
 test("títulos equivalentes: el corto está dentro del largo, sin tildes ni signos", () => {
-  assert.ok(mismoTitulo("Ensayo General", "Ensayo General | Banda de Música de Noia"));
+  assert.ok(mismoTitulo("Ensayo General", "Ensayo General | Banda de Música"));
   assert.ok(mismoTitulo("ENSAYO general", "ensayo-general"));
   assert.ok(mismoTitulo("Cena", "Cena con Ana"));
   assert.ok(!mismoTitulo("Dentista", "Ensayo General"));
@@ -22,17 +22,17 @@ test("títulos equivalentes: el corto está dentro del largo, sin tildes ni sign
 });
 
 test("el ensayo real copiado en tres calendarios compartidos se ve una vez (P-043)", () => {
-  const g1 = cal("glis1@group", "Glissandoo", "reader"), g2 = cal("glis2@group", "Glissandoo", "reader"), banda = cal("bandadenoia@gmail.com", "bandadenoia@gmail.com", "reader");
+  const g1 = cal("glis1@group", "Agenda de la banda", "reader"), g2 = cal("glis2@group", "Agenda de la banda", "reader"), banda = cal("banda@gmail.com", "banda@gmail.com", "reader");
   const principal = cal(YO, YO, "owner", { principal: true });
   const cuentas = [{ id: YO, calendarios: [principal, g1, g2, banda] }];
   const evs = [
-    ...ev(g1, "a", "Ensayo General | Banda de Música de Noia", "2026-10-23T21:30:00+02:00", "2026-10-23T23:30:00+02:00"),
-    ...ev(g2, "b", "Ensayo General | Banda de Música de Noia", "2026-10-23T21:30:00+02:00", "2026-10-23T23:30:00+02:00"),
+    ...ev(g1, "a", "Ensayo General | Banda de Música", "2026-10-23T21:30:00+02:00", "2026-10-23T23:30:00+02:00"),
+    ...ev(g2, "b", "Ensayo General | Banda de Música", "2026-10-23T21:30:00+02:00", "2026-10-23T23:30:00+02:00"),
     ...ev(banda, "c", "Ensayo General", "2026-10-23T21:30:00+02:00", "2026-10-24T00:00:00+02:00"),
     ...ev(principal, "d", "Cena", "2026-10-23T21:30:00+02:00", "2026-10-23T23:00:00+02:00"), // otro plan a la misma hora: no se une
   ];
   const dia = indexar({ [YO]: evs }, cuentas).get("2026-10-23");
-  assert.deepEqual(dia.map((e) => e.titulo).sort(), ["Cena", "Ensayo General | Banda de Música de Noia"]);
+  assert.deepEqual(dia.map((e) => e.titulo).sort(), ["Cena", "Ensayo General | Banda de Música"]);
   const ensayo = dia.find((e) => e.titulo.startsWith("Ensayo"));
   assert.equal(ensayo.unidoPor, "parecido");
   assert.equal(ensayo.fuentes.length, 2);
@@ -41,14 +41,14 @@ test("el ensayo real copiado en tres calendarios compartidos se ve una vez (P-04
 });
 
 test("se muestra la copia con la hora de fin en la que coinciden más calendarios, aunque llegue después", () => {
-  const banda = cal("banda", "bandadenoia@gmail.com", "reader"), g1 = cal("g1", "Glissandoo", "reader"), g2 = cal("g2", "Glissandoo", "reader");
+  const banda = cal("banda", "banda@gmail.com", "reader"), g1 = cal("g1", "Agenda de la banda", "reader"), g2 = cal("g2", "Agenda de la banda", "reader");
   const evs = [
     ...ev(banda, "c", "Ensayo General", "2026-10-23T21:30:00+02:00", "2026-10-24T00:00:00+02:00"), // llega primero (como en la prueba real)
-    ...ev(g1, "a", "Ensayo General | Banda de Música de Noia", "2026-10-23T21:30:00+02:00", "2026-10-23T23:30:00+02:00"),
-    ...ev(g2, "b", "Ensayo General | Banda de Música de Noia", "2026-10-23T21:30:00+02:00", "2026-10-23T23:30:00+02:00"),
+    ...ev(g1, "a", "Ensayo General | Banda de Música", "2026-10-23T21:30:00+02:00", "2026-10-23T23:30:00+02:00"),
+    ...ev(g2, "b", "Ensayo General | Banda de Música", "2026-10-23T21:30:00+02:00", "2026-10-23T23:30:00+02:00"),
   ];
   const [e] = indexar({ [YO]: evs }, [{ id: YO, calendarios: [banda, g1, g2] }]).get("2026-10-23");
-  assert.deepEqual([e.titulo, e.fin, e.calendarioId], ["Ensayo General | Banda de Música de Noia", H(23, 30), "g1"]);
+  assert.deepEqual([e.titulo, e.fin, e.calendarioId], ["Ensayo General | Banda de Música", H(23, 30), "g1"]);
   assert.deepEqual(finesDistintos(e), [H(24)]);
 });
 

@@ -5,7 +5,7 @@
 **Estado (20-10-2026)**: app real en [`app/`](app/README.md), con tareas en el dispositivo y Google Calendar en solo lectura con varias cuentas. Finanzas y asistente siguen siendo de ejemplo. **Para retomar el trabajo: [docs/TRASPASO.md](docs/TRASPASO.md).** Producto en [docs/producto](docs/producto/README.md).
 
 ## Documentación
-- [Traspaso: dónde estamos, qué sigue y cómo trabajar](docs/TRASPASO.md) · [mensajes del usuario, literales](docs/traspaso/mensajes-del-usuario.md)
+- [Traspaso: dónde estamos, qué sigue y cómo trabajar](docs/TRASPASO.md)
 - [Guía: conectar Google Calendar](docs/guias/conectar-google-calendar.md)
 - [Sistema de diseño de Pauta](diseno/README.md)
 - [Referencias visuales por sector](docs/referencias/README.md)

@@ -6,7 +6,7 @@ Este documento sirve para continuar el trabajo en Claude Code en el ordenador de
 1. Este documento.
 2. `CLAUDE.md`, que tiene las reglas fijas.
 3. `docs/DECISIONES.md`: decisiones D-, supuestos S-, pendientes P- y registro de fuentes.
-4. `docs/traspaso/mensajes-del-usuario.md`: los 42 mensajes del usuario, literales.
+4. Los mensajes literales del usuario (18–20-10-2026) ya no están en el repositorio público (D-060). Si hacen falta, siguen en el historial: `git show ba1e152:docs/traspaso/mensajes-del-usuario.md`.
 5. Lo que toque según la tarea:
    - `docs/producto/` (visión y arquitectura).
    - `diseno/` (sistema de diseño y maquetas).
@@ -50,8 +50,8 @@ Sectores: Hoy, Calendario, Tareas, Compromisos flexibles (dentro de Calendario y
 | Dato | Valor | Fuente |
 |---|---|---|
 | Cuentas de correo | **Dos Gmail personales.** Todavía no se sabe en cuál se permitirá escribir (P-002). | Mensaje 2, D-015 |
-| Cuenta de trabajo | Microsoft de NTT DATA, con reuniones diarias. **Antes de conectarla hay que comprobar la política de la empresa**; mientras tanto, solo «ocupado» o nada (D-038, P-031). | Mensaje 20 |
-| Ensayo | **Viernes de 21:30 a 23:30**, recurrente y **opcional**: puede faltar alguna semana. Las excepciones se hacen **por ocurrencia**, nunca a la serie sin orden explícita. **Está en `brais.dlim@gmail.com`**, en calendarios compartidos contigo («Glissandoo» ×2 y `bandadenoia@gmail.com`), y aparece repetido (P-001 resuelto el 20-10-2026, P-043). | Mensajes 1 y 2; prueba real |
+| Cuenta de trabajo | Microsoft de tu empresa, con reuniones diarias. **Antes de conectarla hay que comprobar la política de la empresa**; mientras tanto, solo «ocupado» o nada (D-038, P-031). | Mensaje 20 |
+| Ensayo | **Viernes de 21:30 a 23:30**, recurrente y **opcional**: puede faltar alguna semana. Las excepciones se hacen **por ocurrencia**, nunca a la serie sin orden explícita. **Está en tu Gmail principal**, en calendarios compartidos contigo («Agenda de la banda» ×2 y `banda@gmail.com`), y aparece repetido (P-001 resuelto el 20-10-2026, P-043). | Mensajes 1 y 2; prueba real |
 | Móvil | Honor 600 Pro con Google Play (MagicOS 10, Android 16). Navegador por confirmar, se supone Chrome (P-005). | Mensaje 2 |
 | Ordenadores | Windows (lo usa ahora). Mac: por confirmar si tiene uno personal (P-014). | Mensajes 20 y 41 |
 | Vacaciones | Se piden en el portal corporativo desde el PC de la empresa. Pauta solo apunta días libres (D-014). | Mensaje 2 |
@@ -100,7 +100,7 @@ El día de ejemplo de las maquetas es el **viernes 23-10-2026**. El 25-10-2026 e
 | Investigación de datos y sincronización, finanzas, voz y asistente de IA | `docs/producto/08`, `10`, `11`; `research/` | Hecho; D-041 propuesta, D-028 aplazada |
 | **App, paso 1**: carcasa, todos los sectores, tareas reales en IndexedDB, «Apuntar» con analizador de fechas propio | `app/` | Hecho (D-048) |
 | **App, paso 2**: Google Calendar en solo lectura, varias cuentas | `app/src/lib/google.js`, `calendario.js`, `agenda.svelte.js`, `sectores/Ajustes.svelte` | Hecho y **probado con tus dos cuentas reales el 20-10-2026** (D-049, P-041). Falta S-003 (27-10). |
-| **App, paso 3** (22-10-2026): eventos repetidos unidos (D-051) y crear eventos desde «Apuntar» con confirmación y relectura (D-050) | `calendario.js`, `google.js`, `estado.svelte.js`, `componentes/Apuntar.svelte`, `sectores/Ajustes.svelte`, `sectores/Calendario.svelte` | Hecho y **probado con la cuenta real el 22-10-2026**: «Dentista», mar 27-10, 10:30–11:30, creado en `brais.dlim@gmail.com` y comprobado en Google Calendar (P-044). Versión 0.3.0. |
+| **App, paso 3** (22-10-2026): eventos repetidos unidos (D-051) y crear eventos desde «Apuntar» con confirmación y relectura (D-050) | `calendario.js`, `google.js`, `estado.svelte.js`, `componentes/Apuntar.svelte`, `sectores/Ajustes.svelte`, `sectores/Calendario.svelte` | Hecho y **probado con la cuenta real el 22-10-2026**: «Dentista», mar 27-10, 10:30–11:30, creado en tu Gmail principal y comprobado en Google Calendar (P-044). Versión 0.3.0. |
 | **App, paso 3 bis** (22-10-2026): cambiar solo esta vez (D-052): «Mover esta vez», «Saltar esta vez» y «No voy esta vez» | `componentes/CambiarEvento.svelte`, `calendario.js` (huecos, claves, copia principal), `estado.svelte.js` | Probado con Google imitado; con datos reales, «No voy esta vez» en el ensayo y «Mover» del «Dentista» al mié 28-10, 10:30–11:30, comprobado en Google (P-045). Falta «Saltar» con una serie real. |
 
 ### Lienzos en claude.ai
@@ -157,9 +157,9 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
 
 ### Prueba real del 20-10-2026 (hecha en Windows)
 - Entorno: Node 24.20.0, npm 11.19.0, `npm test` 28 de 28, `npm run dev` en `http://localhost:4321`.
-- Conectadas las dos cuentas en solo lectura: `brais.dlim@gmail.com` (8 calendarios, 123 eventos) y `braisdlim.tw@gmail.com` (2 calendarios, 26 eventos). El correo se ve bien. Consola sin errores.
+- Conectadas las dos cuentas en solo lectura: tu Gmail principal (8 calendarios, 123 eventos) y tu segundo Gmail (2 calendarios, 26 eventos). El correo se ve bien. Consola sin errores.
 - La ventana de Google obliga a permitir las ventanas emergentes de `localhost`.
-- El ensayo está en `brais.dlim@gmail.com`, en calendarios compartidos, y sale **tres veces** (P-043). Los calendarios compartidos quizá no admitan escritura (P-042).
+- El ensayo está en tu Gmail principal, en calendarios compartidos, y sale **tres veces** (P-043). Los calendarios compartidos quizá no admitan escritura (P-042).
 
 ### Versión publicada (D-053, 22-10-2026)
 - Dirección: **https://braisdlim.github.io/myPanel/** (GitHub Pages, gratis). Se publica sola en cada push a la rama principal si pasan las pruebas (`.github/workflows/publicar.yml`; Pages con origen «GitHub Actions», activado con `gh api`).
@@ -186,7 +186,7 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
 1. «Saltar esta vez» con una serie real del usuario, cuando la haya (P-045; mover ya probado).
 2. **El 27-10-2026**, confirmar que el permiso no caduca a los 7 días (S-003).
 3. Aceptar o corregir D-049 a D-052, y revisar las maquetas del Calendario (P-027, P-028).
-- Hecho el 22-10-2026: prueba real del paso 3 (P-044), con `brais.dlim@gmail.com` y «Crear eventos» activado; paso 3 bis programado (D-052).
+- Hecho el 22-10-2026: prueba real del paso 3 (P-044), con tu Gmail principal y «Crear eventos» activado; paso 3 bis programado (D-052).
 - El servidor de desarrollo puede quedarse con una copia vieja de un módulo tras muchos cambios («does not provide an export named…»): reiniciar `npm run dev`.
 
 ### Propuesta de hoja de ruta [P] (no aprobada; preséntala como recomendación)
@@ -208,7 +208,7 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
 
 ## 5. Reglas técnicas y trampas aprendidas
 - **Secretos:** nunca subir secretos ni tokens. El ID de cliente de Google no es secreto y está subido. Los ficheros financieros reales van en `research/finanzas-import/privado/` (ignorado) y nunca se suben.
-- **El repositorio `Braisdlim/myPanel` es PÚBLICO**: comprobado el 20-10-2026, la API de GitHub responde sin autenticar. Todo lo que se sube, incluidos `DECISIONES.md` y los mensajes literales, lo puede leer cualquiera. Si el usuario no lo quiere así, que lo haga privado en GitHub › Settings.
+- **El repositorio `Braisdlim/myPanel` es PÚBLICO**: comprobado el 20-10-2026, la API de GitHub responde sin autenticar. Todo lo que se sube, incluido `DECISIONES.md`, lo puede leer cualquiera, y será su portafolio: no subir correos, nombres de terceros, empresa ni datos financieros reales (D-060). Lo que se borró sigue en el historial de git; limpiarlo exigiría reescribirlo (decisión del usuario).
 - **Ramas:** el remoto **solo tiene la rama `claude/confident-bohr-h7z5mh`**, que es la rama por defecto; no hay `main`. Crear `main` u otra rama es decisión del usuario. No abrir *pull requests* sin que lo pida.
 - **Escritura en servicios externos:** indicar la cuenta de destino, pedir confirmación y releer el resultado (`CLAUDE.md`). Las excepciones de calendario, siempre por ocurrencia.
 - **Fechas:** las calcula siempre el código, nunca un modelo. El analizador (`app/src/lib/analizador.js`) devuelve dudas con opciones en lugar de adivinar.
@@ -239,7 +239,7 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
 ## 7. Mensaje para empezar la sesión local
 Pega esto en la primera conversación de Claude Code en el ordenador:
 
-> Retomamos Pauta (repositorio myPanel) desde una sesión en la nube. Lee `docs/TRASPASO.md` entero, `CLAUDE.md`, `docs/DECISIONES.md` y `docs/traspaso/mensajes-del-usuario.md`. Después:
+> Retomamos Pauta (repositorio myPanel) desde una sesión en la nube. Lee `docs/TRASPASO.md` entero, `CLAUDE.md` y `docs/DECISIONES.md`. Después:
 > 1. Resúmeme en 10 líneas dónde estamos y qué es lo siguiente.
 > 2. Comprueba que la app arranca en Windows (`cd app`, `npm install`, `npm test` y `npm run dev`).
 > 3. Guíame para probar la conexión real con mis dos Gmail (P-041).

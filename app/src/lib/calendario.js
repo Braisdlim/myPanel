@@ -11,7 +11,7 @@ export function palabras(titulo) {
 
 /**
  * ¿Dos títulos hablan de lo mismo? Sí si casi todas las palabras del más corto están en el otro
- * («Ensayo General» y «Ensayo General | Banda de Música de Noia»). Sin palabras, solo si los dos están vacíos.
+ * («Ensayo General» y «Ensayo General | Banda de Música»). Sin palabras, solo si los dos están vacíos.
  */
 export function mismoTitulo(a, b) {
   const A = palabras(a), B = palabras(b);

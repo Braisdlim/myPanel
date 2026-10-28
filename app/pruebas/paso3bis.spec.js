@@ -13,11 +13,11 @@ const SEMANA = madrid(new Date(Date.now() + 9 * 864e5));
 
 const CALENDARIOS = [
   { id: YO, summary: YO, primary: true, accessRole: "owner", selected: true },
-  { id: "banda@group", summary: "Glissandoo", accessRole: "reader", selected: true },
+  { id: "banda@group", summary: "Agenda de la banda", accessRole: "reader", selected: true },
 ];
 const conHora = (id, titulo, dia, ini, fin, extra = {}) => ({ id, iCalUID: `${id.split("_")[0]}@google.com`, status: "confirmed", summary: titulo, start: { dateTime: `${dia}T${ini}:00` }, end: { dateTime: `${dia}T${fin}:00` }, ...extra });
 const nuevosEventos = () => ({
-  "banda@group": { e1: conHora("e1", "Ensayo General | Banda de Música de Noia", DIA, "21:30", "23:30") },
+  "banda@group": { e1: conHora("e1", "Ensayo General | Banda de Música", DIA, "21:30", "23:30") },
   [YO]: {
     padel_1: conHora("padel_1", "Pádel", DIA, "19:00", "20:30", { recurringEventId: "padel" }),
     padel_2: conHora("padel_2", "Pádel", SEMANA, "19:00", "20:30", { recurringEventId: "padel" }),

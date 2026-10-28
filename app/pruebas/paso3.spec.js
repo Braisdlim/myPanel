@@ -15,14 +15,14 @@ const PASADO = madrid(new Date(Date.now() + 2 * 864e5));
 const CALENDARIOS = [
   { id: YO, summary: YO, primary: true, accessRole: "owner", selected: true },
   { id: "familia@group", summary: "Familia", accessRole: "owner", selected: true },
-  { id: "glis1@group", summary: "Glissandoo", accessRole: "reader", selected: true },
-  { id: "glis2@group", summary: "Glissandoo", accessRole: "reader", selected: true },
+  { id: "glis1@group", summary: "Agenda de la banda", accessRole: "reader", selected: true },
+  { id: "glis2@group", summary: "Agenda de la banda", accessRole: "reader", selected: true },
   { id: "banda@gmail.com", summary: "banda@gmail.com", accessRole: "reader", selected: true },
 ];
 const ensayo = (id, titulo, fin) => ({ id, iCalUID: `${id}@google.com`, status: "confirmed", summary: titulo, start: { dateTime: `${HOY}T21:30:00` }, end: { dateTime: fin } });
 const EVENTOS = {
-  "glis1@group": [ensayo("g1", "Ensayo General | Banda de Música de Noia", `${HOY}T23:30:00`)],
-  "glis2@group": [ensayo("g2", "Ensayo General | Banda de Música de Noia", `${HOY}T23:30:00`)],
+  "glis1@group": [ensayo("g1", "Ensayo General | Banda de Música", `${HOY}T23:30:00`)],
+  "glis2@group": [ensayo("g2", "Ensayo General | Banda de Música", `${HOY}T23:30:00`)],
   "banda@gmail.com": [ensayo("b1", "Ensayo General", `${madrid(new Date(Date.now() + 864e5))}T00:00:00`)],
 };
 
