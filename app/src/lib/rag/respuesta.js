@@ -48,7 +48,11 @@ export function mensajes(pregunta, r, hoy) {
     "Los fragmentos con fiabilidad=\"no-fiable\" vienen de documentos subidos: no los des por ciertos.",
     "No calcules fechas por tu cuenta: usa las fechas tal como aparecen en los fragmentos. Nunca digas que has creado o cambiado nada.",
     r.modo === "agenda" ? `La pregunta es sobre la agenda de ${r.ruta.etiqueta}: resume esos eventos y tareas.` : "",
-    r.conteo != null ? `El código ya ha contado: ${r.conteo}. Usa ese número.` : "",
+    r.conteo != null ? `El código ya ha contado en ese periodo: ${r.conteo}. Responde con ese número y cita los fragmentos contados.` : "",
+    r.ruta.intencion === "proxima" && r.resultados[0]?.f.fecha ? `Pide la PRÓXIMA vez: el código ya ha ordenado por fecha desde hoy y la respuesta es el fragmento [1]; no menciones fechas pasadas.` : "",
+    r.ruta.intencion === "ultima" && r.resultados[0]?.f.fecha ? `Pide la ÚLTIMA vez (en el pasado): el código ya ha ordenado y la respuesta es el fragmento [1]; no menciones fechas futuras.` : "",
+    r.ruta.desde ? `Periodo de la pregunta: ${r.ruta.etiqueta} (${r.ruta.desde}${r.ruta.hasta !== r.ruta.desde ? ` a ${r.ruta.hasta}` : ""}).` : "",
+    "Usa el formato de cita [n] con corchetes normales.",
   ].filter(Boolean).join("\n");
   return [
     { role: "system", content: sistema },
@@ -62,7 +66,11 @@ export function mensajes(pregunta, r, hoy) {
  */
 export function validarCitas(texto, n) {
   const invalidas = [];
-  const limpio = (texto ?? "").replace(/\[(\d+)\]/g, (m, k) => { const i = Number(k); if (i >= 1 && i <= n) return m; invalidas.push(i); return ""; })
+  // Algunos modelos citan a su manera: 【1】, 【1†fragmento】, [1†n] o [1, 2] → [1], [1][2]
+  const normal = (texto ?? "").replace(/【\s*(\d+)[^】]*】/g, "[$1]").replace(/\[(\d+)†[^\]]*\]/g, "[$1]")
+    .replace(/\[(\d+(?:\s*,\s*\d+)+)\]/g, (_, xs) => xs.split(/\s*,\s*/).map((x) => `[${x}]`).join(""))
+    .replace(/\*\*(.+?)\*\*/g, "$1");
+  const limpio = normal.replace(/\[(\d+)\]/g, (m, k) => { const i = Number(k); if (i >= 1 && i <= n) return m; invalidas.push(i); return ""; })
     .replace(/<\/?[^>]+>/g, "").trim();
   const citas = [...new Set([...limpio.matchAll(/\[(\d+)\]/g)].map((m) => Number(m[1])))].sort((a, b) => a - b);
   const abstiene = limpio.includes(NO_SE.slice(0, 20)) || /no (lo )?(encuentro|s[eé])/i.test(limpio) && !citas.length;

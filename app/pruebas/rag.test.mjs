@@ -97,3 +97,8 @@ test("proveedor: formato OpenAI, sin clave para OVH, errores claros", async () =
   await assert.rejects(preguntarModelo({ id: "groq", mensajes: [], fetchFn }), /Falta tu clave/);
   await assert.rejects(preguntarModelo({ id: "ovh", mensajes: [], fetchFn: async () => ({ ok: false, status: 429 }) }), /esperar/);
 });
+
+test("citas al estilo de cada modelo se normalizan: 【1】, 【1†n】, [2†x], [1, 3]", () => {
+  assert.deepEqual(validarCitas("Es el martes【1】 y el jueves【3†fragmento】, ver [2†n] y [1, 3].", 3).citas, [1, 2, 3]);
+  assert.equal(validarCitas("El código es **LX4521**【2】.", 3).texto, "El código es LX4521[2].");
+});
