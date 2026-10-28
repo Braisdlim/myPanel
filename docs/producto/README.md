@@ -12,4 +12,5 @@ El diseño visual está **aparcado** hasta cerrar esta definición.
 8. [Datos financieros](08-datos-financieros.md): cómo recoger movimientos, inversiones y valores liquidativos gratis y con seguridad.
 9. [Paridad de pantallas y varias cuentas](09-paridad-de-pantallas.md): cada pantalla en escritorio (Mac y Windows) y en móvil (Android e iPhone); cuentas de Google y de Microsoft.
 10. [Datos y sincronización](10-datos-y-sincronizacion.md): NAS, base de datos gratuita o Cloudflare; volumen real de datos; fuentes financieras verificadas.
+12. [Asistente con RAG](12-asistente-rag.md): pregúntale a tu propia vida; arquitectura, banco de evaluación con métricas y qué contar en una entrevista (D-061 a D-063). **Vigente.**
 11. [Asistente de IA](11-asistente-ia.md): buscar correos y archivos y crear eventos por texto o voz; dónde corre el modelo, cuánto cuesta, permisos y seguridad; el NAS deja de hacer falta.

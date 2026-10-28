@@ -86,7 +86,7 @@ El día de ejemplo de las maquetas es el **viernes 23-10-2026**. El 25-10-2026 e
 - **No quiere renovar cosas a mano** (por ejemplo, la caducidad de 7 días de Google) y prioriza la comodidad si el riesgo es bajo: el ID de cliente se subió al repositorio porque lo pidió.
 - `docs/DECISIONES.md` es el documento vivo. Hay que actualizarlo en cada decisión, supuesto, pendiente o fuente nueva, con fecha y cita literal del usuario cuando decide algo.
 
-## 4. Estado a 22-10-2026
+## 4. Estado a 28-10-2026
 
 ### Hecho
 | Pieza | Dónde | Estado |
@@ -102,6 +102,22 @@ El día de ejemplo de las maquetas es el **viernes 23-10-2026**. El 25-10-2026 e
 | **App, paso 2**: Google Calendar en solo lectura, varias cuentas | `app/src/lib/google.js`, `calendario.js`, `agenda.svelte.js`, `sectores/Ajustes.svelte` | Hecho y **probado con tus dos cuentas reales el 20-10-2026** (D-049, P-041). Falta S-003 (27-10). |
 | **App, paso 3** (22-10-2026): eventos repetidos unidos (D-051) y crear eventos desde «Apuntar» con confirmación y relectura (D-050) | `calendario.js`, `google.js`, `estado.svelte.js`, `componentes/Apuntar.svelte`, `sectores/Ajustes.svelte`, `sectores/Calendario.svelte` | Hecho y **probado con la cuenta real el 22-10-2026**: «Dentista», mar 27-10, 10:30–11:30, creado en tu Gmail principal y comprobado en Google Calendar (P-044). Versión 0.3.0. |
 | **App, paso 3 bis** (22-10-2026): cambiar solo esta vez (D-052): «Mover esta vez», «Saltar esta vez» y «No voy esta vez» | `componentes/CambiarEvento.svelte`, `calendario.js` (huecos, claves, copia principal), `estado.svelte.js` | Probado con Google imitado; con datos reales, «No voy esta vez» en el ensayo y «Mover» del «Dentista» al mié 28-10, 10:30–11:30, comprobado en Google (P-045). Falta «Saltar» con una serie real. |
+
+### 28-10-2026: portafolio y asistente con RAG
+- **Objetivo nuevo del usuario:** que Pauta le sirva como **proyecto de portafolio para entrevistas de IA**; en la última, hace un par de meses, lo rechazaron. Pidió «un RAG que nos controle la vida», que cualquiera pueda usarla y esconder Finanzas, y dejó el trabajo «totalmente al cargo» del agente.
+- **Hecho:**
+  - **Finanzas escondida** (D-059, `FINANZAS_VISIBLE`); el Asistente ocupa su sitio en la barra.
+  - **Repositorio sin datos personales** (D-060): es público y es el portafolio.
+  - **Asistente con RAG** (D-061 a D-063):
+    - Diseño, métricas y qué contar en una entrevista: `docs/producto/12-asistente-rag.md`.
+    - Código en `app/src/lib/rag/` y banco en `app/pruebas/rag/banco.json`.
+    - Resultados en `research/rag/resultados.md` y `resultados-generacion.md`.
+  - El README raíz está escrito como portada del portafolio.
+- **Comprobado:**
+  - 60 pruebas unitarias y 155 de Playwright.
+  - Los vectores funcionan en un navegador real: 12 s en indexar y entre 70 y 470 ms por pregunta.
+  - Despliegues de GitHub Pages en verde.
+- **Pendiente:** P-049, crecer el banco con preguntas reales del usuario.
 
 ### Lienzos en claude.ai
 Son privados del usuario; se abren con su sesión de claude.ai. El código de los tableros está copiado en `diseno/maquetas/*/` (`canvas.json` + `*.dc.html`). Para editar un lienzo hace falta claude.ai, porque la herramienta de artefactos no existe en Claude Code local.
@@ -202,8 +218,8 @@ Son privados del usuario; se abren con su sesión de claude.ai. El código de lo
    - Microsoft u Outlook (P-030 y P-031);
    - Finanzas reales (D-028 y P-025, aplazadas por el usuario);
    - Correo y búsqueda en Drive (fase 2, D-008);
-   - el asistente de IA (D-042 a D-047, aplazado: «es un tema que quiero meditar»);
-   - memoria «Lo que sé de ti»;
+   - ~~el asistente de IA~~ Hecho como RAG (D-061 a D-063); siguiente: banco con preguntas reales (P-049), correo y Drive como fuentes;
+   - «Lo que sé de ti» con propuestas que confirmas tú (hoy solo lo escribes tú);
    - Yeasy.
 
 ## 5. Reglas técnicas y trampas aprendidas

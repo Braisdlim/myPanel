@@ -8,7 +8,7 @@ const cuando = (f, hoy) => (f.fecha ? `${larga(f.fecha).replace(/^./, (c) => c.t
 
 const resumir = (t) => (t.length > 280 ? t.slice(0, 277) + "…" : t);
 const describir = (f, hoy) => f.tipo === "evento" ? `«${f.titulo}», ${cuando(f, hoy)}`
-  : f.tipo === "tarea" ? `la tarea «${f.titulo}» (${f.cabecera.replace(/^Tarea · /, "")})` : `«${f.titulo}»: ${resumir(f.texto)}`;
+  : f.tipo === "tarea" ? `la tarea «${f.titulo}» (${f.cabecera.replace(/^Tarea · /, "")})` : f.tipo === "memoria" ? `«${resumir(f.texto)}»` : `«${f.titulo}»: ${resumir(f.texto)}`;
 
 /** Respuesta escrita por el código (modo «sin IA», y respaldo si el modelo falla). */
 export function respuestaSinModelo(r, hoy) {

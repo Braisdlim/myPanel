@@ -1,4 +1,4 @@
-# Pauta — la app (primera versión, paso 3 bis)
+# Pauta — la app (primera versión, paso 4: asistente con RAG)
 
 Astro 7.4.1 + Svelte 5.57.2, con el sistema de diseño de `../diseno/sistema/` (importado, sin copias).
 
@@ -10,10 +10,10 @@ Astro 7.4.1 + Svelte 5.57.2, con el sistema de diseño de `../diseno/sistema/` (
 | **Cuentas de Google** (Ajustes › Cuentas): conectar varias, elegir calendarios, actualizar, renombrar, desconectar y activar «Crear eventos» | **Real** (D-049, D-050); los eventos repetidos entre calendarios se ven una vez (D-051). El ID de cliente del proyecto va en `src/lib/google.js`; otro, en `app/.env` ([guía](../docs/guias/conectar-google-calendar.md)) |
 | **Hoy**: tiempo libre, eventos, tareas, lo siguiente, avisos, huecos | Real con tus tareas y, si conectas Google, con tus eventos |
 | **Calendario** (día, semana, mes, año) | Real con tus cuentas de Google; en el detalle, «Mover esta vez», «Saltar esta vez» (calendarios tuyos) o «No voy esta vez» (solo en Pauta) (D-052); sin cuentas, ejemplo (Gmail 1, Gmail 2 y Outlook inventados alrededor de la fecha real) |
-| **Finanzas** | Ejemplo: tres fondos inventados |
-| **Pide atención** | Real con tus tareas (atrasadas, fechas límite) y los solapes entre tus cuentas; fondos de ejemplo |
-| **Asistente** | Maqueta sin conectar (D-047) |
-| **Ajustes**: tema, cuentas, avisos, asistente, privacidad (descargar copia, borrar todo) | Tema, cuentas de Google y privacidad reales; el resto, informativo |
+| **Finanzas** | Escondida (D-059); el código sigue, con `FINANZAS_VISIBLE` en `src/lib/estado.svelte.js` |
+| **Pide atención** | Real con tus tareas (atrasadas, fechas límite) y los solapes entre tus cuentas |
+| **Asistente** (RAG, D-061 a D-063) | **Real**: pregunta sobre tu agenda, tus tareas, «Lo que sé de ti» y tus notas; responde con citas comprobadas. Sin datos tuyos, usa una persona de ejemplo inventada. Redacta OVHcloud sin clave, tu proveedor con tu clave o el propio código («Sin IA»). Búsqueda por significado opcional (descarga 118 MB). Código en `src/lib/rag/`; banco en `pruebas/rag/banco.json` y `scripts/evaluar-rag.mjs` |
+| **Ajustes**: tema, cuentas, avisos, asistente, privacidad (descargar copia, borrar todo) | Reales salvo Avisos, que es informativo |
 
 Todo lo que no es real lleva la etiqueta «ejemplo». El ensayo de los viernes (21:30–23:30) es un hecho real; está en calendarios compartidos de tu primera cuenta (P-001), que aparecen unidos en uno (D-051). Al conectar Google, los calendarios de ejemplo desaparecen (también ese ensayo, que vendrá de tu calendario).
 
@@ -22,7 +22,8 @@ Todo lo que no es real lleva la etiqueta «ejemplo». El ensayo de los viernes (
 npm install
 npm run dev          # http://localhost:4321 (publicada: https://braisdlim.github.io/myPanel/, D-053)
 npm run build && npx astro preview --port 4330
-npm test             # pruebas de fechas, analizador, tareas, Google Calendar, paso 3 y 3 bis (node --test)
+npm test             # pruebas de fechas, analizador, tareas, Google Calendar, paso 3 y 3 bis y asistente (node --test)
+node scripts/evaluar-rag.mjs   # banco del asistente → research/rag/resultados.md (con proxy: NODE_USE_ENV_PROXY=1; --vectores=no para solo BM25; --generar=ovh mide las respuestas del modelo, ~25 min)
 npm run build:pruebas && npx playwright test   # revisión (contraste, táctil, consola), axe-core, navegación y recorridos con Google imitado; la primera vez: npx playwright install chromium
 ```
 `build:pruebas` compila con el ID de cliente falso de `.env.pruebas` para que el botón «Conectar Google» funcione contra las imitaciones de `pruebas/google.spec.js`; nunca llama a Google.
